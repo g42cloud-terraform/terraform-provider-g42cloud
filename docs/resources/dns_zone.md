@@ -30,7 +30,7 @@ resource "g42cloud_dns_zone" "my_private_zone" {
   ttl         = 3000
   zone_type   = "private"
   router {
-    router_region = "cn-north-1"
+    router_region = "ae-ad-1"
     router_id     = "2c1fe4bd-ebad-44ca-ae9d-e94e63847b75"
   }
 }

@@ -11,18 +11,15 @@ Use the navigation to the left to read about the available resources.
 ```hcl
 # Configure the G42Cloud Provider
 provider "g42cloud" {
-  region       = "ru-moscow-1"
-  account_name = "my-account-name"
-  access_key  = "my-access-key"
-  secret_key  = "my-secret-key"
+  region     = "ae-ad-1"
+  access_key = "my-access-key"
+  secret_key = "my-secret-key"
 }
 
-# Create a user
-resource "g42cloud_identity_user_v3" "example" {
-  name = "terraform"
-  password = "password123@!"
-  enabled = true
-  description = "created by terraform"
+# Create a VPC
+resource "g42cloud_vpc" "example" {
+  name = "my_vpc"
+  cidr = "192.168.0.0/16"
 }
 ```
 
@@ -48,10 +45,9 @@ Usage:
 
 ```hcl
 provider "g42cloud" {
-  region       = "ru-moscow-1"
-  account_name = "my-account-name"
-  access_key  = "my-access-key"
-  secret_key  = "my-secret-key"
+  region     = "ae-ad-1"
+  access_key = "my-access-key"
+  secret_key = "my-secret-key"
 }
 ```
 
@@ -70,8 +66,7 @@ Usage:
 ```sh
 $ export G42_ACCESS_KEY="user-name"
 $ export G42_SECRET_KEY="password"
-$ export G42_REGION_NAME="ru-moscow-1"
-$ export G42_ACCOUNT_NAME="account-name"
+$ export G42_REGION_NAME="ae-ad-1"
 $ terraform plan
 ```
 
