@@ -341,6 +341,7 @@ github.com/huaweicloud/golangsdk/openstack/iec/v1/common
 github.com/huaweicloud/golangsdk/openstack/iec/v1/flavors
 github.com/huaweicloud/golangsdk/openstack/iec/v1/images
 github.com/huaweicloud/golangsdk/openstack/iec/v1/sites
+github.com/huaweicloud/golangsdk/openstack/iec/v1/subnets
 github.com/huaweicloud/golangsdk/openstack/iec/v1/vpcs
 github.com/huaweicloud/golangsdk/openstack/imageservice/v2/imagedata
 github.com/huaweicloud/golangsdk/openstack/imageservice/v2/images
@@ -418,7 +419,7 @@ github.com/huaweicloud/golangsdk/openstack/vbs/v2/tags
 github.com/huaweicloud/golangsdk/openstack/vpcep/v1/endpoints
 github.com/huaweicloud/golangsdk/openstack/vpcep/v1/services
 github.com/huaweicloud/golangsdk/pagination
-# github.com/huaweicloud/terraform-provider-huaweicloud v1.20.3-0.20201229034225-02b8669757e5
+# github.com/huaweicloud/terraform-provider-huaweicloud v1.20.3-0.20201230034232-9a4459ada075
 ## explicit
 github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud
 # github.com/imdario/mergo v0.3.9
