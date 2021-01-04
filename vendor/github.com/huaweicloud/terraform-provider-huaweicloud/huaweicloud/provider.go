@@ -394,6 +394,8 @@ func Provider() terraform.ResourceProvider {
 			"huaweicloud_identity_role":                   resourceIdentityRole(),
 			"huaweicloud_identity_role_assignment":        ResourceIdentityRoleAssignmentV3(),
 			"huaweicloud_identity_user":                   ResourceIdentityUserV3(),
+			"huaweicloud_iec_eip":                         resourceIecNetworkEip(),
+			"huaweicloud_iec_keypair":                     resourceIecKeypair(),
 			"huaweicloud_iec_vpc":                         ResourceIecVpc(),
 			"huaweicloud_iec_vpc_subnet":                  resourceIecSubnet(),
 			"huaweicloud_images_image":                    ResourceImsImage(),
