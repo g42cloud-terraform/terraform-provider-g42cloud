@@ -155,6 +155,8 @@ func Provider() terraform.ResourceProvider {
 			"g42cloud_lb_monitor":                huaweicloud.ResourceMonitorV2(),
 			"g42cloud_lb_pool":                   huaweicloud.ResourcePoolV2(),
 			"g42cloud_lb_whitelist":              huaweicloud.ResourceWhitelistV2(),
+			"g42cloud_network_acl":               huaweicloud.ResourceNetworkACL(),
+			"g42cloud_network_acl_rule":          huaweicloud.ResourceNetworkACLRule(),
 			"g42cloud_obs_bucket":                huaweicloud.ResourceObsBucket(),
 			"g42cloud_obs_bucket_object":         huaweicloud.ResourceObsBucketObject(),
 			"g42cloud_obs_bucket_policy":         huaweicloud.ResourceObsBucketPolicy(),
