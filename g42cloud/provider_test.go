@@ -16,6 +16,8 @@ var (
 	G42_ACCOUNT_NAME               = os.Getenv("G42_ACCOUNT_NAME")
 	G42_ADMIN                      = os.Getenv("G42_ADMIN")
 	G42_ENTERPRISE_PROJECT_ID_TEST = os.Getenv("G42_ENTERPRISE_PROJECT_ID_TEST")
+	G42_ACCESS_KEY                 = os.Getenv("G42_ACCESS_KEY")
+	G42_SECRET_KEY                 = os.Getenv("G42_SECRET_KEY")
 )
 
 var testAccProviders map[string]terraform.ResourceProvider
@@ -47,6 +49,12 @@ func testAccPreCheckAdminOnly(t *testing.T) {
 func testAccPreCheckEpsID(t *testing.T) {
 	if G42_ENTERPRISE_PROJECT_ID_TEST == "" {
 		t.Skip("This environment does not support EPS_ID tests")
+	}
+}
+
+func testAccPreCheckOBS(t *testing.T) {
+	if G42_ACCESS_KEY == "" || G42_SECRET_KEY == "" {
+		t.Skip("G42_ACCESS_KEY and G42_SECRET_KEY must be set for OBS acceptance tests")
 	}
 }
 

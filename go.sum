@@ -217,8 +217,8 @@ github.com/hashicorp/yamux v0.0.0-20181012175058-2f1d1f20f75d h1:kJCB4vdITiW1eC1
 github.com/hashicorp/yamux v0.0.0-20181012175058-2f1d1f20f75d/go.mod h1:+NfK9FKeTrX5uv1uIXGdwYDTeHna2qgaIlx54MXqjAM=
 github.com/huaweicloud/golangsdk v0.0.0-20210706092920-c12079d6a740 h1:RCAJI5jVLah5GJkr1lk9I0g6+PdTjUMCwzY5pUUd7fA=
 github.com/huaweicloud/golangsdk v0.0.0-20210706092920-c12079d6a740/go.mod h1:fcOI5u+0f62JtJd7zkCch/Z57BNC6bhqb32TKuiF4r0=
-github.com/huaweicloud/terraform-provider-huaweicloud v1.26.1-0.20210708094519-bfbad0f15b43 h1:aNctfG7G28d83tqdMKbwHYYi8mRFVVEAfBcn83eL4Fo=
-github.com/huaweicloud/terraform-provider-huaweicloud v1.26.1-0.20210708094519-bfbad0f15b43/go.mod h1:OKm++WWk31GyaRAL+gj7SgLu7uaOjw20K+NNoB8fQOA=
+github.com/huaweicloud/terraform-provider-huaweicloud v1.26.1-0.20210712114231-42e55fb03f2c h1:nKLIk+f6HWSdDKIPUXjFDpax0c31tdCCHIFhTv6QVwY=
+github.com/huaweicloud/terraform-provider-huaweicloud v1.26.1-0.20210712114231-42e55fb03f2c/go.mod h1:OKm++WWk31GyaRAL+gj7SgLu7uaOjw20K+NNoB8fQOA=
 github.com/ianlancetaylor/demangle v0.0.0-20181102032728-5e5cf60278f6/go.mod h1:aSSvb/t6k1mPoxDqO4vJh6VOCGPwU4O0C2/Eqndh1Sc=
 github.com/imdario/mergo v0.3.9 h1:UauaLniWCFHWd+Jp9oCEkTBj8VO/9DKg3PV3VCNMDIg=
 github.com/imdario/mergo v0.3.9/go.mod h1:2EnlNZ0deacrJVfApfmtdGgDfMuh/nq6Ok1EcJh5FfA=
