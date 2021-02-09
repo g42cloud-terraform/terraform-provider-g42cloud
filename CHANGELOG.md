@@ -1,4 +1,14 @@
-## 1.0.0 (December 29, 2020)
+## 0.2.0 (February 9, 2021)
+
+FEATURES:
+
+* **New Resource:** `g42cloud_as_configuration`
+* **New Resource:** `g42cloud_as_group`
+* **New Resource:** `g42cloud_as_policy`
+* **New Resource:** `g42cloud_network_acl`
+* **New Resource:** `g42cloud_network_acl_rule`
+
+## 0.1.0 (December 29, 2020)
 
 FEATURES:
 
@@ -16,9 +26,6 @@ FEATURES:
 * **New Data Source:** `g42cloud_vpc_route`
 * **New Data Source:** `g42cloud_vpc_subnet`
 * **New Data Source:** `g42cloud_vpc_subnet_ids`
-* **New Resource:** `g42cloud_as_configuration`
-* **New Resource:** `g42cloud_as_group`
-* **New Resource:** `g42cloud_as_policy`
 * **New Resource:** `g42cloud_cce_cluster`
 * **New Resource:** `g42cloud_cce_node`
 * **New Resource:** `g42cloud_dns_recordset`
