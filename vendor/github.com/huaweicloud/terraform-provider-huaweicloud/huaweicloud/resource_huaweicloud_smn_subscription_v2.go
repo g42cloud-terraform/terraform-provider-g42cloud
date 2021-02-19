@@ -47,20 +47,14 @@ func resourceSubscription() *schema.Resource {
 			},
 			"subscription_urn": {
 				Type:     schema.TypeString,
-				Optional: true,
-				ForceNew: true,
 				Computed: true,
 			},
 			"owner": {
 				Type:     schema.TypeString,
-				Optional: true,
-				ForceNew: true,
 				Computed: true,
 			},
 			"status": {
 				Type:     schema.TypeInt,
-				Optional: true,
-				ForceNew: true,
 				Computed: true,
 			},
 		},
@@ -107,7 +101,7 @@ func resourceSubscriptionDelete(d *schema.ResourceData, meta interface{}) error 
 	id := d.Id()
 	result := subscriptions.Delete(client, id)
 	if result.Err != nil {
-		return err
+		return result.Err
 	}
 
 	log.Printf("[DEBUG] Successfully deleted subscription %s", id)

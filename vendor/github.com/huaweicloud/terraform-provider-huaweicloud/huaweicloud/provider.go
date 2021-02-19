@@ -269,8 +269,10 @@ func Provider() terraform.ResourceProvider {
 			"huaweicloud_gaussdb_mysql_configuration": dataSourceGaussdbMysqlConfigurations(),
 			"huaweicloud_gaussdb_mysql_flavors":       dataSourceGaussdbMysqlFlavors(),
 			"huaweicloud_gaussdb_mysql_instance":      dataSourceGaussDBMysqlInstance(),
+			"huaweicloud_gaussdb_mysql_instances":     dataSourceGaussDBMysqlInstances(),
 			"huaweicloud_iam_role":                    dataSourceIAMRoleV3(),
 			"huaweicloud_identity_role":               DataSourceIdentityRoleV3(),
+			"huaweicloud_identity_custom_role":        DataSourceIdentityCustomRole(),
 			"huaweicloud_iec_flavors":                 dataSourceIecFlavors(),
 			"huaweicloud_iec_images":                  dataSourceIecImages(),
 			"huaweicloud_iec_sites":                   dataSourceIecSites(),
@@ -400,6 +402,7 @@ func Provider() terraform.ResourceProvider {
 			"huaweicloud_iec_network_acl_rule":            resourceIecNetworkACLRule(),
 			"huaweicloud_iec_security_group":              resourceIecSecurityGroup(),
 			"huaweicloud_iec_security_group_rule":         resourceIecSecurityGroupRule(),
+			"huaweicloud_iec_server":                      resourceIecServer(),
 			"huaweicloud_iec_vip":                         resourceIecVipV1(),
 			"huaweicloud_iec_vpc":                         ResourceIecVpc(),
 			"huaweicloud_iec_vpc_subnet":                  resourceIecSubnet(),
@@ -706,7 +709,7 @@ func configureProvider(d *schema.ResourceData, terraformVersion string) (interfa
 	if err != nil {
 		return nil, err
 	}
-	config.endpoints = endpoints
+	config.Endpoints = endpoints
 
 	return &config, nil
 }

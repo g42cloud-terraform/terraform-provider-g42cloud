@@ -49,6 +49,7 @@ func ResourceCCENodeV3() *schema.Resource {
 				Type:     schema.TypeMap,
 				Optional: true,
 				ForceNew: true,
+				Elem:     &schema.Schema{Type: schema.TypeString},
 			},
 			"annotations": {
 				Type:     schema.TypeMap,
@@ -101,8 +102,9 @@ func ResourceCCENodeV3() *schema.Resource {
 							Required: true,
 						},
 						"extend_param": {
-							Type:     schema.TypeString,
+							Type:     schema.TypeMap,
 							Optional: true,
+							Elem:     &schema.Schema{Type: schema.TypeString},
 						},
 					}},
 			},
@@ -121,8 +123,9 @@ func ResourceCCENodeV3() *schema.Resource {
 							Required: true,
 						},
 						"extend_param": {
-							Type:     schema.TypeString,
+							Type:     schema.TypeMap,
 							Optional: true,
+							Elem:     &schema.Schema{Type: schema.TypeString},
 						},
 					}},
 			},
@@ -261,6 +264,7 @@ func ResourceCCENodeV3() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 				ForceNew: true,
+				Computed: true,
 			},
 			"tags": {
 				Type:     schema.TypeMap,
@@ -316,7 +320,7 @@ func resourceCCEDataVolume(d *schema.ResourceData) []nodes.VolumeSpec {
 		volumes[i] = nodes.VolumeSpec{
 			Size:        rawMap["size"].(int),
 			VolumeType:  rawMap["volumetype"].(string),
-			ExtendParam: rawMap["extend_param"].(string),
+			ExtendParam: rawMap["extend_param"].(map[string]interface{}),
 		}
 	}
 	return volumes
@@ -342,7 +346,7 @@ func resourceCCERootVolume(d *schema.ResourceData) nodes.VolumeSpec {
 	if len(nicsRaw) == 1 {
 		nics.Size = nicsRaw[0].(map[string]interface{})["size"].(int)
 		nics.VolumeType = nicsRaw[0].(map[string]interface{})["volumetype"].(string)
-		nics.ExtendParam = nicsRaw[0].(map[string]interface{})["extend_param"].(string)
+		nics.ExtendParam = nicsRaw[0].(map[string]interface{})["extend_param"].(map[string]interface{})
 	}
 	return nics
 }
@@ -530,6 +534,7 @@ func resourceCCENodeV3Read(d *schema.ResourceData, meta interface{}) error {
 	d.Set("os", s.Spec.Os)
 	d.Set("billing_mode", s.Spec.BillingMode)
 	d.Set("key_pair", s.Spec.Login.SshKey)
+	d.Set("subnet_id", s.Spec.NodeNicSpec.PrimaryNic.SubnetId)
 
 	var volumes []map[string]interface{}
 	for _, pairObject := range s.Spec.DataVolumes {
@@ -567,16 +572,15 @@ func resourceCCENodeV3Read(d *schema.ResourceData, meta interface{}) error {
 		return fmt.Errorf("Error creating HuaweiCloud compute client: %s", err)
 	}
 
-	resourceTags, err := tags.Get(computeClient, "cloudservers", serverId).Extract()
-	if err != nil {
-		return fmt.Errorf("Error fetching HuaweiCloud instance tags: %s", err)
-	}
-
-	tagmap := tagsToMap(resourceTags.Tags)
-	// ignore "CCE-Dynamic-Provisioning-Node"
-	delete(tagmap, "CCE-Dynamic-Provisioning-Node")
-	if err := d.Set("tags", tagmap); err != nil {
-		return fmt.Errorf("Error saving tags of cce node: %s", err)
+	if resourceTags, err := tags.Get(computeClient, "cloudservers", serverId).Extract(); err == nil {
+		tagmap := tagsToMap(resourceTags.Tags)
+		// ignore "CCE-Dynamic-Provisioning-Node"
+		delete(tagmap, "CCE-Dynamic-Provisioning-Node")
+		if err := d.Set("tags", tagmap); err != nil {
+			return fmt.Errorf("Error saving tags to state for CCE Node (%s): %s", serverId, err)
+		}
+	} else {
+		log.Printf("[WARN] Error fetching tags of CCE Node (%s): %s", serverId, err)
 	}
 
 	return nil
