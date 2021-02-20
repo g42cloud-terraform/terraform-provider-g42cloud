@@ -1,6 +1,9 @@
 package g42cloud
 
 import (
+	"fmt"
+	"log"
+	"strings"
 	"sync"
 
 	"github.com/hashicorp/terraform-plugin-sdk/helper/mutexkv"
@@ -38,6 +41,21 @@ func Provider() terraform.ResourceProvider {
 				DefaultFunc: schema.EnvDefaultFunc(
 					"G42_AUTH_URL", "https://iam.ae-ad-1.g42cloud.com/v3"),
 				Description: descriptions["auth_url"],
+			},
+
+			"cloud": {
+				Type:        schema.TypeString,
+				Optional:    true,
+				Description: descriptions["cloud"],
+				DefaultFunc: schema.EnvDefaultFunc(
+					"G42_CLOUD", "g42cloud.com"),
+			},
+
+			"endpoints": {
+				Type:        schema.TypeMap,
+				Optional:    true,
+				Description: descriptions["endpoints"],
+				Elem:        &schema.Schema{Type: schema.TypeString},
 			},
 
 			"region": {
@@ -195,6 +213,10 @@ func init() {
 	descriptions = map[string]string{
 		"auth_url": "The Identity authentication URL.",
 
+		"cloud": "The endpoint of cloud provider, defaults to g42cloud.com",
+
+		"endpoints": "The custom endpoints used to override the default endpoint URL.",
+
 		"region": "The G42Cloud region to connect to.",
 
 		"user_name": "Username to login with.",
@@ -230,7 +252,7 @@ func configureProvider(d *schema.ResourceData, terraformVersion string) (interfa
 		TenantName:          project_name,
 		Username:            d.Get("user_name").(string),
 		TerraformVersion:    terraformVersion,
-		Cloud:               "g42cloud.com",
+		Cloud:               d.Get("cloud").(string),
 		MaxRetries:          d.Get("max_retries").(int),
 		EnterpriseProjectID: d.Get("enterprise_project_id").(string),
 		RegionClient:        true,
@@ -246,5 +268,56 @@ func configureProvider(d *schema.ResourceData, terraformVersion string) (interfa
 		config.RegionProjectIDMap[config.Region] = config.HwClient.ProjectID
 	}
 
+	// get custom endpoints
+	endpoints, err := flattenProviderEndpoints(d)
+	if err != nil {
+		return nil, err
+	}
+	config.Endpoints = endpoints
+
 	return &config, nil
+}
+
+func flattenProviderEndpoints(d *schema.ResourceData) (map[string]string, error) {
+	endpoints := d.Get("endpoints").(map[string]interface{})
+	epMap := make(map[string]string)
+
+	for key, val := range endpoints {
+		endpoint := strings.TrimSpace(val.(string))
+		// check empty string
+		if endpoint == "" {
+			return nil, fmt.Errorf("the value of customer endpoint %s must be specified", key)
+		}
+
+		// add prefix "https://" and suffix "/"
+		if !strings.HasPrefix(endpoint, "http") {
+			endpoint = fmt.Sprintf("https://%s", endpoint)
+		}
+		if !strings.HasSuffix(endpoint, "/") {
+			endpoint = fmt.Sprintf("%s/", endpoint)
+		}
+		epMap[key] = endpoint
+	}
+
+	// unify the endpoint which has multi types
+	if endpoint, ok := epMap["iam"]; ok {
+		epMap["identity"] = endpoint
+	}
+	if endpoint, ok := epMap["ecs"]; ok {
+		epMap["ecsv11"] = endpoint
+		epMap["ecsv21"] = endpoint
+	}
+	if endpoint, ok := epMap["cce"]; ok {
+		epMap["cce_addon"] = endpoint
+	}
+	if endpoint, ok := epMap["evs"]; ok {
+		epMap["volumev2"] = endpoint
+	}
+	if endpoint, ok := epMap["vpc"]; ok {
+		epMap["networkv2"] = endpoint
+		epMap["security_group"] = endpoint
+	}
+
+	log.Printf("[DEBUG] customer endpoints: %+v", epMap)
+	return epMap, nil
 }

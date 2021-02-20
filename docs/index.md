@@ -93,6 +93,9 @@ The following arguments are supported:
 * `auth_url` - (Optional) The Identity authentication URL. If omitted, the
   `G42_AUTH_URL` environment variable is used.
 
+* `cloud` - (Optional) The endpoint of the cloud provider. If omitted, the
+  `G42_CLOUD` environment variable is used. Defaults to `g42cloud.com`.
+
 * `insecure` - (Optional) Trust self-signed SSL certificates. If omitted, the
   `G42_INSECURE` environment variable is used.
 
@@ -105,6 +108,18 @@ The following arguments are supported:
 * `enterprise_project_id` - (Optional) Default Enterprise Project ID for supported resources.
   If omitted, the `G42_ENTERPRISE_PROJECT_ID` environment variable is used.
 
+* `endpoints` - (Optional) Configuration block in key/value pairs for customizing service endpoints.
+  The following endpoints support to be customized: autoscaling, ecs, vpc, evs, iam.
+  An example provider configuration:
+
+```hcl
+provider "g42cloud" {
+  ...
+  endpoints = {
+    ecs = "https://ecs-customizing-endpoint.com"
+  }
+}
+```
 
 ## Testing and Development
 

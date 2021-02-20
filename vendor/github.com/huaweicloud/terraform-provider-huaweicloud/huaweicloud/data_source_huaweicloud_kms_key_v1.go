@@ -6,6 +6,7 @@ import (
 	"reflect"
 
 	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"github.com/huaweicloud/golangsdk/openstack/common/tags"
 	"github.com/huaweicloud/golangsdk/openstack/kms/v1/keys"
 )
 
@@ -30,11 +31,6 @@ func dataSourceKmsKeyV1() *schema.Resource {
 			"key_description": {
 				Type:     schema.TypeString,
 				Optional: true,
-			},
-			"realm": {
-				Type:     schema.TypeString,
-				Optional: true,
-				Computed: true,
 			},
 			"domain_id": {
 				Type:     schema.TypeString,
@@ -65,13 +61,19 @@ func dataSourceKmsKeyV1() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"tags": {
+				Type:     schema.TypeMap,
+				Computed: true,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+			},
 		},
 	}
 }
 
 func dataSourceKmsKeyV1Read(d *schema.ResourceData, meta interface{}) error {
 	config := meta.(*Config)
-	kmsKeyV1Client, err := config.kmsKeyV1Client(GetRegion(d, config))
+	kmsRegion := GetRegion(d, config)
+	kmsKeyV1Client, err := config.kmsKeyV1Client(kmsRegion)
 	if err != nil {
 		return fmt.Errorf("Error creating HuaweiCloud kms key client: %s", err)
 	}
@@ -102,9 +104,6 @@ func dataSourceKmsKeyV1Read(d *schema.ResourceData, meta interface{}) error {
 	}
 	if v, ok := d.GetOk("key_id"); ok {
 		keyProperties["KeyID"] = v.(string)
-	}
-	if v, ok := d.GetOk("realm"); ok {
-		keyProperties["Realm"] = v.(string)
 	}
 	if v, ok := d.GetOk("key_alias"); ok {
 		keyProperties["KeyAlias"] = v.(string)
@@ -162,7 +161,7 @@ func dataSourceKmsKeyV1Read(d *schema.ResourceData, meta interface{}) error {
 	d.Set("key_id", key.KeyID)
 	d.Set("domain_id", key.DomainID)
 	d.Set("key_alias", key.KeyAlias)
-	d.Set("realm", key.Realm)
+	d.Set("region", kmsRegion)
 	d.Set("key_description", key.KeyDescription)
 	d.Set("creation_date", key.CreationDate)
 	d.Set("scheduled_deletion_date", key.ScheduledDeletionDate)
@@ -170,6 +169,15 @@ func dataSourceKmsKeyV1Read(d *schema.ResourceData, meta interface{}) error {
 	d.Set("default_key_flag", key.DefaultKeyFlag)
 	d.Set("expiration_time", key.ExpirationTime)
 	d.Set("enterprise_project_id", key.EnterpriseProjectID)
+
+	if resourceTags, err := tags.Get(kmsKeyV1Client, "kms", key.KeyID).Extract(); err == nil {
+		tagmap := tagsToMap(resourceTags.Tags)
+		if err := d.Set("tags", tagmap); err != nil {
+			return fmt.Errorf("Error saving tags to state for kms key(%s): %s", key.KeyID, err)
+		}
+	} else {
+		log.Printf("[WARN] Error fetching tags of kms key(%s): %s", key.KeyID, err)
+	}
 
 	return nil
 }

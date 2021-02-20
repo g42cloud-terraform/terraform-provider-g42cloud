@@ -100,6 +100,7 @@ func (lrt *LogRoundTripper) RoundTrip(request *http.Request) (*http.Response, er
 		if lrt.OsDebug {
 			log.Printf("[DEBUG] HuaweiCloud connection error, retry number %d: %s", retry, err)
 		}
+		//lintignore:R018
 		time.Sleep(retryTimeout(retry))
 		response, err = lrt.Rt.RoundTrip(request)
 		retry += 1
@@ -181,6 +182,9 @@ func (lrt *LogRoundTripper) formatJSON(raw []byte) string {
 	}
 
 	// Ignore the catalog
+	if _, ok := data["catalog"]; ok {
+		return "{ **skipped** }"
+	}
 	if v, ok := data["token"].(map[string]interface{}); ok {
 		if _, ok := v["catalog"]; ok {
 			return ""
