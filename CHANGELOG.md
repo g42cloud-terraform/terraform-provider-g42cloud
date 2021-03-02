@@ -1,3 +1,9 @@
+## 0.3.0 (March 2, 2021)
+
+ENHANCEMENTS:
+
+* provider: Add custom cloud and endpoints support (#10)
+
 ## 0.2.0 (February 9, 2021)
 
 FEATURES:
