@@ -25,7 +25,7 @@ resource "g42cloud_vpc" "example" {
 
 ## Authentication
 
-The Sber Cloud provider offers a flexible means of providing credentials for
+The G42 Cloud provider offers a flexible means of providing credentials for
 authentication. The following methods are supported, in this order, and
 explained below:
 
@@ -54,7 +54,7 @@ provider "g42cloud" {
 ### Environment variables
 
 You can provide your credentials via the `G42_ACCESS_KEY` and
-`G42_SECRET_KEY`, environment variables, representing your Sber
+`G42_SECRET_KEY`, environment variables, representing your G42
 Cloud Username and Password, respectively.
 
 ```hcl
@@ -75,7 +75,7 @@ $ terraform plan
 
 The following arguments are supported:
 
-* `region` - (Required) This is the Sber Cloud region. It must be provided,
+* `region` - (Required) This is the G42 Cloud region. It must be provided,
   but it can also be sourced from the `G42_REGION_NAME` environment variables.
 
 * `account_name` - (Optional, Required for IAM resources) The

@@ -71,8 +71,6 @@ data "g42cloud_identity_role_v3" "auth_admin" {
 
 ## Attributes Reference
 
-`id` is set to the ID of the found role. In addition, the following attributes
-are exported:
+In addition to all arguments above, the following attributes are exported:
 
-* `name` - See Argument Reference above.
-* `domain_id` - See Argument Reference above.
+* `id` - Specifies a data source ID in UUID format.
