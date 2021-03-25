@@ -15,3 +15,6 @@ terraform-provider-g42cloud
 
 # Log of test
 *.log
+
+# vendor directory
+vendor/
