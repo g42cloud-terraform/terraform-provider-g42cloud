@@ -2,9 +2,10 @@
 subcategory: "Identity and Access Management (IAM)"
 ---
 
-# g42cloud\_identity\_user\_v3
+# g42cloud\_identity\_user
 
 Manages a User resource within G42Cloud IAM service.
+This is an alternative to `g42cloud_identity_user_v3`
 
 Note: You _must_ have admin privileges in your G42Cloud cloud to use
 this resource.
@@ -12,7 +13,7 @@ this resource.
 ## Example Usage
 
 ```hcl
-resource "g42cloud_identity_user_v3" "user_1" {
+resource "g42cloud_identity_user" "user_1" {
   name        = "user_1"
   description = "A user"
   password    = "password123!"
@@ -52,5 +53,5 @@ In addition to all arguments above, the following attributes are exported:
 Users can be imported using the `id`, e.g.
 
 ```
-$ terraform import g42cloud_identity_user_v3.user_1 89c60255-9bd6-460c-822a-e2b959ede9d2
+$ terraform import g42cloud_identity_user.user_1 89c60255-9bd6-460c-822a-e2b959ede9d2
 ```

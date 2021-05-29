@@ -2,9 +2,10 @@
 subcategory: "Identity and Access Management (IAM)"
 ---
 
-# g42cloud\_identity\_role\_assignment_v3
+# g42cloud\_identity\_role\_assignment
 
 Manages a V3 Role assignment within group on G42Cloud IAM Service.
+This is an alternative to `g42cloud_identity_role_assignment_v3`
 
 Note: You _must_ have admin privileges in your G42Cloud cloud to use
 this resource. 
@@ -12,19 +13,19 @@ this resource.
 ## Example Usage: Assign Role On Project Level
 
 ```hcl
-data "g42cloud_identity_role_v3" "role_1" {
+data "g42cloud_identity_role" "role_1" {
   name = "system_all_4" #ECS admin
 }
 
-resource "g42cloud_identity_group_v3" "group_1" {
+resource "g42cloud_identity_group" "group_1" {
   name = "group_1"
 }
 
 
-resource "g42cloud_identity_role_assignment_v3" "role_assignment_1" {
-  group_id   = g42cloud_identity_group_v3.group_1.id
+resource "g42cloud_identity_role_assignment" "role_assignment_1" {
+  group_id   = g42cloud_identity_group.group_1.id
   project_id = var.project_id
-  role_id    = data.g42cloud_identity_role_v3.role_1.id
+  role_id    = data.g42cloud_identity_role.role_1.id
 }
 ```
 
@@ -32,18 +33,18 @@ resource "g42cloud_identity_role_assignment_v3" "role_assignment_1" {
 
 ```hcl
 
-data "g42cloud_identity_role_v3" "role_1" {
+data "g42cloud_identity_role" "role_1" {
   name = "secu_admin" #security admin
 }
 
-resource "g42cloud_identity_group_v3" "group_1" {
+resource "g42cloud_identity_group" "group_1" {
   name = "group_1"
 }
 
-resource "g42cloud_identity_role_assignment_v3" "role_assignment_1" {
-  group_id  = g42cloud_identity_group_v3.group_1.id
+resource "g42cloud_identity_role_assignment" "role_assignment_1" {
+  group_id  = g42cloud_identity_group.group_1.id
   domain_id = var.domain_id
-  role_id   = data.g42cloud_identity_role_v3.role_1.id
+  role_id   = data.g42cloud_identity_role.role_1.id
 }
 
 ```

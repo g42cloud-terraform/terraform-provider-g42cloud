@@ -2,9 +2,10 @@
 subcategory: "Identity and Access Management (IAM)"
 ---
 
-# g42cloud\_identity\_group_v3
+# g42cloud\_identity\_group
 
 Manages a User Group resource within G42Cloud IAM service.
+This is an alternative to `g42cloud_identity_group_v3`
 
 Note: You _must_ have admin privileges in your G42Cloud cloud to use
 this resource.
@@ -12,7 +13,7 @@ this resource.
 ## Example Usage
 
 ```hcl
-resource "g42cloud_identity_group_v3" "group_1" {
+resource "g42cloud_identity_group" "group_1" {
   name        = "group_1"
   description = "This is a test group"
 }
@@ -39,5 +40,5 @@ In addition to all arguments above, the following attributes are exported:
 Groups can be imported using the `id`, e.g.
 
 ```
-$ terraform import g42cloud_identity_group_v3.group_1 89c60255-9bd6-460c-822a-e2b959ede9d2
+$ terraform import g42cloud_identity_group.group_1 89c60255-9bd6-460c-822a-e2b959ede9d2
 ```
