@@ -174,6 +174,7 @@ func Provider() terraform.ResourceProvider {
 			"g42cloud_compute_volume_attach":     huaweicloud.ResourceComputeVolumeAttachV2(),
 			"g42cloud_evs_snapshot":              huaweicloud.ResourceEvsSnapshotV2(),
 			"g42cloud_evs_volume":                huaweicloud.ResourceEvsStorageVolumeV3(),
+			"g42cloud_fgs_function":              huaweicloud.ResourceFgsFunctionV2(),
 			"g42cloud_lb_certificate":            huaweicloud.ResourceCertificateV2(),
 			"g42cloud_lb_l7policy":               huaweicloud.ResourceL7PolicyV2(),
 			"g42cloud_lb_l7rule":                 huaweicloud.ResourceL7RuleV2(),
