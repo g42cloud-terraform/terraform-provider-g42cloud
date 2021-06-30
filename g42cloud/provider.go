@@ -202,6 +202,8 @@ func Provider() terraform.ResourceProvider {
 			"g42cloud_obs_bucket_object":         huaweicloud.ResourceObsBucketObject(),
 			"g42cloud_obs_bucket_policy":         huaweicloud.ResourceObsBucketPolicy(),
 			"g42cloud_sfs_turbo":                 huaweicloud.ResourceSFSTurbo(),
+			"g42cloud_smn_subscription":          huaweicloud.ResourceSubscription(),
+			"g42cloud_smn_topic":                 huaweicloud.ResourceTopic(),
 			"g42cloud_vpc":                       huaweicloud.ResourceVirtualPrivateCloudV1(),
 			"g42cloud_vpc_bandwidth":             huaweicloud.ResourceVpcBandWidthV2(),
 			"g42cloud_vpc_eip":                   huaweicloud.ResourceVpcEIPV1(),
