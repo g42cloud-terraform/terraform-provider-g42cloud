@@ -6,7 +6,7 @@ PKG_NAME=g42cloud
 default: build
 
 build: fmtcheck
-	go install -ldflags="-X 'github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/utils.PackageName=g42cloud'"
+	go install -ldflags="-X 'github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/utils.PackageName=$(PKG_NAME)'"
 
 test: fmtcheck
 	go test -i $(TEST) || exit 1
