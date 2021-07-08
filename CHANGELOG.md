@@ -1,3 +1,24 @@
+## 1.0.0 (July 8, 2021)
+
+FEATURES:
+
+* **New Data Source:** `g42cloud_kms_key` ([#26](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/26))
+* **New Data Source:** `g42cloud_kms_data_key` ([#26](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/26))
+* **New Data Source:** `g42cloud_dcs_az` ([#27](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/27))
+* **New Data Source:** `g42cloud_dcs_maintainwindow` ([#27](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/27))
+* **New Data Source:** `g42cloud_dcs_product` ([#27](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/27))
+* **New Data Source:** `g42cloud_dds_flavors` ([#28](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/28))
+* **New Resource:** `g42cloud_fgs_function` ([#25](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/25))
+* **New Resource:** `g42cloud_kms_key` ([#26](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/26))
+* **New Resource:** `g42cloud_dcs_instance` ([#27](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/27))
+* **New Resource:** `g42cloud_dds_instance` ([#28](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/28))
+* **New Resource:** `g42cloud_smn_topic` ([#29](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/29))
+* **New Resource:** `g42cloud_smn_subscription` ([#29](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/29))
+
+ENHANCEMENTS:
+
+* provider: Make log message configurable ([#24](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/24))
+
 ## 0.4.0 (May 31, 2021)
 
 FEATURES:
