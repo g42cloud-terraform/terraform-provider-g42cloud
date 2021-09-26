@@ -173,6 +173,7 @@ func Provider() terraform.ResourceProvider {
 			"g42cloud_compute_volume_attach":     huaweicloud.ResourceComputeVolumeAttachV2(),
 			"g42cloud_dcs_instance":              huaweicloud.ResourceDcsInstanceV1(),
 			"g42cloud_dds_instance":              huaweicloud.ResourceDdsInstanceV3(),
+			"g42cloud_dli_queue":                 huaweicloud.ResourceDliQueueV1(),
 			"g42cloud_dms_instance":              ResourceDmsInstancesV1(),
 			"g42cloud_dns_recordset":             huaweicloud.ResourceDNSRecordSetV2(),
 			"g42cloud_dns_zone":                  huaweicloud.ResourceDNSZoneV2(),
