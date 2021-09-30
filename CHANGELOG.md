@@ -1,3 +1,22 @@
+## 1.1.0 (September 30, 2021)
+
+FEATURES:
+
+* **New Data Source:** `g42cloud_obs_bucket_object` ([#33](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/33))
+* **New Data Source:** `g42cloud_rds_flavors` ([#34](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/34))
+* **New Data Source:** `g42cloud_dms_az` ([#35](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/35))
+* **New Data Source:** `g42cloud_dms_maintainwindow` ([#35](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/35))
+* **New Data Source:** `g42cloud_dms_product` ([#35](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/35))
+* **New Resource:** `g42cloud_obs_bucket_object` ([#33](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/33))
+* **New Resource:** `g42cloud_obs_bucket_policy` ([#33](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/33))
+* **New Resource:** `g42cloud_obs_bucket` ([#33](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/33))
+* **New Resource:** `g42cloud_rds_configuration` ([#34](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/34))
+* **New Resource:** `g42cloud_rds_instance` ([#34](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/34))
+* **New Resource:** `g42cloud_rds_read_replica_instance` ([#34](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/34))
+* **New Resource:** `g42cloud_dms_instance` ([#35](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/35))
+* **New Resource:** `g42cloud_dli_queue` ([#36](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/36))
+* **New Resource:** `g42cloud_ces_alarmrule` ([#37](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/37))
+
 ## 1.0.0 (July 8, 2021)
 
 FEATURES:
