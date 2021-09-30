@@ -165,6 +165,7 @@ func Provider() terraform.ResourceProvider {
 			"g42cloud_cce_node":                  huaweicloud.ResourceCCENodeV3(),
 			"g42cloud_cce_addon":                 huaweicloud.ResourceCCEAddonV3(),
 			"g42cloud_cce_node_pool":             huaweicloud.ResourceCCENodePool(),
+			"g42cloud_ces_alarmrule":             huaweicloud.ResourceAlarmRule(),
 			"g42cloud_compute_instance":          huaweicloud.ResourceComputeInstanceV2(),
 			"g42cloud_compute_interface_attach":  huaweicloud.ResourceComputeInterfaceAttachV2(),
 			"g42cloud_compute_keypair":           huaweicloud.ResourceComputeKeypairV2(),
