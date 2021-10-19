@@ -6,9 +6,9 @@ import (
 	"os"
 	"testing"
 
-	"github.com/hashicorp/terraform-plugin-sdk/helper/pathorcontents"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
-	"github.com/hashicorp/terraform-plugin-sdk/terraform"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+
+	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/helper/pathorcontents"
 )
 
 var (
@@ -20,12 +20,12 @@ var (
 	G42_SECRET_KEY                 = os.Getenv("G42_SECRET_KEY")
 )
 
-var testAccProviders map[string]terraform.ResourceProvider
+var testAccProviders map[string]*schema.Provider
 var testAccProvider *schema.Provider
 
 func init() {
-	testAccProvider = Provider().(*schema.Provider)
-	testAccProviders = map[string]terraform.ResourceProvider{
+	testAccProvider = Provider()
+	testAccProviders = map[string]*schema.Provider{
 		"g42cloud": testAccProvider,
 	}
 }
@@ -59,13 +59,9 @@ func testAccPreCheckOBS(t *testing.T) {
 }
 
 func TestProvider(t *testing.T) {
-	if err := Provider().(*schema.Provider).InternalValidate(); err != nil {
+	if err := Provider().InternalValidate(); err != nil {
 		t.Fatalf("err: %s", err)
 	}
-}
-
-func TestProvider_impl(t *testing.T) {
-	var _ terraform.ResourceProvider = Provider()
 }
 
 func envVarContents(varName string) (string, error) {
