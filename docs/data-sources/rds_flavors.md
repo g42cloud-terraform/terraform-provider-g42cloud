@@ -33,6 +33,10 @@ SQLServer| <br>2016_SE <br>2016_EE <br>2017_SE <br>2017_EE
 * `instance_mode` - (Required, String) The mode of instance. Value: *ha*(indicates primary/standby instance),
   *single*(indicates single instance) and *replica*(indicates read replicas).
 
+* `vcpus` - (Optional, Int) Specifies the number of vCPUs in the RDS flavor.
+
+* `memory` - (Optional, Int) Specifies the memory size(GB) in the RDS flavor.
+
 ## Attributes Reference
 
 In addition to all arguments above, the following attributes are exported:
