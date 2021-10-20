@@ -6,18 +6,24 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/hashicorp/terraform-plugin-sdk/helper/mutexkv"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
-	"github.com/hashicorp/terraform-plugin-sdk/terraform"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+
 	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud"
 	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/config"
+	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/helper/mutexkv"
+	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/dcs"
+	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/deprecated"
+	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/dli"
+	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/fgs"
+	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/iam"
+	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/vpc"
 )
 
 // This is a global MutexKV for use within this plugin.
 var osMutexKV = mutexkv.NewMutexKV()
 
 // Provider returns a schema.Provider for G42Cloud.
-func Provider() terraform.ResourceProvider {
+func Provider() *schema.Provider {
 	provider := &schema.Provider{
 		Schema: map[string]*schema.Schema{
 			"access_key": {
@@ -133,13 +139,13 @@ func Provider() terraform.ResourceProvider {
 			"g42cloud_cce_node_pool":       huaweicloud.DataSourceCCENodePoolV3(),
 			"g42cloud_compute_flavors":     huaweicloud.DataSourceEcsFlavors(),
 			"g42cloud_dds_flavors":         huaweicloud.DataSourceDDSFlavorV3(),
-			"g42cloud_dcs_az":              huaweicloud.DataSourceDcsAZV1(),
-			"g42cloud_dcs_maintainwindow":  huaweicloud.DataSourceDcsMaintainWindowV1(),
-			"g42cloud_dcs_product":         huaweicloud.DataSourceDcsProductV1(),
+			"g42cloud_dcs_az":              deprecated.DataSourceDcsAZV1(),
+			"g42cloud_dcs_maintainwindow":  dcs.DataSourceDcsMaintainWindow(),
+			"g42cloud_dcs_product":         deprecated.DataSourceDcsProductV1(),
 			"g42cloud_dms_az":              huaweicloud.DataSourceDmsAZV1(),
 			"g42cloud_dms_product":         huaweicloud.DataSourceDmsProductV1(),
 			"g42cloud_dms_maintainwindow":  huaweicloud.DataSourceDmsMaintainWindowV1(),
-			"g42cloud_identity_role":       huaweicloud.DataSourceIdentityRoleV3(),
+			"g42cloud_identity_role":       iam.DataSourceIdentityRoleV3(),
 			"g42cloud_images_image":        huaweicloud.DataSourceImagesImageV2(),
 			"g42cloud_kms_key":             huaweicloud.DataSourceKmsKeyV1(),
 			"g42cloud_kms_data_key":        huaweicloud.DataSourceKmsDataKeyV1(),
@@ -148,13 +154,13 @@ func Provider() terraform.ResourceProvider {
 			"g42cloud_networking_secgroup": huaweicloud.DataSourceNetworkingSecGroupV2(),
 			"g42cloud_obs_bucket_object":   huaweicloud.DataSourceObsBucketObject(),
 			"g42cloud_rds_flavors":         huaweicloud.DataSourceRdsFlavorV3(),
-			"g42cloud_vpc":                 huaweicloud.DataSourceVirtualPrivateCloudVpcV1(),
-			"g42cloud_vpc_bandwidth":       huaweicloud.DataSourceBandWidth(),
-			"g42cloud_vpc_subnet":          huaweicloud.DataSourceVpcSubnetV1(),
-			"g42cloud_vpc_subnet_ids":      huaweicloud.DataSourceVpcSubnetIdsV1(),
-			"g42cloud_vpc_route":           huaweicloud.DataSourceVPCRouteV2(),
+			"g42cloud_vpc":                 vpc.DataSourceVpcV1(),
+			"g42cloud_vpc_bandwidth":       vpc.DataSourceBandWidth(),
+			"g42cloud_vpc_subnet":          vpc.DataSourceVpcSubnetV1(),
+			"g42cloud_vpc_subnet_ids":      vpc.DataSourceVpcSubnetIdsV1(),
+			"g42cloud_vpc_route":           vpc.DataSourceVpcRouteV2(),
 			// Legacy
-			"g42cloud_identity_role_v3": huaweicloud.DataSourceIdentityRoleV3(),
+			"g42cloud_identity_role_v3": iam.DataSourceIdentityRoleV3(),
 		},
 
 		ResourcesMap: map[string]*schema.Resource{
@@ -172,23 +178,23 @@ func Provider() terraform.ResourceProvider {
 			"g42cloud_compute_servergroup":       huaweicloud.ResourceComputeServerGroupV2(),
 			"g42cloud_compute_eip_associate":     huaweicloud.ResourceComputeFloatingIPAssociateV2(),
 			"g42cloud_compute_volume_attach":     huaweicloud.ResourceComputeVolumeAttachV2(),
-			"g42cloud_dcs_instance":              huaweicloud.ResourceDcsInstanceV1(),
+			"g42cloud_dcs_instance":              dcs.ResourceDcsInstance(),
 			"g42cloud_dds_instance":              huaweicloud.ResourceDdsInstanceV3(),
-			"g42cloud_dli_queue":                 huaweicloud.ResourceDliQueueV1(),
+			"g42cloud_dli_queue":                 dli.ResourceDliQueue(),
 			"g42cloud_dms_instance":              ResourceDmsInstancesV1(),
 			"g42cloud_dns_recordset":             huaweicloud.ResourceDNSRecordSetV2(),
 			"g42cloud_dns_zone":                  huaweicloud.ResourceDNSZoneV2(),
 			"g42cloud_evs_snapshot":              huaweicloud.ResourceEvsSnapshotV2(),
 			"g42cloud_evs_volume":                huaweicloud.ResourceEvsStorageVolumeV3(),
-			"g42cloud_fgs_function":              huaweicloud.ResourceFgsFunctionV2(),
-			"g42cloud_identity_role_assignment":  huaweicloud.ResourceIdentityRoleAssignmentV3(),
-			"g42cloud_identity_user":             huaweicloud.ResourceIdentityUserV3(),
-			"g42cloud_identity_group":            huaweicloud.ResourceIdentityGroupV3(),
-			"g42cloud_identity_group_membership": huaweicloud.ResourceIdentityGroupMembershipV3(),
-			"g42cloud_identity_acl":              huaweicloud.ResourceIdentityACL(),
-			"g42cloud_identity_agency":           huaweicloud.ResourceIAMAgencyV3(),
-			"g42cloud_identity_project":          huaweicloud.ResourceIdentityProjectV3(),
-			"g42cloud_identity_role":             huaweicloud.ResourceIdentityRole(),
+			"g42cloud_fgs_function":              fgs.ResourceFgsFunctionV2(),
+			"g42cloud_identity_role_assignment":  iam.ResourceIdentityRoleAssignmentV3(),
+			"g42cloud_identity_user":             iam.ResourceIdentityUserV3(),
+			"g42cloud_identity_group":            iam.ResourceIdentityGroupV3(),
+			"g42cloud_identity_group_membership": iam.ResourceIdentityGroupMembershipV3(),
+			"g42cloud_identity_acl":              iam.ResourceIdentityACL(),
+			"g42cloud_identity_agency":           iam.ResourceIAMAgencyV3(),
+			"g42cloud_identity_project":          iam.ResourceIdentityProjectV3(),
+			"g42cloud_identity_role":             iam.ResourceIdentityRole(),
 			"g42cloud_images_image":              huaweicloud.ResourceImsImage(),
 			"g42cloud_kms_key":                   huaweicloud.ResourceKmsKeyV1(),
 			"g42cloud_lb_certificate":            huaweicloud.ResourceCertificateV2(),
@@ -214,19 +220,19 @@ func Provider() terraform.ResourceProvider {
 			"g42cloud_sfs_turbo":                 huaweicloud.ResourceSFSTurbo(),
 			"g42cloud_smn_subscription":          huaweicloud.ResourceSubscription(),
 			"g42cloud_smn_topic":                 huaweicloud.ResourceTopic(),
-			"g42cloud_vpc":                       huaweicloud.ResourceVirtualPrivateCloudV1(),
-			"g42cloud_vpc_bandwidth":             huaweicloud.ResourceVpcBandWidthV2(),
-			"g42cloud_vpc_eip":                   huaweicloud.ResourceVpcEIPV1(),
-			"g42cloud_vpc_route":                 huaweicloud.ResourceVPCRouteV2(),
-			"g42cloud_vpc_peering_connection":    huaweicloud.ResourceVpcPeeringConnectionV2(),
-			"g42cloud_vpc_subnet":                huaweicloud.ResourceVpcSubnetV1(),
+			"g42cloud_vpc":                       vpc.ResourceVirtualPrivateCloudV1(),
+			"g42cloud_vpc_bandwidth":             vpc.ResourceVpcBandWidthV2(),
+			"g42cloud_vpc_eip":                   vpc.ResourceVpcEIPV1(),
+			"g42cloud_vpc_route":                 vpc.ResourceVPCRouteV2(),
+			"g42cloud_vpc_peering_connection":    vpc.ResourceVpcPeeringConnectionV2(),
+			"g42cloud_vpc_subnet":                vpc.ResourceVpcSubnetV1(),
 			"g42cloud_networking_secgroup":       huaweicloud.ResourceNetworkingSecGroupV2(),
 			"g42cloud_networking_secgroup_rule":  huaweicloud.ResourceNetworkingSecGroupRuleV2(),
 			// Legacy
-			"g42cloud_identity_role_assignment_v3":  huaweicloud.ResourceIdentityRoleAssignmentV3(),
-			"g42cloud_identity_user_v3":             huaweicloud.ResourceIdentityUserV3(),
-			"g42cloud_identity_group_v3":            huaweicloud.ResourceIdentityGroupV3(),
-			"g42cloud_identity_group_membership_v3": huaweicloud.ResourceIdentityGroupMembershipV3(),
+			"g42cloud_identity_role_assignment_v3":  iam.ResourceIdentityRoleAssignmentV3(),
+			"g42cloud_identity_user_v3":             iam.ResourceIdentityUserV3(),
+			"g42cloud_identity_group_v3":            iam.ResourceIdentityGroupV3(),
+			"g42cloud_identity_group_membership_v3": iam.ResourceIdentityGroupMembershipV3(),
 		},
 	}
 
