@@ -1,26 +1,23 @@
 ---
-subcategory: "Distributed Cache Service"
+subcategory: "Distributed Cache Service (DCS)"
 ---
 
-# g42cloud\_dcs\_maintainwindow
+# g42cloud_dcs_maintainwindow
 
-Use this data source to get the ID of an available G42Cloud DCS maintainwindow.
+Use this data source to get the ID of an available G42cloud dcs maintainwindow.
 
 ## Example Usage
 
 ```hcl
-
 data "g42cloud_dcs_maintainwindow" "maintainwindow1" {
   seq = 1
 }
-
 ```
 
 ## Argument Reference
 
-For details, See [Querying Maintenance Time Window](https://docs.g42cloud.com/api/dcs/dcs-api-0312041.html).
-
-* `region` - (Optional, String) The region in which to obtain the dcs maintainwindows. If omitted, the provider-level region will be used.
+* `region` - (Optional, String) The region in which to obtain the dcs maintainwindows. If omitted, the provider-level
+  region will be used.
 
 * `seq` - (Required, Int) Indicates the sequential number of a maintenance time window.
 

@@ -140,6 +140,7 @@ func Provider() *schema.Provider {
 			"g42cloud_compute_flavors":     huaweicloud.DataSourceEcsFlavors(),
 			"g42cloud_dds_flavors":         huaweicloud.DataSourceDDSFlavorV3(),
 			"g42cloud_dcs_az":              deprecated.DataSourceDcsAZV1(),
+			"g42cloud_dcs_flavors":         dcs.DataSourceDcsFlavorsV2(),
 			"g42cloud_dcs_maintainwindow":  dcs.DataSourceDcsMaintainWindow(),
 			"g42cloud_dcs_product":         deprecated.DataSourceDcsProductV1(),
 			"g42cloud_dms_az":              huaweicloud.DataSourceDmsAZV1(),
