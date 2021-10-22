@@ -1,36 +1,33 @@
 ---
-subcategory: "Distributed Cache Service"
+subcategory: "Deprecated"
 ---
 
-# g42cloud\_dcs\_az
+# g42cloud_dcs_az
 
-Use this data source to get the ID of an available G42Cloud DCS AZ.
+Use this data source to get the ID of an available G42cloud dcs az.
+
+!> **WARNING:** It has been deprecated. This data source is used for the `available_zones` of the
+`g42cloud_dcs_instance` resource. Now `available_zones` has been deprecated and this data source is no longer used.
 
 ## Example Usage
 
 ```hcl
-
 data "g42cloud_dcs_az" "az1" {
-  port = "443"
-  code = "ru-moscow-1a"
+  code = "ae-ad-1a"
 }
 ```
 
 ## Argument Reference
 
-For details, See [Querying AZ Information](https://docs.g42cloud.com/api/dcs/dcs-api-0312039.html).
+* `region` - (Optional, String) The region in which to obtain the dcs az. If omitted, the provider-level region will be
+  used.
 
-* `region` - (Optional, String) The region in which to obtain the dcs az. If omitted, the provider-level region will be used.
-
-* `name` - (Optional, String) Indicates the name of an AZ.
-
-* `code` - (Optional, String) Indicates the code of an AZ.
-
-* `port` - (Optional, String) Indicates the port number of an AZ.
-
+* `code` - (Required, String) Specifies the code of an AZ, e.g. "ae-ad-1a".
 
 ## Attributes Reference
 
 In addition to all arguments above, the following attributes are exported:
 
-* `id` - Specifies a data source ID in UUID format.
+* `id` - Indicates a data source ID in UUID format.
+* `name` - Indicates the name of an AZ.
+* `port` - Indicates the port number of an AZ.
