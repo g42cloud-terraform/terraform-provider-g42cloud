@@ -227,6 +227,7 @@ func Provider() *schema.Provider {
 			"g42cloud_vpc_route":                 vpc.ResourceVPCRouteV2(),
 			"g42cloud_vpc_peering_connection":    vpc.ResourceVpcPeeringConnectionV2(),
 			"g42cloud_vpc_subnet":                vpc.ResourceVpcSubnetV1(),
+			"g42cloud_networking_eip_associate":  huaweicloud.ResourceNetworkingFloatingIPAssociateV2(),
 			"g42cloud_networking_secgroup":       huaweicloud.ResourceNetworkingSecGroupV2(),
 			"g42cloud_networking_secgroup_rule":  huaweicloud.ResourceNetworkingSecGroupRuleV2(),
 			// Legacy
