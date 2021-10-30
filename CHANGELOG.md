@@ -1,3 +1,14 @@
+## 1.2.0 (October 30, 2021)
+
+FEATURES:
+
+* **New Resource:** `g42cloud_networking_eip_associate` ([#42](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/42))
+
+ENHANCEMENTS:
+
+* Update the reference of sdk and huaweicloud ([#39](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/39))
+* Update dcs resources ([#41](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/41))
+
 ## 1.1.0 (September 30, 2021)
 
 FEATURES:
