@@ -42,6 +42,14 @@ func Provider() *schema.Provider {
 				RequiredWith: []string{"access_key"},
 			},
 
+			"security_token": {
+				Type:         schema.TypeString,
+				Optional:     true,
+				Description:  descriptions["security_token"],
+				RequiredWith: []string{"access_key"},
+				DefaultFunc:  schema.EnvDefaultFunc("G42_SECURITY_TOKEN", nil),
+			},
+
 			"auth_url": {
 				Type:     schema.TypeString,
 				Optional: true,
@@ -263,6 +271,12 @@ func init() {
 
 		"region": "The G42Cloud region to connect to.",
 
+		"access_key": "The access key of the G42Cloud to use.",
+
+		"secret_key": "The secret key of the G42Cloud to use.",
+
+		"security_token": "The security token to authenticate with a temporary security credential.",
+
 		"user_name": "Username to login with.",
 
 		"project_name": "The name of the Project to login with.",
@@ -288,6 +302,7 @@ func configureProvider(d *schema.ResourceData, terraformVersion string) (interfa
 	config := config.Config{
 		AccessKey:           d.Get("access_key").(string),
 		SecretKey:           d.Get("secret_key").(string),
+		SecurityToken:       d.Get("security_token").(string),
 		DomainName:          d.Get("account_name").(string),
 		IdentityEndpoint:    d.Get("auth_url").(string),
 		Insecure:            d.Get("insecure").(bool),
