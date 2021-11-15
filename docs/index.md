@@ -93,6 +93,10 @@ The following arguments are supported:
 * `auth_url` - (Optional) The Identity authentication URL. If omitted, the
   `G42_AUTH_URL` environment variable is used.
 
+* `security_token` - (Optional) The security token to authenticate with a
+  [temporary security credential](https://docs.g42cloud.com/usermanual/obs/obs_03_0208.html).
+  If omitted, the `G42_SECURITY_TOKEN` environment variable is used.
+
 * `cloud` - (Optional) The endpoint of the cloud provider. If omitted, the
   `G42_CLOUD` environment variable is used. Defaults to `g42cloud.com`.
 
