@@ -1,3 +1,9 @@
+## 1.2.1 (November 25, 2021)
+
+ENHANCEMENTS:
+
+* Support security_token ([#44](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/44))
+
 ## 1.2.0 (October 30, 2021)
 
 FEATURES:
