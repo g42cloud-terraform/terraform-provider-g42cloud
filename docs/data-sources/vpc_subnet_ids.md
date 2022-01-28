@@ -2,9 +2,9 @@
 subcategory: "Virtual Private Cloud (VPC)"
 ---
 
-# g42cloud\_vpc\_subnet\_ids
+# g42cloud_vpc_subnet_ids
 
-`g42cloud_vpc_subnet_ids` provides a list of subnet ids for a vpc_id
+Provides a list of subnet ids for a vpc_id.
 
 This resource can be useful for getting back a list of subnet ids for a vpc.
 
@@ -31,7 +31,10 @@ output "subnet_cidr_blocks" {
 
 The following arguments are supported:
 
-* `vpc_id` (Required) - Specifies the VPC ID used as the query filter.
+* `region` - (Optional, String) The region in which to obtain the subnet ids. If omitted, the provider-level region will
+  be used.
+
+* `vpc_id` - (Required, String) Specifies the VPC ID used as the query filter.
 
 ## Attributes Reference
 

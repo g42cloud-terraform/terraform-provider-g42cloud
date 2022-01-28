@@ -2,7 +2,7 @@
 subcategory: "Object Storage Service (OBS)"
 ---
 
-# g42cloud\_obs\_bucket\_object
+# g42cloud_obs_bucket_object
 
 Use this data source to get info of special G42Cloud obs object.
 
@@ -17,7 +17,8 @@ data "g42cloud_obs_bucket_object" "object" {
 
 The following arguments are supported:
 
-* `region` - (Optional, String) The region in which to obtain the OBS object. If omitted, the provider-level region will be used.
+* `region` - (Optional, String) The region in which to obtain the OBS object. If omitted, the provider-level region will
+  be used.
 
 * `bucket` - (Required, String) The name of the bucket to put the file in.
 

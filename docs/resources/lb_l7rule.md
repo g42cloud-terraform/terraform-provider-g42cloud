@@ -2,7 +2,7 @@
 subcategory: "Elastic Load Balance (ELB)"
 ---
 
-# g42cloud\_lb\_l7rule
+# g42cloud_lb_l7rule
 
 Manages an ELB L7 Rule resource within G42Cloud.
 
@@ -29,12 +29,12 @@ resource "g42cloud_lb_pool" "pool_1" {
 }
 
 resource "g42cloud_lb_l7policy" "l7policy_1" {
-  name         = "test"
-  action       = "REDIRECT_TO_URL"
-  description  = "test description"
-  position     = 1
-  listener_id  = g42cloud_lb_listener.listener_1.id
-  redirect_url = "http://www.example.com"
+  name             = "test"
+  action           = "REDIRECT_TO_URL"
+  description      = "test description"
+  position         = 1
+  listener_id      = g42cloud_lb_listener.listener_1.id
+  redirect_pool_id = g42cloud_lb_pool.pool_1.id
 }
 
 resource "g42cloud_lb_l7rule" "l7rule_1" {
@@ -49,32 +49,24 @@ resource "g42cloud_lb_l7rule" "l7rule_1" {
 
 The following arguments are supported:
 
-* `region` - (Optional, String, ForceNew) The region in which to create the L7 Rule resource.
-    If omitted, the provider-level region will be used.
-    Changing this creates a new L7 Rule.
-
-* `tenant_id` - (Optional, String, ForceNew) Required for admins. The UUID of the tenant who owns
-    the L7 Rule.  Only administrative users can specify a tenant UUID
-    other than their own. Changing this creates a new L7 Rule.
+* `region` - (Optional, String, ForceNew) The region in which to create the L7 Rule resource. If omitted, the
+  provider-level region will be used. Changing this creates a new L7 Rule.
 
 * `description` - (Optional, String) Human-readable description for the L7 Rule.
 
-* `type` - (Required, String, ForceNew) The L7 Rule type - can either be HOST\_NAME or PATH. Changing this creates a new L7 Rule.
+* `type` - (Required, String, ForceNew) The L7 Rule type - can either be HOST_NAME or PATH. Changing this creates a new
+  L7 Rule.
 
-* `compare_type` - (Required, String) The comparison type for the L7 rule - can either be
-    STARTS\_WITH, EQUAL_TO or REGEX
+* `compare_type` - (Required, String) The comparison type for the L7 rule - can either be STARTS_WITH, EQUAL_TO or REGEX
 
-* `l7policy_id` - (Required, String, ForceNew) The ID of the L7 Policy to query. Changing this creates a new
-    L7 Rule.
+* `l7policy_id` - (Required, String, ForceNew) The ID of the L7 Policy to query. Changing this creates a new L7 Rule.
 
-* `value` - (Required, String) The value to use for the comparison. For example, the file type to
-    compare.
+* `value` - (Required, String) The value to use for the comparison. For example, the file type to compare.
 
 * `key` - (Optional, String, ForceNew) The key to use for the comparison. For example, the name of the cookie to
-    evaluate. Valid when `type` is set to COOKIE or HEADER. Changing this creates a new L7 Rule.
+  evaluate. Valid when `type` is set to COOKIE or HEADER. Changing this creates a new L7 Rule.
 
-* `admin_state_up` - (Optional, Bool) The administrative state of the L7 Rule.
-    The value can only be true (UP).
+* `admin_state_up` - (Optional, Bool) The administrative state of the L7 Rule. The value can only be true (UP).
 
 ## Attributes Reference
 
@@ -85,10 +77,12 @@ In addition to all arguments above, the following attributes are exported:
 * `listener_id` - The ID of the Listener owning this resource.
 
 ## Timeouts
+
 This resource provides the following timeouts configuration options:
-- `create` - Default is 10 minute.
-- `update` - Default is 10 minute.
-- `delete` - Default is 10 minute.
+
+* `create` - Default is 10 minute.
+* `update` - Default is 10 minute.
+* `delete` - Default is 10 minute.
 
 ## Import
 

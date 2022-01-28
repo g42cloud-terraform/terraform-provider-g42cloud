@@ -2,9 +2,9 @@
 subcategory: "Virtual Private Cloud (VPC)"
 ---
 
-# g42cloud\_vpc\_subnet
+# g42cloud_vpc_subnet
 
-`g42cloud_vpc_subnet` provides details about a specific VPC subnet.
+Provides details about a specific VPC subnet.
 
 This resource can prove useful when a module accepts a subnet id as
 an input variable and needs to, for example, determine the id of the
@@ -54,6 +54,14 @@ In addition to all arguments above, the following attributes are exported:
 
 * `dns_list` - The IP address list of DNS servers on the subnet.
 
-* `dhcp_enable` - DHCP function for the subnet.
+* `dhcp_enable` - Whether the DHCP is enabled.
 
-* `subnet_id` - Specifies the subnet (Native OpenStack API) ID.
+* `subnet_id` - The subnet (Native OpenStack API) ID.
+
+* `ipv6_enable` - Whether the IPv6 is enabled.
+
+* `ipv6_subnet_id` - The ID of the IPv6 subnet (Native OpenStack API).
+
+* `ipv6_cidr` - The IPv6 subnet CIDR block.
+
+* `ipv6_gateway` - The IPv6 subnet gateway.

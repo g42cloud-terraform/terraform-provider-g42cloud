@@ -2,7 +2,7 @@
 subcategory: "Key Management Service (KMS)"
 ---
 
-# g42cloud\_kms\_key
+# g42cloud_kms_key
 
 Use this data source to get the ID of an available G42Cloud KMS key.
 
@@ -42,7 +42,6 @@ data "g42cloud_kms_key" "key_1" {
 * `domain_id` - (Optional, String)  - ID of a user domain for the key. Changing this gets a new key.
 
 * `enterprise_project_id` - (Optional, String) The enterprise project id of the kms key.
-
 
 ## Attributes Reference
 

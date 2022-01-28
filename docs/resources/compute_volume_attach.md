@@ -2,7 +2,7 @@
 subcategory: "Elastic Cloud Server (ECS)"
 ---
 
-# g42cloud\_compute\_volume\_attach
+# g42cloud_compute_volume_attach
 
 Attaches a Volume to an Instance.
 
@@ -72,18 +72,18 @@ output "volume devices" {
 
 The following arguments are supported:
 
-* `region` - (Optional, String, ForceNew) The region in which to create the volume resource. If omitted, the provider-level region will be used. Changing this creates a new resource.
+* `region` - (Optional, String, ForceNew) The region in which to create the volume resource. If omitted, the
+  provider-level region will be used. Changing this creates a new resource.
 
 * `instance_id` - (Required, String, ForceNew) The ID of the Instance to attach the Volume to.
 
 * `volume_id` - (Required, String, ForceNew) The ID of the Volume to attach to an Instance.
 
 * `device` - (Optional, String) The device of the volume attachment (ex: `/dev/vdc`).
-  _NOTE_: Being able to specify a device is dependent upon the hypervisor in
-  use. There is a chance that the device specified in Terraform will not be
-  the same device the hypervisor chose. If this happens, Terraform will wish
-  to update the device upon subsequent applying which will cause the volume
-  to be detached and reattached indefinitely. Please use with caution.
+  _NOTE_: Being able to specify a device is dependent upon the hypervisor in use. There is a chance that the device
+  specified in Terraform will not be the same device the hypervisor chose. If this happens, Terraform will wish to
+  update the device upon subsequent applying which will cause the volume to be detached and reattached indefinitely.
+  Please use with caution.
 
 ## Attributes Reference
 
@@ -94,9 +94,11 @@ In addition to all arguments above, the following attributes are exported:
 * `pci_address` - PCI address of the block device.
 
 ## Timeouts
+
 This resource provides the following timeouts configuration options:
-- `create` - Default is 10 minute.
-- `delete` - Default is 10 minute.
+
+* `create` - Default is 10 minute.
+* `delete` - Default is 10 minute.
 
 ## Import
 

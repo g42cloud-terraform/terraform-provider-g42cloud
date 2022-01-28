@@ -2,7 +2,7 @@
 subcategory: "Elastic Cloud Server (ECS)"
 ---
 
-# g42cloud\_compute\_servergroup
+# g42cloud_compute_servergroup
 
 Manages Server Group resource within G42Cloud.
 
@@ -12,6 +12,9 @@ Manages Server Group resource within G42Cloud.
 resource "g42cloud_compute_servergroup" "test-sg" {
   name     = "my-sg"
   policies = ["anti-affinity"]
+  members  = [
+    data.huaweicloud_compute_instance.instance_demo.id,
+  ]
 }
 ```
 
@@ -19,26 +22,26 @@ resource "g42cloud_compute_servergroup" "test-sg" {
 
 The following arguments are supported:
 
-* `region` - (Optional, String, ForceNew) The region in which to create the server group resource. If omitted, the provider-level region will be used. Changing this creates a new server group resource.
+* `region` - (Optional, String, ForceNew) Specifies the region in which to create the server group resource. If omitted,
+  the provider-level region will be used. Changing this creates a new server group.
 
-* `name` - (Required, String, ForceNew) A unique name for the server group. Changing this creates
-    a new server group.
+* `name` - (Required, String, ForceNew) Specifies a unique name for the server group. This parameter can contain a
+  maximum of 255 characters, which may consist of letters, digits, underscores (_), and hyphens (-). Changing this
+  creates a new server group.
 
-* `policies` - (Required, List, ForceNew) The set of policies for the server group. Only two
-    policies are available right now, and both are mutually exclusive. Possible values are "affinity" and "anti-affinity". 
-    "affinity": All instances/servers launched in this group will be hosted on the same compute node.
-    "anti-affinity": All instances/servers launched in this group will be hosted on different compute nodes.
-    Changing this creates a new server group.
+* `policies` - (Required, List, ForceNew) Specifies the set of policies for the server group. Only *anti-affinity*
+  policies are supported.
 
-* `value_specs` - (Optional, Map, ForceNew) Map of additional options.
+  + `anti-affinity`: All ECS in this group must be deployed on different hosts. Changing this creates a new server
+    group.
+
+* `members` - (Optional, Set) Specifies an array of one or more instance ID to attach server group.
 
 ## Attributes Reference
 
 In addition to all arguments above, the following attributes are exported:
 
-* `id` - Specifies a resource ID in UUID format.
-
-* `members` - The instances that are part of this server group.
+* `id` - A resource ID in UUID format.
 
 ## Import
 

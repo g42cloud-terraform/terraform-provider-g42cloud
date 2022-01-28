@@ -2,7 +2,7 @@
 subcategory: "Cloud Container Engine (CCE)"
 ---
 
-# g42cloud\_cce\_node
+# g42cloud_cce_node
 
 To get the specified node in a cluster.
 
@@ -17,56 +17,58 @@ data "g42cloud_cce_node" "node" {
   name       = var.node_name
 }
 ```
+
 ## Argument Reference
 
 The following arguments are supported:
 
-* `region` - (Optional, String) The region in which to obtain the cce nodes. If omitted, the provider-level region will be used.
- 
-* `Cluster_id` - (Required, String) The id of container cluster.
+* `region` - (Optional, String) Specifies the region in which to obtain the CCE nodes.
+  If omitted, the provider-level region will be used.
 
-* `name` - (Optional, String) Name of the node.
+* `cluster_id` - (Required, String) Specifies the ID of container cluster.
 
-* `node_id` - (Optional, String) The id of the node.
+* `name` - (Optional, String) Specifies the name of the node.
 
-* `status` - (Optional, String) The state of the node.
+* `node_id` - (Optional, String) Specifies the ID of the node.
 
+* `status` - (Optional, String) Specifies the state of the node.
 
 ## Attributes Reference
 
 In addition to all arguments above, the following attributes are exported:
 
-* `flavor_id` - The flavor id to be used. 
+* `id` - The node ID.
 
-* `availability_zone` - Available partitions where the node is located. 
+* `flavor_id` - The flavor ID to be used.
+
+* `availability_zone` - Available partitions where the node is located.
 
 * `os` - Operating System of the node.
 
-* `subnet_id` - The ID of the subnet which the NIC belongs to.
+* `subnet_id` - The ID of the subnet to which the NIC belongs.
 
-* `esc_group_id` - The ID of Ecs group which the node belongs to.
+* `ecs_group_id` - The ID of ECS group to which the node belongs.
 
 * `tags` - Tags of a VM node, key/value pair format.
 
 * `key_pair` - Key pair name when logging in to select the key pair mode.
 
 * `billing_mode` - Node's billing mode: The value is 0 (on demand).
- 
+
 * `server_id` - The node's virtual machine ID in ECS.
 
 * `public_ip` - Elastic IP parameters of the node.
 
-* `private_ip` - Private IP of the node
+* `private_ip` - Private IP of the node.
 
-* `root_volume` - It corresponds to the system disk related configuration.
+* `root_volume` - It corresponds to the system disk related configuration. Structure is documented below.
 
-  * `size` - Disk size in GB.
-  * `volumetype` - Disk type.
-  * `extend_params` - Disk expansion parameters.
+* `data_volumes` - Represents the data disk to be created. Structure is documented below.
 
-* `data_volumes` - Represents the data disk to be created.
+The `root_volume` and `data_volumes` blocks support:
 
-  * `size` - Disk size in GB.
-  * `volumetype` - Disk type.
-  * `extend_params` - Disk expansion parameters.
+* `size` - Disk size in GB.
 
+* `volumetype` - Disk type.
+
+* `extend_params` - Disk expansion parameters.
