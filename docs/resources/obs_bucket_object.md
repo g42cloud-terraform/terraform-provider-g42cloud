@@ -2,7 +2,7 @@
 subcategory: "Object Storage Service (OBS)"
 ---
 
-# g42cloud\_obs\_bucket\_object
+# g42cloud_obs_bucket_object
 
 Provides an OBS bucket object resource.
 
@@ -38,7 +38,8 @@ resource "g42cloud_obs_bucket_object" "object" {
 
 The following arguments are supported:
 
-* `region` - (Optional, String, ForceNew) The region in which to create the OBS bucket object resource. If omitted, the provider-level region will be used. Changing this creates a new OBS bucket object resource.
+* `region` - (Optional, String, ForceNew) The region in which to create the OBS bucket object resource. If omitted, the
+  provider-level region will be used. Changing this creates a new OBS bucket object resource.
 
 * `bucket` - (Required, String, ForceNew) The name of the bucket to put the file in.
 
@@ -73,4 +74,3 @@ In addition to all arguments above, the following attributes are exported:
   but the unique identifier calculated through the server-side encryption.
 * `size` - the size of the object in bytes.
 * `version_id` - A unique version ID value for the object, if bucket versioning is enabled.
-

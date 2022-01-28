@@ -2,7 +2,7 @@
 subcategory: "Object Storage Service (OBS)"
 ---
 
-# g42cloud\_obs\_bucket
+# g42cloud_obs_bucket
 
 Provides an OBS bucket resource.
 

@@ -2,7 +2,7 @@
 subcategory: "Simple Message Notification (SMN)"
 ---
 
-# g42cloud\_smn\_subscription
+# g42cloud_smn_subscription
 
 Manages SMN subscription resource within G42Cloud.
 
@@ -33,21 +33,20 @@ resource "g42cloud_smn_subscription" "subscription_2" {
 
 The following arguments are supported:
 
-* `region` - (Optional, String, ForceNew) The region in which to create the SMN subscription resource. If omitted, the provider-level region will be used. Changing this creates a new SMN subscription resource.
+* `region` - (Optional, String, ForceNew) The region in which to create the SMN subscription resource. If omitted, the
+  provider-level region will be used. Changing this creates a new SMN subscription resource.
 
 * `topic_urn` - (Required, String, ForceNew) Resource identifier of a topic, which is unique.
 
-* `endpoint` - (Required, String, ForceNew) Message endpoint.
-     For an HTTP subscription, the endpoint starts with http\://.
-     For an HTTPS subscription, the endpoint starts with https\://.
-     For an email subscription, the endpoint is a mail address.
-     For an SMS message subscription, the endpoint is a phone number.
+* `endpoint` - (Required, String, ForceNew) Message endpoint. For an HTTP subscription, the endpoint starts with http:
+  //. For an HTTPS subscription, the endpoint starts with https://. For an email subscription, the endpoint is a mail
+  address. For an SMS message subscription, the endpoint is a phone number.
 
-* `protocol` - (Required, String, ForceNew) Protocol of the message endpoint. Currently, email,
-     sms, http, and https are supported.
+* `protocol` - (Required, String, ForceNew) Protocol of the message endpoint. Currently, email, sms, http, and https are
+  supported.
 
-* `remark` - (Optional, String, ForceNew) Remark information. The remarks must be a UTF-8-coded
-     character string containing 128 bytes.
+* `remark` - (Optional, String, ForceNew) Remark information. The remarks must be a UTF-8-coded character string
+  containing 128 bytes.
 
 ## Attributes Reference
 
@@ -59,7 +58,5 @@ In addition to all arguments above, the following attributes are exported:
 
 * `owner` - Project ID of the topic creator.
 
-* `status` - Subscription status.
-     0 indicates that the subscription is not confirmed.
-     1 indicates that the subscription is confirmed.
-     3 indicates that the subscription is canceled.
+* `status` - Subscription status. 0 indicates that the subscription is not confirmed. 1 indicates that the subscription
+  is confirmed. 3 indicates that the subscription is canceled.
