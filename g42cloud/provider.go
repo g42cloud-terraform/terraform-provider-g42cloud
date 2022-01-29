@@ -175,6 +175,7 @@ func Provider() *schema.Provider {
 			"g42cloud_vpc_subnet":          vpc.DataSourceVpcSubnetV1(),
 			"g42cloud_vpc_subnet_ids":      vpc.DataSourceVpcSubnetIdsV1(),
 			"g42cloud_vpc_route":           vpc.DataSourceVpcRouteV2(),
+			"g42cloud_vpc_route_table":     vpc.DataSourceVPCRouteTable(),
 			// Legacy
 			"g42cloud_identity_role_v3": iam.DataSourceIdentityRoleV3(),
 		},
@@ -244,9 +245,10 @@ func Provider() *schema.Provider {
 			"g42cloud_vpc_eip_associate":         eip.ResourceEIPAssociate(),
 			"g42cloud_vpc":                       vpc.ResourceVirtualPrivateCloudV1(),
 			"g42cloud_vpc_route":                 vpc.ResourceVPCRouteV2(),
+			"g42cloud_vpc_route_table":           vpc.ResourceVPCRouteTable(),
 			"g42cloud_vpc_peering_connection":    vpc.ResourceVpcPeeringConnectionV2(),
 			"g42cloud_vpc_subnet":                vpc.ResourceVpcSubnetV1(),
-			"g42cloud_networking_eip_associate":  huaweicloud.ResourceNetworkingFloatingIPAssociateV2(),
+			"g42cloud_networking_eip_associate":  eip.ResourceEIPAssociate(),
 			"g42cloud_networking_secgroup":       huaweicloud.ResourceNetworkingSecGroupV2(),
 			"g42cloud_networking_secgroup_rule":  huaweicloud.ResourceNetworkingSecGroupRuleV2(),
 			// Legacy
