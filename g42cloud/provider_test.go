@@ -18,6 +18,7 @@ var (
 	G42_ENTERPRISE_PROJECT_ID_TEST = os.Getenv("G42_ENTERPRISE_PROJECT_ID_TEST")
 	G42_ACCESS_KEY                 = os.Getenv("G42_ACCESS_KEY")
 	G42_SECRET_KEY                 = os.Getenv("G42_SECRET_KEY")
+	G42_DNS_ENVIRONMENT            = os.Getenv("G42_DNS_ENVIRONMENT")
 )
 
 var testAccProviders map[string]*schema.Provider
@@ -55,6 +56,12 @@ func testAccPreCheckEpsID(t *testing.T) {
 func testAccPreCheckOBS(t *testing.T) {
 	if G42_ACCESS_KEY == "" || G42_SECRET_KEY == "" {
 		t.Skip("G42_ACCESS_KEY and G42_SECRET_KEY must be set for OBS acceptance tests")
+	}
+}
+
+func testAccPreCheckDNS(t *testing.T) {
+	if G42_DNS_ENVIRONMENT == "" {
+		t.Skip("This environment does not support DNS tests")
 	}
 }
 

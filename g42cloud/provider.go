@@ -202,6 +202,7 @@ func Provider() *schema.Provider {
 			"g42cloud_dms_kafka_instance":        dms.ResourceDmsKafkaInstance(),
 			"g42cloud_dms_kafka_topic":           dms.ResourceDmsKafkaTopic(),
 			"g42cloud_dms_rabbitmq_instance":     dms.ResourceDmsRabbitmqInstance(),
+			"g42cloud_dns_ptrrecord":             huaweicloud.ResourceDNSPtrRecordV2(),
 			"g42cloud_dns_recordset":             huaweicloud.ResourceDNSRecordSetV2(),
 			"g42cloud_dns_zone":                  huaweicloud.ResourceDNSZoneV2(),
 			"g42cloud_evs_snapshot":              huaweicloud.ResourceEvsSnapshotV2(),
