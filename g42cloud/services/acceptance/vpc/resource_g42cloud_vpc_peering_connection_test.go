@@ -4,39 +4,61 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/g42cloud-terraform/terraform-provider-g42cloud/g42cloud/services/acceptance"
-	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/acctest"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/terraform"
 
 	"github.com/chnsz/golangsdk/openstack/networking/v2/peerings"
+	"github.com/g42cloud-terraform/terraform-provider-g42cloud/g42cloud/services/acceptance"
 	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/config"
 )
 
-func TestAccVpcPeeringConnectionV2_basic(t *testing.T) {
+func getPeeringConnectionResourceFunc(conf *config.Config, state *terraform.ResourceState) (interface{}, error) {
+	c, err := conf.NetworkingV2Client(acceptance.G42_REGION_NAME)
+	if err != nil {
+		return nil, fmt.Errorf("error creating HuaweiCloud Network client: %s", err)
+	}
+	return peerings.Get(c, state.Primary.ID).Extract()
+}
+
+func TestAccVpcPeeringConnection_basic(t *testing.T) {
 	var peering peerings.Peering
 
-	rName := fmt.Sprintf("tf-acc-test-%s", acctest.RandString(5))
+	randName := acceptance.RandomAccResourceName()
+	updateName := randName + "_update"
 	resourceName := "g42cloud_vpc_peering_connection.test"
-	rNameUpdate := rName + "updated"
+
+	rc := acceptance.InitResourceCheck(
+		resourceName,
+		&peering,
+		getPeeringConnectionResourceFunc,
+	)
 
 	resource.ParallelTest(t, resource.TestCase{
 		PreCheck:          func() { acceptance.TestAccPreCheck(t) },
 		ProviderFactories: acceptance.TestAccProviderFactories,
-		CheckDestroy:      testAccCheckVpcPeeringConnectionV2Destroy,
+		CheckDestroy:      rc.CheckResourceDestroy(),
 		Steps: []resource.TestStep{
 			{
-				Config: testAccVpcPeeringConnectionV2_basic(rName),
+				Config: testAccVpcPeeringConnection_basic(randName),
 				Check: resource.ComposeTestCheckFunc(
-					testAccCheckVpcPeeringConnectionV2Exists(resourceName, &peering),
-					resource.TestCheckResourceAttr(resourceName, "name", rName),
+					rc.CheckResourceExists(),
+					resource.TestCheckResourceAttr(resourceName, "name", randName),
 					resource.TestCheckResourceAttr(resourceName, "status", "ACTIVE"),
+					acceptance.TestCheckResourceAttrWithVariable(resourceName, "vpc_id",
+						"${g42cloud_vpc.test1.id}"),
+					acceptance.TestCheckResourceAttrWithVariable(resourceName, "peer_vpc_id",
+						"${g42cloud_vpc.test2.id}"),
 				),
 			},
 			{
-				Config: testAccVpcPeeringConnectionV2_basic(rNameUpdate),
+				Config: testAccVpcPeeringConnection_basic(updateName),
 				Check: resource.ComposeTestCheckFunc(
-					resource.TestCheckResourceAttr(resourceName, "name", rNameUpdate),
+					resource.TestCheckResourceAttr(resourceName, "name", updateName),
+					resource.TestCheckResourceAttr(resourceName, "status", "ACTIVE"),
+					acceptance.TestCheckResourceAttrWithVariable(resourceName, "vpc_id",
+						"${g42cloud_vpc.test1.id}"),
+					acceptance.TestCheckResourceAttrWithVariable(resourceName, "peer_vpc_id",
+						"${g42cloud_vpc.test2.id}"),
 				),
 			},
 			{
@@ -48,75 +70,22 @@ func TestAccVpcPeeringConnectionV2_basic(t *testing.T) {
 	})
 }
 
-func testAccCheckVpcPeeringConnectionV2Destroy(s *terraform.State) error {
-	config := acceptance.TestAccProvider.Meta().(*config.Config)
-	peeringClient, err := config.NetworkingV2Client(acceptance.G42_REGION_NAME)
-	if err != nil {
-		return fmt.Errorf("Error creating huaweicloud Peering client: %s", err)
-	}
-
-	for _, rs := range s.RootModule().Resources {
-		if rs.Type != "g42cloud_vpc_peering_connection" {
-			continue
-		}
-
-		_, err := peerings.Get(peeringClient, rs.Primary.ID).Extract()
-		if err == nil {
-			return fmt.Errorf("Vpc Peering Connection still exists")
-		}
-	}
-
-	return nil
-}
-
-func testAccCheckVpcPeeringConnectionV2Exists(n string, peering *peerings.Peering) resource.TestCheckFunc {
-	return func(s *terraform.State) error {
-		rs, ok := s.RootModule().Resources[n]
-		if !ok {
-			return fmt.Errorf("Not found: %s", n)
-		}
-
-		if rs.Primary.ID == "" {
-			return fmt.Errorf("No ID is set")
-		}
-
-		config := acceptance.TestAccProvider.Meta().(*config.Config)
-		peeringClient, err := config.NetworkingV2Client(acceptance.G42_REGION_NAME)
-		if err != nil {
-			return fmt.Errorf("Error creating huaweicloud Peering client: %s", err)
-		}
-
-		found, err := peerings.Get(peeringClient, rs.Primary.ID).Extract()
-		if err != nil {
-			return err
-		}
-
-		if found.ID != rs.Primary.ID {
-			return fmt.Errorf("Vpc peering Connection not found")
-		}
-
-		*peering = *found
-
-		return nil
-	}
-}
-
-func testAccVpcPeeringConnectionV2_basic(rName string) string {
+func testAccVpcPeeringConnection_basic(rName string) string {
 	return fmt.Sprintf(`
-resource "g42cloud_vpc" "test" {
-  name = "%s"
-  cidr = "192.168.0.0/16"
+resource "g42cloud_vpc" "test1" {
+  name = "%s_1"
+  cidr = "172.16.0.0/20"
 }
 
 resource "g42cloud_vpc" "test2" {
-  name = "%s"
-  cidr = "192.168.0.0/16"
+  name = "%s_2"
+  cidr = "172.16.128.0/20"
 }
 
 resource "g42cloud_vpc_peering_connection" "test" {
   name        = "%s"
-  vpc_id      = g42cloud_vpc.test.id
+  vpc_id      = g42cloud_vpc.test1.id
   peer_vpc_id = g42cloud_vpc.test2.id
 }
-`, rName, rName+"2", rName)
+`, rName, rName, rName)
 }
