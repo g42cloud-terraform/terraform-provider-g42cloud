@@ -1,9 +1,10 @@
-package g42cloud
+package vpc
 
 import (
 	"fmt"
 	"testing"
 
+	"github.com/g42cloud-terraform/terraform-provider-g42cloud/g42cloud/services/acceptance"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/acctest"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/terraform"
@@ -20,9 +21,9 @@ func TestAccVpcPeeringConnectionV2_basic(t *testing.T) {
 	rNameUpdate := rName + "updated"
 
 	resource.ParallelTest(t, resource.TestCase{
-		PreCheck:     func() { testAccPreCheck(t) },
-		Providers:    testAccProviders,
-		CheckDestroy: testAccCheckVpcPeeringConnectionV2Destroy,
+		PreCheck:          func() { acceptance.TestAccPreCheck(t) },
+		ProviderFactories: acceptance.TestAccProviderFactories,
+		CheckDestroy:      testAccCheckVpcPeeringConnectionV2Destroy,
 		Steps: []resource.TestStep{
 			{
 				Config: testAccVpcPeeringConnectionV2_basic(rName),
@@ -48,8 +49,8 @@ func TestAccVpcPeeringConnectionV2_basic(t *testing.T) {
 }
 
 func testAccCheckVpcPeeringConnectionV2Destroy(s *terraform.State) error {
-	config := testAccProvider.Meta().(*config.Config)
-	peeringClient, err := config.NetworkingV2Client(G42_REGION_NAME)
+	config := acceptance.TestAccProvider.Meta().(*config.Config)
+	peeringClient, err := config.NetworkingV2Client(acceptance.G42_REGION_NAME)
 	if err != nil {
 		return fmt.Errorf("Error creating huaweicloud Peering client: %s", err)
 	}
@@ -79,8 +80,8 @@ func testAccCheckVpcPeeringConnectionV2Exists(n string, peering *peerings.Peerin
 			return fmt.Errorf("No ID is set")
 		}
 
-		config := testAccProvider.Meta().(*config.Config)
-		peeringClient, err := config.NetworkingV2Client(G42_REGION_NAME)
+		config := acceptance.TestAccProvider.Meta().(*config.Config)
+		peeringClient, err := config.NetworkingV2Client(acceptance.G42_REGION_NAME)
 		if err != nil {
 			return fmt.Errorf("Error creating huaweicloud Peering client: %s", err)
 		}

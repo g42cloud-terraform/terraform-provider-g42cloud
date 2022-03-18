@@ -1,9 +1,10 @@
-package g42cloud
+package vpc
 
 import (
 	"fmt"
 	"testing"
 
+	"github.com/g42cloud-terraform/terraform-provider-g42cloud/g42cloud/services/acceptance"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/acctest"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/terraform"
@@ -20,9 +21,9 @@ func TestAccVpcV1_basic(t *testing.T) {
 	rNameUpdate := rName + "-updated"
 
 	resource.ParallelTest(t, resource.TestCase{
-		PreCheck:     func() { testAccPreCheck(t) },
-		Providers:    testAccProviders,
-		CheckDestroy: testAccCheckVpcV1Destroy,
+		PreCheck:          func() { acceptance.TestAccPreCheck(t) },
+		ProviderFactories: acceptance.TestAccProviderFactories,
+		CheckDestroy:      testAccCheckVpcV1Destroy,
 		Steps: []resource.TestStep{
 			{
 				Config: testAccVpcV1_basic(rName),
@@ -54,8 +55,8 @@ func TestAccVpcV1_basic(t *testing.T) {
 }
 
 func testAccCheckVpcV1Destroy(s *terraform.State) error {
-	config := testAccProvider.Meta().(*config.Config)
-	vpcClient, err := config.NetworkingV1Client(G42_REGION_NAME)
+	config := acceptance.TestAccProvider.Meta().(*config.Config)
+	vpcClient, err := config.NetworkingV1Client(acceptance.G42_REGION_NAME)
 	if err != nil {
 		return fmt.Errorf("Error creating huaweicloud vpc client: %s", err)
 	}
@@ -85,8 +86,8 @@ func testAccCheckVpcV1Exists(n string, vpc *vpcs.Vpc) resource.TestCheckFunc {
 			return fmt.Errorf("No ID is set")
 		}
 
-		config := testAccProvider.Meta().(*config.Config)
-		vpcClient, err := config.NetworkingV1Client(G42_REGION_NAME)
+		config := acceptance.TestAccProvider.Meta().(*config.Config)
+		vpcClient, err := config.NetworkingV1Client(acceptance.G42_REGION_NAME)
 		if err != nil {
 			return fmt.Errorf("Error creating huaweicloud vpc client: %s", err)
 		}
