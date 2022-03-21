@@ -8,12 +8,12 @@ import (
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/terraform"
 
-	"github.com/chnsz/golangsdk/openstack/evs/v3/volumes"
+	"github.com/chnsz/golangsdk/openstack/evs/v2/cloudvolumes"
 	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/config"
 )
 
 func TestAccEvsStorageV3Volume_basic(t *testing.T) {
-	var volume volumes.Volume
+	var volume cloudvolumes.Volume
 
 	rName := fmt.Sprintf("tf-acc-test-%s", acctest.RandString(5))
 	resourceName := "g42cloud_evs_volume.test"
@@ -43,7 +43,7 @@ func TestAccEvsStorageV3Volume_basic(t *testing.T) {
 }
 
 func TestAccEvsStorageV3Volume_image(t *testing.T) {
-	var volume volumes.Volume
+	var volume cloudvolumes.Volume
 
 	rName := fmt.Sprintf("tf-acc-test-%s", acctest.RandString(5))
 	resourceName := "g42cloud_evs_volume.test"
@@ -66,7 +66,7 @@ func TestAccEvsStorageV3Volume_image(t *testing.T) {
 
 func testAccCheckEvsStorageV3VolumeDestroy(s *terraform.State) error {
 	config := testAccProvider.Meta().(*config.Config)
-	blockStorageClient, err := config.BlockStorageV3Client(G42_REGION_NAME)
+	blockStorageClient, err := config.BlockStorageV2Client(G42_REGION_NAME)
 	if err != nil {
 		return fmt.Errorf("Error creating G42Cloud evs storage client: %s", err)
 	}
@@ -76,7 +76,7 @@ func testAccCheckEvsStorageV3VolumeDestroy(s *terraform.State) error {
 			continue
 		}
 
-		_, err := volumes.Get(blockStorageClient, rs.Primary.ID).Extract()
+		_, err := cloudvolumes.Get(blockStorageClient, rs.Primary.ID).Extract()
 		if err == nil {
 			return fmt.Errorf("Volume still exists")
 		}
@@ -85,7 +85,7 @@ func testAccCheckEvsStorageV3VolumeDestroy(s *terraform.State) error {
 	return nil
 }
 
-func testAccCheckEvsStorageV3VolumeExists(n string, volume *volumes.Volume) resource.TestCheckFunc {
+func testAccCheckEvsStorageV3VolumeExists(n string, volume *cloudvolumes.Volume) resource.TestCheckFunc {
 	return func(s *terraform.State) error {
 		rs, ok := s.RootModule().Resources[n]
 		if !ok {
@@ -97,12 +97,12 @@ func testAccCheckEvsStorageV3VolumeExists(n string, volume *volumes.Volume) reso
 		}
 
 		config := testAccProvider.Meta().(*config.Config)
-		blockStorageClient, err := config.BlockStorageV3Client(G42_REGION_NAME)
+		blockStorageClient, err := config.BlockStorageV2Client(G42_REGION_NAME)
 		if err != nil {
 			return fmt.Errorf("Error creating G42Cloud evs storage client: %s", err)
 		}
 
-		found, err := volumes.Get(blockStorageClient, rs.Primary.ID).Extract()
+		found, err := cloudvolumes.Get(blockStorageClient, rs.Primary.ID).Extract()
 		if err != nil {
 			return err
 		}
@@ -114,50 +114,6 @@ func testAccCheckEvsStorageV3VolumeExists(n string, volume *volumes.Volume) reso
 		*volume = *found
 
 		return nil
-	}
-}
-
-func testAccCheckEvsStorageV3VolumeTags(n string, k string, v string) resource.TestCheckFunc {
-	return func(s *terraform.State) error {
-		rs, ok := s.RootModule().Resources[n]
-		if !ok {
-			return fmt.Errorf("Not found: %s", n)
-		}
-
-		if rs.Primary.ID == "" {
-			return fmt.Errorf("No ID is set")
-		}
-
-		config := testAccProvider.Meta().(*config.Config)
-		blockStorageClient, err := config.BlockStorageV3Client(G42_REGION_NAME)
-		if err != nil {
-			return fmt.Errorf("Error creating G42Cloud block storage client: %s", err)
-		}
-
-		found, err := volumes.Get(blockStorageClient, rs.Primary.ID).Extract()
-		if err != nil {
-			return err
-		}
-
-		if found.ID != rs.Primary.ID {
-			return fmt.Errorf("Volume not found")
-		}
-
-		if found.Tags == nil {
-			return fmt.Errorf("No Tags")
-		}
-
-		for key, value := range found.Tags {
-			if k != key {
-				continue
-			}
-
-			if v == value {
-				return nil
-			}
-			return fmt.Errorf("Bad value for %s: %s", k, value)
-		}
-		return fmt.Errorf("Tag not found: %s", k)
 	}
 }
 

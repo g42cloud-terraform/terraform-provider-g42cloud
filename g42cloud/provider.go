@@ -11,6 +11,8 @@ import (
 	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud"
 	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/config"
 	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/helper/mutexkv"
+	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/as"
+	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/ces"
 	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/dcs"
 	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/dds"
 	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/deprecated"
@@ -20,6 +22,8 @@ import (
 	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/evs"
 	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/fgs"
 	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/iam"
+	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/ims"
+	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/lb"
 	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/rds"
 	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/vpc"
 )
@@ -160,12 +164,12 @@ func Provider() *schema.Provider {
 			"g42cloud_dms_product":         dms.DataSourceDmsProduct(),
 			"g42cloud_dms_maintainwindow":  dms.DataSourceDmsMaintainWindow(),
 			"g42cloud_identity_role":       iam.DataSourceIdentityRoleV3(),
-			"g42cloud_images_image":        huaweicloud.DataSourceImagesImageV2(),
+			"g42cloud_images_image":        ims.DataSourceImagesImageV2(),
 			"g42cloud_kms_key":             huaweicloud.DataSourceKmsKeyV1(),
 			"g42cloud_kms_data_key":        huaweicloud.DataSourceKmsDataKeyV1(),
 			"g42cloud_nat_gateway":         huaweicloud.DataSourceNatGatewayV2(),
 			"g42cloud_networking_port":     huaweicloud.DataSourceNetworkingPortV2(),
-			"g42cloud_networking_secgroup": huaweicloud.DataSourceNetworkingSecGroupV2(),
+			"g42cloud_networking_secgroup": huaweicloud.DataSourceNetworkingSecGroup(),
 			"g42cloud_obs_bucket_object":   huaweicloud.DataSourceObsBucketObject(),
 			"g42cloud_rds_flavors":         rds.DataSourceRdsFlavor(),
 			"g42cloud_vpc_bandwidth":       eip.DataSourceBandWidth(),
@@ -181,20 +185,20 @@ func Provider() *schema.Provider {
 		},
 
 		ResourcesMap: map[string]*schema.Resource{
-			"g42cloud_as_configuration":                huaweicloud.ResourceASConfiguration(),
-			"g42cloud_as_group":                        huaweicloud.ResourceASGroup(),
-			"g42cloud_as_policy":                       huaweicloud.ResourceASPolicy(),
+			"g42cloud_as_configuration":                as.ResourceASConfiguration(),
+			"g42cloud_as_group":                        as.ResourceASGroup(),
+			"g42cloud_as_policy":                       as.ResourceASPolicy(),
 			"g42cloud_cce_cluster":                     huaweicloud.ResourceCCEClusterV3(),
 			"g42cloud_cce_node":                        huaweicloud.ResourceCCENodeV3(),
 			"g42cloud_cce_addon":                       huaweicloud.ResourceCCEAddonV3(),
 			"g42cloud_cce_node_pool":                   huaweicloud.ResourceCCENodePool(),
-			"g42cloud_ces_alarmrule":                   huaweicloud.ResourceAlarmRule(),
+			"g42cloud_ces_alarmrule":                   ces.ResourceAlarmRule(),
 			"g42cloud_compute_instance":                huaweicloud.ResourceComputeInstanceV2(),
 			"g42cloud_compute_interface_attach":        huaweicloud.ResourceComputeInterfaceAttachV2(),
 			"g42cloud_compute_keypair":                 huaweicloud.ResourceComputeKeypairV2(),
 			"g42cloud_compute_servergroup":             huaweicloud.ResourceComputeServerGroupV2(),
 			"g42cloud_compute_eip_associate":           huaweicloud.ResourceComputeFloatingIPAssociateV2(),
-			"g42cloud_compute_volume_attach":           huaweicloud.ResourceComputeVolumeAttachV2(),
+			"g42cloud_compute_volume_attach":           huaweicloud.ResourceComputeVolumeAttach(),
 			"g42cloud_dcs_instance":                    dcs.ResourceDcsInstance(),
 			"g42cloud_dds_instance":                    dds.ResourceDdsInstanceV3(),
 			"g42cloud_dli_queue":                       dli.ResourceDliQueue(),
@@ -218,15 +222,15 @@ func Provider() *schema.Provider {
 			"g42cloud_identity_role":                   iam.ResourceIdentityRole(),
 			"g42cloud_images_image":                    huaweicloud.ResourceImsImage(),
 			"g42cloud_kms_key":                         huaweicloud.ResourceKmsKeyV1(),
-			"g42cloud_lb_certificate":                  huaweicloud.ResourceCertificateV2(),
-			"g42cloud_lb_l7policy":                     huaweicloud.ResourceL7PolicyV2(),
-			"g42cloud_lb_l7rule":                       huaweicloud.ResourceL7RuleV2(),
-			"g42cloud_lb_listener":                     huaweicloud.ResourceListenerV2(),
-			"g42cloud_lb_loadbalancer":                 huaweicloud.ResourceLoadBalancerV2(),
-			"g42cloud_lb_member":                       huaweicloud.ResourceMemberV2(),
-			"g42cloud_lb_monitor":                      huaweicloud.ResourceMonitorV2(),
-			"g42cloud_lb_pool":                         huaweicloud.ResourcePoolV2(),
-			"g42cloud_lb_whitelist":                    huaweicloud.ResourceWhitelistV2(),
+			"g42cloud_lb_certificate":                  lb.ResourceCertificateV2(),
+			"g42cloud_lb_l7policy":                     lb.ResourceL7PolicyV2(),
+			"g42cloud_lb_l7rule":                       lb.ResourceL7RuleV2(),
+			"g42cloud_lb_listener":                     lb.ResourceListenerV2(),
+			"g42cloud_lb_loadbalancer":                 lb.ResourceLoadBalancerV2(),
+			"g42cloud_lb_member":                       lb.ResourceMemberV2(),
+			"g42cloud_lb_monitor":                      lb.ResourceMonitorV2(),
+			"g42cloud_lb_pool":                         lb.ResourcePoolV2(),
+			"g42cloud_lb_whitelist":                    lb.ResourceWhitelistV2(),
 			"g42cloud_nat_dnat_rule":                   huaweicloud.ResourceNatDnatRuleV2(),
 			"g42cloud_nat_gateway":                     huaweicloud.ResourceNatGatewayV2(),
 			"g42cloud_nat_snat_rule":                   huaweicloud.ResourceNatSnatRuleV2(),
@@ -251,8 +255,8 @@ func Provider() *schema.Provider {
 			"g42cloud_vpc_peering_connection_accepter": vpc.ResourceVpcPeeringConnectionAccepterV2(),
 			"g42cloud_vpc_subnet":                      vpc.ResourceVpcSubnetV1(),
 			"g42cloud_networking_eip_associate":        eip.ResourceEIPAssociate(),
-			"g42cloud_networking_secgroup":             huaweicloud.ResourceNetworkingSecGroupV2(),
-			"g42cloud_networking_secgroup_rule":        huaweicloud.ResourceNetworkingSecGroupRuleV2(),
+			"g42cloud_networking_secgroup":             huaweicloud.ResourceNetworkingSecGroup(),
+			"g42cloud_networking_secgroup_rule":        huaweicloud.ResourceNetworkingSecGroupRule(),
 			// Legacy
 			"g42cloud_identity_role_assignment_v3":  iam.ResourceIdentityRoleAssignmentV3(),
 			"g42cloud_identity_user_v3":             iam.ResourceIdentityUserV3(),
