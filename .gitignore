@@ -4,6 +4,7 @@
 *.dll
 *.so
 *.dylib
+*.pem
 terraform-provider-g42cloud
 
 # Test binary, built with `go test -c`
@@ -18,3 +19,6 @@ terraform-provider-g42cloud
 
 # vendor directory
 vendor/
+
+# .vscode directory
+.vscode/
