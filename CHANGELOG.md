@@ -1,3 +1,13 @@
+## 1.3.1 (March 21, 2022)
+
+FEATURES:
+
+* **New Resource:** `g42cloud_vpc_route_table` ([#53](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/53))
+
+ENHANCEMENTS:
+
+* Update the reference huaweicloud ([#54](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/54))
+
 ## 1.3.0 (January 30, 2022)
 
 FEATURES:
