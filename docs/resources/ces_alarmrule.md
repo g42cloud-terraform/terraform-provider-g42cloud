@@ -82,7 +82,7 @@ The `metric` block supports:
 * `namespace` - (Required, String) Specifies the namespace in **service.item** format.
     service.item can be a string of 3 to 32 characters that must start with a letter and
     can consists of uppercase letters, lowercase letters, numbers, or underscores (_).
-    For details, see [Services Interconnected with Cloud Eye](https://support.hc.g42cloud.ru/api/ces/en-us_topic_0202512897.html).
+    For details, see [Services Interconnected with Cloud Eye](https://docs.g42cloud.com/en-us/api/ces/ces_03_0059.html).
 
 * `metric_name` - (Required, String) Specifies the metric name. The value can be a string
     of 1 to 64 characters that must start with a letter and can consists of uppercase

@@ -205,7 +205,7 @@ The following arguments are supported:
   instance.
 
 * `availability_zone` - (Required, String, ForceNew) The availability zone in which to create
-    the server. Please following [reference](https://support.hc.g42cloud.ru/en-us/endpoint/index.html)
+    the server. Please following [reference](https://docs.g42cloud.com/en-us/endpoint/index.html)
     for the values. Changing this creates a new server.
 
 * `network` - (Required, List, ForceNew) Specifies an array of one or more networks to attach to the instance. The
@@ -220,7 +220,7 @@ The following arguments are supported:
   Changing this creates a new instance.
 
   For details about disk types, see
-  [Disk Types and Disk Performance](https://support.hc.g42cloud.ru/en-us/usermanual/evs/en-us_topic_0014580744.html)
+  [Disk Types and Disk Performance](https://docs.g42cloud.com/en-us/usermanual/evs/en-us_topic_0014580744.html)
   Available options are:
   + `SAS`: high I/O disk type.
   + `SSD`: ultra-high I/O disk type.
@@ -337,7 +337,6 @@ In addition to all arguments above, the following attributes are exported:
 * `volume_attached/size` - The volume size on that attachment.
 * `volume_attached/type` - The volume type on that attachment.
 * `system_disk_id` - The system disk voume ID.
-
 
 ## Import
 
