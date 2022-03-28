@@ -87,7 +87,7 @@ func Provider() *schema.Provider {
 				Required:     true,
 				Description:  descriptions["region"],
 				DefaultFunc:  schema.EnvDefaultFunc("G42_REGION_NAME", nil),
-				InputDefault: "ru-moscow-1",
+				InputDefault: "ae-ad-1",
 			},
 
 			"user_name": {
