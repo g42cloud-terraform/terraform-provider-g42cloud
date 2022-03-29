@@ -28,6 +28,7 @@ var (
 	G42_DOMAIN_ID                  = os.Getenv("G42_DOMAIN_ID")
 	G42_DOMAIN_NAME                = os.Getenv("G42_DOMAIN_NAME")
 	G42_ENTERPRISE_PROJECT_ID_TEST = os.Getenv("G42_ENTERPRISE_PROJECT_ID_TEST")
+	G42_SWR_SHARING_ACCOUNT        = os.Getenv("G42_SWR_SHARING_ACCOUNT")
 
 	G42_FLAVOR_ID        = os.Getenv("G42_FLAVOR_ID")
 	G42_FLAVOR_NAME      = os.Getenv("G42_FLAVOR_NAME")
@@ -370,5 +371,13 @@ func TestAccPreCheckOBS(t *testing.T) {
 func TestAccPreCheckChargingMode(t *testing.T) {
 	if G42_CHARGING_MODE != "prePaid" {
 		t.Skip("This environment does not support prepaid tests")
+	}
+}
+
+//lintignore:AT003
+func TestAccPreCheckSWRDomian(t *testing.T) {
+	if G42_SWR_SHARING_ACCOUNT == "" {
+		t.Skip("HW_SWR_SHARING_ACCOUNT must be set for swr domian tests, " +
+			"the value of G42_SWR_SHARING_ACCOUNT should be another IAM user name")
 	}
 }
