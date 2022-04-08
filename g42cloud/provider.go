@@ -12,6 +12,7 @@ import (
 	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/config"
 	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/helper/mutexkv"
 	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/as"
+	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/bms"
 	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/cbr"
 	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/ces"
 	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/dcs"
@@ -156,6 +157,7 @@ func Provider() *schema.Provider {
 
 		DataSourcesMap: map[string]*schema.Resource{
 			"g42cloud_availability_zones":    huaweicloud.DataSourceAvailabilityZones(),
+			"g42cloud_bms_flavors":           bms.DataSourceBmsFlavors(),
 			"g42cloud_cbr_vaults":            cbr.DataSourceCbrVaultsV3(),
 			"g42cloud_cce_cluster":           huaweicloud.DataSourceCCEClusterV3(),
 			"g42cloud_cce_node":              huaweicloud.DataSourceCCENodeV3(),
@@ -197,6 +199,7 @@ func Provider() *schema.Provider {
 			"g42cloud_as_configuration":                as.ResourceASConfiguration(),
 			"g42cloud_as_group":                        as.ResourceASGroup(),
 			"g42cloud_as_policy":                       as.ResourceASPolicy(),
+			"g42cloud_bms_instance":                    bms.ResourceBmsInstance(),
 			"g42cloud_cbr_policy":                      cbr.ResourceCBRPolicyV3(),
 			"g42cloud_cbr_vault":                       cbr.ResourceCBRVaultV3(),
 			"g42cloud_cce_cluster":                     huaweicloud.ResourceCCEClusterV3(),
