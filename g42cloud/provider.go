@@ -28,6 +28,7 @@ import (
 	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/lb"
 	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/rds"
 	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/swr"
+	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/tms"
 	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/vpc"
 )
 
@@ -258,6 +259,7 @@ func Provider() *schema.Provider {
 			"g42cloud_swr_organization_permissions":    swr.ResourceSWROrganizationPermissions(),
 			"g42cloud_swr_repository":                  swr.ResourceSWRRepository(),
 			"g42cloud_swr_repository_sharing":          swr.ResourceSWRRepositorySharing(),
+			"g42cloud_tms_tags":                        tms.ResourceTmsTag(),
 			"g42cloud_vpc_bandwidth":                   eip.ResourceVpcBandWidthV2(),
 			"g42cloud_vpc_eip":                         eip.ResourceVpcEIPV1(),
 			"g42cloud_vpc_eip_associate":               eip.ResourceEIPAssociate(),
