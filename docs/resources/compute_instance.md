@@ -230,6 +230,9 @@ The following arguments are supported:
 * `system_disk_size` - (Optional, String) Specifies the system disk size in GB, The value range is 1 to 1024.
   Shrinking the disk is not supported.
 
+* `system_disk_kms_key_id` - (Optional, String, ForceNew) Specifies the ID of a KMS key. This is used to encrypt the
+  system disk. Changing this parameter will create a new resource.
+
 * `data_disks` - (Optional, String, ForceNew) Specifies an array of one or more data disks to attach to the instance.
   The data_disks object structure is documented below. Changing this creates a new instance.
 
@@ -306,6 +309,9 @@ The `data_disks` block supports:
   Changing this creates a new instance.
 
 * `sanpshot_id` - (Optional, String, ForceNew) Specifies the snapshot id. Changing this creates a new instance.
+
+* `kms_key_id` - (Optional, String, ForceNew) Specifies the ID of a KMS key. This is used to encrypt the data disk.
+  Changing this parameter will create a new resource.
 
 The `scheduler_hints` block supports:
 
