@@ -19,6 +19,7 @@ import (
 	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/deprecated"
 	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/dli"
 	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/dms"
+	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/ecs"
 	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/eip"
 	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/eps"
 	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/evs"
@@ -202,12 +203,12 @@ func Provider() *schema.Provider {
 			"g42cloud_cce_addon":                       huaweicloud.ResourceCCEAddonV3(),
 			"g42cloud_cce_node_pool":                   huaweicloud.ResourceCCENodePool(),
 			"g42cloud_ces_alarmrule":                   ces.ResourceAlarmRule(),
-			"g42cloud_compute_instance":                huaweicloud.ResourceComputeInstanceV2(),
+			"g42cloud_compute_instance":                ResourceComputeInstanceV2(),
 			"g42cloud_compute_interface_attach":        huaweicloud.ResourceComputeInterfaceAttachV2(),
 			"g42cloud_compute_keypair":                 huaweicloud.ResourceComputeKeypairV2(),
 			"g42cloud_compute_servergroup":             huaweicloud.ResourceComputeServerGroupV2(),
 			"g42cloud_compute_eip_associate":           huaweicloud.ResourceComputeFloatingIPAssociateV2(),
-			"g42cloud_compute_volume_attach":           huaweicloud.ResourceComputeVolumeAttach(),
+			"g42cloud_compute_volume_attach":           ecs.ResourceComputeVolumeAttach(),
 			"g42cloud_dcs_instance":                    dcs.ResourceDcsInstance(),
 			"g42cloud_dds_instance":                    dds.ResourceDdsInstanceV3(),
 			"g42cloud_dli_queue":                       dli.ResourceDliQueue(),
@@ -250,8 +251,8 @@ func Provider() *schema.Provider {
 			"g42cloud_obs_bucket_object":               huaweicloud.ResourceObsBucketObject(),
 			"g42cloud_obs_bucket_policy":               huaweicloud.ResourceObsBucketPolicy(),
 			"g42cloud_rds_instance":                    ResourceRdsInstanceV3(),
-			"g42cloud_rds_parametergroup":              huaweicloud.ResourceRdsConfigurationV3(),
-			"g42cloud_rds_read_replica_instance":       huaweicloud.ResourceRdsReadReplicaInstance(),
+			"g42cloud_rds_parametergroup":              rds.ResourceRdsConfiguration(),
+			"g42cloud_rds_read_replica_instance":       rds.ResourceRdsReadReplicaInstance(),
 			"g42cloud_sfs_turbo":                       huaweicloud.ResourceSFSTurbo(),
 			"g42cloud_smn_subscription":                huaweicloud.ResourceSubscription(),
 			"g42cloud_smn_topic":                       huaweicloud.ResourceTopic(),

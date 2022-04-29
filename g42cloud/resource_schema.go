@@ -16,7 +16,7 @@ func tagsSchema() *schema.Schema {
 	}
 }
 
-func schemeChargingMode(conflicts []string) *schema.Schema {
+func schemaChargingMode(conflicts []string) *schema.Schema {
 	resourceSchema := schema.Schema{
 		Type:     schema.TypeString,
 		Optional: true,
@@ -60,6 +60,20 @@ func schemaPeriod(conflicts []string) *schema.Schema {
 }
 
 func schemaAutoRenew(conflicts []string) *schema.Schema {
+	resourceSchema := schema.Schema{
+		Type:     schema.TypeString,
+		Optional: true,
+		ForceNew: true,
+		ValidateFunc: validation.StringInSlice([]string{
+			"true", "false",
+		}, false),
+		ConflictsWith: conflicts,
+	}
+
+	return &resourceSchema
+}
+
+func schemaAutoPay(conflicts []string) *schema.Schema {
 	resourceSchema := schema.Schema{
 		Type:     schema.TypeString,
 		Optional: true,

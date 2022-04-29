@@ -10,6 +10,7 @@ import (
 
 	"github.com/chnsz/golangsdk/openstack/common/tags"
 	"github.com/chnsz/golangsdk/openstack/compute/v2/servers"
+	"github.com/chnsz/golangsdk/openstack/ecs/v1/cloudservers"
 	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/config"
 )
 
@@ -39,28 +40,6 @@ func TestAccComputeV2Instance_basic(t *testing.T) {
 					"stop_before_destroy",
 					"force_delete",
 				},
-			},
-		},
-	})
-}
-
-func TestAccComputeV2Instance_disks(t *testing.T) {
-	var instance servers.Server
-
-	rName := fmt.Sprintf("tf-acc-test-%s", acctest.RandString(5))
-	resourceName := "g42cloud_compute_instance.test"
-
-	resource.ParallelTest(t, resource.TestCase{
-		PreCheck:     func() { testAccPreCheck(t) },
-		Providers:    testAccProviders,
-		CheckDestroy: testAccCheckComputeV2InstanceDestroy,
-		Steps: []resource.TestStep{
-			{
-				Config: testAccComputeV2Instance_disks(rName),
-				Check: resource.ComposeTestCheckFunc(
-					testAccCheckComputeV2InstanceExists(resourceName, &instance),
-					resource.TestCheckResourceAttr(resourceName, "name", rName),
-				),
 			},
 		},
 	})
@@ -112,6 +91,41 @@ func TestAccComputeV2Instance_tags(t *testing.T) {
 	})
 }
 
+func TestAccComputeV2Instance_disks(t *testing.T) {
+	var instance cloudservers.CloudServer
+
+	rName := fmt.Sprintf("tf-acc-test-%s", acctest.RandString(5))
+	resourceName := "g42cloud_compute_instance.test"
+
+	resource.ParallelTest(t, resource.TestCase{
+		PreCheck:     func() { testAccPreCheck(t) },
+		Providers:    testAccProviders,
+		CheckDestroy: testAccCheckComputeV2InstanceDestroy,
+		Steps: []resource.TestStep{
+			{
+				Config: testAccComputeV2Instance_disks(rName, 50),
+				Check: resource.ComposeTestCheckFunc(
+					testAccCheckComputeV1InstanceExists(resourceName, &instance),
+					resource.TestCheckResourceAttr(resourceName, "name", rName),
+					resource.TestCheckResourceAttr(resourceName, "system_disk_size", "50"),
+					resource.TestCheckResourceAttrPair(
+						resourceName, "system_disk_kms_key_id", "g42cloud_kms_key.test", "id"),
+					resource.TestCheckResourceAttrPair(
+						resourceName, "volume_attached.1.kms_key_id", "g42cloud_kms_key.test", "id"),
+				),
+			},
+			{
+				Config: testAccComputeV2Instance_disks(rName, 60),
+				Check: resource.ComposeTestCheckFunc(
+					testAccCheckComputeV1InstanceExists(resourceName, &instance),
+					resource.TestCheckResourceAttr(resourceName, "name", rName),
+					resource.TestCheckResourceAttr(resourceName, "system_disk_size", "60"),
+				),
+			},
+		},
+	})
+}
+
 func testAccCheckComputeV2InstanceDestroy(s *terraform.State) error {
 	config := testAccProvider.Meta().(*config.Config)
 	computeClient, err := config.ComputeV2Client(G42_REGION_NAME)
@@ -133,6 +147,38 @@ func testAccCheckComputeV2InstanceDestroy(s *terraform.State) error {
 	}
 
 	return nil
+}
+
+func testAccCheckComputeV1InstanceExists(n string, instance *cloudservers.CloudServer) resource.TestCheckFunc {
+	return func(s *terraform.State) error {
+		rs, ok := s.RootModule().Resources[n]
+		if !ok {
+			return fmt.Errorf("Not found: %s", n)
+		}
+
+		if rs.Primary.ID == "" {
+			return fmt.Errorf("No ID is set")
+		}
+
+		config := testAccProvider.Meta().(*config.Config)
+		computeClient, err := config.ComputeV1Client(G42_REGION_NAME)
+		if err != nil {
+			return fmt.Errorf("Error creating G42cloud compute client: %s", err)
+		}
+
+		found, err := cloudservers.Get(computeClient, rs.Primary.ID).Extract()
+		if err != nil {
+			return err
+		}
+
+		if found.ID != rs.Primary.ID {
+			return fmt.Errorf("Instance not found")
+		}
+
+		*instance = *found
+
+		return nil
+	}
 }
 
 func testAccCheckComputeV2InstanceExists(n string, instance *servers.Server) resource.TestCheckFunc {
@@ -233,6 +279,10 @@ data "g42cloud_images_image" "test" {
   name        = "Ubuntu 18.04 server 64bit"
   most_recent = true
 }
+
+data "g42cloud_networking_secgroup" "test" {
+  name = "Sys-default"
+}
 `
 
 func testAccComputeV2Instance_basic(rName string) string {
@@ -243,62 +293,13 @@ resource "g42cloud_compute_instance" "test" {
   name              = "%s"
   image_id          = data.g42cloud_images_image.test.id
   flavor_id         = data.g42cloud_compute_flavors.test.ids[0]
-  security_groups   = ["default"]
+  security_group_ids = [data.g42cloud_networking_secgroup.test.id]
   availability_zone = data.g42cloud_availability_zones.test.names[0]
   system_disk_type  = "SSD"
 
   network {
     uuid = data.g42cloud_vpc_subnet.test.id
   }
-}
-`, testAccCompute_data, rName)
-}
-
-func testAccComputeV2Instance_disks(rName string) string {
-	return fmt.Sprintf(`
-%s
-
-resource "g42cloud_compute_instance" "test" {
-  name              = "%s"
-  image_id          = data.g42cloud_images_image.test.id
-  flavor_id         = data.g42cloud_compute_flavors.test.ids[0]
-  security_groups   = ["default"]
-  availability_zone = data.g42cloud_availability_zones.test.names[0]
- 
-  system_disk_type = "SAS"
-  system_disk_size = 50
-
-  data_disks {
-    type = "SAS"
-    size = "10"
-  }
-
-  network {
-    uuid = data.g42cloud_vpc_subnet.test.id
-  }
-}
-`, testAccCompute_data, rName)
-}
-
-func testAccComputeV2Instance_prePaid(rName string) string {
-	return fmt.Sprintf(`
-%s
-
-resource "g42cloud_compute_instance" "test" {
-  name              = "%s"
-  image_id          = data.g42cloud_images_image.test.id
-  flavor_id         = data.g42cloud_compute_flavors.test.ids[0]
-  security_groups   = ["default"]
-  availability_zone = data.g42cloud_availability_zones.test.names[0]
-  system_disk_type  = "SSD"
-
-  network {
-    uuid = data.g42cloud_vpc_subnet.test.id
-  }
-
-  charging_mode = "prePaid"
-  period_unit   = "month"
-  period        = 1
 }
 `, testAccCompute_data, rName)
 }
@@ -308,12 +309,12 @@ func testAccComputeV2Instance_tags(rName string) string {
 %s
 
 resource "g42cloud_compute_instance" "test" {
-  name              = "%s"
-  image_id          = data.g42cloud_images_image.test.id
-  flavor_id         = data.g42cloud_compute_flavors.test.ids[0]
-  security_groups   = ["default"]
-  availability_zone = data.g42cloud_availability_zones.test.names[0]
-  system_disk_type  = "SSD"
+  name               = "%s"
+  image_id           = data.g42cloud_images_image.test.id
+  flavor_id          = data.g42cloud_compute_flavors.test.ids[0]
+  security_group_ids = [data.g42cloud_networking_secgroup.test.id]
+  availability_zone  = data.g42cloud_availability_zones.test.names[0]
+  system_disk_type   = "SSD"
 
   network {
     uuid = data.g42cloud_vpc_subnet.test.id
@@ -332,12 +333,12 @@ func testAccComputeV2Instance_tags2(rName string) string {
 %s
 
 resource "g42cloud_compute_instance" "test" {
-  name              = "%s"
-  image_id          = data.g42cloud_images_image.test.id
-  flavor_id         = data.g42cloud_compute_flavors.test.ids[0]
-  security_groups   = ["default"]
-  availability_zone = data.g42cloud_availability_zones.test.names[0]
-  system_disk_type  = "SSD"
+  name               = "%s"
+  image_id           = data.g42cloud_images_image.test.id
+  flavor_id          = data.g42cloud_compute_flavors.test.ids[0]
+  security_group_ids = [data.g42cloud_networking_secgroup.test.id]
+  availability_zone  = data.g42cloud_availability_zones.test.names[0]
+  system_disk_type   = "SSD"
 
   network {
     uuid = data.g42cloud_vpc_subnet.test.id
@@ -356,16 +357,50 @@ func testAccComputeV2Instance_notags(rName string) string {
 %s
 
 resource "g42cloud_compute_instance" "test" {
-  name              = "%s"
-  image_id          = data.g42cloud_images_image.test.id
-  flavor_id         = data.g42cloud_compute_flavors.test.ids[0]
-  security_groups   = ["default"]
-  availability_zone = data.g42cloud_availability_zones.test.names[0]
-  system_disk_type  = "SSD"
+  name               = "%s"
+  image_id           = data.g42cloud_images_image.test.id
+  flavor_id          = data.g42cloud_compute_flavors.test.ids[0]
+  security_group_ids = [data.g42cloud_networking_secgroup.test.id]
+  availability_zone  = data.g42cloud_availability_zones.test.names[0]
+  system_disk_type   = "SSD"
 
   network {
     uuid = data.g42cloud_vpc_subnet.test.id
   }
 }
 `, testAccCompute_data, rName)
+}
+
+func testAccComputeV2Instance_disks(rName string, systemDiskSize int) string {
+	return fmt.Sprintf(`
+%s
+
+resource "g42cloud_kms_key" "test" {
+  key_alias    = "%s"
+  pending_days = "7"
+}
+
+resource "g42cloud_compute_instance" "test" {
+  name                        = "%s"
+  image_id                    = data.g42cloud_images_image.test.id
+  flavor_id                   = data.g42cloud_compute_flavors.test.ids[0]
+  security_group_ids          = [data.g42cloud_networking_secgroup.test.id]
+  availability_zone           = data.g42cloud_availability_zones.test.names[0]
+  delete_disks_on_termination = true
+
+  system_disk_type       = "SAS"
+  system_disk_size       = %d
+  system_disk_kms_key_id = g42cloud_kms_key.test.id
+
+  data_disks {
+    type       = "SAS"
+    size       = "10"
+	kms_key_id = g42cloud_kms_key.test.id
+  }
+
+  network {
+    uuid = data.g42cloud_vpc_subnet.test.id
+  }
+}
+`, testAccCompute_data, rName, rName, systemDiskSize)
 }
