@@ -1,3 +1,26 @@
+## 1.4.0 (April 29, 2022)
+
+FEATURES:
+
+* **New Data Source:** `g42cloud_enterprise_project` ([#60](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/60))
+* **New Data Source:** `g42cloud_vpcep_public_services` ([#63](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/63))
+* **New Data Source:** `g42cloud_cbr_vaults` ([#67](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/67))
+* **New Resource:** `g42cloud_enterprise_project` ([#60](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/60))
+* **New Resource:** `g42cloud_swr_organization_permissions` ([#62](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/62))
+* **New Resource:** `g42cloud_swr_organization` ([#62](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/62))
+* **New Resource:** `g42cloud_swr_repository_sharing` ([#62](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/62))
+* **New Resource:** `g42cloud_swr_repository` ([#62](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/62))
+* **New Resource:** `g42cloud_vpcep_approval` ([#63](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/63))
+* **New Resource:** `g42cloud_vpcep_endpoint` ([#63](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/63))
+* **New Resource:** `g42cloud_vpcep_service` ([#63](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/63))
+* **New Resource:** `g42cloud_cbr_policy` ([#67](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/67))
+* **New Resource:** `g42cloud_cbr_vault` ([#67](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/67))
+* **New Resource:** `g42cloud_tms_tags` ([#68](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/68))
+
+ENHANCEMENTS:
+
+* Support disk encryption in compute_instance ([#69](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/69))
+
 ## 1.3.1 (March 21, 2022)
 
 FEATURES:
