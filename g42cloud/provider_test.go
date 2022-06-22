@@ -19,6 +19,7 @@ var (
 	G42_ACCESS_KEY                 = os.Getenv("G42_ACCESS_KEY")
 	G42_SECRET_KEY                 = os.Getenv("G42_SECRET_KEY")
 	G42_DNS_ENVIRONMENT            = os.Getenv("G42_DNS_ENVIRONMENT")
+	G42_KMS_ENVIRONMENT            = os.Getenv("G42_KMS_ENVIRONMENT")
 )
 
 var testAccProviders map[string]*schema.Provider
@@ -62,6 +63,12 @@ func testAccPreCheckOBS(t *testing.T) {
 func testAccPreCheckDNS(t *testing.T) {
 	if G42_DNS_ENVIRONMENT == "" {
 		t.Skip("This environment does not support DNS tests")
+	}
+}
+
+func testAccPreCheckKms(t *testing.T) {
+	if G42_KMS_ENVIRONMENT == "" {
+		t.Skip("This environment does not support KMS tests")
 	}
 }
 

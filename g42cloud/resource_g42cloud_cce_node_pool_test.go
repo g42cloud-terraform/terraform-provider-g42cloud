@@ -100,6 +100,35 @@ func TestAccCCENodePool_tags(t *testing.T) {
 	})
 }
 
+func TestAccCCENodePool_volume_encryption(t *testing.T) {
+	var nodePool nodepools.NodePool
+
+	rName := fmt.Sprintf("tf-acc-test-%s", acctest.RandString(5))
+	resourceName := "g42cloud_cce_node_pool.test"
+	//clusterName here is used to provide the cluster id to fetch cce node pool.
+	clusterName := "g42cloud_cce_cluster.test"
+
+	resource.ParallelTest(t, resource.TestCase{
+		PreCheck: func() {
+			testAccPreCheck(t)
+			testAccPreCheckKms(t)
+		},
+		Providers:    testAccProviders,
+		CheckDestroy: testAccCheckCCENodePoolDestroy,
+		Steps: []resource.TestStep{
+			{
+				Config: testAccCCENodePool_volume_encryption(rName),
+				Check: resource.ComposeTestCheckFunc(
+					testAccCheckCCENodePoolExists(resourceName, clusterName, &nodePool),
+					resource.TestCheckResourceAttr(resourceName, "name", rName),
+					resource.TestCheckResourceAttrSet(resourceName, "root_volume.0.kms_key_id"),
+					resource.TestCheckResourceAttrSet(resourceName, "data_volumes.0.kms_key_id"),
+				),
+			},
+		},
+	})
+}
+
 func testAccCheckCCENodePoolDestroy(s *terraform.State) error {
 	config := testAccProvider.Meta().(*config.Config)
 	cceClient, err := config.CceV3Client(G42_REGION_NAME)
@@ -202,7 +231,7 @@ resource "g42cloud_compute_keypair" "test" {
 resource "g42cloud_cce_cluster" "test" {
   name                   = "%s"
   cluster_type           = "VirtualMachine"
-  flavor_id              = "cce.s1.small"
+  flavor_id              = "cce.s1.medium"
   vpc_id                 = g42cloud_vpc.test.id
   subnet_id              = g42cloud_vpc_subnet.test.id
   container_network_type = "overlay_l2"
@@ -217,7 +246,7 @@ func testAccCCENodePool_basic(rName string) string {
 resource "g42cloud_cce_node_pool" "test" {
   cluster_id         = g42cloud_cce_cluster.test.id
   name               = "%s"
-  os                 = "EulerOS 2.5"
+  os                 = "CentOS 7.6"
   flavor_id          = "s6.large.2"
   initial_node_count = 1
   availability_zone  = data.g42cloud_availability_zones.test.names[0]
@@ -248,7 +277,7 @@ func testAccCCENodePool_update(rName, updateName string) string {
 resource "g42cloud_cce_node_pool" "test" {
   cluster_id         = g42cloud_cce_cluster.test.id
   name               = "%s"
-  os                 = "EulerOS 2.5"
+  os                 = "CentOS 7.6"
   flavor_id          = "s6.large.2"
   initial_node_count = 2
   availability_zone  = data.g42cloud_availability_zones.test.names[0]
@@ -279,7 +308,7 @@ func testAccCCENodePool_volume_extendParams(rName string) string {
 resource "g42cloud_cce_node_pool" "test" {
   cluster_id         = g42cloud_cce_cluster.test.id
   name               = "%s"
-  os                 = "EulerOS 2.5"
+  os                 = "CentOS 7.6"
   flavor_id          = "s6.large.2"
   initial_node_count = 1
   availability_zone  = data.g42cloud_availability_zones.test.names[0]
@@ -325,7 +354,7 @@ func testAccCCENodePool_tags(rName string) string {
 resource "g42cloud_cce_node_pool" "test" {
   cluster_id               = g42cloud_cce_cluster.test.id
   name                     = "%s"
-  os                       = "EulerOS 2.5"
+  os                       = "CentOS 7.6"
   flavor_id                = "s6.large.2"
   initial_node_count       = 1
   availability_zone        = data.g42cloud_availability_zones.test.names[0]
@@ -361,7 +390,7 @@ func testAccCCENodePool_tags_update(rName string) string {
 resource "g42cloud_cce_node_pool" "test" {
   cluster_id               = g42cloud_cce_cluster.test.id
   name                     = "%s"
-  os                       = "EulerOS 2.5"
+  os                       = "CentOS 7.6"
   flavor_id                = "s6.large.2"
   initial_node_count       = 1
   availability_zone        = data.g42cloud_availability_zones.test.names[0]
@@ -388,4 +417,43 @@ resource "g42cloud_cce_node_pool" "test" {
   }
 }
 `, testAccCCENodePool_Base(rName), rName)
+}
+
+func testAccCCENodePool_volume_encryption(rName string) string {
+	return fmt.Sprintf(`
+%s
+
+resource "g42cloud_kms_key" "test" {
+  key_alias    = "%s"
+  pending_days = "7"
+}
+
+resource "g42cloud_cce_node_pool" "test" {
+  cluster_id               = g42cloud_cce_cluster.test.id
+  name                     = "%s"
+  os                       = "CentOS 7.6"
+  flavor_id                = "s6.large.2"
+  initial_node_count       = 1
+  availability_zone        = data.g42cloud_availability_zones.test.names[0]
+  key_pair                 = g42cloud_compute_keypair.test.name
+  scall_enable             = false
+  min_node_count           = 0
+  max_node_count           = 0
+  scale_down_cooldown_time = 0
+  priority                 = 0
+  type                     = "vm"
+
+  root_volume {
+    size       = 40
+    volumetype = "SSD"
+	kms_key_id = g42cloud_kms_key.test.id
+  }
+
+  data_volumes {
+    size       = 100
+    volumetype = "SSD"
+    kms_key_id = g42cloud_kms_key.test.id
+  }
+}
+`, testAccCCENodePool_Base(rName), rName, rName)
 }

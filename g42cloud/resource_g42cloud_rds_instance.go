@@ -299,11 +299,15 @@ func resourceRdsInstanceV3Create(d *schema.ResourceData, meta interface{}) error
 		}
 
 		chargeInfo := &instances.ChargeInfo{
-			ChargeMode:  d.Get("charging_mode").(string),
-			PeriodType:  d.Get("period_unit").(string),
-			PeriodNum:   d.Get("period").(int),
-			IsAutoPay:   "true",
-			IsAutoRenew: d.Get("auto_renew").(string),
+			ChargeMode: d.Get("charging_mode").(string),
+			PeriodType: d.Get("period_unit").(string),
+			PeriodNum:  d.Get("period").(int),
+		}
+		if d.Get("auto_pay").(string) != "false" {
+			chargeInfo.IsAutoPay = true
+		}
+		if d.Get("auto_renew").(string) == "true" {
+			chargeInfo.IsAutoRenew = true
 		}
 		createOpts.ChargeInfo = chargeInfo
 	}
