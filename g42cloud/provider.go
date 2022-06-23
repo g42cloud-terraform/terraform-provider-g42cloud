@@ -28,6 +28,7 @@ import (
 	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/ims"
 	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/lb"
 	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/rds"
+	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/smn"
 	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/swr"
 	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/tms"
 	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/vpc"
@@ -199,9 +200,9 @@ func Provider() *schema.Provider {
 			"g42cloud_cbr_policy":                      cbr.ResourceCBRPolicyV3(),
 			"g42cloud_cbr_vault":                       cbr.ResourceCBRVaultV3(),
 			"g42cloud_cce_cluster":                     huaweicloud.ResourceCCEClusterV3(),
-			"g42cloud_cce_node":                        huaweicloud.ResourceCCENodeV3(),
+			"g42cloud_cce_node":                        ResourceCCENodeV3(),
 			"g42cloud_cce_addon":                       huaweicloud.ResourceCCEAddonV3(),
-			"g42cloud_cce_node_pool":                   huaweicloud.ResourceCCENodePool(),
+			"g42cloud_cce_node_pool":                   ResourceCCENodePool(),
 			"g42cloud_ces_alarmrule":                   ces.ResourceAlarmRule(),
 			"g42cloud_compute_instance":                ResourceComputeInstanceV2(),
 			"g42cloud_compute_interface_attach":        huaweicloud.ResourceComputeInterfaceAttachV2(),
@@ -254,8 +255,8 @@ func Provider() *schema.Provider {
 			"g42cloud_rds_parametergroup":              rds.ResourceRdsConfiguration(),
 			"g42cloud_rds_read_replica_instance":       rds.ResourceRdsReadReplicaInstance(),
 			"g42cloud_sfs_turbo":                       huaweicloud.ResourceSFSTurbo(),
-			"g42cloud_smn_subscription":                huaweicloud.ResourceSubscription(),
-			"g42cloud_smn_topic":                       huaweicloud.ResourceTopic(),
+			"g42cloud_smn_subscription":                smn.ResourceSubscription(),
+			"g42cloud_smn_topic":                       smn.ResourceTopic(),
 			"g42cloud_swr_organization":                swr.ResourceSWROrganization(),
 			"g42cloud_swr_organization_permissions":    swr.ResourceSWROrganizationPermissions(),
 			"g42cloud_swr_repository":                  swr.ResourceSWRRepository(),

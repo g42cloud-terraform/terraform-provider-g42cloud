@@ -61,11 +61,40 @@ func TestAccCCENodeV3_basic(t *testing.T) {
 	})
 }
 
+func TestAccCCENodeV3_volume_encryption(t *testing.T) {
+	var node nodes.Nodes
+
+	rName := fmt.Sprintf("tf-acc-test-%s", acctest.RandString(5))
+	resourceName := "g42cloud_cce_node.test"
+	//clusterName here is used to provide the cluster id to fetch cce node.
+	clusterName := "g42cloud_cce_cluster.test"
+
+	resource.ParallelTest(t, resource.TestCase{
+		PreCheck: func() {
+			testAccPreCheck(t)
+			testAccPreCheckKms(t)
+		},
+		Providers:    testAccProviders,
+		CheckDestroy: testAccCheckCCENodeV3Destroy,
+		Steps: []resource.TestStep{
+			{
+				Config: testAccCCENodeV3_volume_encryption(rName),
+				Check: resource.ComposeTestCheckFunc(
+					testAccCheckCCENodeV3Exists(resourceName, clusterName, &node),
+					resource.TestCheckResourceAttr(resourceName, "name", rName),
+					resource.TestCheckResourceAttrSet(resourceName, "root_volume.0.kms_key_id"),
+					resource.TestCheckResourceAttrSet(resourceName, "data_volumes.0.kms_key_id"),
+				),
+			},
+		},
+	})
+}
+
 func testAccCheckCCENodeV3Destroy(s *terraform.State) error {
 	config := testAccProvider.Meta().(*config.Config)
 	cceClient, err := config.CceV3Client(G42_REGION_NAME)
 	if err != nil {
-		return fmt.Errorf("Error creating HuaweiCloud CCE client: %s", err)
+		return fmt.Errorf("Error creating G42Cloud CCE client: %s", err)
 	}
 
 	var clusterId string
@@ -109,7 +138,7 @@ func testAccCheckCCENodeV3Exists(n string, cluster string, node *nodes.Nodes) re
 		config := testAccProvider.Meta().(*config.Config)
 		cceClient, err := config.CceV3Client(G42_REGION_NAME)
 		if err != nil {
-			return fmt.Errorf("Error creating HuaweiCloud CCE client: %s", err)
+			return fmt.Errorf("Error creating G42Cloud CCE client: %s", err)
 		}
 
 		found, err := nodes.Get(cceClient, c.Primary.ID, rs.Primary.ID).Extract()
@@ -159,6 +188,7 @@ resource "g42cloud_cce_node" "test" {
   flavor_id         = "s6.large.2"
   availability_zone = data.g42cloud_availability_zones.test.names[0]
   key_pair          = g42cloud_compute_keypair.test.name
+  os                = "CentOS 7.6"
 
   root_volume {
     size       = 40
@@ -186,6 +216,7 @@ resource "g42cloud_cce_node" "test" {
   flavor_id         = "s6.large.2"
   availability_zone = data.g42cloud_availability_zones.test.names[0]
   key_pair          = g42cloud_compute_keypair.test.name
+  os                = "CentOS 7.6"
 
   root_volume {
     size       = 40
@@ -213,6 +244,7 @@ resource "g42cloud_cce_node" "test" {
   flavor_id         = "s6.large.2"
   availability_zone = data.g42cloud_availability_zones.test.names[0]
   key_pair          = g42cloud_compute_keypair.test.name
+  os                = "CentOS 7.6"
 
   root_volume {
     size       = 40
@@ -254,6 +286,7 @@ resource "g42cloud_cce_node" "test" {
   flavor_id         = "s6.large.2"
   availability_zone = data.g42cloud_availability_zones.test.names[0]
   key_pair          = g42cloud_compute_keypair.test.name
+  os                = "CentOS 7.6"
 
   root_volume {
     size       = 40
@@ -268,4 +301,39 @@ resource "g42cloud_cce_node" "test" {
   eip_id = g42cloud_vpc_eip.test.id
 }
 `, testAccCCENodeV3_Base(rName), rName)
+}
+
+func testAccCCENodeV3_volume_encryption(rName string) string {
+	return fmt.Sprintf(`
+%s
+
+resource "g42cloud_kms_key" "test" {
+  key_alias    = "%s"
+  pending_days = "7"
+}
+
+resource "g42cloud_cce_node" "test" {
+  cluster_id        = g42cloud_cce_cluster.test.id
+  name              = "%s"
+  flavor_id         = "s6.large.2"
+  availability_zone = data.g42cloud_availability_zones.test.names[0]
+  key_pair          = g42cloud_compute_keypair.test.name
+  os                = "CentOS 7.6"
+
+  root_volume {
+    size       = 40
+    volumetype = "SSD"
+	kms_key_id = g42cloud_kms_key.test.id
+  }
+  data_volumes {
+    size       = 100
+    volumetype = "SSD"
+    kms_key_id = g42cloud_kms_key.test.id
+  }
+  tags = {
+    foo = "bar"
+    key = "value"
+  }
+}
+`, testAccCCENodeV3_Base(rName), rName, rName)
 }
