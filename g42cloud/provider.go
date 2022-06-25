@@ -29,6 +29,7 @@ import (
 	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/iam"
 	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/ims"
 	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/lb"
+	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/mrs"
 	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/rds"
 	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/smn"
 	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/swr"
@@ -251,6 +252,8 @@ func Provider() *schema.Provider {
 			"g42cloud_lb_whitelist":                    lb.ResourceWhitelistV2(),
 			"g42cloud_lts_group":                       huaweicloud.ResourceLTSGroupV2(),
 			"g42cloud_lts_stream":                      huaweicloud.ResourceLTSStreamV2(),
+			"g42cloud_mapreduce_cluster":               mrs.ResourceMRSClusterV2(),
+			"g42cloud_mapreduce_job":                   mrs.ResourceMRSJobV2(),
 			"g42cloud_nat_dnat_rule":                   huaweicloud.ResourceNatDnatRuleV2(),
 			"g42cloud_nat_gateway":                     huaweicloud.ResourceNatGatewayV2(),
 			"g42cloud_nat_snat_rule":                   huaweicloud.ResourceNatSnatRuleV2(),
