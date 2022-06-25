@@ -249,6 +249,8 @@ func Provider() *schema.Provider {
 			"g42cloud_lb_monitor":                      lb.ResourceMonitorV2(),
 			"g42cloud_lb_pool":                         lb.ResourcePoolV2(),
 			"g42cloud_lb_whitelist":                    lb.ResourceWhitelistV2(),
+			"g42cloud_lts_group":                       huaweicloud.ResourceLTSGroupV2(),
+			"g42cloud_lts_stream":                      huaweicloud.ResourceLTSStreamV2(),
 			"g42cloud_nat_dnat_rule":                   huaweicloud.ResourceNatDnatRuleV2(),
 			"g42cloud_nat_gateway":                     huaweicloud.ResourceNatGatewayV2(),
 			"g42cloud_nat_snat_rule":                   huaweicloud.ResourceNatSnatRuleV2(),
