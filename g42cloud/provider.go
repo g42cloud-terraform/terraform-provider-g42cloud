@@ -15,6 +15,7 @@ import (
 	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/bms"
 	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/cbr"
 	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/ces"
+	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/css"
 	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/cts"
 	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/dcs"
 	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/dds"
@@ -166,6 +167,7 @@ func Provider() *schema.Provider {
 			"g42cloud_cce_addon_template":    huaweicloud.DataSourceCCEAddonTemplateV3(),
 			"g42cloud_cce_node_pool":         huaweicloud.DataSourceCCENodePoolV3(),
 			"g42cloud_compute_flavors":       huaweicloud.DataSourceEcsFlavors(),
+			"g42cloud_css_flavors":           css.DataSourceCssFlavors(),
 			"g42cloud_dds_flavors":           dds.DataSourceDDSFlavorV3(),
 			"g42cloud_dcs_az":                deprecated.DataSourceDcsAZV1(),
 			"g42cloud_dcs_flavors":           dcs.DataSourceDcsFlavorsV2(),
@@ -215,6 +217,9 @@ func Provider() *schema.Provider {
 			"g42cloud_compute_servergroup":             huaweicloud.ResourceComputeServerGroupV2(),
 			"g42cloud_compute_eip_associate":           huaweicloud.ResourceComputeFloatingIPAssociateV2(),
 			"g42cloud_compute_volume_attach":           ecs.ResourceComputeVolumeAttach(),
+			"g42cloud_css_cluster":                     css.ResourceCssCluster(),
+			"g42cloud_css_snapshot":                    css.ResourceCssSnapshot(),
+			"g42cloud_css_thesaurus":                   css.ResourceCssthesaurus(),
 			"g42cloud_cts_tracker":                     cts.ResourceCTSTracker(),
 			"g42cloud_cts_data_tracker":                cts.ResourceCTSDataTracker(),
 			"g42cloud_dcs_instance":                    dcs.ResourceDcsInstance(),
