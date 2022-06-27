@@ -22,6 +22,7 @@ import (
 	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/deprecated"
 	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/dli"
 	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/dms"
+	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/dws"
 	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/ecs"
 	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/eip"
 	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/eps"
@@ -232,6 +233,7 @@ func Provider() *schema.Provider {
 			"g42cloud_dns_ptrrecord":                   huaweicloud.ResourceDNSPtrRecordV2(),
 			"g42cloud_dns_recordset":                   huaweicloud.ResourceDNSRecordSetV2(),
 			"g42cloud_dns_zone":                        huaweicloud.ResourceDNSZoneV2(),
+			"g42cloud_dws_cluster":                     dws.ResourceDwsCluster(),
 			"g42cloud_enterprise_project":              eps.ResourceEnterpriseProject(),
 			"g42cloud_evs_snapshot":                    huaweicloud.ResourceEvsSnapshotV2(),
 			"g42cloud_evs_volume":                      evs.ResourceEvsVolume(),
