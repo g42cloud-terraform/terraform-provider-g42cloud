@@ -26,7 +26,8 @@ var (
 	G42_USER_ID                    = os.Getenv("G42_USER_ID")
 	G42_PROJECT_ID                 = os.Getenv("G42_PROJECT_ID")
 	G42_DOMAIN_ID                  = os.Getenv("G42_DOMAIN_ID")
-	G42_DOMAIN_NAME                = os.Getenv("G42_DOMAIN_NAME")
+	G42_ACCOUNT_NAME               = os.Getenv("G42_ACCOUNT_NAME")
+	G42_USERNAME                   = os.Getenv("G42_USERNAME")
 	G42_ENTERPRISE_PROJECT_ID_TEST = os.Getenv("G42_ENTERPRISE_PROJECT_ID_TEST")
 	G42_SWR_SHARING_ACCOUNT        = os.Getenv("G42_SWR_SHARING_ACCOUNT")
 
@@ -47,6 +48,13 @@ var (
 	G42_DEST_REGION     = os.Getenv("G42_DEST_REGION")
 	G42_DEST_PROJECT_ID = os.Getenv("G42_DEST_PROJECT_ID")
 	G42_CHARGING_MODE   = os.Getenv("G42_CHARGING_MODE")
+
+	G42_GITHUB_REPO_PWD       = os.Getenv("G42_GITHUB_REPO_PWD")
+	G42_GITHUB_REPO_HOST      = os.Getenv("G42_GITHUB_REPO_HOST")
+	G42_GITHUB_PERSONAL_TOKEN = os.Getenv("G42_GITHUB_PERSONAL_TOKEN")
+	G42_GITHUB_REPO_URL       = os.Getenv("G42_GITHUB_REPO_URL")
+	G42_OBS_STORAGE_URL       = os.Getenv("G42_OBS_STORAGE_URL")
+	G42_BUILD_IMAGE_URL       = os.Getenv("G42_BUILD_IMAGE_URL")
 )
 
 // TestAccProviders is a static map containing only the main provider instance.
@@ -377,7 +385,35 @@ func TestAccPreCheckChargingMode(t *testing.T) {
 //lintignore:AT003
 func TestAccPreCheckSWRDomian(t *testing.T) {
 	if G42_SWR_SHARING_ACCOUNT == "" {
-		t.Skip("HW_SWR_SHARING_ACCOUNT must be set for swr domian tests, " +
+		t.Skip("G42_SWR_SHARING_ACCOUNT must be set for swr domian tests, " +
 			"the value of G42_SWR_SHARING_ACCOUNT should be another IAM user name")
+	}
+}
+
+//lintignore:AT003
+func TestAccPreCheckRepoTokenAuth(t *testing.T) {
+	if G42_GITHUB_REPO_HOST == "" || G42_GITHUB_PERSONAL_TOKEN == "" {
+		t.Skip("Repository configurations are not completed for acceptance test of personal access token authorization.")
+	}
+}
+
+//lintignore:AT003
+func TestAccPreCheckRepoPwdAuth(t *testing.T) {
+	if G42_ACCOUNT_NAME == "" || G42_USERNAME == "" || G42_GITHUB_REPO_PWD == "" {
+		t.Skip("Repository configurations are not completed for acceptance test of password authorization.")
+	}
+}
+
+//lintignore:AT003
+func TestAccPreCheckComponent(t *testing.T) {
+	if G42_ACCOUNT_NAME == "" || G42_GITHUB_REPO_URL == "" || G42_OBS_STORAGE_URL == "" {
+		t.Skip("Repository (package) configurations are not completed for acceptance test of component.")
+	}
+}
+
+//lintignore:AT003
+func TestAccPreCheckComponentDeployment(t *testing.T) {
+	if G42_BUILD_IMAGE_URL == "" {
+		t.Skip("SWR image URL configuration is not completed for acceptance test of component deployment.")
 	}
 }
