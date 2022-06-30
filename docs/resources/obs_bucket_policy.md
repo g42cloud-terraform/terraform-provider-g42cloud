@@ -26,7 +26,7 @@ resource "g42cloud_obs_bucket_policy" "policy" {
       "Principal": {"ID": "*"},
       "Action": ["GetObject"],
       "Resource": "my-test-bucket/*"
-    } 
+    }
   ]
 }
 POLICY
@@ -72,12 +72,10 @@ The following arguments are supported:
   provider-level region will be used. Changing this creates a new OBS bucket policy resource.
 
 * `bucket` - (Required, String, ForceNew) Specifies the name of the bucket to which to apply the policy.
-
-* `policy` - (Required, String) Specifies the text of the bucket policy in JSON format. For more information about
-  obs format bucket policy, see the [Developer Guide](https://docs.g42cloud.com/en-us/api/obs/obs_04_0027.html).
-
-* `policy_format` - (Optional, String) Specifies the policy format, the supported values are *obs* and *s3*.
-  Defaults to *obs* .
+* `policy` - (Required, String) Specifies the text of the bucket policy in JSON format. For more information about obs
+  format bucket policy, see the [Developer Guide](https://docs.g42cloud.com/en-us/api/obs/obs_04_0027.html).
+* `policy_format` - (Optional, String) Specifies the policy format, the supported values are *obs* and *s3*. Defaults
+  to *obs* .
 
 ## Attributes Reference
 

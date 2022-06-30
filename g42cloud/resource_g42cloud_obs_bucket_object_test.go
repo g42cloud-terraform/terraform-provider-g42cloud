@@ -14,6 +14,7 @@ import (
 )
 
 func TestAccObsBucketObject_source(t *testing.T) {
+	resourceName := "g42cloud_obs_bucket_object.object"
 	tmpFile, err := ioutil.TempFile("", "tf-acc-obs-obj-source")
 	if err != nil {
 		t.Fatal(err)
@@ -35,22 +36,27 @@ func TestAccObsBucketObject_source(t *testing.T) {
 			{
 				Config: testAccObsBucketObjectConfigSource(rInt, tmpFile.Name()),
 				Check: resource.ComposeTestCheckFunc(
-					testAccCheckObsBucketObjectExists("g42cloud_obs_bucket_object.object"),
-					resource.TestCheckResourceAttr(
-						"g42cloud_obs_bucket_object.object", "key", "test-key"),
-					resource.TestCheckResourceAttr(
-						"g42cloud_obs_bucket_object.object", "content_type", "binary/octet-stream"),
-					resource.TestCheckResourceAttr(
-						"g42cloud_obs_bucket_object.object", "storage_class", "STANDARD"),
+					testAccCheckObsBucketObjectExists(resourceName),
+					resource.TestCheckResourceAttr(resourceName, "key", "test-key"),
+					resource.TestCheckResourceAttr(resourceName, "content_type", "binary/octet-stream"),
+					resource.TestCheckResourceAttr(resourceName, "storage_class", "STANDARD"),
 				),
 			},
 			{
 				// update with encryption
 				Config: testAccObsBucketObjectConfig_withSSE(rInt, tmpFile.Name()),
 				Check: resource.ComposeTestCheckFunc(
-					resource.TestCheckResourceAttr(
-						"g42cloud_obs_bucket_object.object", "encryption", "true"),
+					resource.TestCheckResourceAttr(resourceName, "encryption", "true"),
 				),
+			},
+			{
+				ResourceName:      resourceName,
+				ImportState:       true,
+				ImportStateVerify: true,
+				ImportStateIdFunc: testAccObsBucketObjecImportStateIdFunc(),
+				ImportStateVerifyIgnore: []string{
+					"content_type", "encryption", "source", "version_id",
+				},
 			},
 		},
 	})
@@ -160,6 +166,23 @@ func testAccCheckObsBucketObjectExists(n string) resource.TestCheckFunc {
 		}
 
 		return nil
+	}
+}
+
+func testAccObsBucketObjecImportStateIdFunc() resource.ImportStateIdFunc {
+	return func(s *terraform.State) (string, error) {
+		bucket, ok := s.RootModule().Resources["huaweicloud_obs_bucket.object_bucket"]
+		if !ok {
+			return "", fmt.Errorf("Bucket not found: %s", bucket)
+		}
+		object, ok := s.RootModule().Resources["huaweicloud_obs_bucket_object.object"]
+		if !ok {
+			return "", fmt.Errorf("Object not found: %s", object)
+		}
+		if bucket.Primary.ID == "" || object.Primary.ID == "" {
+			return "", fmt.Errorf("resource not found: %s/%s", bucket.Primary.ID, object.Primary.ID)
+		}
+		return fmt.Sprintf("%s/%s", bucket.Primary.ID, object.Primary.ID), nil
 	}
 }
 
