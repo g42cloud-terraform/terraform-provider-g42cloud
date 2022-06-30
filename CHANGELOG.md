@@ -1,3 +1,51 @@
+## 1.5.0 (June 30, 2022)
+
+FEATURES:
+
+* **New Data Source:** `g42cloud_bms_flavors` ([#73](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/73))
+* **New Data Source:** `g42cloud_css_flavors` ([#77](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/77))
+* **New Data Source:** `g42cloud_modelarts_dataset_versions` ([#79](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/79))
+* **New Data Source:** `g42cloud_modelarts_datasets` ([#79](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/79))
+* **New Data Source:** `g42cloud_modelarts_notebook_images` ([#79](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/79))
+* **New Data Source:** `g42cloud_apig_environments` ([#80](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/80))
+* **New Data Source:** `g42cloud_servicestage_component_runtimes` ([#81](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/81))
+
+* **New Resource:** `g42cloud_bms_instance` ([#73](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/73))
+* **New Resource:** `g42cloud_cts_data_tracker` ([#74](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/74))
+* **New Resource:** `g42cloud_cts_tracker` ([#74](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/74))
+* **New Resource:** `g42cloud_lts_group` ([#75](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/75))
+* **New Resource:** `g42cloud_lts_stream` ([#75](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/75))
+* **New Resource:** `g42cloud_mapreduce_cluster` ([#76](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/76))
+* **New Resource:** `g42cloud_mapreduce_job` ([#76](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/76))
+* **New Resource:** `g42cloud_css_cluster` ([#77](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/77))
+* **New Resource:** `g42cloud_css_snapshot` ([#77](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/77))
+* **New Resource:** `g42cloud_css_thesaurus` ([#77](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/77))
+* **New Resource:** `g42cloud_dws_cluster` ([#78](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/78))
+* **New Resource:** `g42cloud_modelarts_dataset` ([#79](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/79))
+* **New Resource:** `g42cloud_modelarts_dataset_version` ([#79](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/79))
+* **New Resource:** `g42cloud_modelarts_notebook` ([#79](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/79))
+* **New Resource:** `g42cloud_modelarts_notebook_mount_storage` ([#79](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/79))
+* **New Resource:** `g42cloud_apig_api` ([#80](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/80))
+* **New Resource:** `g42cloud_apig_api_publishment` ([#80](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/80))
+* **New Resource:** `g42cloud_apig_application` ([#80](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/80))
+* **New Resource:** `g42cloud_apig_custom_authorizer` ([#80](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/80))
+* **New Resource:** `g42cloud_apig_environment` ([#80](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/80))
+* **New Resource:** `g42cloud_apig_group` ([#80](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/80))
+* **New Resource:** `g42cloud_apig_instance` ([#80](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/80))
+* **New Resource:** `g42cloud_apig_response` ([#80](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/80))
+* **New Resource:** `g42cloud_apig_throttling_policy` ([#80](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/80))
+* **New Resource:** `g42cloud_apig_vpc_channel` ([#80](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/80))
+* **New Resource:** `g42cloud_servicestage_application` ([#81](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/81))
+* **New Resource:** `g42cloud_servicestage_component` ([#81](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/81))
+* **New Resource:** `g42cloud_servicestage_component_instance` ([#81](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/81))
+* **New Resource:** `g42cloud_servicestage_environment` ([#81](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/81))
+* **New Resource:** `g42cloud_servicestage_repo_password_authorization` ([#81](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/81))
+* **New Resource:** `g42cloud_servicestage_repo_token_authorization` ([#81](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/81))
+
+ENHANCEMENTS:
+
+* Support volume encryption in cce node and node pool ([#72](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/72))
+
 ## 1.4.0 (April 29, 2022)
 
 FEATURES:
