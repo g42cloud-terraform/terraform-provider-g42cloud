@@ -1,0 +1,56 @@
+5c5
+< # huaweicloud_compute_eip_associate
+---
+> # g42cloud_compute_eip_associate
+15c15
+< resource "huaweicloud_compute_instance" "myinstance" {
+---
+> resource "g42cloud_compute_instance" "myinstance" {
+24c24
+< resource "huaweicloud_vpc_eip" "myeip" {
+---
+> resource "g42cloud_vpc_eip" "myeip" {
+36,38c36,38
+< resource "huaweicloud_compute_eip_associate" "associated" {
+<   public_ip   = huaweicloud_vpc_eip.myeip.address
+<   instance_id = huaweicloud_compute_instance.myinstance.id
+---
+> resource "g42cloud_compute_eip_associate" "associated" {
+>   public_ip   = g42cloud_vpc_eip.myeip.address
+>   instance_id = g42cloud_compute_instance.myinstance.id
+45c45
+< resource "huaweicloud_compute_instance" "myinstance" {
+---
+> resource "g42cloud_compute_instance" "myinstance" {
+58c58
+< resource "huaweicloud_vpc_eip" "myeip" {
+---
+> resource "g42cloud_vpc_eip" "myeip" {
+70,73c70,73
+< resource "huaweicloud_compute_eip_associate" "associated" {
+<   public_ip   = huaweicloud_vpc_eip.myeip.address
+<   instance_id = huaweicloud_compute_instance.myinstance.id
+<   fixed_ip    = huaweicloud_compute_instance.myinstance.network.1.fixed_ip_v4
+---
+> resource "g42cloud_compute_eip_associate" "associated" {
+>   public_ip   = g42cloud_vpc_eip.myeip.address
+>   instance_id = g42cloud_compute_instance.myinstance.id
+>   fixed_ip    = g42cloud_compute_instance.myinstance.network.1.fixed_ip_v4
+83c83
+< resource "huaweicloud_compute_instance" "myinstance" {
+---
+> resource "g42cloud_compute_instance" "myinstance" {
+94c94
+< resource "huaweicloud_compute_eip_associate" "associated" {
+---
+> resource "g42cloud_compute_eip_associate" "associated" {
+96,97c96,97
+<   instance_id  = huaweicloud_compute_instance.myinstance.id
+<   fixed_ip     = huaweicloud_compute_instance.myinstance.network.0.fixed_ip_v6
+---
+>   instance_id  = g42cloud_compute_instance.myinstance.id
+>   fixed_ip     = g42cloud_compute_instance.myinstance.network.0.fixed_ip_v6
+134c134
+< $ terraform import huaweicloud_compute_eip_associate.bind <eip address or bandwidth_id>/<instance_id>/<fixed_ip>
+---
+> $ terraform import g42cloud_compute_eip_associate.bind <eip address or bandwidth_id>/<instance_id>/<fixed_ip>

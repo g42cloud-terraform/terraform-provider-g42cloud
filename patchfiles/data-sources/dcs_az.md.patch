@@ -1,0 +1,22 @@
+5c5
+< # huaweicloud_dcs_az
+---
+> # g42cloud_dcs_az
+7c7
+< Use this data source to get the ID of an available HuaweiCloud dcs az.
+---
+> Use this data source to get the ID of an available G42cloud dcs az.
+10c10
+< `huaweicloud_dcs_instance` resource. Now `available_zones` has been deprecated and this data source is no longer used.
+---
+> `g42cloud_dcs_instance` resource. Now `available_zones` has been deprecated and this data source is no longer used.
+15,16c15,16
+< data "huaweicloud_dcs_az" "az1" {
+<   code = "cn-north-1a"
+---
+> data "g42cloud_dcs_az" "az1" {
+>   code = "ae-ad-1a"
+25c25
+< * `code` - (Required, String) Specifies the code of an AZ, e.g. "cn-north-1a".
+---
+> * `code` - (Required, String) Specifies the code of an AZ, e.g. "ae-ad-1a".

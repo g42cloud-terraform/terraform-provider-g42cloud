@@ -1,0 +1,16 @@
+5c5
+< # huaweicloud_apig_environment
+---
+> # g42cloud_apig_environment
+7c7
+< Manages an APIG environment resource within HuaweiCloud.
+---
+> Manages an APIG environment resource within G42Cloud.
+16c16
+< resource "huaweicloud_apig_environment" "test" {
+---
+> resource "g42cloud_apig_environment" "test" {
+53c53
+< $ terraform import huaweicloud_apig_environment.test <instance ID>/<id>
+---
+> $ terraform import g42cloud_apig_environment.test <instance ID>/<id>

@@ -1,0 +1,14 @@
+5c5
+< # huaweicloud_bms_flavors
+---
+> # g42cloud_bms_flavors
+12c12
+< data "huaweicloud_bms_flavors" "demo" {
+---
+> data "g42cloud_bms_flavors" "demo" {
+18,19c18,19
+< resource "huaweicloud_bms_instance" "instance" {
+<   flavor_id = data.huaweicloud_bms_flavors.demo.flavors[0].id
+---
+> resource "g42cloud_bms_instance" "instance" {
+>   flavor_id = data.g42cloud_bms_flavors.demo.flavors[0].id

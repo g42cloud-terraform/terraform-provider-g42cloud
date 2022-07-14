@@ -1,0 +1,20 @@
+5c5
+< # huaweicloud_modelarts_dataset_version
+---
+> # g42cloud_modelarts_dataset_version
+7c7
+< Manages ModelArts dataset version resource within HuaweiCloud.
+---
+> Manages ModelArts dataset version resource within G42Cloud.
+14c14
+< resource "huaweicloud_modelarts_dataset_version" "v001" {
+---
+> resource "g42cloud_modelarts_dataset_version" "v001" {
+93c93
+< terraform import huaweicloud_modelarts_dataset_version.test yiROKoTTjtwjvP71yLG/wieeeoTrtrtjvn67yLm
+---
+> terraform import g42cloud_modelarts_dataset_version.test yiROKoTTjtwjvP71yLG/wieeeoTrtrtjvn67yLm
+102c102
+< resource "huaweicloud_modelarts_dataset_version" "test" {
+---
+> resource "g42cloud_modelarts_dataset_version" "test" {

@@ -1,0 +1,12 @@
+5c5
+< # huaweicloud_vpcep_service
+---
+> # g42cloud_vpcep_service
+15c15
+< resource "huaweicloud_vpcep_service" "demo" {
+---
+> resource "g42cloud_vpcep_service" "demo" {
+103c103
+< $ terraform import huaweicloud_vpcep_service.test_service 950cd3ba-9d0e-4451-97c1-3e97dd515d46
+---
+> $ terraform import g42cloud_vpcep_service.test_service 950cd3ba-9d0e-4451-97c1-3e97dd515d46

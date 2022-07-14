@@ -57,7 +57,6 @@ smn_adm | SMN Administrator
 plas_adm | Config Plas Connector
 elb_adm | ELB Administrator
 
-
 ```hcl
 data "g42cloud_identity_role" "auth_admin" {
   name = "secu_admin"

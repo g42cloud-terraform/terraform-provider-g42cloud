@@ -72,8 +72,7 @@ This resource provides the following timeouts configuration options:
 
 ## Import
 
-This resource can be imported by specifying the zone ID and recordset ID,
-separated by a forward slash.
+This resource can be imported by specifying the zone ID and recordset ID, separated by a forward slash.
 
 ```
 $ terraform import g42cloud_dns_recordset.recordset_1 <zone_id>/<recordset_id>

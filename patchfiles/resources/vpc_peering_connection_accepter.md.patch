@@ -1,0 +1,71 @@
+5c5
+< # huaweicloud_vpc_peering_connection_accepter
+---
+> # g42cloud_vpc_peering_connection_accepter
+7,8c7
+< Provides a resource to manage the accepter's side of a VPC Peering Connection. This is an alternative
+< to `huaweicloud_vpc_peering_connection_accepter_v2`
+---
+> Provides a resource to manage the accepter's side of a VPC Peering Connection.
+12,13c11,12
+<   The requester can use the `huaweicloud_vpc_peering_connection` resource to manage its side of the connection and
+<   the accepter can use the `huaweicloud_vpc_peering_connection_accepter` resource to accept its side of the connection
+---
+>   The requester can use the `g42cloud_vpc_peering_connection` resource to manage its side of the connection and
+>   the accepter can use the `g42cloud_vpc_peering_connection_accepter` resource to accept its side of the connection
+19c18
+< provider "huaweicloud" {
+---
+> provider "g42cloud" {
+23c22
+< provider "huaweicloud" {
+---
+> provider "g42cloud" {
+27,28c26,27
+< resource "huaweicloud_vpc" "vpc_main" {
+<   provider = "huaweicloud.main"
+---
+> resource "g42cloud_vpc" "vpc_main" {
+>   provider = "g42cloud.main"
+33,34c32,33
+< resource "huaweicloud_vpc" "vpc_peer" {
+<   provider = "huaweicloud.peer"
+---
+> resource "g42cloud_vpc" "vpc_peer" {
+>   provider = "g42cloud.peer"
+40,41c39,40
+< resource "huaweicloud_vpc_peering_connection" "peering" {
+<   provider       = "huaweicloud.main"
+---
+> resource "g42cloud_vpc_peering_connection" "peering" {
+>   provider       = "g42cloud.main"
+43,44c42,43
+<   vpc_id         = huaweicloud_vpc.vpc_main.id
+<   peer_vpc_id    = huaweicloud_vpc.vpc_peer.id
+---
+>   vpc_id         = g42cloud_vpc.vpc_main.id
+>   peer_vpc_id    = g42cloud_vpc.vpc_peer.id
+49,50c48,49
+< resource "huaweicloud_vpc_peering_connection_accepter" "peer" {
+<   provider = "huaweicloud.peer"
+---
+> resource "g42cloud_vpc_peering_connection_accepter" "peer" {
+>   provider = "g42cloud.peer"
+53c52
+<   vpc_peering_connection_id = huaweicloud_vpc_peering_connection.peering.id
+---
+>   vpc_peering_connection_id = g42cloud_vpc_peering_connection.peering.id
+69c68
+< ## Removing huaweicloud_vpc_peering_connection_accepter from your configuration
+---
+> ## Removing g42cloud_vpc_peering_connection_accepter from your configuration
+71c70
+< HuaweiCloud allows a cross-tenant VPC Peering Connection to be deleted from either the requester's or accepter's side.
+---
+> G42Cloud allows a cross-tenant VPC Peering Connection to be deleted from either the requester's or accepter's side.
+73,74c72,73
+< corresponding `huaweicloud_vpc_peering_connection` resource from your configuration.
+< Removing a `huaweicloud_vpc_peering_connection_accepter` resource from your configuration will remove it from your
+---
+> corresponding `g42cloud_vpc_peering_connection` resource from your configuration.
+> Removing a `g42cloud_vpc_peering_connection_accepter` resource from your configuration will remove it from your

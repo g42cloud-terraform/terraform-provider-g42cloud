@@ -1,0 +1,16 @@
+5c5
+< # huaweicloud_lb_member
+---
+> # g42cloud_lb_member
+7c7
+< Manages an ELB member resource within HuaweiCloud. This is an alternative to `huaweicloud_lb_member_v2`
+---
+> Manages an ELB member resource within G42Cloud.
+12c12
+< resource "huaweicloud_lb_member" "member_1" {
+---
+> resource "g42cloud_lb_member" "member_1" {
+65c65
+< $ terraform import huaweicloud_lb_member.member_1 e0bd694a-abbe-450e-b329-0931fd1cc5eb/4086b0c9-b18c-4d1c-b6b8-4c56c3ad2a9e
+---
+> $ terraform import g42cloud_lb_member.member_1 e0bd694a-abbe-450e-b329-0931fd1cc5eb/4086b0c9-b18c-4d1c-b6b8-4c56c3ad2a9e

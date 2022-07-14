@@ -9,9 +9,9 @@ Add a node pool to a container cluster.
 ## Example Usage
 
 ```hcl
-variable "cluster_id" { }
-variable "key_pair" { }
-variable "availability_zone" { }
+variable "cluster_id" {}
+variable "key_pair" {}
+variable "availability_zone" {}
 
 resource "g42cloud_cce_node_pool" "node_pool" {
   cluster_id               = var.cluster_id
@@ -134,9 +134,6 @@ The `root_volume` block supports:
 * `extend_params` - (Optional, Map, ForceNew) Specifies the disk expansion parameters.
   Changing this parameter will create a new resource.
 
-* `kms_key_id` - (Optional, String, ForceNew) Specifies the KMS key ID. This is used to encrypt the volume.
-  Changing this parameter will create a new resource.
-
 The `data_volumes` block supports:
 
 * `size` - (Required, Int, ForceNew) Specifies the disk size in GB. Changing this parameter will create a new resource.
@@ -181,19 +178,18 @@ This resource provides the following timeouts configuration options:
 
 ## Import
 
-CCE node pool can be imported using the cluster ID and node pool ID
-separated by a slash, e.g.:
+CCE node pool can be imported using the cluster ID and node pool ID separated by a slash, e.g.:
 
 ```
 $ terraform import g42cloud_cce_node_pool.my_node_pool 5c20fdad-7288-11eb-b817-0255ac10158b/e9287dff-7288-11eb-b817-0255ac10158b
 ```
 
-Note that the imported state may not be identical to your resource definition, due to some attrubutes missing from the
+Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
 API response, security or some other reason. The missing attributes include:
-`password`, `subnet_id`, `preinstall`, `posteinstall`, `taints`.
-It is generally recommended running `terraform plan` after importing a node pool. 
-You can then decide if changes should be applied to the node pool, or the resource definition should be updated to align
-with the node pool. Also you can ignore changes as below.
+`password`, `subnet_id`, `preinstall`, `posteinstall`, `taints` and `initial_node_count`.
+It is generally recommended running `terraform plan` after importing a node pool.
+You can then decide if changes should be applied to the node pool, or the resource
+definition should be updated to align with the node pool. Also you can ignore changes as below.
 
 ```
 resource "g42cloud_cce_node_pool" "my_node_pool" {

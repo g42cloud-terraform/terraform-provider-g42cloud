@@ -4,24 +4,24 @@ subcategory: "Virtual Private Cloud (VPC)"
 
 # g42cloud_networking_secgroup_rule
 
-Manages a Security Group Rule resource within within G42Cloud.
+Manages a Security Group Rule resource within G42Cloud.
 
 ## Example Usage
 
 ```hcl
-resource "g42cloud_networking_secgroup" "secgroup_1" {
-  name        = "secgroup_1"
-  description = "My neutron security group"
+resource "g42cloud_networking_secgroup" "mysecgroup" {
+  name        = "secgroup"
+  description = "My security group"
 }
 
-resource "g42cloud_networking_secgroup_rule" "secgroup_rule_1" {
+resource "g42cloud_networking_secgroup_rule" "secgroup_rule" {
+  security_group_id = g42cloud_networking_secgroup.mysecgroup.id
   direction         = "ingress"
   ethertype         = "IPv4"
   protocol          = "tcp"
-  port_range_min    = 22
-  port_range_max    = 22
+  port_range_min    = 8080
+  port_range_max    = 8080
   remote_ip_prefix  = "0.0.0.0/0"
-  security_group_id = g42cloud_networking_secgroup.secgroup_1.id
 }
 ```
 
@@ -35,25 +35,31 @@ The following arguments are supported:
 * `security_group_id` - (Required, String, ForceNew) Specifies the security group id the rule should belong to. Changing
   this creates a new security group rule.
 
-* `direction` - (Required, String, ForceNew) Specifies the direction of the rule, valid values are __ingress__ or
-  __egress__. Changing this creates a new security group rule.
+* `direction` - (Required, String, ForceNew) Specifies the direction of the rule, valid values are **ingress** or
+  **egress**. Changing this creates a new security group rule.
 
-* `ethertype` - (Required, String, ForceNew) Specifies the layer 3 protocol type, valid values are __IPv4__ or __IPv6__.
+* `ethertype` - (Required, String, ForceNew) Specifies the layer 3 protocol type, valid values are **IPv4** or **IPv6**.
   Changing this creates a new security group rule.
 
 * `description` - (Optional, String, ForceNew) Specifies the supplementary information about the networking security
   group rule. This parameter can contain a maximum of 255 characters and cannot contain angle brackets (< or >).
   Changing this creates a new security group rule.
 
-* `protocol` - (Optional, String, ForceNew) Specifies the layer 4 protocol type, valid values are __tcp__, __udp__,
-  __icmp__ and __icmpv6__. If omitted, the protocol means that all protocols are supported.
+* `protocol` - (Optional, String, ForceNew) Specifies the layer 4 protocol type, valid values are **tcp**, **udp**,
+  **icmp** and **icmpv6**. If omitted, the protocol means that all protocols are supported.
   This is required if you want to specify a port range. Changing this creates a new security group rule.
 
 * `port_range_min` - (Optional, Int, ForceNew) Specifies the lower part of the allowed port range, valid integer value
-  needs to be between 1 and 65535. Changing this creates a new security group rule.
+  needs to be between `1` and `65,535`. Changing this creates a new security group rule.
+  This parameter and `ports` are alternative.
 
 * `port_range_max` - (Optional, Int, ForceNew) Specifies the higher part of the allowed port range, valid integer value
-  needs to be between 1 and 65535. Changing this creates a new security group rule.
+  needs to be between `1` and `65,535`. Changing this creates a new security group rule.
+  This parameter and `ports` are alternative.
+
+* `ports` - (Optional, String, ForceNew) Specifies the allowed port value range, which supports single port (80),
+  continuous port (1-30) and discontinous port (22, 3389, 80) The valid port values is range form `1` to `65,535`.
+  Changing this creates a new security group rule.
 
 * `remote_ip_prefix` - (Optional, String, ForceNew) Specifies the remote CIDR, the value needs to be a valid CIDR (i.e.
   192.168.0.0/16). Changing this creates a new security group rule.

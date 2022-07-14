@@ -4,29 +4,28 @@ subcategory: "Virtual Private Cloud (VPC)"
 
 # g42cloud_vpc_subnet
 
-Provides an VPC subnet resource.
+Provides a VPC subnet resource within G42Cloud.
 
 ## Example Usage
 
 ```hcl
-resource "g42cloud_vpc" "vpc_v1" {
+resource "g42cloud_vpc" "vpc" {
   name = var.vpc_name
   cidr = var.vpc_cidr
 }
 
-
-resource "g42cloud_vpc_subnet" "subnet_v1" {
+resource "g42cloud_vpc_subnet" "subnet" {
   name       = var.subnet_name
   cidr       = var.subnet_cidr
   gateway_ip = var.subnet_gateway_ip
-  vpc_id     = g42cloud_vpc.vpc_v1.id
+  vpc_id     = g42cloud_vpc.vpc.id
 }
 
 resource "g42cloud_vpc_subnet" "subnet_with_tags" {
   name       = var.subnet_name
   cidr       = var.subnet_cidr
   gateway_ip = var.subnet_gateway_ip
-  vpc_id     = g42cloud_vpc.vpc_v1.id
+  vpc_id     = g42cloud_vpc.vpc.id
 
   tags = {
     foo = "bar"
@@ -55,6 +54,9 @@ The following arguments are supported:
 
 * `vpc_id` (Required, String, ForceNew) - Specifies the ID of the VPC to which the subnet belongs. Changing this creates
   a new Subnet.
+
+* `description` - (Optional, String) Specifies supplementary information about the subnet. The value is a string of
+  no more than 255 characters and cannot contain angle brackets (< or >).
 
 * `ipv6_enable` (Optional, Bool) - Specifies whether the IPv6 function is enabled for the subnet. Defaults to false.
 

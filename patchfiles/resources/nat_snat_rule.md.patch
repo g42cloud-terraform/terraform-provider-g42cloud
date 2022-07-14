@@ -1,0 +1,20 @@
+5c5
+< # huaweicloud_nat_snat_rule
+---
+> # g42cloud_nat_snat_rule
+7c7
+< Manages a SNAT rule resource within HuaweiCloud.
+---
+> Manages a SNAT rule resource within G42Cloud.
+14c14
+< resource "huaweicloud_nat_snat_rule" "snat_1" {
+---
+> resource "g42cloud_nat_snat_rule" "snat_1" {
+24c24
+< resource "huaweicloud_nat_snat_rule" "snat_2" {
+---
+> resource "g42cloud_nat_snat_rule" "snat_2" {
+79c79
+< $ terraform import huaweicloud_nat_snat_rule.snat_1 9e0713cb-0a2f-484e-8c7d-daecbb61dbe4
+---
+> $ terraform import g42cloud_nat_snat_rule.snat_1 9e0713cb-0a2f-484e-8c7d-daecbb61dbe4

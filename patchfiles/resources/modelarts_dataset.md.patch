@@ -1,0 +1,20 @@
+5c5
+< # huaweicloud_modelarts_dataset
+---
+> # g42cloud_modelarts_dataset
+7c7
+< Manages ModelArts dataset resource within HuaweiCloud.
+---
+> Manages ModelArts dataset resource within G42Cloud.
+16c16
+< resource "huaweicloud_modelarts_dataset" "test" {
+---
+> resource "g42cloud_modelarts_dataset" "test" {
+182c182
+< terraform import huaweicloud_modelarts_dataset.test yiROKoTTjtwjvP71yLG
+---
+> terraform import g42cloud_modelarts_dataset.test yiROKoTTjtwjvP71yLG
+193c193
+< resource "huaweicloud_modelarts_dataset" "test" {
+---
+> resource "g42cloud_modelarts_dataset" "test" {

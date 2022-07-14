@@ -1,0 +1,24 @@
+5c5
+< # huaweicloud_identity_role
+---
+> # g42cloud_identity_role
+7c7
+< Manages a **Custom Policy** resource within HuaweiCloud IAM service.
+---
+> Manages a **Custom Policy** resource within G42Cloud IAM service.
+9c9
+< ->**Note** You *must* have admin privileges in your HuaweiCloud cloud to use this resource.
+---
+> ->**Note** You *must* have admin privileges in your G42Cloud cloud to use this resource.
+14c14
+< resource "huaweicloud_identity_role" "role1" {
+---
+> resource "g42cloud_identity_role" "role1" {
+55c55
+<   [offical document](https://support.huaweicloud.com/intl/en-us/usermanual-iam/iam_01_0017.html).
+---
+>   [offical document](https://docs.g42cloud.com/en-us/usermanual/iam/iam_01_0017.html).
+70c70
+< $ terraform import huaweicloud_identity_role.role1 89c60255-9bd6-460c-822a-e2b959ede9d2
+---
+> $ terraform import g42cloud_identity_role.role1 89c60255-9bd6-460c-822a-e2b959ede9d2

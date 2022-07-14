@@ -1,0 +1,78 @@
+5c5
+< # huaweicloud_fgs_function
+---
+> # g42cloud_fgs_function
+7c7
+< Manages a Function resource within HuaweiCloud. This is an alternative to `huaweicloud_fgs_function_v2`
+---
+> Manages a Function resource within G42Cloud.
+14c14
+< resource "huaweicloud_fgs_function" "f_1" {
+---
+> resource "g42cloud_fgs_function" "f_1" {
+31c31
+< resource "huaweicloud_fgs_function" "f_1" {
+---
+> resource "g42cloud_fgs_function" "f_1" {
+60c60
+< resource "huaweicloud_vpc" "test" {
+---
+> resource "g42cloud_vpc" "test" {
+65c65
+< resource "huaweicloud_vpc_subnet" "test" {
+---
+> resource "g42cloud_vpc_subnet" "test" {
+69c69
+<   vpc_id     = huaweicloud_vpc.test.id
+---
+>   vpc_id     = g42cloud_vpc.test.id
+72c72
+< resource "huaweicloud_sfs_file_system" "test" {
+---
+> resource "g42cloud_sfs_file_system" "test" {
+79c79
+< resource "huaweicloud_identity_agency" "test" {
+---
+> resource "g42cloud_identity_agency" "test" {
+93c93
+< resource "huaweicloud_fgs_function" "test" {
+---
+> resource "g42cloud_fgs_function" "test" {
+103,105c103,105
+<   agency      = huaweicloud_identity_agency.test.name
+<   vpc_id      = huaweicloud_vpc.test.id
+<   network_id  = huaweicloud_vpc_subnet.test.id
+---
+>   agency      = g42cloud_identity_agency.test.name
+>   vpc_id      = g42cloud_vpc.test.id
+>   network_id  = g42cloud_vpc_subnet.test.id
+109,110c109,110
+<     mount_resource   = huaweicloud_sfs_file_system.test.id
+<     mount_share_path = huaweicloud_sfs_file_system.test.export_location
+---
+>     mount_resource   = g42cloud_sfs_file_system.test.id
+>     mount_share_path = g42cloud_sfs_file_system.test.export_location
+119c119
+< resource "huaweicloud_identity_agency" "agency" {
+---
+> resource "g42cloud_identity_agency" "agency" {
+126c126
+< resource "huaweicloud_fgs_function" "function" {
+---
+> resource "g42cloud_fgs_function" "function" {
+131c131
+<   agency      = huaweicloud_identity_agency.agency.name
+---
+>   agency      = g42cloud_identity_agency.agency.name
+136c136
+<   code_url    = "https://your-bucket.obs.your-region.myhuaweicloud.com/your-function.zip"
+---
+>   code_url    = "https://your-bucket.obs.your-region.g42cloud.com/your-function.zip"
+174c174
+<   + **v2**: Next-generation function hosting service powered by Huawei YuanRong architecture.
+---
+>   + **v2**: Next-generation function hosting service powered by YuanRong architecture.
+253c253
+< $ terraform import huaweicloud_fgs_function.my-func 7117d38e-4c8f-4624-a505-bd96b97d024c
+---
+> $ terraform import g42cloud_fgs_function.my-func 7117d38e-4c8f-4624-a505-bd96b97d024c

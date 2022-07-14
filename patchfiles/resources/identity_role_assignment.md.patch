@@ -1,0 +1,45 @@
+5c5
+< # huaweicloud_identity_role_assignment
+---
+> # g42cloud_identity_role_assignment
+7,8c7
+< Manages a Role assignment within group on HuaweiCloud IAM Service. This is an alternative
+< to `huaweicloud_identity_role_assignment_v3`
+---
+> Manages a Role assignment within group on G42Cloud IAM Service.
+10c9
+< Note: You *must* have admin privileges in your HuaweiCloud cloud to use this resource.
+---
+> Note: You *must* have admin privileges in your G42Cloud cloud to use this resource.
+15c14
+< data "huaweicloud_identity_role" "role_1" {
+---
+> data "g42cloud_identity_role" "role_1" {
+20c19
+< resource "huaweicloud_identity_group" "group_1" {
+---
+> resource "g42cloud_identity_group" "group_1" {
+24,26c23,25
+< resource "huaweicloud_identity_role_assignment" "role_assignment_1" {
+<   role_id    = data.huaweicloud_identity_role.role_1.id
+<   group_id   = huaweicloud_identity_group.group_1.id
+---
+> resource "g42cloud_identity_role_assignment" "role_assignment_1" {
+>   role_id    = data.g42cloud_identity_role.role_1.id
+>   group_id   = g42cloud_identity_group.group_1.id
+34c33
+< data "huaweicloud_identity_role" "role_1" {
+---
+> data "g42cloud_identity_role" "role_1" {
+39c38
+< resource "huaweicloud_identity_group" "group_1" {
+---
+> resource "g42cloud_identity_group" "group_1" {
+43,45c42,44
+< resource "huaweicloud_identity_role_assignment" "role_assignment_1" {
+<   role_id   = data.huaweicloud_identity_role.role_1.id
+<   group_id  = huaweicloud_identity_group.group_1.id
+---
+> resource "g42cloud_identity_role_assignment" "role_assignment_1" {
+>   role_id   = data.g42cloud_identity_role.role_1.id
+>   group_id  = g42cloud_identity_group.group_1.id

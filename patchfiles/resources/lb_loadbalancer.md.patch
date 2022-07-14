@@ -1,0 +1,28 @@
+5c5
+< # huaweicloud_lb_loadbalancer
+---
+> # g42cloud_lb_loadbalancer
+7c7
+< Manages an ELB loadbalancer resource within HuaweiCloud. This is an alternative to `huaweicloud_lb_loadbalancer_v2`
+---
+> Manages an ELB loadbalancer resource within G42Cloud.
+14c14
+< resource "huaweicloud_lb_loadbalancer" "lb_1" {
+---
+> resource "g42cloud_lb_loadbalancer" "lb_1" {
+26c26
+< resource "huaweicloud_lb_loadbalancer" "lb_1" {
+---
+> resource "g42cloud_lb_loadbalancer" "lb_1" {
+30c30
+< resource "huaweicloud_vpc_eip_associate" "eip_1" {
+---
+> resource "g42cloud_vpc_eip_associate" "eip_1" {
+32c32
+<   port_id   = huaweicloud_lb_loadbalancer.lb_1.vip_port_id
+---
+>   port_id   = g42cloud_lb_loadbalancer.lb_1.vip_port_id
+81c81
+< $ terraform import huaweicloud_lb_loadbalancer.test 3e3632db-36c6-4b28-a92e-e72e6562daa6
+---
+> $ terraform import g42cloud_lb_loadbalancer.test 3e3632db-36c6-4b28-a92e-e72e6562daa6

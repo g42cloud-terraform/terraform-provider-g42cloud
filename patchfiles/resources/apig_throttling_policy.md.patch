@@ -1,0 +1,20 @@
+5c5
+< # huaweicloud_apig_throttling_policy
+---
+> # g42cloud_apig_throttling_policy
+7c7
+< Manages an APIG (API) throttling policy resource within HuaweiCloud.
+---
+> Manages an APIG (API) throttling policy resource within G42Cloud.
+18c18
+< resource "huaweicloud_apig_throttling_policy" "test" {
+---
+> resource "g42cloud_apig_throttling_policy" "test" {
+40c40
+< resource "huaweicloud_apig_throttling_policy" "test" {
+---
+> resource "g42cloud_apig_throttling_policy" "test" {
+138c138
+< $ terraform import huaweicloud_apig_throttling_policy.test <instance ID>/<name>
+---
+> $ terraform import g42cloud_apig_throttling_policy.test <instance ID>/<name>

@@ -1,0 +1,25 @@
+2c2
+< subcategory: "Data Encryption Workshop (DEW)"
+---
+> subcategory: "Key Management Service (KMS)"
+5c5
+< # huaweicloud_kms_data_key
+---
+> # g42cloud_kms_data_key
+7,8c7,8
+< Use this data source to get the plaintext and the ciphertext of an available HuaweiCloud KMS DEK (data encryption key).
+< This is an alternative to `huaweicloud_kms_key_v1`
+---
+> Use this data source to get the plaintext and the ciphertext of an available
+> G42Cloud KMS DEK (data encryption key).
+13c13,14
+< resource "huaweicloud_kms_key" "key1" {
+---
+> 
+> resource "g42cloud_kms_key" "key1" {
+19,20c20,21
+< data "huaweicloud_kms_data_key" "kms_datakey1" {
+<   key_id         = huaweicloud_kms_key.key1.id
+---
+> data "g42cloud_kms_data_key" "kms_datakey1" {
+>   key_id         = g42cloud_kms_key.key1.id

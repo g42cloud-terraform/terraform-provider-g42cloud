@@ -1,0 +1,102 @@
+5c5
+< # huaweicloud_cce_cluster
+---
+> # g42cloud_cce_cluster
+7c7
+< Provides a CCE cluster resource. This is an alternative to `huaweicloud_cce_cluster_v3`
+---
+> Provides a CCE cluster resource.
+12c12
+< resource "huaweicloud_vpc" "myvpc" {
+---
+> resource "g42cloud_vpc" "myvpc" {
+17c17
+< resource "huaweicloud_vpc_subnet" "mysubnet" {
+---
+> resource "g42cloud_vpc_subnet" "mysubnet" {
+23,25c23,25
+<   primary_dns   = "100.125.1.250"
+<   secondary_dns = "100.125.21.250"
+<   vpc_id        = huaweicloud_vpc.myvpc.id
+---
+>   primary_dns   = "100.125.3.250"
+>   secondary_dns = "100.125.3.92"
+>   vpc_id        = g42cloud_vpc.myvpc.id
+28c28
+< resource "huaweicloud_cce_cluster" "cluster" {
+---
+> resource "g42cloud_cce_cluster" "cluster" {
+31,32c31,32
+<   vpc_id                 = huaweicloud_vpc.myvpc.id
+<   subnet_id              = huaweicloud_vpc_subnet.mysubnet.id
+---
+>   vpc_id                 = g42cloud_vpc.myvpc.id
+>   subnet_id              = g42cloud_vpc_subnet.mysubnet.id
+40c40
+< resource "huaweicloud_vpc" "myvpc" {
+---
+> resource "g42cloud_vpc" "myvpc" {
+45c45
+< resource "huaweicloud_vpc_subnet" "mysubnet" {
+---
+> resource "g42cloud_vpc_subnet" "mysubnet" {
+51,53c51,53
+<   primary_dns   = "100.125.1.250"
+<   secondary_dns = "100.125.21.250"
+<   vpc_id        = huaweicloud_vpc.myvpc.id
+---
+>   pprimary_dns  = "100.125.3.250"
+>   secondary_dns = "100.125.3.92"
+>   vpc_id        = g42cloud_vpc.myvpc.id
+56c56
+< resource "huaweicloud_vpc_eip" "myeip" {
+---
+> resource "g42cloud_vpc_eip" "myeip" {
+68c68
+< resource "huaweicloud_cce_cluster" "cluster" {
+---
+> resource "g42cloud_cce_cluster" "cluster" {
+72,73c72,73
+<   vpc_id                 = huaweicloud_vpc.myvpc.id
+<   subnet_id              = huaweicloud_vpc_subnet.mysubnet.id
+---
+>   vpc_id                 = g42cloud_vpc.myvpc.id
+>   subnet_id              = g42cloud_vpc_subnet.mysubnet.id
+76c76
+<   eip                    = huaweicloud_vpc_eip.myeip.address
+---
+>   eip                    = g42cloud_vpc_eip.myeip.address
+150,152d149
+< -> **Note:** For more detailed description of authenticating_proxy mode for authentication_mode see
+< [Enhanced authentication](https://github.com/huaweicloud/terraform-provider-huaweicloud/blob/master/examples/cce/basic/cce-cluster-enhanced-authentication.md).
+< 
+175,195d171
+< * `charging_mode` - (Optional, String, ForceNew) Specifies the charging mode of the CCE cluster.
+<   Valid values are **prePaid** and **postPaid**, defaults to **postPaid**.
+<   Changing this parameter will create a new cluster resource.
+< 
+< * `period_unit` - (Optional, String, ForceNew) Specifies the charging period unit of the CCE cluster.
+<   Valid values are **month** and **year**. This parameter is mandatory if `charging_mode` is set to **prePaid**.
+<   Changing this parameter will create a new cluster resource.
+< 
+< * `period` - (Optional, Int, ForceNew) Specifies the charging period of the CCE cluster.
+<   If `period_unit` is set to **month**, the value ranges from 1 to 9.
+<   If `period_unit` is set to **year**, the value ranges from 1 to 3.
+<   This parameter is mandatory if `charging_mode` is set to **prePaid**.
+<   Changing this parameter will create a new cluster resource.
+< 
+< * `auto_renew` - (Optional, String, ForceNew) Specifies whether auto renew is enabled. Valid values are **true** and
+<   **false**. Changing this parameter will create a new cluster resource.
+< 
+< * `auto_pay` - (Optional, String, ForceNew) Specifies whether auto pay is enabled.
+<   Valid values are *true* and *false*. Defaults to *true*. If you set this to *false*, you need to pay the order
+<   yourself in time, be careful about the timeout of resource creation. Changing this creates a new cluster resource.
+< 
+272c248
+<  $ terraform import huaweicloud_cce_cluster.cluster_1 4779ab1c-7c1a-44b1-a02e-93dfc361b32d
+---
+>  $ terraform import g42cloud_cce_cluster.cluster_1 4779ab1c-7c1a-44b1-a02e-93dfc361b32d
+283c259
+< resource "huaweicloud_cce_cluster" "cluster_1" {
+---
+> resource "g42cloud_cce_cluster" "cluster_1" {

@@ -1,0 +1,28 @@
+5c5
+< # huaweicloud_rds_read_replica_instance
+---
+> # g42cloud_rds_read_replica_instance
+14c14
+< resource "huaweicloud_networking_secgroup" "secgroup" {
+---
+> resource "g42cloud_networking_secgroup" "secgroup" {
+19c19
+< resource "huaweicloud_rds_instance" "instance" {
+---
+> resource "g42cloud_rds_instance" "instance" {
+25c25
+<   security_group_id     = huaweicloud_networking_secgroup.secgroup.id
+---
+>   security_group_id     = g42cloud_networking_secgroup.secgroup.id
+44c44
+< resource "huaweicloud_rds_read_replica_instance" "replica_instance" {
+---
+> resource "g42cloud_rds_read_replica_instance" "replica_instance" {
+47c47
+<   primary_instance_id   = huaweicloud_rds_instance.instance.id
+---
+>   primary_instance_id   = g42cloud_rds_instance.instance.id
+144c144
+< $ terraform import huaweicloud_rds_read_replica_instance.replica_instance 92302c133d13424cbe357506ce057ea5in03
+---
+> $ terraform import g42cloud_rds_read_replica_instance.replica_instance 92302c133d13424cbe357506ce057ea5in03

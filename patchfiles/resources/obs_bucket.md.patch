@@ -1,0 +1,64 @@
+5c5
+< # huaweicloud_obs_bucket
+---
+> # g42cloud_obs_bucket
+14c14
+< resource "huaweicloud_obs_bucket" "b" {
+---
+> resource "g42cloud_obs_bucket" "b" {
+28c28
+< resource "huaweicloud_obs_bucket" "b" {
+---
+> resource "g42cloud_obs_bucket" "b" {
+38c38
+< resource "huaweicloud_obs_bucket" "log_bucket" {
+---
+> resource "g42cloud_obs_bucket" "log_bucket" {
+43c43
+< resource "huaweicloud_obs_bucket" "b" {
+---
+> resource "g42cloud_obs_bucket" "b" {
+48c48
+<     target_bucket = huaweicloud_obs_bucket.log_bucket.id
+---
+>     target_bucket = g42cloud_obs_bucket.log_bucket.id
+57c57
+< resource "huaweicloud_obs_bucket" "b" {
+---
+> resource "g42cloud_obs_bucket" "b" {
+82c82
+< resource "huaweicloud_obs_bucket" "b" {
+---
+> resource "g42cloud_obs_bucket" "b" {
+99c99
+< resource "huaweicloud_obs_bucket" "bucket" {
+---
+> resource "g42cloud_obs_bucket" "bucket" {
+145a146,148
+> * `region` - (Optional, String, ForceNew) Specifies the region where this bucket will be created. If not specified, used
+>   the region by the provider. Changing this will create a new bucket.
+> 
+164c167
+<   format bucket policy, see the [Developer Guide](https://support.huaweicloud.com/intl/en-us/devg-obs/obs_06_0048.html).
+---
+>   format bucket policy, see the [Developer Guide](https://docs.g42cloud.com/en-us/api/obs/obs_04_0027.html).
+191,193d193
+< * `region` - (Optional, String, ForceNew) Specifies the region where this bucket will be created. If not specified, used
+<   the region by the provider. Changing this will create a new bucket.
+< 
+306c306
+< * `bucket_domain_name` - The bucket domain name. Will be of format `bucketname.obs.region.myhuaweicloud.com`.
+---
+> * `bucket_domain_name` - The bucket domain name. Will be of format `bucketname.obs.region.g42cloud.com`.
+315c315
+< $ terraform import huaweicloud_obs_bucket.bucket <bucket-name>
+---
+> $ terraform import g42cloud_obs_bucket.bucket <bucket-name>
+321c321
+< $ terraform import huaweicloud_obs_bucket.bucket_with_s3_policy <bucket-name>/s3
+---
+> $ terraform import g42cloud_obs_bucket.bucket_with_s3_policy <bucket-name>/s3
+329c329
+< resource "huaweicloud_obs_bucket" "bucket" {
+---
+> resource "g42cloud_obs_bucket" "bucket" {

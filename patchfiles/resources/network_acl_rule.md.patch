@@ -1,0 +1,16 @@
+5c5
+< # huaweicloud_network_acl_rule
+---
+> # g42cloud_network_acl_rule
+7c7
+< Manages a network ACL rule resource within HuaweiCloud.
+---
+> Manages a network ACL rule resource within G42Cloud.
+12c12
+< resource "huaweicloud_network_acl_rule" "rule_1" {
+---
+> resource "g42cloud_network_acl_rule" "rule_1" {
+68c68
+< $ terraform import huaweicloud_network_acl_rule.rule_1 89a84b28-4cc2-4859-9885-c67e802a46a3
+---
+> $ terraform import g42cloud_network_acl_rule.rule_1 89a84b28-4cc2-4859-9885-c67e802a46a3

@@ -1,0 +1,12 @@
+1c1
+< # huaweicloud_availability_zones
+---
+> # g42cloud_availability_zones
+3c3
+< Use this data source to get a list of availability zones from HuaweiCloud
+---
+> Use this data source to get a list of availability zones from G42Cloud
+8c8
+< data "huaweicloud_availability_zones" "zones" {}
+---
+> data "g42cloud_availability_zones" "zones" {}

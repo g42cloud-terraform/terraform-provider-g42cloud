@@ -1,0 +1,24 @@
+5c5
+< # huaweicloud_as_configuration
+---
+> # g42cloud_as_configuration
+7c7
+< Manages an AS Configuration resource within HuaweiCloud.
+---
+> Manages an AS Configuration resource within G42Cloud.
+14c14
+< resource "huaweicloud_as_configuration" "my_as_config" {
+---
+> resource "g42cloud_as_configuration" "my_as_config" {
+35c35
+< resource "huaweicloud_as_configuration" "my_as_config" {
+---
+> resource "g42cloud_as_configuration" "my_as_config" {
+63c63
+< resource "huaweicloud_as_configuration" "my_as_config" {
+---
+> resource "g42cloud_as_configuration" "my_as_config" {
+88c88
+< resource "huaweicloud_as_configuration" "my_as_config" {
+---
+> resource "g42cloud_as_configuration" "my_as_config" {

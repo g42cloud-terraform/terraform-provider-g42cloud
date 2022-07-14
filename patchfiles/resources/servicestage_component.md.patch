@@ -1,0 +1,24 @@
+5c5
+< # huaweicloud_servicestage_component
+---
+> # g42cloud_servicestage_component
+7c7
+< This resource is used to manage a component under specified application within HuaweiCloud ServiceStage service.
+---
+> This resource is used to manage a component under specified application within G42Cloud ServiceStage service.
+21c21
+< resource "huaweicloud_servicestage_component" "test" {
+---
+> resource "g42cloud_servicestage_component" "test" {
+51c51
+< resource "huaweicloud_servicestage_component" "test" {
+---
+> resource "g42cloud_servicestage_component" "test" {
+92c92
+< -> For the runtime and framework corresponding to each type of component, please refer to the [document](https://support.huaweicloud.com/intl/en-us/usermanual-servicestage/servicestage_user_0411.html).
+---
+> -> For the runtime and framework corresponding to each type of component, please refer to the [document](https://docs.g42cloud.com/usermanual/servicestage/servicestage_user_0411.html).
+143c143
+< $ terraform import huaweicloud_servicestage_component.test dd7a1ce2-c48c-4f41-85bb-d0d09969eec9/9ab8ef79-d318-4de5-acf9-e1e1e25a0395
+---
+> $ terraform import g42cloud_servicestage_component.test dd7a1ce2-c48c-4f41-85bb-d0d09969eec9/9ab8ef79-d318-4de5-acf9-e1e1e25a0395

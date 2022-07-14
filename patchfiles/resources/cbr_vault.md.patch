@@ -1,0 +1,139 @@
+5c5
+< # huaweicloud_cbr_vault
+---
+> # g42cloud_cbr_vault
+7c7
+< Manages a CBR Vault resource within Huaweicloud.
+---
+> Manages a CBR Vault resource within G42Cloud.
+18c18
+< data "huaweicloud_compute_instance" "test" {
+---
+> data "g42cloud_compute_instance" "test" {
+22c22
+< resource "huaweicloud_cbr_vault" "test" {
+---
+> resource "g42cloud_cbr_vault" "test" {
+49c49
+< resource "huaweicloud_cbr_vault" "test" {
+---
+> resource "g42cloud_cbr_vault" "test" {
+52a53
+>   consistent_level = "crash_consistent"
+74c75
+< resource "huaweicloud_cbr_vault" "test" {
+---
+> resource "g42cloud_cbr_vault" "test" {
+75a77
+>   consistent_level = "crash_consistent"
+92,104d93
+< ### Create an SFS turbo type vault with replicate protection type
+< 
+< ```hcl
+< variable "vault_name" {}
+< 
+< resource "huaweicloud_cbr_vault" "test" {
+<   name             = var.vault_name
+<   type             = "turbo"
+<   protection_type  = "replication"
+<   size             = 1000
+< }
+< ```
+< 
+121,125c110,113
+< * `protection_type` - (Required, String, ForceNew) Specifies the protection type of the CBR vault.
+<   The valid values are **backup** and **replication**. Vaults of type **disk** don't support **replication**.
+<   Changing this will create a new vault.
+< 
+< * `size` - (Required, Int) Specifies the vault sapacity, in GB. The valid value range is `1` to `10,485,760`.
+---
+> * `consistent_level` - (Required, String, ForceNew) Specifies the backup specifications.
+>   The valid values are as follows:
+>   + **[crash_consistent](https://docs.g42cloud.com/en-us/bp/cbr/cbr_07_0020.html)**
+>   + **[app_consistent](https://docs.g42cloud.com/en-us/bp/cbr/cbr_07_0020.html)**
+127c115
+<   -> You cannot update `size` if the vault is **prePaid** mode.
+---
+>   Only server type vaults support application consistent. Changing this will create a new vault.
+129,132c117,118
+< * `consistent_level` - (Optional, String, ForceNew) Specifies the backup specifications.
+<   The valid values are as follows:
+<   + **[crash_consistent](https://support.huaweicloud.com/intl/en-us/usermanual-cbr/cbr_03_0109.html)**
+<   + **[app_consistent](https://support.huaweicloud.com/intl/en-us/usermanual-cbr/cbr_03_0109.html)**
+---
+> * `protection_type` - (Required, String, ForceNew) Specifies the protection type of the CBR vault.
+>   The valid values is **backup**. Changing this will create a new vault.
+134,135c120
+<   Only **server** type vaults support application consistent and defaults to **crash_consistent**.
+<   Changing this will create a new vault.
+---
+> * `size` - (Required, Int) Specifies the vault sapacity, in GB. The valid value range is `1` to `10,485,760`.
+138,140c123
+<   Defaults to **false**.
+< 
+<   -> You cannot configure `auto_expand` if the vault is **prePaid** mode.
+---
+>   Default to **false**.
+146d128
+<   `policy_id` cannot be used with the vault of replicate protection type.
+151,176d132
+< * `tags` - (Optional, Map) Specifies the key/value pairs to associate with the CBR vault.
+< 
+< * `charging_mode` - (Optional, String, ForceNew) Specifies the charging mode of the vault.
+<   The valid values are as follows:
+<   + **prePaid**: the yearly/monthly billing mode.
+<   + **postPaid**: the pay-per-use billing mode.
+< 
+<   Changing this will create a new vault.
+< 
+< * `period_unit` - (Optional, String, ForceNew) Specifies the charging period unit of the vault.
+<   Valid values are **month** and **year**. This parameter is mandatory if `charging_mode` is set to **prePaid**.
+<   Changing this will create a new vault.
+< 
+< * `period` - (Optional, Int, ForceNew) Specifies the charging period of the vault.
+<   If `period_unit` is set to **month**, the value ranges from 1 to 9.
+<   If `period_unit` is set to **year**, the value ranges from 1 to 5.
+<   This parameter is mandatory if `charging_mode` is set to **prePaid**.
+<   Changing this will create a new vault.
+< 
+< * `auto_renew` - (Optional, String, ForceNew) Specifies whether auto renew is enabled.
+<   Valid values are **true** and **false**. Defaults to **false**. Changing this will create a new vault.
+< 
+< * `auto_pay` - (Optional, String, ForceNew) Specifies whether auto pay is enabled.
+<   Valid values are **true** and **false**. Defaults to **true**. If you set this to **false**, you need to pay the order
+<   yourself in time. Be careful about the timeout of resource creation. Changing this will create a new vault.
+< 
+182,184d137
+< * `excludes` - (Optional, List) Specifies the array of disk IDs which will be excluded in the backup.
+<   Only **server** vault support this parameter.
+< 
+204,210d156
+< ## Timeouts
+< 
+< This resource provides the following timeouts configuration options:
+< 
+< * `create` - Default is 10 minute.
+< * `delete` - Default is 5 minute.
+< 
+216,234c162
+< $ terraform import huaweicloud_cbr_vault.test 01c33779-7c83-4182-8b6b-24a671fcedf8
+< ```
+< 
+< Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
+< API response, security or some other reason. The missing attributes include: `period_unit`, `period`, `auto_renew`,
+< `auto_pay`. It is generally recommended running `terraform plan` after importing a vault.
+< You can then decide if changes should be applied to the vault, or the resource definition should be updated to align
+< with the vault. Also you can ignore changes as below.
+< 
+< ```
+< resource "huaweicloud_cbr_vault" "test" {
+<     ...
+< 
+<   lifecycle {
+<     ignore_changes = [
+<       period_unit, period, auto_renew, auto_pay,
+<     ]
+<   }
+< }
+---
+> $ terraform import g42cloud_cbr_vault.test 01c33779-7c83-4182-8b6b-24a671fcedf8

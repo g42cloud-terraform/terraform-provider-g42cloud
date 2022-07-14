@@ -29,17 +29,17 @@ The following arguments are supported:
 * `region` - (Optional, String) Specifies the region in which to obtain the cce add-ons.
   If omitted, the provider-level region will be used.
 
-* `cluster_id` -  (Required, String) Specifies the ID of container cluster.
+* `cluster_id` - (Required, String) Specifies the ID of container cluster.
 
-* `name` -  (Required, String) Specifies the add-on name.
+* `name` - (Required, String) Specifies the add-on name.
 
-* `version` -  (Required, String) Specifies the add-on version.
+* `version` - (Required, String) Specifies the add-on version.
 
 ## Attributes Reference
 
 In addition to all arguments above, the following attributes are exported:
 
-* `id` - The resource id of the addon template.
+* `id` - The resource ID of the addon template.
 
 * `description` - The description of the add-on.
 

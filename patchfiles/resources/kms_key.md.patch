@@ -1,0 +1,28 @@
+2c2
+< subcategory: "Data Encryption Workshop (DEW)"
+---
+> subcategory: "Key Management Service (KMS)"
+5c5
+< # huaweicloud_kms_key
+---
+> # g42cloud_kms_key
+7c7
+< Manages a KMS key resource within HuaweiCloud.
+---
+> Manages a KMS key resource within G42Cloud.
+12c12
+< resource "huaweicloud_kms_key" "key_1" {
+---
+> resource "g42cloud_kms_key" "key_1" {
+30c30
+< * `key_description` - (Optional, String) The description of the key as viewed in Huawei console. Changing this updates
+---
+> * `key_description` - (Optional, String) The description of the key as viewed in g42 console. Changing this updates
+71c71
+< $ terraform import huaweicloud_kms_key.key_1 7056d636-ac60-4663-8a6c-82d3c32c1c64
+---
+> $ terraform import g42cloud_kms_key.key_1 7056d636-ac60-4663-8a6c-82d3c32c1c64
+81c81
+< resource "huaweicloud_kms_key" "key_1" {
+---
+> resource "g42cloud_kms_key" "key_1" {

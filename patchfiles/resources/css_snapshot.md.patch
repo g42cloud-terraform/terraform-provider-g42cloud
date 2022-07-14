@@ -1,0 +1,12 @@
+5c5
+< # huaweicloud_css_snapshot
+---
+> # g42cloud_css_snapshot
+14c14
+< resource "huaweicloud_css_snapshot" "snapshot" {
+---
+> resource "g42cloud_css_snapshot" "snapshot" {
+65c65
+< $ terraform import huaweicloud_css_snapshot.snapshot_1 < cluster_id >/< snapshot_id >
+---
+> $ terraform import g42cloud_css_snapshot.snapshot_1 < cluster_id >/< snapshot_id >

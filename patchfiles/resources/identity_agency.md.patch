@@ -1,0 +1,28 @@
+5c5
+< # huaweicloud_identity_agency
+---
+> # g42cloud_identity_agency
+7c7
+< Manages an agency resource within huawei cloud. This is an alternative to `huaweicloud_iam_agency_v3`
+---
+> Manages an agency resource within G42Cloud.
+11c11
+< ### Delegate another HUAWEI CLOUD account to perform operations on your resources
+---
+> ### Delegate another G42 CLOUD account to perform operations on your resources
+14c14
+< resource "huaweicloud_identity_agency" "agency" {
+---
+> resource "g42cloud_identity_agency" "agency" {
+30c30
+< resource "huaweicloud_identity_agency" "agency" {
+---
+> resource "g42cloud_identity_agency" "agency" {
+77c77
+< [HuaweiCloud](https://support.huaweicloud.com/intl/en-us/usermanual-permissions/iam_01_0001.html).
+---
+> [G42Cloud](https://docs.g42cloud.com/en-us/permissions/index.html).
+92c92
+< $ terraform import huaweicloud_identity_agency.agency 0b97661f9900f23f4fc2c00971ea4dc0
+---
+> $ terraform import g42cloud_identity_agency.agency 0b97661f9900f23f4fc2c00971ea4dc0

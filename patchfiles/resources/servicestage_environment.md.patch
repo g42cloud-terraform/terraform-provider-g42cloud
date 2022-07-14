@@ -1,0 +1,16 @@
+5c5
+< # huaweicloud_servicestage_environment
+---
+> # g42cloud_servicestage_environment
+7c7
+< Manages an environment resource within HuaweiCloud ServiceStage.
+---
+> Manages an environment resource within G42Cloud ServiceStage.
+19c19
+< resource "huaweicloud_servicestage_environment" "test" {
+---
+> resource "g42cloud_servicestage_environment" "test" {
+80c80
+< $ terraform import huaweicloud_servicestage_environment.test 17383329-b686-47e4-8f70-0d8dcddb65e9
+---
+> $ terraform import g42cloud_servicestage_environment.test 17383329-b686-47e4-8f70-0d8dcddb65e9

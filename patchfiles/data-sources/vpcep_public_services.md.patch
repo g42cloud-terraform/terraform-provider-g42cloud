@@ -1,0 +1,12 @@
+5c5
+< # huaweicloud_vpcep_public_services
+---
+> # g42cloud_vpcep_public_services
+12c12
+< data "huaweicloud_vpcep_public_services" "all_services" {
+---
+> data "g42cloud_vpcep_public_services" "all_services" {
+15c15
+< data "huaweicloud_vpcep_public_services" "dns_service" {
+---
+> data "g42cloud_vpcep_public_services" "dns_service" {

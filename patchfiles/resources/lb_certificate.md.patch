@@ -1,0 +1,20 @@
+5c5
+< # huaweicloud_lb_certificate
+---
+> # g42cloud_lb_certificate
+7c7
+< Manages an ELB certificate resource within HuaweiCloud. This is an alternative to `huaweicloud_lb_certificate_v2`
+---
+> Manages an ELB certificate resource within G42Cloud.
+12c12
+< resource "huaweicloud_lb_certificate" "certificate_1" {
+---
+> resource "g42cloud_lb_certificate" "certificate_1" {
+121c121
+< $ terraform import huaweicloud_lb_certificate.certificate_1 5c20fdad-7288-11eb-b817-0255ac10158b
+---
+> $ terraform import g42cloud_lb_certificate.certificate_1 5c20fdad-7288-11eb-b817-0255ac10158b
+131c131
+< resource "huaweicloud_lb_certificate" "certificate_1" {
+---
+> resource "g42cloud_lb_certificate" "certificate_1" {

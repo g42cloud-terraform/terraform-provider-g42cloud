@@ -1,0 +1,16 @@
+5c5
+< # huaweicloud_identity_acl
+---
+> # g42cloud_identity_acl
+7c7
+< Manages a ACL resource within HuaweiCloud IAM service. The ACL allowing user access only from specified IP address
+---
+> Manages a ACL resource within G42Cloud IAM service. The ACL allowing user access only from specified IP address
+10c10
+< Note: You *must* have admin privileges in your HuaweiCloud cloud to use this resource.
+---
+> Note: You *must* have admin privileges in your G42Cloud cloud to use this resource.
+15c15
+< resource "huaweicloud_identity_acl" "acl" {
+---
+> resource "g42cloud_identity_acl" "acl" {

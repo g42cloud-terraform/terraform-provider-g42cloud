@@ -1,0 +1,20 @@
+5c5
+< # huaweicloud_servicestage_component_instance
+---
+> # g42cloud_servicestage_component_instance
+7c7
+< This resource is used to deploy a component under specified application within HuaweiCloud ServiceStage service.
+---
+> This resource is used to deploy a component under specified application within G42Cloud ServiceStage service.
+24c24
+< resource "huaweicloud_servicestage_component_instance" "default" {
+---
+> resource "g42cloud_servicestage_component_instance" "default" {
+81c81
+< resource "huaweicloud_servicestage_component_instance" "test" {
+---
+> resource "g42cloud_servicestage_component_instance" "test" {
+464c464
+< terraform import huaweicloud_servicestage_component_instance.test 4e65a759-e7b1-4e9e-8277-857f8e261f3c/4e65a759-e7b1-4e9e-8277-857f8e261f3c/c0a13d88-d4e3-11ec-93a9-0255ac101d30
+---
+> terraform import g42cloud_servicestage_component_instance.test 4e65a759-e7b1-4e9e-8277-857f8e261f3c/4e65a759-e7b1-4e9e-8277-857f8e261f3c/c0a13d88-d4e3-11ec-93a9-0255ac101d30

@@ -4,12 +4,12 @@ subcategory: "Cloud Container Engine (CCE)"
 
 # g42cloud_cce_cluster
 
-Provides details about all clusters and obtains certificate for accessing cluster information.
+Provides details about the cluster and obtains certificate for accessing cluster information.
 
 ## Example Usage
 
 ```hcl
-variable "cluster_name" { }
+variable "cluster_name" {}
 
 data "g42cloud_cce_cluster" "cluster" {
   name   = var.cluster_name

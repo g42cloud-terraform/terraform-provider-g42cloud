@@ -1,0 +1,20 @@
+5c5
+< # huaweicloud_swr_repository_sharing
+---
+> # g42cloud_swr_repository_sharing
+7c7
+< Manages a SWR repository sharing resource within HuaweiCloud.
+---
+> Manages a SWR repository sharing resource within G42Cloud.
+16c16
+< resource "huaweicloud_swr_repository_sharing" "test" {
+---
+> resource "g42cloud_swr_repository_sharing" "test" {
+40c40
+<   -> **NOTE:** `sharing_account` should be an existing HuaweiCloud account.
+---
+>   -> **NOTE:** `sharing_account` should be an existing G42Cloud account.
+73c73
+< $ terraform import huaweicloud_swr_repository_sharing.test org-name/repo-name/sharing-account
+---
+> $ terraform import g42cloud_swr_repository_sharing.test org-name/repo-name/sharing-account

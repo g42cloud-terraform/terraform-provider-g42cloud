@@ -109,7 +109,7 @@ The following arguments are supported:
 * `scaling_group_id` - (Required, String, ForceNew) The AS group ID. Changing this creates a new AS policy.
 
 * `alarm_id` - (Optional, String) The alarm rule ID. This argument is mandatory when `scaling_policy_type`
-  is set to `ALARM`. You can create an alarm rule with `huaweicloud_ces_alarmrule`.
+  is set to `ALARM`. You can create an alarm rule with `g42cloud_ces_alarmrule`.
 
 * `scheduled_policy` - (Optional, List) The periodic or scheduled AS policy. This argument is mandatory
   when `scaling_policy_type` is set to `SCHEDULED` or `RECURRENCE`. The scheduled_policy structure is documented below.

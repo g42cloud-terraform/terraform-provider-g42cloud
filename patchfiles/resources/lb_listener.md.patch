@@ -1,0 +1,16 @@
+5c5
+< # huaweicloud_lb_listener
+---
+> # g42cloud_lb_listener
+7c7
+< Manages an ELB listener resource within HuaweiCloud. This is an alternative to `huaweicloud_lb_listener_v2`
+---
+> Manages an ELB listener resource within G42Cloud.
+12c12
+< resource "huaweicloud_lb_listener" "listener_1" {
+---
+> resource "g42cloud_lb_listener" "listener_1" {
+83c83
+< $ terraform import huaweicloud_lb_listener.listener_1 5c20fdad-7288-11eb-b817-0255ac10158b
+---
+> $ terraform import g42cloud_lb_listener.listener_1 5c20fdad-7288-11eb-b817-0255ac10158b

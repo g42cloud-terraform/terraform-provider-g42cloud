@@ -1,0 +1,20 @@
+5c5
+< # huaweicloud_enterprise_project
+---
+> # g42cloud_enterprise_project
+7c7
+< Use this resource to manage an enterprise project within HuaweiCloud.
+---
+> Use this resource to manage an enterprise project within G42Cloud.
+10c10
+<   the project is only disabled and removed from the state, but it remains in the cloud
+---
+>   the project is only disabled and removed from the state, but it remains in the cloud.
+15c15
+< resource "huaweicloud_enterprise_project" "test" {
+---
+> resource "g42cloud_enterprise_project" "test" {
+51c51
+< $ terraform import huaweicloud_enterprise_project.test 88f889c7-270e-4e77-8230-bf7db08d9b0e
+---
+> $ terraform import g42cloud_enterprise_project.test 88f889c7-270e-4e77-8230-bf7db08d9b0e

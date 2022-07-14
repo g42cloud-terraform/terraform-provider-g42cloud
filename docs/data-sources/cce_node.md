@@ -9,8 +9,8 @@ To get the specified node in a cluster.
 ## Example Usage
 
 ```hcl
-variable "cluster_id" { }
-variable "node_name" { }
+variable "cluster_id" {}
+variable "node_name" {}
 
 data "g42cloud_cce_node" "node" {
   cluster_id = var.cluster_id

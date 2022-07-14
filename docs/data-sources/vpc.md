@@ -9,13 +9,11 @@ Provides details about a specific VPC.
 ## Example Usage
 
 ```hcl
-
 variable "vpc_name" {}
 
 data "g42cloud_vpc" "vpc" {
   name = var.vpc_name
 }
-
 ```
 
 ## Argument Reference

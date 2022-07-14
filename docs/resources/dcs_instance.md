@@ -4,11 +4,11 @@ subcategory: "Distributed Cache Service (DCS)"
 
 # g42cloud_dcs_instance
 
-Manages a DCS instance within G42cloud.
+Manages a DCS instance within G42Cloud.
 
 !> **WARNING:** DCS for Memcached is about to become unavailable and is no longer sold in some regions.
 You can use DCS for Redis 4.0 or 5.0 instead. It is not possible to create Memcached instances through this resource.
-You can use this resource to manage Memcached instances that exist in G42cloud.
+You can use this resource to manage Memcached instances that exist in G42Cloud.
 
 ## Example Usage
 
@@ -48,9 +48,9 @@ resource "g42cloud_dcs_instance" "instance_2" {
   engine_version     = "5.0"
   capacity           = 4
   flavor             = "redis.ha.xu1.large.r2.4"
-  # The first is the primary availability zone (ae-ad-1a),
-  # and the second is the standby availability zone (ae-ad-1b).
-  availability_zones = ["ae-ad-1a", "ae-ad-1b"]
+  # The first is the primary availability zone (cn-north-1a),
+  # and the second is the standby availability zone (cn-north-1b).
+  availability_zones = ["cn-north-1a", "cn-north-1b"]
   password           = "YourPassword@123"
   vpc_id             = var.vpc_id
   subnet_id          = var.subnet_id
@@ -140,7 +140,7 @@ The following arguments are supported:
   The password of a DCS instance must meet the following complexity requirements:
   + Must be a string of 8 to 32 bits in length.
   + Must contain three combinations of the following four characters: Lower case letters, uppercase letter, digital,
-    Special characters include (`~!@#$%^&*()-_=+|[{}]:'",<.>/?).
+    Special characters include (`~!@#$^&*()-_=+\\|{}:,<.>/?).
   + The new password cannot be the same as the old password.
     Redis instance defaults to 6379. Memcached instance does not use this argument.
 
@@ -178,27 +178,6 @@ The following arguments are supported:
   The valid commands that can be renamed are: *command*, *keys*, *flushdb*, *flushall* and *hgetall*.
 
 * `enterprise_project_id` - (Optional, String, ForceNew) The enterprise project id of the dcs instance.
-  Changing this creates a new instance.
-
-* `charging_mode` - (Optional, String, ForceNew) Specifies the charging mode of the redis instance.
-  The valid values are as follows:
-  + `prePaid`: indicates the yearly/monthly billing mode.
-  + `postPaid`: indicates the pay-per-use billing mode.
-    Default value is `postPaid`.
-    Changing this creates a new instance.
-
-* `period_unit` - (Optional, String, ForceNew) Specifies the charging period unit of the instance.
-  Valid values are *month* and *year*. This parameter is mandatory if `charging_mode` is set to *prePaid*.
-  Changing this creates a new instance.
-
-* `period` - (Optional, Int, ForceNew) Specifies the charging period of the instance.
-  If `period_unit` is set to *month*, the value ranges from 1 to 9.
-  If `period_unit` is set to *year*, the value ranges from 1 to 3.
-  This parameter is mandatory if `charging_mode` is set to *prePaid*.
-  Changing this creates a new instance.
-
-* `auto_renew` - (Optional, String, ForceNew) Specifies whether auto renew is enabled.
-  Valid values are `true` and `false`, defaults to `false`.
   Changing this creates a new instance.
 
 * `tags` - (Optional, Map) The key/value pairs to associate with the dcs instance.

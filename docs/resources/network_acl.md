@@ -34,7 +34,8 @@ resource "g42cloud_network_acl_rule" "rule_2" {
 resource "g42cloud_network_acl" "fw_acl" {
   name          = "my-fw-acl"
   subnets       = [data.g42cloud_vpc_subnet.subnet.id]
-  inbound_rules = [g42cloud_network_acl_rule.rule_1.id,
+  inbound_rules = [
+    g42cloud_network_acl_rule.rule_1.id,
     g42cloud_network_acl_rule.rule_2.id]
 }
 ```

@@ -1,0 +1,16 @@
+5c5
+< # huaweicloud_modelarts_notebook
+---
+> # g42cloud_modelarts_notebook
+7c7
+< Manages ModelArts notebook resource within HuaweiCloud.
+---
+> Manages ModelArts notebook resource within G42Cloud.
+16c16
+< resource "huaweicloud_modelarts_notebook" "notebook" {
+---
+> resource "g42cloud_modelarts_notebook" "notebook" {
+125c125
+< terraform import huaweicloud_modelarts_notebook.test b11b407c-e604-4e8d-8bc4-92398320b847
+---
+> terraform import g42cloud_modelarts_notebook.test b11b407c-e604-4e8d-8bc4-92398320b847

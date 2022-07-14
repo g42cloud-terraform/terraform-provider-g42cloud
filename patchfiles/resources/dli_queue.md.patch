@@ -1,0 +1,20 @@
+5c5
+< # huaweicloud_dli_queue
+---
+> # g42cloud_dli_queue
+7c7
+< Manages DLI Queue resource within HuaweiCloud
+---
+> Manages DLI Queue resource within G42Cloud
+14c14
+< resource "huaweicloud_dli_queue" "queue" {
+---
+> resource "g42cloud_dli_queue" "queue" {
+28c28
+< resource "huaweicloud_dli_queue" "queue" {
+---
+> resource "g42cloud_dli_queue" "queue" {
+112c112
+< terraform import huaweicloud_dli_queue.example  abc123
+---
+> terraform import g42cloud_dli_queue.example  abc123

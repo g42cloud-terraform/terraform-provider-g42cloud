@@ -1,0 +1,12 @@
+5c5
+< # huaweicloud_vpc_route_table
+---
+> # g42cloud_vpc_route_table
+15c15
+< data "huaweicloud_vpc_route_table" "default" {
+---
+> data "g42cloud_vpc_route_table" "default" {
+20c20
+< data "huaweicloud_vpc_route_table" "custom" {
+---
+> data "g42cloud_vpc_route_table" "custom" {

@@ -1,0 +1,20 @@
+5c5
+< # huaweicloud_apig_api_publishment
+---
+> # g42cloud_apig_api_publishment
+7c7
+< API publish Management within HuaweiCloud.
+---
+> API publish Management within G42Cloud.
+21c21
+< resource "huaweicloud_apig_api_publishment" "default" {
+---
+> resource "g42cloud_apig_api_publishment" "default" {
+36c36
+< resource "huaweicloud_apig_api_publishment" "default" {
+---
+> resource "g42cloud_apig_api_publishment" "default" {
+89c89
+< $ terraform import huaweicloud_apig_api_publishment.test
+---
+> $ terraform import g42cloud_apig_api_publishment.test

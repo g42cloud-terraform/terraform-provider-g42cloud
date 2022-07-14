@@ -1,0 +1,34 @@
+5c5
+< # huaweicloud_network_acl
+---
+> # g42cloud_network_acl
+7c7
+< Manages a network ACL resource within HuaweiCloud.
+---
+> Manages a network ACL resource within G42Cloud.
+12c12
+< data "huaweicloud_vpc_subnet" "subnet" {
+---
+> data "g42cloud_vpc_subnet" "subnet" {
+16c16
+< resource "huaweicloud_network_acl_rule" "rule_1" {
+---
+> resource "g42cloud_network_acl_rule" "rule_1" {
+25c25
+< resource "huaweicloud_network_acl_rule" "rule_2" {
+---
+> resource "g42cloud_network_acl_rule" "rule_2" {
+34c34
+< resource "huaweicloud_network_acl" "fw_acl" {
+---
+> resource "g42cloud_network_acl" "fw_acl" {
+36c36
+<   subnets       = [data.huaweicloud_vpc_subnet.subnet.id]
+---
+>   subnets       = [data.g42cloud_vpc_subnet.subnet.id]
+38,39c38,39
+<     huaweicloud_network_acl_rule.rule_1.id,
+<     huaweicloud_network_acl_rule.rule_2.id]
+---
+>     g42cloud_network_acl_rule.rule_1.id,
+>     g42cloud_network_acl_rule.rule_2.id]

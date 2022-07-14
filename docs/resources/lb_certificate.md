@@ -67,12 +67,6 @@ i34R7EQDtFeiSvBdeKRsPp8c0KT8H1B4lXNkkCQs2WX5p4lm99+ZtLD4glw8x6Ic
 i1YhgnQbn5E0hz55OLu5jvOkKQjPCW+8Kg==
 -----END CERTIFICATE-----
 EOT
-
-  timeouts {
-    create = "5m"
-    update = "5m"
-    delete = "5m"
-  }
 }
 ```
 
@@ -118,3 +112,29 @@ This resource provides the following timeouts configuration options:
 * `create` - Default is 10 minute.
 * `update` - Default is 10 minute.
 * `delete` - Default is 5 minute.
+
+## Import
+
+ELB certificate can be imported using the certificate ID, e.g.
+
+```
+$ terraform import g42cloud_lb_certificate.certificate_1 5c20fdad-7288-11eb-b817-0255ac10158b
+```
+
+Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
+API response, security or some other reason. The missing attributes include: `enterprise_project_id`.
+It is generally recommended running `terraform plan` after importing a certificate.
+You can then decide if changes should be applied to the certificate, or the resource
+definition should be updated to align with the certificate. Also you can ignore changes as below.
+
+```
+resource "g42cloud_lb_certificate" "certificate_1" {
+    ...
+
+  lifecycle {
+    ignore_changes = [
+      enterprise_project_id,
+    ]
+  }
+}
+```

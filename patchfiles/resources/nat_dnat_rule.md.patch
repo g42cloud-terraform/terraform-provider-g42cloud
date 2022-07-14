@@ -1,0 +1,56 @@
+5c5
+< # huaweicloud_nat_dnat_rule
+---
+> # g42cloud_nat_dnat_rule
+7c7
+< Manages a DNAT rule resource within HuaweiCloud.
+---
+> Manages a DNAT rule resource within G42Cloud.
+14c14
+< resource "huaweicloud_compute_instance" "instance_1" {
+---
+> resource "g42cloud_compute_instance" "instance_1" {
+18c18
+< resource "huaweicloud_nat_dnat_rule" "dnat_1" {
+---
+> resource "g42cloud_nat_dnat_rule" "dnat_1" {
+21c21
+<   port_id               = huaweicloud_compute_instance.instance_1.network[0].port
+---
+>   port_id               = g42cloud_compute_instance.instance_1.network[0].port
+31c31
+< resource "huaweicloud_nat_dnat_rule" "dnat_2" {
+---
+> resource "g42cloud_nat_dnat_rule" "dnat_2" {
+48c48
+< resource "huaweicloud_rds_instance" "db_pgSql" {
+---
+> resource "g42cloud_rds_instance" "db_pgSql" {
+52c52
+< data "huaweicloud_networking_port" "pgSql_network_port" {
+---
+> data "g42cloud_networking_port" "pgSql_network_port" {
+54c54
+<   fixed_ip   = huaweicloud_rds_instance.db_pgSql.fixed_ip
+---
+>   fixed_ip   = g42cloud_rds_instance.db_pgSql.fixed_ip
+57c57
+< resource "huaweicloud_nat_dnat_rule" "dnat_rule_pgSql" {
+---
+> resource "g42cloud_nat_dnat_rule" "dnat_rule_pgSql" {
+60c60
+<   port_id               = data.huaweicloud_networking_port.pgSql_network_port.port_id
+---
+>   port_id               = data.g42cloud_networking_port.pgSql_network_port.port_id
+62c62
+<   internal_service_port = huaweicloud_rds_instance.db_pgSql.db.0.port
+---
+>   internal_service_port = g42cloud_rds_instance.db_pgSql.db.0.port
+90c90
+<  scenario. Use [huaweicloud_networking_port](../data-sources/networking_port) to get the port if just know a fixed IP
+---
+>  scenario. Use [g42cloud_networking_port](../data-sources/networking_port) to get the port if just know a fixed IP
+117c117
+< $ terraform import huaweicloud_nat_dnat_rule.dnat_1 f4f783a7-b908-4215-b018-724960e5df4a
+---
+> $ terraform import g42cloud_nat_dnat_rule.dnat_1 f4f783a7-b908-4215-b018-724960e5df4a

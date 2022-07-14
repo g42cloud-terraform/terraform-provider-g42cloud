@@ -1,0 +1,57 @@
+5c5
+< # huaweicloud_dms_product
+---
+> # g42cloud_dms_product
+7,8c7
+< Use this data source to get the ID of an available HuaweiCloud dms product. This is an alternative
+< to `huaweicloud_dms_product_v1`
+---
+> Use this data source to get the ID of an available G42Cloud dms product.
+12,13d10
+< ### Filter DMS kafka product list by I/O specification
+< 
+15c12,13
+< data "huaweicloud_dms_product" "product1" {
+---
+> 
+> data "g42cloud_dms_product" "product1" {
+25,35d22
+< ### Filter DMS kafka product list by underlying VM specification
+< 
+< ```
+< data "huaweicloud_dms_product" "product2" {
+<   engine           = "kafka"
+<   version          = "2.3.0"
+<   instance_type    = "cluster"
+<   vm_specification = "c6.large.2"
+< }
+< ```
+< 
+41c28
+< * `engine` - (Required, String) Indicates the name of a message engine. The valid values are **kafka**, **rabbitmq**.
+---
+> * `engine` - (Required, String) Indicates the name of a message engine. The valid values are __kafka__, __rabbitmq__.
+43c30
+< * `instance_type` - (Required, String) Indicates an instance type. The valid values are **single** and **cluster**.
+---
+> * `instance_type` - (Required, String) Indicates an instance type. The valid values are __single__ and __cluster__.
+49c36
+< * `vm_specification` - (Optional, String) Indicates underlying VM specification, such as **c6.large.2**.
+---
+> * `vm_specification` - (Optional, String) Indicates VM specifications.
+55c42
+<   The valid values are **100MB**, **300MB**, **600MB** and **1200MB**.
+---
+>   The valid values are __100MB__, __300MB__, __600MB__ and __1200MB__.
+58c45
+<   The valid values are **300**, **900** and **1800**.
+---
+>   The valid values are __300__, __900__ and __1800__.
+61c48
+<   The valid values are **dms.physical.storage.high** and **dms.physical.storage.ultra**.
+---
+>   The valid values are __dms.physical.storage.high__ and __dms.physical.storage.ultra__.
+69c56
+< * `id` - The data source ID.
+---
+> * `id` - Specifies a data source ID in UUID format.

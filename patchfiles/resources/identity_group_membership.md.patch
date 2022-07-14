@@ -1,0 +1,37 @@
+5c5
+< # huaweicloud_identity_group_membership
+---
+> # g42cloud_identity_group_membership
+7,8c7
+< Manages a User Group Membership resource within HuaweiCloud IAM service. This is an alternative
+< to `huaweicloud_identity_group_membership_v3`
+---
+> Manages a User Group Membership resource within G42Cloud IAM service.
+10c9
+< Note: You *must* have admin privileges in your HuaweiCloud cloud to use this resource.
+---
+> Note: You *must* have admin privileges in your G42Cloud cloud to use this resource.
+15c14
+< resource "huaweicloud_identity_group" "group_1" {
+---
+> resource "g42cloud_identity_group" "group_1" {
+20c19
+< resource "huaweicloud_identity_user" "user_1" {
+---
+> resource "g42cloud_identity_user" "user_1" {
+26c25
+< resource "huaweicloud_identity_user" "user_2" {
+---
+> resource "g42cloud_identity_user" "user_2" {
+32,33c31,32
+< resource "huaweicloud_identity_group_membership" "membership_1" {
+<   group = huaweicloud_identity_group.group_1.id
+---
+> resource "g42cloud_identity_group_membership" "membership_1" {
+>   group = g42cloud_identity_group.group_1.id
+35,36c34,35
+<     huaweicloud_identity_user.user_1.id,
+<     huaweicloud_identity_user.user_2.id
+---
+>     g42cloud_identity_user.user_1.id,
+>     g42cloud_identity_user.user_2.id

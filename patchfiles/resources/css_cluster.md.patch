@@ -1,0 +1,32 @@
+5c5
+< # huaweicloud_css_cluster
+---
+> # g42cloud_css_cluster
+7c7
+< Manages CSS cluster resource within HuaweiCloud
+---
+> Manages CSS cluster resource within G42Cloud
+18c18
+< resource "huaweicloud_networking_secgroup" "secgroup" {
+---
+> resource "g42cloud_networking_secgroup" "secgroup" {
+23c23
+< resource "huaweicloud_css_cluster" "cluster" {
+---
+> resource "g42cloud_css_cluster" "cluster" {
+29c29
+<     flavor = "ess.spec-4u16g"
+---
+>     flavor = "ess.spec-4u8g"
+33c33
+<       security_group_id = huaweicloud_networking_secgroup.secgroup.id
+---
+>       security_group_id = g42cloud_networking_secgroup.secgroup.id
+92c92
+<   40 GB to 800 GB, value range of flavor ess.spec-4u16g: 40 GB to 1600 GB, value range of flavor ess.spec-8u32g: 80 GB
+---
+>   40 GB to 800 GB, value range of flavor ess.spec-4u8g: 40 GB to 1600 GB, value range of flavor ess.spec-8u32g: 80 GB
+183c183
+< terraform import huaweicloud_css_cluster.example 6d793124-3d5d-47be-bf09-f694fdf2d9ed
+---
+> terraform import g42cloud_css_cluster.example 6d793124-3d5d-47be-bf09-f694fdf2d9ed

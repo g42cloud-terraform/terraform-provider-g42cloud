@@ -1,0 +1,13 @@
+5c5
+< # huaweicloud_dcs_maintainwindow
+---
+> # g42cloud_dcs_maintainwindow
+7,8c7
+< Use this data source to get the ID of an available Huaweicloud dcs maintainwindow. This is an alternative
+< to `huaweicloud_dcs_maintainwindow_v1`
+---
+> Use this data source to get the ID of an available G42cloud dcs maintainwindow.
+13c12
+< data "huaweicloud_dcs_maintainwindow" "maintainwindow1" {
+---
+> data "g42cloud_dcs_maintainwindow" "maintainwindow1" {

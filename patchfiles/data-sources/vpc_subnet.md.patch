@@ -1,0 +1,16 @@
+5c5
+< # huaweicloud_vpc_subnet
+---
+> # g42cloud_vpc_subnet
+7c7
+< Provides details about a specific VPC subnet. This is an alternative to `huaweicloud_vpc_subnet_v1`
+---
+> Provides details about a specific VPC subnet.
+15c15
+< data "huaweicloud_vpc_subnet" "subnet" {
+---
+> data "g42cloud_vpc_subnet" "subnet" {
+20c20
+<   value = data.huaweicloud_vpc_subnet.subnet.vpc_id
+---
+>   value = data.g42cloud_vpc_subnet.subnet.vpc_id

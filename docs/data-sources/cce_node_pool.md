@@ -9,8 +9,8 @@ To get the specified node pool in a cluster.
 ## Example Usage
 
 ```hcl
-variable "cluster_id" { }
-variable "node_pool_name" { }
+variable "cluster_id" {}
+variable "node_pool_name" {}
 
 data "g42cloud_cce_node_pool" "node_pool" {
   cluster_id = var.cluster_id

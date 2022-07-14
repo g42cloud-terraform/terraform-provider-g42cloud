@@ -30,8 +30,8 @@ resource "g42cloud_lb_pool" "pool_1" {
 
 resource "g42cloud_lb_l7policy" "l7policy_1" {
   name             = "test"
-  action           = "REDIRECT_TO_URL"
-  description      = "test description"
+  action           = "REDIRECT_TO_POOL"
+  description      = "test l7 policy"
   position         = 1
   listener_id      = g42cloud_lb_listener.listener_1.id
   redirect_pool_id = g42cloud_lb_pool.pool_1.id
@@ -86,8 +86,7 @@ This resource provides the following timeouts configuration options:
 
 ## Import
 
-Load Balancer L7 Rule can be imported using the L7 Policy ID and L7 Rule ID
-separated by a slash, e.g.:
+Load Balancer L7 Rule can be imported using the L7 Policy ID and L7 Rule ID separated by a slash, e.g.:
 
 ```
 $ terraform import g42cloud_lb_l7rule.l7rule_1 e0bd694a-abbe-450e-b329-0931fd1cc5eb/4086b0c9-b18c-4d1c-b6b8-4c56c3ad2a9e

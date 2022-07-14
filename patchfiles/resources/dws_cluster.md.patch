@@ -1,0 +1,24 @@
+5c5
+< # huaweicloud_dws_cluster
+---
+> # g42cloud_dws_cluster
+21c21
+< resource "huaweicloud_networking_secgroup" "secgroup" {
+---
+> resource "g42cloud_networking_secgroup" "secgroup" {
+26c26
+< resource "huaweicloud_dws_cluster" "cluster" {
+---
+> resource "g42cloud_dws_cluster" "cluster" {
+31c31
+<   security_group_id = huaweicloud_networking_secgroup.secgroup.id
+---
+>   security_group_id = g42cloud_networking_secgroup.secgroup.id
+156c156
+< $ terraform import huaweicloud_dws_cluster.test 47ad727e-9dcc-4833-bde0-bb298607c719
+---
+> $ terraform import g42cloud_dws_cluster.test 47ad727e-9dcc-4833-bde0-bb298607c719
+166c166
+< resource "huaweicloud_dws_cluster" "test" {
+---
+> resource "g42cloud_dws_cluster" "test" {

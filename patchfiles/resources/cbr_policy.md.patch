@@ -1,0 +1,59 @@
+5c5
+< # huaweicloud_cbr_policy
+---
+> # g42cloud_cbr_policy
+7c7
+< Manages a CBR Policy resource within Huaweicloud.
+---
+> Manages a CBR Policy resource within G42Cloud.
+16c16
+< resource "huaweicloud_cbr_policy" "test" {
+---
+> resource "g42cloud_cbr_policy" "test" {
+29,50d28
+< ### create a replication policy
+< 
+< ```hcl
+< variable "policy_name" {}
+< variable "dest_region" {}
+< variable "dest_project_id" {}
+< 
+< resource "huaweicloud_cbr_policy" "test" {
+<   name                   = var.policy_name
+<   type                   = "replication"
+<   destination_region     = var.dest_region
+<   destination_project_id = var.dest_project_id
+<   backup_quantity        = 20
+< 
+<   backup_cycle {
+<     frequency       = "DAILY"
+<     interval        = 5
+<     execution_times = ["21:00"]
+<   }
+< }
+< ```
+< 
+62,63c40
+<   Valid values are **backup** and **replication**.
+<   Changing this will create a new policy.
+---
+>   Valid values is **backup**. Changing this will create a new policy.
+70,75d46
+< * `destination_region` - (Optional, String) Specifies the name of the replication destination region, which is mandatory
+<   for cross-region replication. Required if `protection_type` is **replication**.
+< 
+< * `destination_project_id` - (Optional, String) Specifies the ID of the replication destination project, which is
+<   mandatory for cross-region replication. Required if `protection_type` is **replication**.
+< 
+92c63
+<   Only avaiable if `long_term_retention` is set.
+---
+>   Required if `long_term_retention` is set.
+106c77
+<   cannot be repeated. In the replication policy, you are advised to set one time point for one day.
+---
+>   cannot be repeated.
+133c104
+< terraform import huaweicloud_cbr_policy.test 4d2c2939-774f-42ef-ab15-e5b126b11ace
+---
+> terraform import g42cloud_cbr_policy.test 4d2c2939-774f-42ef-ab15-e5b126b11ace

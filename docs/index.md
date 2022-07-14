@@ -29,10 +29,10 @@ The G42 Cloud provider offers a flexible means of providing credentials for
 authentication. The following methods are supported, in this order, and
 explained below:
 
-- Static credentials
-- Environment variables
+* Static credentials
+* Environment variables
 
-### Static credentials ###
+### Static credentials
 
 !> **Warning:** Hard-coding credentials into any Terraform configuration is not
 recommended, and risks secret leakage should this file ever be committed to a
@@ -70,10 +70,9 @@ $ export G42_REGION_NAME="ae-ad-1"
 $ terraform plan
 ```
 
-
 ## Configuration Reference
 
-The following arguments are supported:
+The following arguments are supported:  
 
 * `region` - (Required) This is the G42 Cloud region. It must be provided,
   but it can also be sourced from the `G42_REGION_NAME` environment variables.
@@ -137,7 +136,6 @@ variables must also be set:
 * `G42_SECRET_KEY` - The password to login with.
 
 * `G42_ACCOUNT_NAME` - The IAM account name.
-
 
 You should be able to use any G42Cloud environment to develop on as long as the
 above environment variables are set.

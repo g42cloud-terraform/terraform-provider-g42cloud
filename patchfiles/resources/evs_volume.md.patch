@@ -1,0 +1,60 @@
+5c5
+< # huaweicloud_evs_volume
+---
+> # g42cloud_evs_volume
+7c7
+< Manages a volume resource within HuaweiCloud.
+---
+> Manages a volume resource within G42Cloud.
+12c12
+< resource "huaweicloud_evs_volume" "volume" {
+---
+> resource "g42cloud_evs_volume" "volume" {
+17c17
+<   availability_zone = "cn-north-4a"
+---
+>   availability_zone = "ae-ad-1a"
+29c29
+< resource "huaweicloud_evs_volume" "volume" {
+---
+> resource "g42cloud_evs_volume" "volume" {
+35c35
+<   availability_zone = "cn-north-4a"
+---
+>   availability_zone = "ae-ad-1a"
+109,135d108
+<   -> This parameter is only valid for pay-as-you-go resources, and the snapshots bound to the package period resources
+<      will be removed while resources unsubscribed.
+< 
+< * `charging_mode` - (Optional, String, ForceNew) Specifies the charging mode of the disk.
+<   The valid values are as follows:
+<   + **prePaid**: the yearly/monthly billing mode.
+<   + **postPaid**: the pay-per-use billing mode.
+<     Changing this creates a new disk.
+< 
+< * `period_unit` - (Optional, String, ForceNew) Specifies the charging period unit of the disk.
+<   Valid values are **month** and **year**. This parameter is mandatory if `charging_mode` is set to **prePaid**.
+<   Changing this creates a new disk.
+< 
+< * `period` - (Optional, Int, ForceNew) Specifies the charging period of the disk.
+<   If `period_unit` is set to **month**, the value ranges from 1 to 9.
+<   If `period_unit` is set to **year**, the valid value is 1.
+<   This parameter is mandatory if `charging_mode` is set to **prePaid**.
+<   Changing this creates a new disk.
+< 
+< * `auto_renew` - (Optional, String, ForceNew) Specifies whether auto renew is enabled.
+<   Valid values are **true** and **false**.
+<   Changing this creates a new disk.
+< 
+< * `auto_pay` - (Optional, String, ForceNew) Specifies whether auto pay is enabled.
+<   Valid values are *true* and *false*. Defaults to *true*. If you set this to *false*, you need to pay the order
+<   yourself in time, be careful about the timeout of resource creation. Changing this creates a new disk.
+< 
+150c123
+< $ terraform import huaweicloud_evs_volume.volume_1 14a80bc7-c12c-4fe0-a38a-cb77eeac9bd6
+---
+> $ terraform import g42cloud_evs_volume.volume_1 14a80bc7-c12c-4fe0-a38a-cb77eeac9bd6
+160c133
+< resource "huaweicloud_evs_volume" "volume_1" {
+---
+> resource "g42cloud_evs_volume" "volume_1" {

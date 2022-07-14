@@ -1,0 +1,19 @@
+2c2
+< subcategory: "Deprecated"
+---
+> subcategory: "Distributed Message Service (DMS)"
+5c5
+< # huaweicloud_dms_az
+---
+> # g42cloud_dms_az
+7c7
+< Use this data source to get the ID of an available HuaweiCloud dms az. This is an alternative to `huaweicloud_dms_az_v1`
+---
+> Use this data source to get the ID of an available G42Cloud dms az.
+17,18c17,19
+< data "huaweicloud_dms_az" "az1" {
+<   code = "cn-north-4a"
+---
+> 
+> data "g42cloud_dms_az" "az1" {
+>   code = "ad-ae-1a"

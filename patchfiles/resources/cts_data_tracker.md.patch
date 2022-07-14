@@ -1,0 +1,16 @@
+5c5
+< # huaweicloud_cts_data_tracker
+---
+> # g42cloud_cts_data_tracker
+7c7
+< Manages CTS **data** tracker resource within HuaweiCloud.
+---
+> Manages CTS **data** tracker resource within G42Cloud.
+15c15
+< resource "huaweicloud_cts_data_tracker" "tracker" {
+---
+> resource "g42cloud_cts_data_tracker" "tracker" {
+76c76
+< $ terraform import huaweicloud_cts_data_tracker.tracker your_tracker_name
+---
+> $ terraform import g42cloud_cts_data_tracker.tracker your_tracker_name

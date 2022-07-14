@@ -1,0 +1,22 @@
+5c5
+< # huaweicloud_vpcep_approval
+---
+> # g42cloud_vpcep_approval
+17c17
+< resource "huaweicloud_vpcep_service" "demo" {
+---
+> resource "g42cloud_vpcep_service" "demo" {
+30,31c30,31
+< resource "huaweicloud_vpcep_endpoint" "demo" {
+<   service_id = huaweicloud_vpcep_service.demo.id
+---
+> resource "g42cloud_vpcep_endpoint" "demo" {
+>   service_id = g42cloud_vpcep_service.demo.id
+45,47c45,47
+< resource "huaweicloud_vpcep_approval" "approval" {
+<   service_id = huaweicloud_vpcep_service.demo.id
+<   endpoints  = [huaweicloud_vpcep_endpoint.demo.id]
+---
+> resource "g42cloud_vpcep_approval" "approval" {
+>   service_id = g42cloud_vpcep_service.demo.id
+>   endpoints  = [g42cloud_vpcep_endpoint.demo.id]

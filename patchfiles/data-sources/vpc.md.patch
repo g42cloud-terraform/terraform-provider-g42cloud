@@ -1,0 +1,12 @@
+5c5
+< # huaweicloud_vpc
+---
+> # g42cloud_vpc
+7c7
+< Provides details about a specific VPC. This is an alternative to `huaweicloud_vpc_v1`
+---
+> Provides details about a specific VPC.
+14c14
+< data "huaweicloud_vpc" "vpc" {
+---
+> data "g42cloud_vpc" "vpc" {

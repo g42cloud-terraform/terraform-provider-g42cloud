@@ -1,0 +1,28 @@
+5c5
+< # huaweicloud_vpc_route
+---
+> # g42cloud_vpc_route
+7c7
+< Manages a VPC route resource within HuaweiCloud.
+---
+> Manages a VPC route resource within G42Cloud.
+17c17
+< resource "huaweicloud_vpc_route" "vpc_route" {
+---
+> resource "g42cloud_vpc_route" "vpc_route" {
+31c31
+< data "huaweicloud_vpc_route_table" "rtb" {
+---
+> data "g42cloud_vpc_route_table" "rtb" {
+36c36
+< resource "huaweicloud_vpc_route" "vpc_route" {
+---
+> resource "g42cloud_vpc_route" "vpc_route" {
+38c38
+<   route_table_id = data.huaweicloud_vpc_route_table.rtb.id
+---
+>   route_table_id = data.g42cloud_vpc_route_table.rtb.id
+98c98
+< $ terraform import huaweicloud_vpc_route.test <route_table_id>/<destination>
+---
+> $ terraform import g42cloud_vpc_route.test <route_table_id>/<destination>

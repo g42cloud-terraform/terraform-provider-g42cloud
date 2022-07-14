@@ -1,0 +1,24 @@
+5c5
+< # huaweicloud_compute_servergroup
+---
+> # g42cloud_compute_servergroup
+7c7
+< Manages Server Group resource within HuaweiCloud. This is an alternative to `huaweicloud_compute_servergroup_v2`
+---
+> Manages Server Group resource within G42Cloud.
+12c12
+< data "huaweicloud_compute_instance" "instance_demo" {
+---
+> data "g42cloud_compute_instance" "instance_demo" {
+16c16
+< resource "huaweicloud_compute_servergroup" "test-sg" {
+---
+> resource "g42cloud_compute_servergroup" "test-sg" {
+20c20
+<     data.huaweicloud_compute_instance.instance_demo.id,
+---
+>     data.g42cloud_compute_instance.instance_demo.id,
+55c55
+< $ terraform import huaweicloud_compute_servergroup.test-sg 1bc30ee9-9d5b-4c30-bdd5-7f1e663f5edf
+---
+> $ terraform import g42cloud_compute_servergroup.test-sg 1bc30ee9-9d5b-4c30-bdd5-7f1e663f5edf

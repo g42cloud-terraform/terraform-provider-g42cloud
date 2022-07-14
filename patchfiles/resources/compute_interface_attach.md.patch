@@ -1,0 +1,78 @@
+5c5
+< # huaweicloud_compute_interface_attach
+---
+> # g42cloud_compute_interface_attach
+7c7
+< Attaches a Network Interface to an Instance. This is an alternative to `huaweicloud_compute_interface_attach_v2`
+---
+> Attaches a Network Interface to an Instance.
+14c14
+< data "huaweicloud_vpc_subnet" "mynet" {
+---
+> data "g42cloud_vpc_subnet" "mynet" {
+18c18
+< resource "huaweicloud_compute_instance" "myinstance" {
+---
+> resource "g42cloud_compute_instance" "myinstance" {
+24c24
+<   availability_zone = "cn-north-4a"
+---
+>   availability_zone = "ae-ad-1a"
+31,33c31,33
+< resource "huaweicloud_compute_interface_attach" "attached" {
+<   instance_id = huaweicloud_compute_instance.myinstance.id
+<   network_id  = data.huaweicloud_vpc_subnet.mynet.id
+---
+> resource "g42cloud_compute_interface_attach" "attached" {
+>   instance_id = g42cloud_compute_instance.myinstance.id
+>   network_id  = data.g42cloud_vpc_subnet.mynet.id
+40c40
+< data "huaweicloud_vpc_subnet" "mynet" {
+---
+> data "g42cloud_vpc_subnet" "mynet" {
+44c44
+< resource "huaweicloud_compute_instance" "myinstance" {
+---
+> resource "g42cloud_compute_instance" "myinstance" {
+50c50
+<   availability_zone = "cn-north-4a"
+---
+>   availability_zone = "ae-ad-1a"
+57,59c57,59
+< resource "huaweicloud_compute_interface_attach" "attached" {
+<   instance_id = huaweicloud_compute_instance.myinstance.id
+<   network_id  = data.huaweicloud_vpc_subnet.mynet.id
+---
+> resource "g42cloud_compute_interface_attach" "attached" {
+>   instance_id = g42cloud_compute_instance.myinstance.id
+>   network_id  = data.g42cloud_vpc_subnet.mynet.id
+67c67
+< data "huaweicloud_vpc_subnet" "mynet" {
+---
+> data "g42cloud_vpc_subnet" "mynet" {
+71,72c71,72
+< data "huaweicloud_networking_port" "myport" {
+<   network_id = data.huaweicloud_vpc_subnet.mynet.id
+---
+> data "g42cloud_networking_port" "myport" {
+>   network_id = data.g42cloud_vpc_subnet.mynet.id
+76c76
+< resource "huaweicloud_compute_instance" "myinstance" {
+---
+> resource "g42cloud_compute_instance" "myinstance" {
+82c82
+<   availability_zone = "cn-north-4a"
+---
+>   availability_zone = "ae-ad-1a"
+89,91c89,91
+< resource "huaweicloud_compute_interface_attach" "attached" {
+<   instance_id = huaweicloud_compute_instance.myinstance.id
+<   port_id     = data.huaweicloud_networking_port.myport.id
+---
+> resource "g42cloud_compute_interface_attach" "attached" {
+>   instance_id = g42cloud_compute_instance.myinstance.id
+>   port_id     = data.g42cloud_networking_port.myport.id
+139c139
+< $ terraform import huaweicloud_compute_interface_attach.ai_1 89c60255-9bd6-460c-822a-e2b959ede9d2/45670584-225f-46c3-b33e-6707b589b666
+---
+> $ terraform import g42cloud_compute_interface_attach.ai_1 89c60255-9bd6-460c-822a-e2b959ede9d2/45670584-225f-46c3-b33e-6707b589b666

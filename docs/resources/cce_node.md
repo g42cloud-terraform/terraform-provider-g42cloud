@@ -9,7 +9,6 @@ Add a node to a CCE cluster.
 ## Basic Usage
 
 ```hcl
-
 data "g42cloud_availability_zones" "myaz" {}
 
 resource "g42cloud_compute_keypair" "mykp" {
@@ -146,8 +145,6 @@ The following arguments are supported:
     Changing this parameter will create a new resource.
   + `extend_params` - (Optional, Map, ForceNew) Specifies the disk expansion parameters.
     Changing this parameter will create a new resource.
-  + `kms_key_id` - (Optional, String, ForceNew) Specifies the ID of a KMS key. This is used to encrypt the volume.
-    Changing this parameter will create a new resource.
 
 * `data_volumes` - (Required, List, ForceNew) Specifies the configurations of the data disk.
   Changing this parameter will create a new resource.
@@ -196,20 +193,6 @@ The following arguments are supported:
 
 * `postinstall` - (Optional, String, ForceNew) Specifies the script to be executed after installation.
   The input value can be a Base64 encoded string or not. Changing this parameter will create a new resource.
-
-* `charging_mode` - (Optional, String, ForceNew) Specifies the charging mode of the CCE node. Valid values are *prePaid*
-  and *postPaid*, defaults to *postPaid*. Changing this creates a new resource.
-
-* `period_unit` - (Optional, String, ForceNew) Specifies the charging period unit of the CCE node.
-  Valid values are *month* and *year*. This parameter is mandatory if `charging_mode` is set to *prePaid*.
-  Changing this creates a new resource.
-
-* `period` - (Optional, Int, ForceNew) Specifies the charging period of the CCE node. If `period_unit` is set to *month*
-  , the value ranges from 1 to 9. If `period_unit` is set to *year*, the value ranges from 1 to 3. This parameter is
-  mandatory if `charging_mode` is set to *prePaid*. Changing this creates a new resource.
-
-* `auto_renew` - (Optional, String, ForceNew) Specifies whether auto renew is enabled. Valid values are "true" and "
-  false". Changing this creates a new resource.
 
 * `runtime` - (Optional, String, ForceNew) Specifies the runtime of the CCE node. Valid values are *docker* and
   *containerd*. Changing this creates a new resource.
@@ -265,20 +248,18 @@ This resource provides the following timeouts configuration options:
 
 ## Import
 
-CCE node can be imported using the cluster ID and node ID
-separated by a slash, e.g.:
+CCE node can be imported using the cluster ID and node ID separated by a slash, e.g.:
 
 ```
 $ terraform import g42cloud_cce_node.my_node 5c20fdad-7288-11eb-b817-0255ac10158b/e9287dff-7288-11eb-b817-0255ac10158b
 ```
 
-Note that the imported state may not be identical to your resource definition, due to some attrubutes missing from the
+Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
 API response, security or some other reason. The missing attributes include:
 `password`, `fixed_ip`, `eip_id`, `preinstall`, `postinstall`, `iptype`, `bandwidth_charge_mode`, `bandwidth_size`,
-`share_type`, `max_pods`, `extend_param`, `labels`, `taints` and arguments for pre-paid.
-It is generally recommended running `terraform plan` after importing a node.
-You can then decide if changes should be applied to the node, or the resource definition should be updated to align
-with the node. Also you can ignore changes as below.
+`share_type`, `max_pods`, `extend_param`, `labels`, `taints` and arguments for pre-paid. It is generally recommended
+running `terraform plan` after importing a node. You can then decide if changes should be applied to the node, or the
+resource definition should be updated to align with the node. Also you can ignore changes as below.
 
 ```
 resource "g42cloud_cce_node" "my_node" {

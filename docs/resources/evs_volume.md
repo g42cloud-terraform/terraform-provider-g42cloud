@@ -4,7 +4,7 @@ subcategory: "Elastic Volume Service (EVS)"
 
 # g42cloud_evs_volume
 
-Manages a volume resource within g42cloud.
+Manages a volume resource within G42Cloud.
 
 ## Example Usage
 
@@ -12,7 +12,7 @@ Manages a volume resource within g42cloud.
 resource "g42cloud_evs_volume" "volume" {
   name              = "volume"
   description       = "my volume"
-  volume_type       = "SATA"
+  volume_type       = "SAS"
   size              = 20
   availability_zone = "ae-ad-1a"
 
@@ -29,7 +29,7 @@ resource "g42cloud_evs_volume" "volume" {
 resource "g42cloud_evs_volume" "volume" {
   name              = "volume"
   description       = "my volume"
-  volume_type       = "SATA"
+  volume_type       = "SAS"
   size              = 20
   kms_id            = var.kms_id
   availability_zone = "ae-ad-1a"
@@ -115,14 +115,6 @@ In addition to all arguments above, the following attributes are exported:
   the Device as the Instance sees it.
 * `wwn` - The unique identifier used for mounting the EVS disk.
 
-## Timeouts
-
-This resource provides the following timeouts configuration options:
-
-* `create` - Default is 10 minute.
-* `update` - Default is 3 minute.
-* `delete` - Default is 3 minute.
-
 ## Import
 
 Volumes can be imported using the `id`, e.g.
@@ -131,9 +123,9 @@ Volumes can be imported using the `id`, e.g.
 $ terraform import g42cloud_evs_volume.volume_1 14a80bc7-c12c-4fe0-a38a-cb77eeac9bd6
 ```
 
-Note that the imported state may not be identical to your resource definition, due to some attrubutes missing from the
-API response, security or some other reason. The missing attributes include: `cascade`.
-It is generally recommended running terraform plan after importing an disk.
+Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
+API response, security or some other reason. The missing attributes include: **cascade**, **period_unit**, **period**
+and **auto_renew**. It is generally recommended running terraform plan after importing an disk.
 You can then decide if changes should be applied to the disk, or the resource definition should be updated to align
 with the disk. Also you can ignore changes as below.
 
@@ -148,3 +140,11 @@ resource "g42cloud_evs_volume" "volume_1" {
   }
 }
 ```
+
+## Timeouts
+
+This resource provides the following timeouts configuration options:
+
+* `create` - Default is 10 minute.
+* `update` - Default is 3 minute.
+* `delete` - Default is 3 minute.

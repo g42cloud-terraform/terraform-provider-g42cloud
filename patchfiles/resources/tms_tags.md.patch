@@ -1,0 +1,12 @@
+5c5
+< # huaweicloud_tms_tags
+---
+> # g42cloud_tms_tags
+7c7
+< Manages TMS tags resource within HuaweiCloud.
+---
+> Manages TMS tags resource within G42Cloud.
+12c12
+< resource "huaweicloud_tms_tags" "test" {
+---
+> resource "g42cloud_tms_tags" "test" {

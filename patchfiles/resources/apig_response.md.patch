@@ -1,0 +1,16 @@
+5c5
+< # huaweicloud_apig_response
+---
+> # g42cloud_apig_response
+7c7
+< Manages an APIG (API) custom response resource within HuaweiCloud.
+---
+> Manages an APIG (API) custom response resource within G42Cloud.
+16c16
+< resource "huaweicloud_apig_response" "test" {
+---
+> resource "g42cloud_apig_response" "test" {
+85c85
+< $ terraform import huaweicloud_apig_response.test <instance id>/<group id>/<name>
+---
+> $ terraform import g42cloud_apig_response.test <instance id>/<group id>/<name>

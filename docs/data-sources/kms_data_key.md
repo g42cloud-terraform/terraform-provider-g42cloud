@@ -21,7 +21,6 @@ data "g42cloud_kms_data_key" "kms_datakey1" {
   key_id         = g42cloud_kms_key.key1.id
   datakey_length = "512"
 }
-
 ```
 
 ## Argument Reference

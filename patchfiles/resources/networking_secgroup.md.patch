@@ -1,0 +1,42 @@
+5c5
+< # huaweicloud_networking_secgroup
+---
+> # g42cloud_networking_secgroup
+7c7
+< Manages a Security Group resource within HuaweiCloud. This is an alternative to `huaweicloud_networking_secgroup_v2`
+---
+> Manages a Security Group resource within G42Cloud.
+12c12
+< resource "huaweicloud_networking_secgroup" "secgroup" {
+---
+> resource "g42cloud_networking_secgroup" "secgroup" {
+36c36
+< in [HuaweiCloud](https://support.huaweicloud.com/intl/en-us/usermanual-vpc/SecurityGroup_0003.html). See the below
+---
+> in [G42Cloud](https://docs.g42cloud.com/en-us/usermanual/vpc/SecurityGroup_0003.html). See the below
+41c41
+< In most cases, HuaweiCloud will create some security group rules for each new security group. These security group rules
+---
+> In most cases, G42Cloud will create some security group rules for each new security group. These security group rules
+47,48c47,48
+< resource "huaweicloud_networking_secgroup_rule" "secgroup_rule_v4" {
+<   security_group_id = huaweicloud_networking_secgroup.secgroup.id
+---
+> resource "g42cloud_networking_secgroup_rule" "secgroup_rule_v4" {
+>   security_group_id = g42cloud_networking_secgroup.secgroup.id
+53,54c53,54
+< resource "huaweicloud_networking_secgroup_rule" "secgroup_rule_v6" {
+<   security_group_id = huaweicloud_networking_secgroup.secgroup.id
+---
+> resource "g42cloud_networking_secgroup_rule" "secgroup_rule_v6" {
+>   security_group_id = g42cloud_networking_secgroup.secgroup.id
+59,60c59,60
+< resource "huaweicloud_networking_secgroup_rule" "allow_ssh" {
+<   security_group_id = huaweicloud_networking_secgroup.secgroup.id
+---
+> resource "g42cloud_networking_secgroup_rule" "allow_ssh" {
+>   security_group_id = g42cloud_networking_secgroup.secgroup.id
+106c106
+< $ terraform import huaweicloud_networking_secgroup.secgroup_1 38809219-5e8a-4852-9139-6f461c90e8bc
+---
+> $ terraform import g42cloud_networking_secgroup.secgroup_1 38809219-5e8a-4852-9139-6f461c90e8bc

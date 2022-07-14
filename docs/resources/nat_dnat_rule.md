@@ -4,7 +4,7 @@ subcategory: "NAT Gateway (NAT)"
 
 # g42cloud_nat_dnat_rule
 
-Manages a DNAT rule resource within G42Cloud Nat.
+Manages a DNAT rule resource within G42Cloud.
 
 ## Example Usage
 
@@ -25,9 +25,46 @@ resource "g42cloud_nat_dnat_rule" "dnat_1" {
 }
 ```
 
-## Argument Reference
+### DNAT rule in Direct Connect scenario
 
-The following arguments are supported:
+```hcl
+resource "g42cloud_nat_dnat_rule" "dnat_2" {
+  nat_gateway_id        = var.natgw_id
+  floating_ip_id        = var.publicip_id
+  private_ip            = "10.0.0.12"
+  protocol              = "tcp"
+  internal_service_port = 80
+  external_service_port = 8080
+}
+```
+
+### DNAT rule in VPC scenario, allow the rds instance to provide external services
+
+```hcl
+variable "subnet_id" {}
+variable "natgw_id" {}
+variable "publicip_id" {}
+
+resource "g42cloud_rds_instance" "db_pgSql" {
+  ...
+}
+
+data "g42cloud_networking_port" "pgSql_network_port" {
+  network_id = var.subnet_id
+  fixed_ip   = g42cloud_rds_instance.db_pgSql.fixed_ip
+}
+
+resource "g42cloud_nat_dnat_rule" "dnat_rule_pgSql" {
+  nat_gateway_id        = var.natgw_id
+  floating_ip_id        = var.publicip_id
+  port_id               = data.g42cloud_networking_port.pgSql_network_port.port_id
+  protocol              = "tcp"
+  internal_service_port = g42cloud_rds_instance.db_pgSql.db.0.port
+  external_service_port = 5432
+}
+```
+
+## Argument Reference
 
 The following arguments are supported:
 
@@ -56,6 +93,10 @@ The following arguments are supported:
 * `private_ip` - (Optional, String, ForceNew) Specifies the private IP address of a user. This parameter is mandatory in
   Direct Connect scenario. Changing this creates a new dnat rule.
 
+* `description` - (Optional, String, ForceNew) Specifies the description of the dnat rule.
+  The value is a string of no more than 255 characters, and angle brackets (<>) are not allowed.
+  Changing this creates a new dnat rule.
+
 ## Attributes Reference
 
 In addition to all arguments above, the following attributes are exported:
@@ -70,7 +111,7 @@ In addition to all arguments above, the following attributes are exported:
 
 ## Import
 
-DNAT can be imported using the following format:
+DNAT rules can be imported using the following format:
 
 ```
 $ terraform import g42cloud_nat_dnat_rule.dnat_1 f4f783a7-b908-4215-b018-724960e5df4a

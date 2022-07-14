@@ -1,0 +1,25 @@
+5c5
+< # huaweicloud_images_image
+---
+> # g42cloud_images_image
+7,8c7
+< Use this data source to get the ID of an available HuaweiCloud image. This is an alternative
+< to `huaweicloud_images_image_v2`
+---
+> Use this data source to get the ID of an available G42Cloud image.
+13c12
+< data "huaweicloud_images_image" "ubuntu" {
+---
+> data "g42cloud_images_image" "ubuntu" {
+19c18
+< data "huaweicloud_images_image" "centos-1" {
+---
+> data "g42cloud_images_image" "centos-1" {
+26c25
+< data "huaweicloud_images_image" "centos-2" {
+---
+> data "g42cloud_images_image" "centos-2" {
+33c32
+< data "huaweicloud_images_image" "bms_image" {
+---
+> data "g42cloud_images_image" "bms_image" {

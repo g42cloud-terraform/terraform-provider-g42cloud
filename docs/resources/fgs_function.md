@@ -38,7 +38,7 @@ resource "g42cloud_fgs_function" "f_1" {
   timeout     = 3
   runtime     = "Python2.7"
   code_type   = "inline"
-  func_code = <<EOF
+  func_code   = <<EOF
 # -*- coding:utf-8 -*-
 import json
 def handler (event, context):
@@ -51,6 +51,98 @@ def handler (event, context):
         }
     }
 EOF
+}
+```
+
+### With agency, vpc, subnet and func_mounts
+
+```hcl
+resource "g42cloud_vpc" "test" {
+  name = vpc_1
+  cidr = "192.168.0.0/16"
+}
+
+resource "g42cloud_vpc_subnet" "test" {
+  name       = "subnet_1"
+  cidr       = "192.168.1.0/24"
+  gateway_ip = "192.168.1.1"
+  vpc_id     = g42cloud_vpc.test.id
+}
+
+resource "g42cloud_sfs_file_system" "test" {
+  share_proto = "NFS"
+  size        = 10
+  name        = "sfs_1"
+  description = "test sfs for fgs"
+}
+
+resource "g42cloud_identity_agency" "test" {
+  name                   = "agency_1"
+  description            = "test agency for fgs"
+  delegated_service_name = "op_svc_cff"
+
+  project_role {
+    project = "cn-north-4"
+    roles   = [
+      "VPC Administrator",
+      "SFS Administrator",
+    ]
+  }
+}
+
+resource "g42cloud_fgs_function" "test" {
+  name        = "func_1"
+  package     = "default"
+  description = "fuction test"
+  handler     = "test.handler"
+  memory_size = 128
+  timeout     = 3
+  runtime     = "Python2.7"
+  code_type   = "inline"
+  func_code   = "aW1wb3J0IGpzb24KZGVmIGhhbmRsZXIgKGV2ZW50LCBjb250ZXh0KToKICAgIG91dHB1dCA9ICdIZWxsbyBtZXNzYWdlOiAnICsganNvbi5kdW1wcyhldmVudCkKICAgIHJldHVybiBvdXRwdXQ="
+  agency      = g42cloud_identity_agency.test.name
+  vpc_id      = g42cloud_vpc.test.id
+  network_id  = g42cloud_vpc_subnet.test.id
+
+  func_mounts {
+    mount_type       = "sfs"
+    mount_resource   = g42cloud_sfs_file_system.test.id
+    mount_share_path = g42cloud_sfs_file_system.test.export_location
+    local_mount_path = "/mnt"
+  }
+}
+```
+
+### With agency, user_data for environment variables and OBS for code storage
+
+```hcl
+resource "g42cloud_identity_agency" "agency" {
+  name                   = "fgs_obs_agency"
+  description            = "Delegate OBS access to FGS"
+  delegated_service_name = "op_svc_cff"
+  domain_roles           = ["OBS OperateAccess"]
+}
+
+resource "g42cloud_fgs_function" "function" {
+  name        = "test_function"
+  app         = "default"
+  description = "test function"
+  handler     = "index.handler"
+  agency      = g42cloud_identity_agency.agency.name
+  memory_size = 128
+  timeout     = 3
+  runtime     = "Node.js6.10"
+  code_type   = "obs"
+  code_url    = "https://your-bucket.obs.your-region.g42cloud.com/your-function.zip"
+
+  user_data = jsonencode({
+    environmentVariable1 = "someValue"
+    environmentVariable2 = "5"
+  })
+
+  encrypted_user_data = jsonencode({
+    secret_key = "xxxxxxx"
+  })
 }
 ```
 
@@ -77,6 +169,10 @@ The following arguments are supported:
 * `code_type` - (Required, String) Specifies the function code type, which can be inline: inline code, zip: ZIP file,
   jar: JAR file or java functions, obs: function code stored in an OBS bucket.
 
+* `functiongraph_version` - (Optional, String, ForceNew) Specifies the FunctionGraph version, defaults to **v1**.
+  + **v1**: Hosts event-driven functions in a serverless context.
+  + **v2**: Next-generation function hosting service powered by YuanRong architecture.
+
 * `func_code` - (Optional, String) Specifies the function code. When code_type is set to inline, zip, or jar, this
   parameter is mandatory, and the code can be encoded using Base64 or just with the text code.
 
@@ -85,7 +181,7 @@ The following arguments are supported:
 * `code_filename` - (Optional, String) Specifies the name of a function file, This field is mandatory only when coe_type
   is set to jar or zip.
 
-* `depend_list` - (Optional, String) Specifies the dependencies of the function.
+* `depend_list` - (Optional, String) Specifies the ID list of the dependencies.
 
 * `user_data` - (Optional, String) Specifies the Key/Value information defined for the function. Key/value data might be
   parsed with [Terraform `jsonencode()` function]('https://www.terraform.io/docs/language/functions/jsonencode.html').

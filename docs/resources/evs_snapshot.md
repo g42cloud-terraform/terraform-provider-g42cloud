@@ -56,13 +56,6 @@ In addition to all arguments above, the following attributes are exported:
 
 * `size` - The size of the snapshot in GB.
 
-## Timeouts
-
-This resource provides the following timeouts configuration options:
-
-* `create` - Default is 10 minute.
-* `delete` - Default is 3 minute.
-
 ## Import
 
 EVS snapshot can be imported using the `snapshot id`, e.g.
@@ -70,3 +63,10 @@ EVS snapshot can be imported using the `snapshot id`, e.g.
 ```
  $ terraform import g42cloud_evs_snapshot.snapshot_1 3a11b255-3bb6-46f3-91e4-3338baa92dd6
 ```
+
+## Timeouts
+
+This resource provides the following timeouts configuration options:
+
+* `create` - Default is 10 minute.
+* `delete` - Default is 3 minute.

@@ -1,0 +1,16 @@
+5c5
+< # huaweicloud_cce_node_pool
+---
+> # g42cloud_cce_node_pool
+16c16
+< resource "huaweicloud_cce_node_pool" "node_pool" {
+---
+> resource "g42cloud_cce_node_pool" "node_pool" {
+184c184
+< $ terraform import huaweicloud_cce_node_pool.my_node_pool 5c20fdad-7288-11eb-b817-0255ac10158b/e9287dff-7288-11eb-b817-0255ac10158b
+---
+> $ terraform import g42cloud_cce_node_pool.my_node_pool 5c20fdad-7288-11eb-b817-0255ac10158b/e9287dff-7288-11eb-b817-0255ac10158b
+195c195
+< resource "huaweicloud_cce_node_pool" "my_node_pool" {
+---
+> resource "g42cloud_cce_node_pool" "my_node_pool" {

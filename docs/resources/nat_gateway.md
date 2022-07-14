@@ -4,17 +4,17 @@ subcategory: "NAT Gateway (NAT)"
 
 # g42cloud_nat_gateway
 
-Manages a Nat gateway resource within G42Cloud Nat
+Manages a Nat gateway resource within G42Cloud Nat.
 
 ## Example Usage
 
 ```hcl
 resource "g42cloud_nat_gateway" "nat_1" {
-  name                = "Terraform"
-  description         = "test for terraform"
-  spec                = "3"
-  router_id           = "2c1fe4bd-ebad-44ca-ae9d-e94e63847b75"
-  internal_network_id = "dc8632e2-d9ff-41b1-aa0c-d455557314a0"
+  name        = "test"
+  description = "test for terraform"
+  spec        = "3"
+  vpc_id      = "2c1fe4bd-ebad-44ca-ae9d-e94e63847b75"
+  subnet_id   = "dc8632e2-d9ff-41b1-aa0c-d455557314a0"
 }
 ```
 

@@ -1,0 +1,13 @@
+5c5
+< # huaweicloud_cce_cluster
+---
+> # g42cloud_cce_cluster
+7,8c7
+< Provides details about the cluster and obtains certificate for accessing cluster information. This is an alternative
+< to `huaweicloud_cce_cluster_v3`
+---
+> Provides details about the cluster and obtains certificate for accessing cluster information.
+15c14
+< data "huaweicloud_cce_cluster" "cluster" {
+---
+> data "g42cloud_cce_cluster" "cluster" {

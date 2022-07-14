@@ -1,0 +1,24 @@
+5c5
+< # huaweicloud_lb_whitelist
+---
+> # g42cloud_lb_whitelist
+7c7
+< Manages an ELB whitelist resource within HuaweiCloud. This is an alternative to `huaweicloud_lb_whitelist_v2`
+---
+> Manages an ELB whitelist resource within G42Cloud.
+12c12
+< resource "huaweicloud_lb_listener" "listener_1" {
+---
+> resource "g42cloud_lb_listener" "listener_1" {
+19c19
+< resource "huaweicloud_lb_whitelist" "whitelist_1" {
+---
+> resource "g42cloud_lb_whitelist" "whitelist_1" {
+22c22
+<   listener_id      = huaweicloud_lb_listener.listener_1.id
+---
+>   listener_id      = g42cloud_lb_listener.listener_1.id
+60c60
+< $ terraform import huaweicloud_lb_whitelist.whitelist_1 5c20fdad-7288-11eb-b817-0255ac10158b
+---
+> $ terraform import g42cloud_lb_whitelist.whitelist_1 5c20fdad-7288-11eb-b817-0255ac10158b

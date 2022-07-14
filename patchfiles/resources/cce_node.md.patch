@@ -1,0 +1,230 @@
+5c5
+< # huaweicloud_cce_node
+---
+> # g42cloud_cce_node
+7c7
+< Add a node to a CCE cluster. This is an alternative to `huaweicloud_cce_node_v3`
+---
+> Add a node to a CCE cluster.
+12c12
+< data "huaweicloud_availability_zones" "myaz" {}
+---
+> data "g42cloud_availability_zones" "myaz" {}
+14c14
+< resource "huaweicloud_compute_keypair" "mykp" {
+---
+> resource "g42cloud_compute_keypair" "mykp" {
+19c19
+< resource "huaweicloud_cce_cluster" "mycluster" {
+---
+> resource "g42cloud_cce_cluster" "mycluster" {
+23,24c23,24
+<   vpc_id                 = huaweicloud_vpc.myvpc.id
+<   subnet_id              = huaweicloud_vpc_subnet.mysubnet.id
+---
+>   vpc_id                 = g42cloud_vpc.myvpc.id
+>   subnet_id              = g42cloud_vpc_subnet.mysubnet.id
+28,29c28,29
+< resource "huaweicloud_cce_node" "node" {
+<   cluster_id        = huaweicloud_cce_cluster.mycluster.id
+---
+> resource "g42cloud_cce_node" "node" {
+>   cluster_id        = g42cloud_cce_cluster.mycluster.id
+32,33c32,33
+<   availability_zone = data.huaweicloud_availability_zones.myaz.names[0]
+<   key_pair          = huaweicloud_compute_keypair.mykp.name
+---
+>   availability_zone = data.g42cloud_availability_zones.myaz.names[0]
+>   key_pair          = g42cloud_compute_keypair.mykp.name
+49,50c49,50
+< resource "huaweicloud_cce_node" "mynode" {
+<   cluster_id        = huaweicloud_cce_cluster.mycluster.id
+---
+> resource "g42cloud_cce_node" "mynode" {
+>   cluster_id        = g42cloud_cce_cluster.mycluster.id
+53,54c53,54
+<   availability_zone = data.huaweicloud_availability_zones.myaz.names[0]
+<   key_pair          = huaweicloud_compute_keypair.mykp.name
+---
+>   availability_zone = data.g42cloud_availability_zones.myaz.names[0]
+>   key_pair          = g42cloud_compute_keypair.mykp.name
+76c76
+< resource "huaweicloud_vpc_eip" "myeip" {
+---
+> resource "g42cloud_vpc_eip" "myeip" {
+88,89c88,89
+< resource "huaweicloud_cce_node" "mynode" {
+<   cluster_id        = huaweicloud_cce_cluster.mycluster.id
+---
+> resource "g42cloud_cce_node" "mynode" {
+>   cluster_id        = g42cloud_cce_cluster.mycluster.id
+92,93c92,93
+<   availability_zone = data.huaweicloud_availability_zones.myaz.names[0]
+<   key_pair          = huaweicloud_compute_keypair.mykp.name
+---
+>   availability_zone = data.g42cloud_availability_zones.myaz.names[0]
+>   key_pair          = g42cloud_compute_keypair.mykp.name
+105,180c105
+<   eip_id = huaweicloud_vpc_eip.myeip.id
+< }
+< ```
+< 
+< ## Node with storage configuration
+< 
+< ```hcl
+< resource "huaweicloud_cce_node" "mynode" {
+<   cluster_id        = huaweicloud_cce_cluster.mycluster.id
+<   name              = "mynode"
+<   flavor_id         = "s3.large.2"
+<   availability_zone = data.huaweicloud_availability_zones.myaz.names[0]
+<   key_pair          = huaweicloud_compute_keypair.mykp.name
+< 
+<   root_volume {
+<     size       = 40
+<     volumetype = "SSD"
+<   }
+<   data_volumes {
+<     size       = 100
+<     volumetype = "SSD"
+<   }
+<   data_volumes {
+<     size       = 100
+<     volumetype = "SSD"
+<     kms_key_id = huaweicloud_kms_key.mykey.id
+<   }
+< 
+<   // Storage configuration
+<   storage {
+<     selectors {
+<       name              = "cceUse"
+<       type              = "evs"
+<       match_label_size  = "100"
+<       match_label_count = 1
+<     }
+< 
+<     selectors {
+<       name                           = "user"
+<       type                           = "evs"
+<       match_label_size               = "100"
+<       match_label_metadata_encrypted = "1"
+<       match_label_metadata_cmkid     = huaweicloud_kms_key.mykey.id
+<       match_label_count              = "1"
+<     }
+< 
+<     groups {
+<       name           = "vgpaas"
+<       selector_names = ["cceUse"]
+<       cce_managed    = true
+< 
+<       virtual_spaces {
+<         name        = "kubernetes"
+<         size        = "10%"
+<         lvm_lv_type = "linear"
+<       }
+< 
+<       virtual_spaces {
+<         name        = "runtime"
+<         size        = "90%"
+<         lvm_lv_type = "linear"
+<       }
+<     }
+< 
+<     groups {
+<       name           = "vguser"
+<       selector_names = ["user"]
+< 
+<       virtual_spaces {
+<         name        = "user"
+<         size        = "100%"
+<         lvm_lv_type = "linear"
+<         lvm_path    = "/workspace"
+<       }
+<     }
+<   }
+---
+>   eip_id = g42cloud_vpc_eip.myeip.id
+236,246d160
+< * `storage` - (Optional, List, ForceNew) Specifies the disk initialization management parameter.
+<   If omitted, disks are managed based on the DockerLVMConfigOverride parameter in extendParam.
+<   This parameter is supported for clusters of v1.15.11 and later. Changing this parameter will create a new resource.
+< 
+<   + `selectors` - (Required, List, ForceNew) Specifies the disk selection.
+<     Matched disks are managed according to match labels and storage type. Structure is documented below.
+<     Changing this parameter will create a new resource.
+<   + `groups` - (Required, List, ForceNew) Specifies the storage group consists of multiple storage devices.
+<     This is used to divide storage space. Structure is documented below.
+<     Changing this parameter will create a new resource.
+< 
+283,300d196
+< * `charging_mode` - (Optional, String, ForceNew) Specifies the charging mode of the CCE node. Valid values are *prePaid*
+<   and *postPaid*, defaults to *postPaid*. Changing this creates a new resource.
+< 
+< * `period_unit` - (Optional, String, ForceNew) Specifies the charging period unit of the CCE node.
+<   Valid values are *month* and *year*. This parameter is mandatory if `charging_mode` is set to *prePaid*.
+<   Changing this creates a new resource.
+< 
+< * `period` - (Optional, Int, ForceNew) Specifies the charging period of the CCE node. If `period_unit` is set to *month*
+<   , the value ranges from 1 to 9. If `period_unit` is set to *year*, the value ranges from 1 to 3. This parameter is
+<   mandatory if `charging_mode` is set to *prePaid*. Changing this creates a new resource.
+< 
+< * `auto_renew` - (Optional, String, ForceNew) Specifies whether auto renew is enabled. Valid values are "true" and "
+<   false". Changing this creates a new resource.
+< 
+< * `auto_pay` - (Optional, String, ForceNew) Specifies whether auto pay is enabled.
+<   Valid values are *true* and *false*. Defaults to *true*. If you set this to *false*, you need to pay the order
+<   yourself in time, be careful about the timeout of resource creation. Changing this creates a new resource.
+< 
+337,381d232
+< The `selectors` block supports:
+< 
+< * `name` - (Required, String, ForceNew) Specifies the selector name, used as the index of `selector_names` in storage group.
+<   The name of each selector must be unique. Changing this parameter will create a new resource.
+< * `type` - (Optional, String, ForceNew) Specifies the storage type. Currently, only **evs (EVS volumes)** is supported.
+<   The default value is **evs**. Changing this parameter will create a new resource.
+< * `match_label_size` - (Optional, String, ForceNew) Specifies the matched disk size. If omitted,
+<   the disk size is not limited. Example: 100. Changing this parameter will create a new resource.
+< * `match_label_volume_type` - (Optional, String, ForceNew) Specifies the EVS disk type. Currently,
+<   **SSD**, **GPSSD**, and **SAS** are supported. If omitted, the disk type is not limited.
+<   Changing this parameter will create a new resource.
+< * `match_label_metadata_encrypted` - (Optional, String, ForceNew) Specifies the disk encryption identifier.
+<   Values can be: **0** indicates that the disk is not encrypted and **1** indicates that the disk is encrypted.
+<   If omitted, whether the disk is encrypted is not limited. Changing this parameter will create a new resource.
+< * `match_label_metadata_cmkid` - (Optional, String, ForceNew) Specifies the cstomer master key ID of an encrypted
+<   disk. Changing this parameter will create a new resource.
+< * `match_label_count` - (Optional, String, ForceNew) Specifies the number of disks to be selected. If omitted,
+<   all disks of this type are selected. Changing this parameter will create a new resource.
+< 
+< The `groups` block supports:
+< 
+< * `name` - (Required, String, ForceNew) Specifies the name of a virtual storage group. Each group name must be unique.
+<   Changing this parameter will create a new resource.
+< * `cce_managed`  - (Optional, Bool, ForceNew) Specifies the whether the storage space is for **kubernetes** and
+<   **runtime** components. Only one group can be set to true. The default value is **false**.
+<   Changing this parameter will create a new resource.
+< * `selector_names` - (Required, List, ForceNew) Specifies the list of names of seletors to match.
+<   This parameter corresponds to name in `selectors`. A group can match multiple selectors,
+<   but a selector can match only one group. Changing this parameter will create a new resource.
+< * `virtual_spaces` - (Required, List, ForceNew) Specifies the detailed management of space configuration in a group.
+<   Changing this parameter will create a new resource.
+< 
+<   + `name` - (Required, String, ForceNew) Specifies the virtual space name. Currently, only **kubernetes**, **runtime**,
+<     and **user** are supported. Changing this parameter will create a new resource.
+<   + `size` - (Required, String, ForceNew) Specifies the size of a virtual space. Only an integer percentage is supported.
+<     Example: 90%. Note that the total percentage of all virtual spaces in a group cannot exceed 100%.
+<     Changing this parameter will create a new resource.
+<   + `lvm_lv_type` - (Optional, String, ForceNew) Specifies the LVM write mode, values can be **linear** and **striped**.
+<     This parameter takes effect only in **kubernetes** and **user** configuration. Changing this parameter will create
+<     a new resource.
+<   + `lvm_path` - (Optional, String, ForceNew) Specifies the absolute path to which the disk is attached.
+<     This parameter takes effect only in **user** configuration. Changing this parameter will create a new resource.
+<   + `runtime_lv_type` - (Optional, String, ForceNew) Specifies the LVM write mode, values can be **linear** and **striped**.
+<     This parameter takes effect only in **runtime** configuration. Changing this parameter will create a new resource.
+< 
+403c254
+< $ terraform import huaweicloud_cce_node.my_node 5c20fdad-7288-11eb-b817-0255ac10158b/e9287dff-7288-11eb-b817-0255ac10158b
+---
+> $ terraform import g42cloud_cce_node.my_node 5c20fdad-7288-11eb-b817-0255ac10158b/e9287dff-7288-11eb-b817-0255ac10158b
+414c265
+< resource "huaweicloud_cce_node" "my_node" {
+---
+> resource "g42cloud_cce_node" "my_node" {
