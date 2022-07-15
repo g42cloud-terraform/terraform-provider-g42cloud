@@ -1,0 +1,16 @@
+5c5
+< # huaweicloud_smn_topic
+---
+> # g42cloud_smn_topic
+7c7
+< Manages an SMN Topic resource within HuaweiCloud.
+---
+> Manages an SMN Topic resource within G42Cloud.
+12c12
+< resource "huaweicloud_smn_topic" "topic_1" {
+---
+> resource "g42cloud_smn_topic" "topic_1" {
+57c57
+< $ terraform import huaweicloud_smn_topic.topic_1 urn:smn:cn-north-4:0970dd7a1300f5672ff2c003c60ae115:topic_1
+---
+> $ terraform import g42cloud_smn_topic.topic_1 urn:smn:cn-north-4:0970dd7a1300f5672ff2c003c60ae115:topic_1

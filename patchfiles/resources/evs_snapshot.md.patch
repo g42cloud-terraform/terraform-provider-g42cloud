@@ -1,0 +1,24 @@
+5c5
+< # huaweicloud_evs_snapshot
+---
+> # g42cloud_evs_snapshot
+12c12
+< resource "huaweicloud_evs_volume" "myvolume" {
+---
+> resource "g42cloud_evs_volume" "myvolume" {
+18c18
+<   availability_zone = "cn-north-4a"
+---
+>   availability_zone = "ae-ad-1a"
+26c26
+< resource "huaweicloud_evs_snapshot" "snapshot_1" {
+---
+> resource "g42cloud_evs_snapshot" "snapshot_1" {
+29c29
+<   volume_id   = huaweicloud_evs_volume.myvolume.id
+---
+>   volume_id   = g42cloud_evs_volume.myvolume.id
+64c64
+<  $ terraform import huaweicloud_evs_snapshot.snapshot_1 3a11b255-3bb6-46f3-91e4-3338baa92dd6
+---
+>  $ terraform import g42cloud_evs_snapshot.snapshot_1 3a11b255-3bb6-46f3-91e4-3338baa92dd6

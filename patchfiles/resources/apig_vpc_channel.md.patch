@@ -1,0 +1,16 @@
+5c5
+< # huaweicloud_apig_vpc_channel
+---
+> # g42cloud_apig_vpc_channel
+7c7
+< Manages a VPC channel resource within HuaweiCloud.
+---
+> Manages a VPC channel resource within G42Cloud.
+17c17
+< resource "huaweicloud_apig_vpc_channel" "test" {
+---
+> resource "g42cloud_apig_vpc_channel" "test" {
+115c115
+< $ terraform import huaweicloud_apig_vpc_channel.test <instance id>/<channel name>
+---
+> $ terraform import g42cloud_apig_vpc_channel.test <instance id>/<channel name>

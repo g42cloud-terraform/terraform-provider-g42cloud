@@ -1,0 +1,30 @@
+5c5
+< # huaweicloud_obs_bucket_object
+---
+> # g42cloud_obs_bucket_object
+14c14
+< resource "huaweicloud_obs_bucket_object" "object" {
+---
+> resource "g42cloud_obs_bucket_object" "object" {
+25c25
+< resource "huaweicloud_obs_bucket" "examplebucket" {
+---
+> resource "g42cloud_obs_bucket" "examplebucket" {
+30,31c30,31
+< resource "huaweicloud_obs_bucket_object" "object" {
+<   bucket = huaweicloud_obs_bucket.examplebucket.bucket
+---
+> resource "g42cloud_obs_bucket_object" "object" {
+>   bucket = g42cloud_obs_bucket.examplebucket.bucket
+40c40
+< resource "huaweicloud_obs_bucket_object" "examplebucket_object" {
+---
+> resource "g42cloud_obs_bucket_object" "examplebucket_object" {
+95c95
+< $ terraform import huaweicloud_obs_bucket_object.object bucket/key
+---
+> $ terraform import g42cloud_obs_bucket_object.object bucket/key
+105c105
+< resource "huaweicloud_obs_bucket_object" "object" {
+---
+> resource "g42cloud_obs_bucket_object" "object" {

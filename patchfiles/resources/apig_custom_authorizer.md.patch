@@ -1,0 +1,16 @@
+5c5
+< # huaweicloud_apig_custom_authorizer
+---
+> # g42cloud_apig_custom_authorizer
+7c7
+< Manages an APIG custom authorizer resource within HuaweiCloud.
+---
+> Manages an APIG custom authorizer resource within G42Cloud.
+16c16
+< resource "huaweicloud_apig_custom_authorizer" "test" {
+---
+> resource "g42cloud_apig_custom_authorizer" "test" {
+96c96
+< $ terraform import huaweicloud_apig_custom_authorizer.test <instance id>/<name>
+---
+> $ terraform import g42cloud_apig_custom_authorizer.test <instance id>/<name>

@@ -1,0 +1,24 @@
+5c5
+< # huaweicloud_dds_instance
+---
+> # g42cloud_dds_instance
+7c7
+< Manages dds instance resource within HuaweiCloud This is an alternativeto `huaweicloud_dds_instance_v3`
+---
+> Manages dds instance resource within G42Cloud
+12c12
+< resource "huaweicloud_dds_instance" "instance" {
+---
+> resource "g42cloud_dds_instance" "instance" {
+55c55
+< resource "huaweicloud_dds_instance" "instance" {
+---
+> resource "g42cloud_dds_instance" "instance" {
+210c210
+< terraform import huaweicloud_dds_instance.instance 9c6d6ff2cba3434293fd479571517e16in02
+---
+> terraform import g42cloud_dds_instance.instance 9c6d6ff2cba3434293fd479571517e16in02
+221c221
+< resource "huaweicloud_dds_instance" "instance" {
+---
+> resource "g42cloud_dds_instance" "instance" {

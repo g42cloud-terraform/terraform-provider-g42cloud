@@ -9,11 +9,15 @@ Manages Server Group resource within G42Cloud.
 ## Example Usage
 
 ```hcl
+data "g42cloud_compute_instance" "instance_demo" {
+  name = "ecs-servergroup-demo"
+}
+
 resource "g42cloud_compute_servergroup" "test-sg" {
   name     = "my-sg"
   policies = ["anti-affinity"]
   members  = [
-    data.huaweicloud_compute_instance.instance_demo.id,
+    data.g42cloud_compute_instance.instance_demo.id,
   ]
 }
 ```

@@ -1,0 +1,27 @@
+5c5
+< # huaweicloud_cce_addon
+---
+> # g42cloud_cce_addon
+7c7
+< Provides a CCE add-on resource within HuaweiCloud.
+---
+> Provides a CCE add-on resource within G42Cloud.
+14c14
+< resource "huaweicloud_cce_addon" "addon_test" {
+---
+> resource "g42cloud_cce_addon" "addon_test" {
+16,17c16,17
+<   template_name = "metrics-server"
+<   version       = "1.0.0"
+---
+>   template_name = "autoscaler"
+>   version       = "1.15.10"
+68,69c68
+< the add-on type and version. For more detailed description of add-ons
+< see [add-ons description](https://github.com/huaweicloud/terraform-provider-huaweicloud/blob/master/examples/cce/basic/cce-addon-templates.md)
+---
+> the add-on type and version.
+91c90
+< $ terraform import huaweicloud_cce_addon.my_addon bb6923e4-b16e-11eb-b0cd-0255ac101da1/c7ecb230-b16f-11eb-b3b6-0255ac1015a3
+---
+> $ terraform import g42cloud_cce_addon.my_addon bb6923e4-b16e-11eb-b0cd-0255ac101da1/c7ecb230-b16f-11eb-b3b6-0255ac1015a3

@@ -2,13 +2,11 @@
 subcategory: "Identity and Access Management (IAM)"
 ---
 
-# g42cloud\_identity\_group
+# g42cloud_identity_group
 
 Manages a User Group resource within G42Cloud IAM service.
-This is an alternative to `g42cloud_identity_group_v3`
 
-Note: You _must_ have admin privileges in your G42Cloud cloud to use
-this resource.
+Note: You *must* have admin privileges in your G42Cloud cloud to use this resource.
 
 ## Example Usage
 
@@ -26,8 +24,6 @@ The following arguments are supported:
 * `name` - (Required, String) Specifies the name of the group.The length is less than or equal to 64 bytes.
 
 * `description` - (Optional, String) Specifies the description of the group.
-
-* `domain_id` - (Optional) The domain this group belongs to.
 
 ## Attributes Reference
 

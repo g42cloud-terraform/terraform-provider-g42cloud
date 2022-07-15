@@ -15,9 +15,9 @@ resource "g42cloud_vpc" "myvpc" {
 }
 
 resource "g42cloud_vpc_subnet" "mysubnet" {
-  name          = "subnet"
-  cidr          = "192.168.0.0/16"
-  gateway_ip    = "192.168.0.1"
+  name       = "subnet"
+  cidr       = "192.168.0.0/16"
+  gateway_ip = "192.168.0.1"
 
   //dns is required for cce node installing
   primary_dns   = "100.125.3.250"
@@ -43,9 +43,9 @@ resource "g42cloud_vpc" "myvpc" {
 }
 
 resource "g42cloud_vpc_subnet" "mysubnet" {
-  name          = "subnet"
-  cidr          = "192.168.0.0/16"
-  gateway_ip    = "192.168.0.1"
+  name       = "subnet"
+  cidr       = "192.168.0.0/16"
+  gateway_ip = "192.168.0.1"
 
   //dns is required for cce node installing
   pprimary_dns  = "100.125.3.250"
@@ -169,24 +169,10 @@ The following arguments are supported:
 * `extend_param` - (Optional, Map, ForceNew) Specifies the extended parameter.
   Changing this parameter will create a new cluster resource.
 
-* `charging_mode` - (Optional, String, ForceNew) Specifies the charging mode of the CCE cluster.
-  Valid values are **prePaid** and **postPaid**, defaults to **postPaid**.
-  Changing this parameter will create a new cluster resource.
-
-* `period_unit` - (Optional, String, ForceNew) Specifies the charging period unit of the CCE cluster.
-  Valid values are **month** and **year**. This parameter is mandatory if `charging_mode` is set to **prePaid**.
-  Changing this parameter will create a new cluster resource.
-
-* `period` - (Optional, Int, ForceNew) Specifies the charging period of the CCE cluster.
-  If `period_unit` is set to **month**, the value ranges from 1 to 9.
-  If `period_unit` is set to **year**, the value ranges from 1 to 3.
-  This parameter is mandatory if `charging_mode` is set to **prePaid**.
-  Changing this parameter will create a new cluster resource.
-
-* `auto_renew` - (Optional, String, ForceNew) Specifies whether auto renew is enabled. Valid values are **true** and
-  **false**. Changing this parameter will create a new cluster resource.
-
 * `enterprise_project_id` - (Optional, String, ForceNew) The enterprise project ID of the CCE cluster.
+  Changing this parameter will create a new cluster resource.
+
+* `tags` - (Optional, Map, ForceNew) Specifies the tags of the CCE cluster, key/value pair format.
   Changing this parameter will create a new cluster resource.
 
 * `delete_evs` - (Optional, String) Specified whether to delete associated EVS disks when deleting the CCE cluster.
@@ -262,7 +248,7 @@ Cluster can be imported using the cluster ID, e.g.
  $ terraform import g42cloud_cce_cluster.cluster_1 4779ab1c-7c1a-44b1-a02e-93dfc361b32d
 ```
 
-Note that the imported state may not be identical to your resource definition, due to some attrubutes missing from the
+Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
 API response, security or some other reason. The missing attributes include:
 `delete_efs`, `delete_eni`, `delete_evs`, `delete_net`, `delete_obs`, `delete_sfs` and `delete_all`. It is generally
 recommended running `terraform plan` after importing an CCE cluster. You can then decide if changes should be applied to

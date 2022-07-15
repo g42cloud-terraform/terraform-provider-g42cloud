@@ -1,0 +1,51 @@
+5c5
+< # huaweicloud_bms_instance
+---
+> # g42cloud_bms_instance
+7c7
+< Manages a BMS instance resource within HuaweiCloud.
+---
+> Manages a BMS instance resource within G42Cloud.
+28c28
+< data "huaweicloud_availability_zones" "myaz" {}
+---
+> data "g42cloud_availability_zones" "myaz" {}
+30c30
+< data "huaweicloud_vpc" "myvpc" {
+---
+> data "g42cloud_vpc" "myvpc" {
+34c34
+< data "huaweicloud_vpc_subnet" "mynet" {
+---
+> data "g42cloud_vpc_subnet" "mynet" {
+38c38
+< data "huaweicloud_networking_secgroup" "mysecgroup" {
+---
+> data "g42cloud_networking_secgroup" "mysecgroup" {
+42c42
+< resource "huaweicloud_bms_instance" "test" {
+---
+> resource "g42cloud_bms_instance" "test" {
+47,50c47,50
+<   security_groups       = [data.huaweicloud_networking_secgroup.mysecgroup.id]
+<   availability_zone     = data.huaweicloud_availability_zones.myaz.names[0]
+<   vpc_id                = data.huaweicloud_vpc.myvpc.id
+<   eip_id                = huaweicloud_vpc_eip.myeip.id
+---
+>   security_groups       = [data.g42cloud_networking_secgroup.mysecgroup.id]
+>   availability_zone     = data.g42cloud_availability_zones.myaz.names[0]
+>   vpc_id                = data.g42cloud_vpc.myvpc.id
+>   eip_id                = g42cloud_vpc_eip.myeip.id
+65c65
+<     subnet_id  = data.huaweicloud_vpc_subnet.mynet.id
+---
+>     subnet_id  = data.g42cloud_vpc_subnet.mynet.id
+96,97c96
+<   Please following [reference](https://developer.huaweicloud.com/intl/en-us/endpoint?BMS)
+<   for the values. Changing this creates a new instance.
+---
+>   Changing this creates a new instance.
+152c151
+<   [Disk Types and Disk Performance](https://support.huaweicloud.com/intl/en-us/productdesc-evs/en-us_topic_0014580744.html)
+---
+>   [Disk Types and Disk Performance](https://docs.g42cloud.com/en-us/usermanual/evs/en-us_topic_0014580744.html)

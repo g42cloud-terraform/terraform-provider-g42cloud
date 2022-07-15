@@ -9,12 +9,12 @@ Provides a CCE add-on resource within G42Cloud.
 ## Example Usage
 
 ```hcl
-variable "cluster_id" { }
+variable "cluster_id" {}
 
 resource "g42cloud_cce_addon" "addon_test" {
-    cluster_id    = var.cluster_id
-    template_name = "autoscaler"
-    version       = "1.15.10"
+  cluster_id    = var.cluster_id
+  template_name = "autoscaler"
+  version       = "1.15.10"
 }
 ```
 
@@ -71,9 +71,9 @@ the add-on type and version.
 
 In addition to all arguments above, the following attributes are exported:
 
- * `id` -  ID of the addon instance.
- * `status` - Addon status information.
- * `description` - Description of addon instance.
+* `id` - ID of the add-on instance.
+* `status` - Add-on status information.
+* `description` - Description of add-on instance.
 
 ## Timeouts
 
@@ -84,8 +84,7 @@ This resource provides the following timeouts configuration options:
 
 ## Import
 
-CCE addon can be imported using the cluster ID and addon ID
-separated by a slash, e.g.:
+CCE add-on can be imported using the cluster ID and add-on ID separated by a slash, e.g.:
 
 ```
 $ terraform import g42cloud_cce_addon.my_addon bb6923e4-b16e-11eb-b0cd-0255ac101da1/c7ecb230-b16f-11eb-b3b6-0255ac1015a3

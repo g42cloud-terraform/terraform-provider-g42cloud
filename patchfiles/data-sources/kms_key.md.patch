@@ -1,0 +1,17 @@
+2c2
+< subcategory: "Data Encryption Workshop (DEW)"
+---
+> subcategory: "Key Management Service (KMS)"
+5c5
+< # huaweicloud_kms_key
+---
+> # g42cloud_kms_key
+7c7
+< Use this data source to get the ID of an available HuaweiCloud KMS key.
+---
+> Use this data source to get the ID of an available G42Cloud KMS key.
+12c12,13
+< data "huaweicloud_kms_key" "key_1" {
+---
+> 
+> data "g42cloud_kms_key" "key_1" {

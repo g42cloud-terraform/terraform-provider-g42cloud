@@ -2,9 +2,9 @@
 subcategory: "Document Database Service (DDS)"
 ---
 
-# g42cloud\_dds\_flavors
+# g42cloud_dds_flavors
 
-Use this data source to get the ID of an available G42Cloud dds flavor.
+Use this data source to get the ID of an available G42Cloud DDS flavor.
 
 ## Example Usage
 

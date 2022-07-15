@@ -14,6 +14,28 @@ data "g42cloud_images_image" "ubuntu" {
   visibility  = "public"
   most_recent = true
 }
+
+data "g42cloud_images_image" "centos-1" {
+  architecture = "x86"
+  os_version   = "CentOS 7.4 64bit"
+  visibility   = "public"
+  most_recent  = true
+}
+
+data "g42cloud_images_image" "centos-2" {
+  architecture = "x86"
+  name_regex   = "^CentOS 7.4"
+  visibility   = "public"
+  most_recent  = true
+}
+
+data "g42cloud_images_image" "bms_image" {
+  architecture = "x86"
+  image_type   = "Ironic"
+  os_version   = "CentOS 7.4 64bit"
+  visibility   = "public"
+  most_recent  = true
+}
 ```
 
 ## Argument Reference
@@ -49,6 +71,8 @@ data "g42cloud_images_image" "ubuntu" {
 
 * `sort_key` - (Optional, String) Sort images based on a certain key. Must be one of
   "name", "container_format", "disk_format", "status", "id" or "size". Defaults to `name`.
+
+* `enterprise_project_id` - (Optional, String) Specifies the enterprise project ID of the image.
 
 ## Attributes Reference
 

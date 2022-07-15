@@ -1,0 +1,16 @@
+5c5
+< # huaweicloud_apig_api
+---
+> # g42cloud_apig_api
+7c7
+< Manages an APIG API resource within HuaweiCloud.
+---
+> Manages an APIG API resource within G42Cloud.
+19c19
+< resource "huaweicloud_apig_api" "test" {
+---
+> resource "g42cloud_apig_api" "test" {
+371c371
+< $ terraform import huaweicloud_apig_api.test <instance_id>/<name>
+---
+> $ terraform import g42cloud_apig_api.test <instance_id>/<name>

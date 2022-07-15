@@ -2,17 +2,16 @@
 subcategory: "Identity and Access Management (IAM)"
 ---
 
-# g42cloud\_identity\_role
+# g42cloud_identity_role
 
 Manages a **Custom Policy** resource within G42Cloud IAM service.
 
-Note: You _must_ have admin privileges in your G42Cloud cloud to use
-this resource.
+->**Note** You *must* have admin privileges in your G42Cloud cloud to use this resource.
 
 ## Example Usage
 
 ```hcl
-resource "g42cloud_identity_role" role1 {
+resource "g42cloud_identity_role" "role1" {
   name        = "test"
   description = "created by terraform"
   type        = "AX"
@@ -46,14 +45,14 @@ EOF
 
 The following arguments are supported:
 
-* `name` - (Required, String) Name of the custom policy. 
+* `name` - (Required, String) Name of the custom policy.
 
 * `description` - (Required, String) Description of the custom policy.
 
-* `type` - (Required, String) Display mode. Valid options are _AX_: Account level and _XA_: Project level.
+* `type` - (Required, String) Display mode. Valid options are *AX*: Account level and *XA*: Project level.
 
 * `policy` - (Required, String) Document of the custom policy in JSON format. For more details, please refer to the
-    [offical document](https://docs.g42cloud.com/en-us/usermanual/iam/iam_01_0017.html).
+  [offical document](https://docs.g42cloud.com/en-us/usermanual/iam/iam_01_0017.html).
 
 ## Attributes Reference
 
@@ -68,5 +67,5 @@ In addition to all arguments above, the following attributes are exported:
 Roles can be imported using the `id`, e.g.
 
 ```
-$ terraform import g42cloud_identity_role.role_1 89c60255-9bd6-460c-822a-e2b959ede9d2
+$ terraform import g42cloud_identity_role.role1 89c60255-9bd6-460c-822a-e2b959ede9d2
 ```

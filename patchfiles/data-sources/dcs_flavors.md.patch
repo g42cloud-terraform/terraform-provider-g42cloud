@@ -1,0 +1,8 @@
+5c5
+< # huaweicloud_dcs_flavors
+---
+> # g42cloud_dcs_flavors
+12c12
+< data "huaweicloud_dcs_flavors" "flavors" {
+---
+> data "g42cloud_dcs_flavors" "flavors" {

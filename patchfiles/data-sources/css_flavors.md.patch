@@ -1,0 +1,16 @@
+5c5
+< # huaweicloud_css_flavors
+---
+> # g42cloud_css_flavors
+7c7
+< Use this data source to get available flavors of HuaweiCloud CSS node instance.
+---
+> Use this data source to get available flavors of G42Cloud CSS node instance.
+12c12
+< data "huaweicloud_css_flavors" "test" {
+---
+> data "g42cloud_css_flavors" "test" {
+47c47
+< * `name` - The name of the CSS flavor. It is referenced by `node_config.flavor` in `huaweicloud_css_cluster`.
+---
+> * `name` - The name of the CSS flavor. It is referenced by `node_config.flavor` in `g42cloud_css_cluster`.

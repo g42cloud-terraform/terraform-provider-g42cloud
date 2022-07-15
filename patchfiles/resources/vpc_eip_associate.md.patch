@@ -1,0 +1,28 @@
+5c5
+< # huaweicloud_vpc_eip_associate
+---
+> # g42cloud_vpc_eip_associate
+17c17
+< resource "huaweicloud_vpc_eip_associate" "associated" {
+---
+> resource "g42cloud_vpc_eip_associate" "associated" {
+29c29
+< data "huaweicloud_networking_port" "myport" {
+---
+> data "g42cloud_networking_port" "myport" {
+34c34
+< resource "huaweicloud_vpc_eip" "myeip" {
+---
+> resource "g42cloud_vpc_eip" "myeip" {
+46,48c46,48
+< resource "huaweicloud_vpc_eip_associate" "associated" {
+<   public_ip = huaweicloud_vpc_eip.myeip.address
+<   port_id   = data.huaweicloud_networking_port.myport.id
+---
+> resource "g42cloud_vpc_eip_associate" "associated" {
+>   public_ip = g42cloud_vpc_eip.myeip.address
+>   port_id   = data.g42cloud_networking_port.myport.id
+90c90
+< $ terraform import huaweicloud_vpc_eip_associate.eip 2c7f39f3-702b-48d1-940c-b50384177ee1
+---
+> $ terraform import g42cloud_vpc_eip_associate.eip 2c7f39f3-702b-48d1-940c-b50384177ee1

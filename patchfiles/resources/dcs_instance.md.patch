@@ -1,0 +1,74 @@
+5c5
+< # huaweicloud_dcs_instance
+---
+> # g42cloud_dcs_instance
+7c7
+< Manages a DCS instance within HuaweiCloud.
+---
+> Manages a DCS instance within G42Cloud.
+11c11
+< You can use this resource to manage Memcached instances that exist in HuaweiCloud.
+---
+> You can use this resource to manage Memcached instances that exist in G42Cloud.
+21c21
+< data "huaweicloud_dcs_flavors" "single_flavors" {
+---
+> data "g42cloud_dcs_flavors" "single_flavors" {
+26c26
+< resource "huaweicloud_dcs_instance" "instance_1" {
+---
+> resource "g42cloud_dcs_instance" "instance_1" {
+30,32c30,32
+<   capacity           = data.huaweicloud_dcs_flavors.single_flavors.capacity
+<   flavor             = data.huaweicloud_dcs_flavors.single_flavors.flavors[0].name
+<   availability_zones = ["cn-north-1a"]
+---
+>   capacity           = data.g42cloud_dcs_flavors.single_flavors.capacity
+>   flavor             = data.g42cloud_dcs_flavors.single_flavors.flavors[0].name
+>   availability_zones = ["ae-ad-1a"]
+45c45
+< resource "huaweicloud_dcs_instance" "instance_2" {
+---
+> resource "g42cloud_dcs_instance" "instance_2" {
+111c111
+<   + It can be obtained through this data source `huaweicloud_dcs_flavors`.
+---
+>   + It can be obtained through this data source `g42cloud_dcs_flavors`.
+113c113
+<     in [DCS Instance Specifications](https://support.huaweicloud.com/intl/en-us/productdesc-dcs/dcs-pd-200713003.html)
+---
+>     in [DCS Instance Specifications](https://docs.g42cloud.com/api/dcs/dcs-api-0312040.html)
+183,207d182
+< * `charging_mode` - (Optional, String, ForceNew) Specifies the charging mode of the redis instance.
+<   The valid values are as follows:
+<   + `prePaid`: indicates the yearly/monthly billing mode.
+<   + `postPaid`: indicates the pay-per-use billing mode.
+<     Default value is `postPaid`.
+<     Changing this creates a new instance.
+< 
+< * `period_unit` - (Optional, String, ForceNew) Specifies the charging period unit of the instance.
+<   Valid values are *month* and *year*. This parameter is mandatory if `charging_mode` is set to *prePaid*.
+<   Changing this creates a new instance.
+< 
+< * `period` - (Optional, Int, ForceNew) Specifies the charging period of the instance.
+<   If `period_unit` is set to *month*, the value ranges from 1 to 9.
+<   If `period_unit` is set to *year*, the value ranges from 1 to 3.
+<   This parameter is mandatory if `charging_mode` is set to *prePaid*.
+<   Changing this creates a new instance.
+< 
+< * `auto_renew` - (Optional, String, ForceNew) Specifies whether auto renew is enabled.
+<   Valid values are `true` and `false`, defaults to `false`.
+<   Changing this creates a new instance.
+< 
+< * `auto_pay` - (Optional, String, ForceNew) Specifies whether auto pay is enabled.
+<   Valid values are *true* and *false*. Defaults to *true*. If you set this to *false*, you need to pay the order
+<   yourself in time, be careful about the timeout of resource creation. Changing this creates a new instance.
+< 
+286c261
+< terraform import huaweicloud_dcs_instance.instance_1 80e373f9-872e-4046-aae9-ccd9ddc55511
+---
+> terraform import g42cloud_dcs_instance.instance_1 80e373f9-872e-4046-aae9-ccd9ddc55511
+298c273
+< resource "huaweicloud_dcs_instance" "instance_1" {
+---
+> resource "g42cloud_dcs_instance" "instance_1" {

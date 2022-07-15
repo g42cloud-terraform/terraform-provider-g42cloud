@@ -1,0 +1,160 @@
+5c5
+< # huaweicloud_compute_instance
+---
+> # g42cloud_compute_instance
+7c7
+< Manages a ECS VM instance resource within HuaweiCloud.
+---
+> Manages a ECS VM instance resource within G42Cloud.
+16c16
+< data "huaweicloud_availability_zones" "myaz" {}
+---
+> data "g42cloud_availability_zones" "myaz" {}
+18,19c18,19
+< data "huaweicloud_compute_flavors" "myflavor" {
+<   availability_zone = data.huaweicloud_availability_zones.myaz.names[0]
+---
+> data "g42cloud_compute_flavors" "myflavor" {
+>   availability_zone = data.g42cloud_availability_zones.myaz.names[0]
+25c25
+< data "huaweicloud_vpc_subnet" "mynet" {
+---
+> data "g42cloud_vpc_subnet" "mynet" {
+29c29
+< data "huaweicloud_images_image" "myimage" {
+---
+> data "g42cloud_images_image" "myimage" {
+34c34
+< resource "huaweicloud_compute_instance" "basic" {
+---
+> resource "g42cloud_compute_instance" "basic" {
+36,37c36,37
+<   image_id           = data.huaweicloud_images_image.myimage.id
+<   flavor_id          = data.huaweicloud_compute_flavors.myflavor.ids[0]
+---
+>   image_id           = data.g42cloud_images_image.myimage.id
+>   flavor_id          = data.g42cloud_compute_flavors.myflavor.ids[0]
+39c39
+<   availability_zone  = data.huaweicloud_availability_zones.myaz.names[0]
+---
+>   availability_zone  = data.g42cloud_availability_zones.myaz.names[0]
+42c42
+<     uuid = data.huaweicloud_vpc_subnet.mynet.id
+---
+>     uuid = data.g42cloud_vpc_subnet.mynet.id
+52c52
+< resource "huaweicloud_compute_instance" "myinstance" {
+---
+> resource "g42cloud_compute_instance" "myinstance" {
+58c58
+<   availability_zone  = "cn-north-4a"
+---
+>   availability_zone  = "ae-ad-1a"
+65c65
+< resource "huaweicloud_vpc_eip" "myeip" {
+---
+> resource "g42cloud_vpc_eip" "myeip" {
+77,79c77,79
+< resource "huaweicloud_compute_eip_associate" "associated" {
+<   public_ip   = huaweicloud_vpc_eip.myeip.address
+<   instance_id = huaweicloud_compute_instance.myinstance.id
+---
+> resource "g42cloud_compute_eip_associate" "associated" {
+>   public_ip   = g42cloud_vpc_eip.myeip.address
+>   instance_id = g42cloud_compute_instance.myinstance.id
+88c88
+< resource "huaweicloud_evs_volume" "myvolume" {
+---
+> resource "g42cloud_evs_volume" "myvolume" {
+90c90
+<   availability_zone = "cn-north-4a"
+---
+>   availability_zone = "ae-ad-1a"
+95c95
+< resource "huaweicloud_compute_instance" "myinstance" {
+---
+> resource "g42cloud_compute_instance" "myinstance" {
+101c101
+<   availability_zone  = "cn-north-4a"
+---
+>   availability_zone  = "ae-ad-1a"
+108,110c108,110
+< resource "huaweicloud_compute_volume_attach" "attached" {
+<   instance_id = huaweicloud_compute_instance.myinstance.id
+<   volume_id   = huaweicloud_evs_volume.myvolume.id
+---
+> resource "g42cloud_compute_volume_attach" "attached" {
+>   instance_id = g42cloud_compute_instance.myinstance.id
+>   volume_id   = g42cloud_evs_volume.myvolume.id
+122c122
+< resource "huaweicloud_compute_instance" "multi-disk" {
+---
+> resource "g42cloud_compute_instance" "multi-disk" {
+128c128
+<   availability_zone  = "cn-north-4a"
+---
+>   availability_zone  = "ae-ad-1a"
+155c155
+< resource "huaweicloud_compute_instance" "multi-net" {
+---
+> resource "g42cloud_compute_instance" "multi-net" {
+161c161
+<   availability_zone  = "cn-north-4a"
+---
+>   availability_zone  = "ae-ad-1a"
+178c178
+< resource "huaweicloud_compute_instance" "myinstance" {
+---
+> resource "g42cloud_compute_instance" "myinstance" {
+218,220c218,220
+< * `availability_zone` - (Optional, String, ForceNew) Specifies the availability zone in which to create the instance.
+<   Please following [reference](https://developer.huaweicloud.com/en-us/endpoint/?ECS)
+<   for the values. Changing this creates a new instance.
+---
+> * `availability_zone` - (Required, String, ForceNew) The availability zone in which to create the server. Please
+>   following [reference](https://docs.g42cloud.com/en-us/endpoint/index.html) for the values. Changing this creates
+>   a new server.
+230c230
+< * `system_disk_type` - (Optional, String, ForceNew) Specifies the system disk type of the instance. Defaults to `GPSSD`.
+---
+> * `system_disk_type` - (Optional, String, ForceNew) Specifies the system disk type of the instance.
+234c234
+<   [Disk Types and Disk Performance](https://support.huaweicloud.com/en-us/productdesc-evs/en-us_topic_0014580744.html).
+---
+>   [Disk Types and Disk Performance](https://docs.g42cloud.com/en-us/usermanual/evs/en-us_topic_0014580744.html)
+243a244,246
+> * `system_disk_kms_key_id` - (Optional, String, ForceNew) Specifies the ID of a KMS key. This is used to encrypt the
+>   system disk. Changing this parameter will create a new resource.
+> 
+280,298d282
+< * `charging_mode` - (Optional, String, ForceNew) Specifies the charging mode of the instance. Valid values are *prePaid*
+<   and *postPaid*, defaults to *postPaid*. Changing this creates a new instance.
+< 
+< * `period_unit` - (Optional, String, ForceNew) Specifies the charging period unit of the instance.
+<   Valid values are *month* and *year*. This parameter is mandatory if `charging_mode` is set to *prePaid*.
+<   Changing this creates a new instance.
+< 
+< * `period` - (Optional, Int, ForceNew) Specifies the charging period of the instance.
+<   If `period_unit` is set to *month* , the value ranges from 1 to 9. If `period_unit` is set to *year*, the value
+<   ranges from 1 to 3. This parameter is mandatory if `charging_mode` is set to *prePaid*. Changing this creates a
+<   new resource.
+< 
+< * `auto_renew` - (Optional, String, ForceNew) Specifies whether auto renew is enabled.
+<   Valid values are *true* and *false*. Defaults to *false*. Changing this creates a new resource.
+< 
+< * `auto_pay` - (Optional, String, ForceNew) Specifies whether auto pay is enabled.
+<   Valid values are *true* and *false*. Defaults to *true*. If you set this to *false*, you need to pay the order
+<   yourself in time, be careful about the timeout of resource creation. Changing this creates a new resource.
+< 
+343a328,330
+> * `kms_key_id` - (Optional, String, ForceNew) Specifies the ID of a KMS key. This is used to encrypt the data disk.
+>   Changing this parameter will create a new resource.
+> 
+396c383
+< terraform import huaweicloud_compute_instance.my_instance b11b407c-e604-4e8d-8bc4-92398320b847
+---
+> terraform import g42cloud_compute_instance.my_instance b11b407c-e604-4e8d-8bc4-92398320b847
+409c396
+< resource "huaweicloud_compute_instance" "myinstance" {
+---
+> resource "g42cloud_compute_instance" "myinstance" {

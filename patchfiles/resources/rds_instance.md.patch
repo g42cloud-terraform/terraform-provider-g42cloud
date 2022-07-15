@@ -1,0 +1,97 @@
+5c5
+< # huaweicloud_rds_instance
+---
+> # g42cloud_rds_instance
+7c7
+< Manage RDS instance resource within HuaweiCloud. This is an alternative to `huaweicloud_rds_instance_v3`
+---
+> Manages RDS instance resource within G42Cloud.
+14c14
+< resource "huaweicloud_networking_secgroup" "secgroup" {
+---
+> resource "g42cloud_networking_secgroup" "secgroup" {
+19c19
+< resource "huaweicloud_rds_instance" "instance" {
+---
+> resource "g42cloud_rds_instance" "instance" {
+24c24
+<   security_group_id = huaweicloud_networking_secgroup.secgroup.id
+---
+>   security_group_id = g42cloud_networking_secgroup.secgroup.id
+48c48
+< resource "huaweicloud_networking_secgroup" "secgroup" {
+---
+> resource "g42cloud_networking_secgroup" "secgroup" {
+53c53
+< resource "huaweicloud_rds_instance" "instance" {
+---
+> resource "g42cloud_rds_instance" "instance" {
+59c59
+<   security_group_id   = huaweicloud_networking_secgroup.secgroup.id
+---
+>   security_group_id   = g42cloud_networking_secgroup.secgroup.id
+83c83
+< resource "huaweicloud_kms_key" "key" {
+---
+> resource "g42cloud_kms_key" "key" {
+89c89
+< resource "huaweicloud_networking_secgroup" "secgroup" {
+---
+> resource "g42cloud_networking_secgroup" "secgroup" {
+94c94
+< resource "huaweicloud_rds_instance" "instance" {
+---
+> resource "g42cloud_rds_instance" "instance" {
+99c99
+<   security_group_id = huaweicloud_networking_secgroup.secgroup.id
+---
+>   security_group_id = g42cloud_networking_secgroup.secgroup.id
+110c110
+<     disk_encryption_id = huaweicloud_kms_key.key.id
+---
+>     disk_encryption_id = g42cloud_kms_key.key.id
+170c170
+<   [HuaweiCloud Document](https://support.huaweicloud.com/intl/en-us/api-rds/rds_01_0002.html#rds_01_0002__table613473883617)
+---
+>   [G42Cloud Document](https://docs.g42cloud.com/api/rds/rds_01_0002.html#rds_01_0002__table613473883617)
+173,190d172
+< * `charging_mode` - (Optional, String, ForceNew) Specifies the charging mode of the RDS DB instance. Valid values are
+<   *prePaid* and *postPaid*, defaults to *postPaid*. Changing this creates a new resource.
+< 
+< * `period_unit` - (Optional, String, ForceNew) Specifies the charging period unit of the RDS DB instance. Valid values
+<   are *month* and *year*. This parameter is mandatory if `charging_mode` is set to *prePaid*. Changing this creates a
+<   new resource.
+< 
+< * `period` - (Optional, Int, ForceNew) Specifies the charging period of the RDS DB instance. If `period_unit` is set
+<   to *month*, the value ranges from 1 to 9. If `period_unit` is set to *year*, the value ranges from 1 to 3. This
+<   parameter is mandatory if `charging_mode` is set to *prePaid*. Changing this creates a new resource.
+< 
+< * `auto_renew` - (Optional, String, ForceNew) Specifies whether auto renew is enabled. Valid values are "true" and "
+<   false". Changing this creates a new resource.
+< 
+< * `auto_pay` - (Optional, String, ForceNew) Specifies whether auto pay is enabled.
+<   Valid values are *true* and *false*. Defaults to *true*. If you set this to *false*, you need to pay the order
+<   yourself in time, be careful about the timeout of resource creation. Changing this creates a new resource.
+< 
+206c188
+<   [DB Engines and Versions](https://support.huaweicloud.com/intl/en-us/productdesc-rds/en-us_topic_0043898356.html).
+---
+>   [DB Engines and Versions](https://docs.g42cloud.com/usermanual/rds/en-us_topic_0043898356.html).
+228,231d209
+<   + *LOCALSSD*: local SSD storage.
+<   + *CLOUDSSD*: cloud SSD storage. This storage type is supported only with general-purpose and dedicated DB
+<       instances.
+<   + *ESSD*: extreme SSD storage.
+233,234c211
+<   Changing this parameter will create a new resource. For details about volume types, see
+<   [DB Instance Storage Types](https://support.huaweicloud.com/intl/en-us/productdesc-rds/rds_01_0020.html).
+---
+>   Changing this parameter will create a new resource.
+294c271
+< $ terraform import huaweicloud_rds_instance.instance_1 7117d38e-4c8f-4624-a505-bd96b97d024c
+---
+> $ terraform import g42cloud_rds_instance.instance_1 7117d38e-4c8f-4624-a505-bd96b97d024c
+300c277
+< resource "huaweicloud_rds_instance" "instance_1" {
+---
+> resource "g42cloud_rds_instance" "instance_1" {

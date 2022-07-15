@@ -1,0 +1,12 @@
+5c5
+< # huaweicloud_apig_environments
+---
+> # g42cloud_apig_environments
+7c7
+< Use this data source to query the environment list under the APIG instance within Huaweicloud.
+---
+> Use this data source to query the environment list under the APIG instance within G42cloud.
+15c15
+< data "huaweicloud_apig_environments" "test" {
+---
+> data "g42cloud_apig_environments" "test" {

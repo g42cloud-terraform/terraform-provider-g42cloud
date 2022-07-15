@@ -1,0 +1,31 @@
+5c5
+< # huaweicloud_apig_instance
+---
+> # g42cloud_apig_instance
+7c7
+< Manages an APIG dedicated instance resource within HuaweiCloud.
+---
+> Manages an APIG dedicated instance resource within G42Cloud.
+19c19
+< data "huaweicloud_availability_zones" "test" {}
+---
+> data "g42cloud_availability_zones" "test" {}
+21c21
+< resource "huaweicloud_apig_instance" "test" {
+---
+> resource "g42cloud_apig_instance" "test" {
+34,35c34,35
+<     data.huaweicloud_availability_zones.test.names[0],
+<     data.huaweicloud_availability_zones.test.names[1],
+---
+>     data.g42cloud_availability_zones.test.names[0],
+>     data.g42cloud_availability_zones.test.names[1],
+64,65c64
+<   instance. Please following [reference](https://developer.huaweicloud.com/intl/en-us/endpoint?APIG) for list elements.
+<   Changing this will create a new APIG dedicated instance resource.
+---
+>   instance. Changing this will create a new APIG dedicated instance resource.
+107c106
+< $ terraform import huaweicloud_apig_instance.test de379eed30aa4d31a84f426ea3c7ef4e
+---
+> $ terraform import g42cloud_apig_instance.test de379eed30aa4d31a84f426ea3c7ef4e

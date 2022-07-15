@@ -9,7 +9,6 @@ Manages a VPC resource within G42Cloud.
 ## Example Usage
 
 ```hcl
-
 variable "vpc_name" {
   default = "g42cloud_vpc"
 }
@@ -18,7 +17,7 @@ variable "vpc_cidr" {
   default = "192.168.0.0/16"
 }
 
-resource "g42cloud_vpc" "vpc_v1" {
+resource "g42cloud_vpc" "vpc" {
   name = var.vpc_name
   cidr = var.vpc_cidr
 }
@@ -32,7 +31,6 @@ resource "g42cloud_vpc" "vpc_with_tags" {
     key = "value"
   }
 }
-
 ```
 
 ## Argument Reference
@@ -68,8 +66,8 @@ In addition to all arguments above, the following attributes are exported:
 
 This resource provides the following timeouts configuration options:
 
-- `create` - Default is 10 minute.
-- `delete` - Default is 3 minute.
+* `create` - Default is 10 minute.
+* `delete` - Default is 3 minute.
 
 ## Import
 
@@ -77,4 +75,17 @@ VPCs can be imported using the `id`, e.g.
 
 ```
 $ terraform import g42cloud_vpc.vpc_v1 7117d38e-4c8f-4624-a505-bd96b97d024c
+```
+
+Note that the imported state may not be identical to your resource definition when `secondary_cidr` was set.
+You you can ignore changes as below.
+
+```
+resource "g42cloud_vpc" "vpc_v1" {
+    ...
+
+  lifecycle {
+    ignore_changes = [ secondary_cidr ]
+  }
+}
 ```

@@ -1,0 +1,22 @@
+5c5
+< # huaweicloud_dns_recordset
+---
+> # g42cloud_dns_recordset
+7c7
+< Manages a DNS record set in the HuaweiCloud DNS Service. This is an alternative to `huaweicloud_dns_recordset_v2`
+---
+> Manages a DNS record set in the G42Cloud DNS Service.
+14c14
+< resource "huaweicloud_dns_zone" "example_zone" {
+---
+> resource "g42cloud_dns_zone" "example_zone" {
+22,23c22,23
+< resource "huaweicloud_dns_recordset" "rs_example_com" {
+<   zone_id     = huaweicloud_dns_zone.example_zone.id
+---
+> resource "g42cloud_dns_recordset" "rs_example_com" {
+>   zone_id     = g42cloud_dns_zone.example_zone.id
+78c78
+< $ terraform import huaweicloud_dns_recordset.recordset_1 < zone_id >/< recordset_id >
+---
+> $ terraform import g42cloud_dns_recordset.recordset_1 <zone_id>/<recordset_id>

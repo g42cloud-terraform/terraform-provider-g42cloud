@@ -1,0 +1,28 @@
+5c5
+< # huaweicloud_smn_subscription
+---
+> # g42cloud_smn_subscription
+7c7
+< Manages an SMN subscription resource within HuaweiCloud.
+---
+> Manages an SMN subscription resource within G42Cloud.
+12c12
+< resource "huaweicloud_smn_topic" "topic_1" {
+---
+> resource "g42cloud_smn_topic" "topic_1" {
+17,18c17,18
+< resource "huaweicloud_smn_subscription" "subscription_1" {
+<   topic_urn = huaweicloud_smn_topic.topic_1.id
+---
+> resource "g42cloud_smn_subscription" "subscription_1" {
+>   topic_urn = g42cloud_smn_topic.topic_1.id
+24,25c24,25
+< resource "huaweicloud_smn_subscription" "subscription_2" {
+<   topic_urn = huaweicloud_smn_topic.topic_1.id
+---
+> resource "g42cloud_smn_subscription" "subscription_2" {
+>   topic_urn = g42cloud_smn_topic.topic_1.id
+75c75
+< $ terraform import huaweicloud_smn_subscription.subscription_1 urn:smn:cn-north-4:0970dd7a1300f5672ff2c003c60ae115:topic_1:a2aa5a1f66df494184f4e108398de1a6
+---
+> $ terraform import g42cloud_smn_subscription.subscription_1 urn:smn:cn-north-4:0970dd7a1300f5672ff2c003c60ae115:topic_1:a2aa5a1f66df494184f4e108398de1a6

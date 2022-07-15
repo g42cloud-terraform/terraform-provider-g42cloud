@@ -1,0 +1,12 @@
+7c7
+< !> **WARNING:** It has been deprecated, use `huaweicloud_vpc_route_table` to get the route details.
+---
+> !> **WARNING:** It has been deprecated, use `g42cloud_vpc_route_table` to get the route details.
+9c9
+< Provides details about a specific VPC route. This is an alternative to `huaweicloud_vpc_route_v2`
+---
+> Provides details about a specific VPC route.
+14c14
+< data "huaweicloud_vpc_route" "vpc_route" {
+---
+> data "g42cloud_vpc_route" "vpc_route" {

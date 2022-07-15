@@ -1,0 +1,24 @@
+5c5
+< # huaweicloud_cbr_vaults
+---
+> # g42cloud_cbr_vaults
+7c7
+< Use this data source to get available CBR vaults within Huaweicloud.
+---
+> Use this data source to get available CBR vaults within G42Cloud.
+14c14
+< data "huaweicloud_cbr_vaults" "test" {
+---
+> data "g42cloud_cbr_vaults" "test" {
+36,37c36,37
+<   + **[crash_consistent](https://support.huaweicloud.com/intl/en-us/usermanual-cbr/cbr_03_0109.html)**
+<   + **[app_consistent](https://support.huaweicloud.com/intl/en-us/usermanual-cbr/cbr_03_0109.html)**
+---
+>   + **[crash_consistent](https://docs.g42cloud.com/en-us/bp/cbr/cbr_07_0020.html)**
+>   + **[app_consistent](https://docs.g42cloud.com/en-us/bp/cbr/cbr_07_0020.html)**
+42c42
+<   The valid values are **backup** and **replication**. Vaults of type **disk** don't support **replication**.
+---
+>   The valid values is **backup**.
+52d51
+<   The `policy_id` cannot be used with the vault of replicate protection type.

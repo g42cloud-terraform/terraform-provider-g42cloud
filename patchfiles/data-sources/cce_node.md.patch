@@ -1,0 +1,12 @@
+5c5
+< # huaweicloud_cce_node
+---
+> # g42cloud_cce_node
+7c7
+< To get the specified node in a cluster. This is an alternative to `huaweicloud_cce_node_v3`
+---
+> To get the specified node in a cluster.
+15c15
+< data "huaweicloud_cce_node" "node" {
+---
+> data "g42cloud_cce_node" "node" {

@@ -1,0 +1,204 @@
+2c2
+< subcategory: "Deprecated"
+---
+> subcategory: "Distributed Message Service (DMS)"
+5c5
+< # huaweicloud\_dms\_instance
+---
+> # g42cloud\_dms\_instance
+7,11c7
+< !> **WARNING:** It has been deprecated, use `huaweicloud_dms_kafka_instance` or
+< `huaweicloud_dms_rabbitmq_instance` instead.
+< 
+< Manages a DMS instance in the huaweicloud DMS Service.
+< This is an alternative to `huaweicloud_dms_instance_v1`
+---
+> Manages a DMS instance in the G42Cloud DMS Service.
+18c14
+< data "huaweicloud_dms_az" "az_1" {
+---
+> data "g42cloud_dms_az" "az_1" {
+20c16,17
+< data "huaweicloud_dms_product" "product_1" {
+---
+> 
+> data "g42cloud_dms_product" "product_1" {
+26c23
+< resource "huaweicloud_networking_secgroup" "secgroup_1" {
+---
+> resource "g42cloud_networking_secgroup" "secgroup_1" {
+30c27
+< resource "huaweicloud_dms_instance" "instance_1" {
+---
+> resource "g42cloud_dms_instance" "instance_1" {
+37,42c34,39
+<   security_group_id = huaweicloud_networking_secgroup.secgroup_1.id
+<   available_zones   = [data.huaweicloud_dms_az.az_1.id]
+<   product_id        = data.huaweicloud_dms_product.product_1.id
+<   engine_version    = data.huaweicloud_dms_product.product_1.version
+<   storage_space     = data.huaweicloud_dms_product.product_1.storage
+<   storage_spec_code = data.huaweicloud_dms_product.product_1.storage_spec_code
+---
+>   security_group_id = g42cloud_networking_secgroup.secgroup_1.id
+>   available_zones   = [data.g42cloud_dms_az.az_1.id]
+>   product_id        = data.g42cloud_dms_product.product_1.id
+>   engine_version    = data.g42cloud_dms_product.product_1.version
+>   storage_space     = data.g42cloud_dms_product.product_1.storage
+>   storage_spec_code = data.g42cloud_dms_product.product_1.storage_spec_code
+50,51c47
+< * `region` - (Optional, String, ForceNew) The region in which to create the DMS instance resource. If omitted, the
+<   provider-level region will be used. Changing this creates a new DMS instance resource.
+---
+> * `region` - (Optional, String, ForceNew) The region in which to create the DMS instance resource. If omitted, the provider-level region will be used. Changing this creates a new DMS instance resource.
+53,54c49,50
+< * `name` - (Required, String) Indicates the name of an instance. An instance name starts with a letter, consists of 4 to
+<   64 characters, and supports only letters, digits, and hyphens (-).
+---
+> * `name` - (Required, String) Indicates the name of an instance. An instance name starts with a letter,
+> 	consists of 4 to 64 characters, and supports only letters, digits, and hyphens (-).
+56,57c52,53
+< * `description` - (Optional, String) Indicates the description of an instance. It is a character string containing not
+<   more than 1024 characters.
+---
+> * `description` - (Optional, String) Indicates the description of an instance. It is a character
+>     string containing not more than 1024 characters.
+63,65c59,61
+< * `specification` - (Optional, String) This parameter is mandatory if the engine is kafka. Indicates the baseline
+<   bandwidth of a Kafka instance, that is, the maximum amount of data transferred per unit time. Unit: byte/s. Options:
+<   300 MB, 600 MB, 1200 MB.
+---
+> * `specification` - (Optional, String) This parameter is mandatory if the engine is kafka.
+>     Indicates the baseline bandwidth of a Kafka instance, that is, the maximum amount
+> 	of data transferred per unit time. Unit: byte/s. Options: 300 MB, 600 MB, 1200 MB.
+68,73c64,69
+<   + Single-node RabbitMQ instance: 100–90000 GB
+<   + Cluster RabbitMQ instance: 100 GB x Number of nodes to 90000 GB, 200 GB x Number of nodes to 90000 GB, 300 GB x
+<     Number of nodes to 90000 GB
+<   + Kafka instance with specification being 300 MB: 1200–90000 GB
+<   + Kafka instance with specification being 600 MB: 2400–90000 GB
+<   + Kafka instance with specification being 1200 MB: 4800–90000 GB
+---
+>     - Single-node RabbitMQ instance: 100–90000 GB
+>     - Cluster RabbitMQ instance: 100 GB x Number of nodes to 90000 GB, 200 GB x Number of
+> 	nodes to 90000 GB, 300 GB x Number of nodes to 90000 GB
+>     - Kafka instance with specification being 300 MB: 1200–90000 GB
+>     - Kafka instance with specification being 600 MB: 2400–90000 GB
+>     - Kafka instance with specification being 1200 MB: 4800–90000 GB
+77,101c73,99
+<   Options for a RabbitMQ instance:
+<   + dms.physical.storage.normal
+<   + dms.physical.storage.high
+<   + dms.physical.storage.ultra
+< 
+<       Options for a Kafka instance:
+<   + When specification is 300 MB: dms.physical.storage.high or dms.physical.storage.ultra
+<   + When specification is 600 MB: dms.physical.storage.ultra
+<   + When specification is 1200 MB: dms.physical.storage.ultra
+< 
+< * `partition_num` - (Optional, Int) This parameter is mandatory when a Kafka instance is created. Indicates the maximum
+<   number of topics in a Kafka instance.
+<   + When specification is 300 MB: 900
+<   + When specification is 600 MB: 1800
+<   + When specification is 1200 MB: 1800
+< 
+< * `access_user` - (Optional, String) Indicates a username. If the engine is rabbitmq, this parameter is mandatory. If
+<   the engine is kafka, this parameter is optional. A username consists of 4 to 64 characters and supports only letters,
+<   digits, and hyphens (-).
+< 
+< * `password` - (Optional, String) If the engine is rabbitmq, this parameter is mandatory. If the engine is kafka, this
+<   parameter is mandatory when ssl_enable is true and is invalid when ssl_enable is false. Indicates the password of an
+<   instance. An instance password must meet the following complexity requirements: Must be 8 to 32 characters long. Must
+<   contain at least 2 of the following character types: lowercase letters, uppercase letters, digits, and special
+<   characters (`~!@#$%^&*()-_=+\|[{}]:'",<.>/?).
+---
+>     Options for a RabbitMQ instance:
+>     - dms.physical.storage.normal
+>     - dms.physical.storage.high
+>     - dms.physical.storage.ultra
+> 
+>     Options for a Kafka instance:
+>     - When specification is 300 MB: dms.physical.storage.high or dms.physical.storage.ultra
+>     - When specification is 600 MB: dms.physical.storage.ultra
+>     - When specification is 1200 MB: dms.physical.storage.ultra
+> 
+> * `partition_num` - (Optional, Int) This parameter is mandatory when a Kafka instance is created.
+>     Indicates the maximum number of topics in a Kafka instance.
+>     - When specification is 300 MB: 900
+>     - When specification is 600 MB: 1800
+>     - When specification is 1200 MB: 1800
+> 
+> * `access_user` - (Optional, String) Indicates a username. If the engine is rabbitmq, this
+>     parameter is mandatory. If the engine is kafka, this parameter is optional.
+>     A username consists of 4 to 64 characters and supports only letters, digits, and
+> 	hyphens (-).
+> 
+> * `password` - (Optional, String) If the engine is rabbitmq, this parameter is mandatory.
+>     If the engine is kafka, this parameter is mandatory when ssl_enable is true and is
+> 	invalid when ssl_enable is false. Indicates the password of an instance. An instance
+> 	password must meet the following complexity requirements: Must be 8 to 32 characters long.
+>     Must contain at least 2 of the following character types: lowercase letters, uppercase
+> 	letters, digits, and special characters (`~!@#$%^&*()-_=+\|[{}]:'",<.>/?).
+109,110c107,108
+< * `available_zones` - (Required, List) Indicates the ID of an AZ. The parameter value can not be left blank or an empty
+<   array. For details, see section Querying AZ Information.
+---
+> * `available_zones` - (Required, List) Indicates the ID of an AZ. The parameter value can not be
+>     left blank or an empty array. For details, see section Querying AZ Information.
+115,121c113,119
+<   Format: HH:mm:ss.
+<   The start time and end time of a maintenance time window must indicate the time segment of
+<   a supported maintenance time window. For details, see section Querying Maintenance Time Windows.
+<   The start time must be set to 22:00, 02:00, 06:00, 10:00, 14:00, or 18:00.
+<   Parameters maintain_begin and maintain_end must be set in pairs. If parameter maintain_begin
+<   is left blank, parameter maintain_end is also blank. In this case, the system automatically
+<   allocates the default start time 02:00.
+---
+>     Format: HH:mm:ss.
+>     The start time and end time of a maintenance time window must indicate the time segment of
+> 	a supported maintenance time window. For details, see section Querying Maintenance Time Windows.
+>     The start time must be set to 22:00, 02:00, 06:00, 10:00, 14:00, or 18:00.
+>     Parameters maintain_begin and maintain_end must be set in pairs. If parameter maintain_begin
+> 	is left blank, parameter maintain_end is also blank. In this case, the system automatically
+> 	allocates the default start time 02:00.
+124,131c122,129
+<   Format: HH:mm:ss.
+<   The start time and end time of a maintenance time window must indicate the time segment of
+<   a supported maintenance time window. For details, see section Querying Maintenance Time Windows.
+<   The end time is four hours later than the start time. For example, if the start time is 22:00,
+<   the end time is 02:00.
+<   Parameters maintain_begin and maintain_end must be set in pairs. If parameter maintain_end is left
+<   blank, parameter maintain_begin is also blank. In this case, the system automatically allocates
+<   the default end time 06:00.
+---
+>     Format: HH:mm:ss.
+>     The start time and end time of a maintenance time window must indicate the time segment of
+> 	a supported maintenance time window. For details, see section Querying Maintenance Time Windows.
+>     The end time is four hours later than the start time. For example, if the start time is 22:00,
+> 	the end time is 02:00.
+>     Parameters maintain_begin and maintain_end must be set in pairs. If parameter maintain_end is left
+> 	blank, parameter maintain_begin is also blank. In this case, the system automatically allocates
+> 	the default end time 06:00.
+133,134c131,132
+< * `enable_publicip` - (Optional, Bool) Indicates whether to enable public access to a RabbitMQ instance. true: enable,
+<   false: disable
+---
+> * `enable_publicip` - (Optional, Bool) Indicates whether to enable public access to a RabbitMQ instance.
+>     true: enable, false: disable
+136,137c134,135
+< * `publicip_id` - (Optional, String) Indicates the ID of the elastic IP address (EIP) bound to a RabbitMQ instance. This
+<   parameter is mandatory if public access is enabled (that is, enable_publicip is set to true).
+---
+> * `publicip_id` - (Optional, String) Indicates the ID of the elastic IP address (EIP) bound to a RabbitMQ instance.
+>     This parameter is mandatory if public access is enabled (that is, enable_publicip is set to true).
+140a139
+> 
+157,158c156,157
+< * `created_at` - Indicates the time when an instance is created. The time is in the format of timestamp, that is, the
+<   offset milliseconds from 1970-01-01 00:00:00 UTC to the specified time.
+---
+> * `created_at` - Indicates the time when an instance is created. The time is in the format
+>     of timestamp, that is, the offset milliseconds from 1970-01-01 00:00:00 UTC to the specified time.
+160c159
+< * `user_name` - Indicates a username.
+---
+> * `user_name` -	Indicates a username.

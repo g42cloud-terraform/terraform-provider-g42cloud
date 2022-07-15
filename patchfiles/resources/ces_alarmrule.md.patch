@@ -1,0 +1,32 @@
+5c5
+< # huaweicloud_ces_alarmrule
+---
+> # g42cloud_ces_alarmrule
+7c7
+< Manages a Cloud Eye alarm rule resource within HuaweiCloud.
+---
+> Manages a Cloud Eye alarm rule resource within G42Cloud.
+14c14
+< resource "huaweicloud_ces_alarmrule" "alarm_rule" {
+---
+> resource "g42cloud_ces_alarmrule" "alarm_rule" {
+43c43
+< resource "huaweicloud_ces_alarmrule" "alarm_rule" {
+---
+> resource "g42cloud_ces_alarmrule" "alarm_rule" {
+115c115
+<   For details, see [Services Interconnected with Cloud Eye](https://support.huaweicloud.com/intl/en-us/api-ces/ces_03_0059.html).
+---
+>   For details, see [Services Interconnected with Cloud Eye](https://docs.g42cloud.com/en-us/api/ces/ces_03_0059.html).
+120c120
+<   For details, see [Services Interconnected with Cloud Eye](https://support.huaweicloud.com/intl/en-us/api-ces/ces_03_0059.html).
+---
+>   For details, see [Services Interconnected with Cloud Eye](https://docs.g42cloud.com/en-us/api/ces/ces_03_0059.html).
+154c154
+<   For details, see [Services Interconnected with Cloud Eye](https://support.huaweicloud.com/intl/en-us/api-ces/ces_03_0059.html).
+---
+>   For details, see [Services Interconnected with Cloud Eye](https://docs.g42cloud.com/en-us/api/ces/ces_03_0059.html).
+219c219
+< $ terraform import huaweicloud_ces_alarmrule.alarm_rule al1619578509719Ga0X1RGWv
+---
+> $ terraform import g42cloud_ces_alarmrule.alarm_rule al1619578509719Ga0X1RGWv

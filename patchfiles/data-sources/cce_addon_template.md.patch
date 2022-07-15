@@ -1,0 +1,22 @@
+5c5
+< # huaweicloud_cce_addon_template
+---
+> # g42cloud_cce_addon_template
+7c7
+< Use this data source to get available HuaweiCloud CCE add-on template.
+---
+> Use this data source to get available G42Cloud CCE add-on template.
+18c18
+< data "huaweicloud_cce_addon_template" "test" {
+---
+> data "g42cloud_cce_addon_template" "test" {
+29,30c29,30
+< * `region` - (Optional, String) Specifies the region in which to obtain the CCE add-ons. If omitted, the provider-level
+<   region will be used.
+---
+> * `region` - (Optional, String) Specifies the region in which to obtain the cce add-ons.
+>   If omitted, the provider-level region will be used.
+42c42
+< * `id` - The resource ID of the add-on template.
+---
+> * `id` - The resource ID of the addon template.

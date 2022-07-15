@@ -1,0 +1,28 @@
+5c5
+< # huaweicloud_swr_organization_permissions
+---
+> # g42cloud_swr_organization_permissions
+7c7
+< Manages user permissions for the SWR organization resource within HuaweiCloud.
+---
+> Manages user permissions for the SWR organization resource within G42Cloud.
+16c16
+< resource "huaweicloud_swr_organization_permissions" "test" {
+---
+> resource "g42cloud_swr_organization_permissions" "test" {
+48c48
+< * `user_id` - (Required, String) Specifies the ID of the existing HuaweiCloud user.
+---
+> * `user_id` - (Required, String) Specifies the ID of the existing G42Cloud user.
+50c50
+< * `user_name` - (Optional, String) Specifies the name of the existing HuaweiCloud user.
+---
+> * `user_name` - (Optional, String) Specifies the name of the existing G42Cloud user.
+52c52
+< * `permission` - (Required, String) Specifies the permission of the existing HuaweiCloud user.
+---
+> * `permission` - (Required, String) Specifies the permission of the existing G42Cloud user.
+85c85
+< $ terraform import huaweicloud_swr_organization_permissions.test terraform-test
+---
+> $ terraform import g42cloud_swr_organization_permissions.test terraform-test

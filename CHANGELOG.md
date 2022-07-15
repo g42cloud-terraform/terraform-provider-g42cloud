@@ -1,3 +1,5 @@
+# CHANGELOG
+
 ## 1.5.0 (June 30, 2022)
 
 FEATURES:

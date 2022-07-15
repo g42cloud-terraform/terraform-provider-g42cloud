@@ -1,0 +1,23 @@
+5c5
+< # huaweicloud_vpc_peering_connection
+---
+> # g42cloud_vpc_peering_connection
+7,8c7
+< Provides a resource to manage a VPC Peering Connection resource. This is an alternative
+< to `huaweicloud_vpc_peering_connection_v2`
+---
+> Provides a resource to manage a VPC Peering Connection resource.
+11,12c10,11
+< the `huaweicloud_vpc_peering_connection` resource to manage the requester's side of the connection and use
+< the `huaweicloud_vpc_peering_connection_accepter` resource to manage the accepter's side of the connection.
+---
+> the `g42cloud_vpc_peering_connection` resource to manage the requester's side of the connection and use
+> the `g42cloud_vpc_peering_connection_accepter` resource to manage the accepter's side of the connection.
+17c16
+< resource "huaweicloud_vpc_peering_connection" "peering" {
+---
+> resource "g42cloud_vpc_peering_connection" "peering" {
+69c68
+< $ terraform import huaweicloud_vpc_peering_connection.test_connection 22b76469-08e3-4937-8c1d-7aad34892be1
+---
+> $ terraform import g42cloud_vpc_peering_connection.test_connection 22b76469-08e3-4937-8c1d-7aad34892be1

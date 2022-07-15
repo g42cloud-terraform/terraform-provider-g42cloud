@@ -1,0 +1,36 @@
+5c5
+< # huaweicloud_obs_bucket_policy
+---
+> # g42cloud_obs_bucket_policy
+14c14
+< resource "huaweicloud_obs_bucket" "bucket" {
+---
+> resource "g42cloud_obs_bucket" "bucket" {
+18,19c18,19
+< resource "huaweicloud_obs_bucket_policy" "policy" {
+<   bucket = huaweicloud_obs_bucket.bucket.id
+---
+> resource "g42cloud_obs_bucket_policy" "policy" {
+>   bucket = g42cloud_obs_bucket.bucket.id
+39c39
+< resource "huaweicloud_obs_bucket" "bucket" {
+---
+> resource "g42cloud_obs_bucket" "bucket" {
+43,44c43,44
+< resource "huaweicloud_obs_bucket_policy" "s3_policy" {
+<   bucket        = huaweicloud_obs_bucket.bucket.id
+---
+> resource "g42cloud_obs_bucket_policy" "s3_policy" {
+>   bucket        = g42cloud_obs_bucket.bucket.id
+76c76
+<   format bucket policy, see the [Developer Guide](https://support.huaweicloud.com/intl/en-us/devg-obs/obs_06_0048.html).
+---
+>   format bucket policy, see the [Developer Guide](https://docs.g42cloud.com/en-us/api/obs/obs_04_0027.html).
+91c91
+< $ terraform import huaweicloud_obs_bucket_policy.policy <bucket-name>
+---
+> $ terraform import g42cloud_obs_bucket_policy.policy <bucket-name>
+97c97
+< $ terraform import huaweicloud_obs_bucket_policy.s3_policy <bucket-name>/s3
+---
+> $ terraform import g42cloud_obs_bucket_policy.s3_policy <bucket-name>/s3

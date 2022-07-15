@@ -1,0 +1,12 @@
+5c5
+< # huaweicloud_servicestage_repo_token_authorization
+---
+> # g42cloud_servicestage_repo_token_authorization
+17c17
+< resource "huaweicloud_servicestage_repo_token_authorization" "test" {
+---
+> resource "g42cloud_servicestage_repo_token_authorization" "test" {
+60c60
+< $ terraform import huaweicloud_servicestage_repo_token_authorization.test terraform-test
+---
+> $ terraform import g42cloud_servicestage_repo_token_authorization.test terraform-test

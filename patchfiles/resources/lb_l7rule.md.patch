@@ -1,0 +1,48 @@
+5c5
+< # huaweicloud_lb_l7rule
+---
+> # g42cloud_lb_l7rule
+7c7
+< Manages an ELB L7 Rule resource within HuaweiCloud. This is an alternative to `huaweicloud_lb_l7rule_v2`
+---
+> Manages an ELB L7 Rule resource within G42Cloud.
+12c12
+< resource "huaweicloud_lb_loadbalancer" "loadbalancer_1" {
+---
+> resource "g42cloud_lb_loadbalancer" "loadbalancer_1" {
+17c17
+< resource "huaweicloud_lb_listener" "listener_1" {
+---
+> resource "g42cloud_lb_listener" "listener_1" {
+21c21
+<   loadbalancer_id = huaweicloud_lb_loadbalancer.loadbalancer_1.id
+---
+>   loadbalancer_id = g42cloud_lb_loadbalancer.loadbalancer_1.id
+24c24
+< resource "huaweicloud_lb_pool" "pool_1" {
+---
+> resource "g42cloud_lb_pool" "pool_1" {
+28c28
+<   loadbalancer_id = huaweicloud_lb_loadbalancer.loadbalancer_1.id
+---
+>   loadbalancer_id = g42cloud_lb_loadbalancer.loadbalancer_1.id
+31c31
+< resource "huaweicloud_lb_l7policy" "l7policy_1" {
+---
+> resource "g42cloud_lb_l7policy" "l7policy_1" {
+36,37c36,37
+<   listener_id      = huaweicloud_lb_listener.listener_1.id
+<   redirect_pool_id = huaweicloud_lb_pool.pool_1.id
+---
+>   listener_id      = g42cloud_lb_listener.listener_1.id
+>   redirect_pool_id = g42cloud_lb_pool.pool_1.id
+40,41c40,41
+< resource "huaweicloud_lb_l7rule" "l7rule_1" {
+<   l7policy_id  = huaweicloud_lb_l7policy.l7policy_1.id
+---
+> resource "g42cloud_lb_l7rule" "l7rule_1" {
+>   l7policy_id  = g42cloud_lb_l7policy.l7policy_1.id
+92c92
+< $ terraform import huaweicloud_lb_l7rule.l7rule_1 e0bd694a-abbe-450e-b329-0931fd1cc5eb/4086b0c9-b18c-4d1c-b6b8-4c56c3ad2a9e
+---
+> $ terraform import g42cloud_lb_l7rule.l7rule_1 e0bd694a-abbe-450e-b329-0931fd1cc5eb/4086b0c9-b18c-4d1c-b6b8-4c56c3ad2a9e

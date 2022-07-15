@@ -1,0 +1,8 @@
+5c5
+< # huaweicloud_modelarts_datasets
+---
+> # g42cloud_modelarts_datasets
+12c12
+< data "huaweicloud_modelarts_datasets" "test" {
+---
+> data "g42cloud_modelarts_datasets" "test" {

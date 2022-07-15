@@ -1,0 +1,22 @@
+5c5
+< # huaweicloud_networking_secgroup_rule
+---
+> # g42cloud_networking_secgroup_rule
+7c7
+< Manages a Security Group Rule resource within HuaweiCloud.
+---
+> Manages a Security Group Rule resource within G42Cloud.
+12c12
+< resource "huaweicloud_networking_secgroup" "mysecgroup" {
+---
+> resource "g42cloud_networking_secgroup" "mysecgroup" {
+17,18c17,18
+< resource "huaweicloud_networking_secgroup_rule" "secgroup_rule" {
+<   security_group_id = huaweicloud_networking_secgroup.mysecgroup.id
+---
+> resource "g42cloud_networking_secgroup_rule" "secgroup_rule" {
+>   security_group_id = g42cloud_networking_secgroup.mysecgroup.id
+87c87
+< $ terraform import huaweicloud_networking_secgroup_rule.secgroup_rule_1 aeb68ee3-6e9d-4256-955c-9584a6212745
+---
+> $ terraform import g42cloud_networking_secgroup_rule.secgroup_rule_1 aeb68ee3-6e9d-4256-955c-9584a6212745

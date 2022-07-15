@@ -69,6 +69,10 @@ The following arguments are supported:
 * `max_retries` - (Required, Int) Specifies the maximum number of consecutive health checks after which the backend
   servers are declared *healthy*. The value ranges from 1 to 10.
 
+  -> Backend servers can be declared *unhealthy* after **three** consecutive health checks that detect these backend
+  servers are unhealthy, regardless of the value set for `max_retries`. The health check time window is determined
+  by [Health Check Time Window](https://docs.g42cloud.com/usermanual/elb/en-us_topic_0162227063.html).
+
 * `name` - (Optional, String) Specifies the health check name. The value contains a maximum of 255 characters.
 
 * `port` - (Optional, Int) Specifies the health check port. The port number ranges from 1 to 65535. If not specified,
@@ -97,3 +101,11 @@ This resource provides the following timeouts configuration options:
 * `create` - Default is 10 minute.
 * `update` - Default is 10 minute.
 * `delete` - Default is 10 minute.
+
+## Import
+
+ELB monitor can be imported using the monitor ID, e.g.
+
+```
+$ terraform import g42cloud_lb_monitor.monitor_1 5c20fdad-7288-11eb-b817-0255ac10158b
+```

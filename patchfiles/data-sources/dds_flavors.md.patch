@@ -1,0 +1,13 @@
+5c5
+< # huaweicloud_dds_flavors
+---
+> # g42cloud_dds_flavors
+7,8c7
+< Use this data source to get the details of available DDS flavors. This is an alternative
+< to `huaweicloud_dds_flavors_v3`
+---
+> Use this data source to get the ID of an available G42Cloud DDS flavor.
+13c12
+< data "huaweicloud_dds_flavors" "flavor" {
+---
+> data "g42cloud_dds_flavors" "flavor" {

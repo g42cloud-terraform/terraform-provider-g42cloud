@@ -1,0 +1,16 @@
+5c5
+< # huaweicloud_swr_repository
+---
+> # g42cloud_swr_repository
+7c7
+< Manages a SWR repository resource within HuaweiCloud.
+---
+> Manages a SWR repository resource within G42Cloud.
+14c14
+< resource "huaweicloud_swr_repository" "test" {
+---
+> resource "g42cloud_swr_repository" "test" {
+64c64
+< $ terraform import huaweicloud_swr_repository.test org-name/repo-name
+---
+> $ terraform import g42cloud_swr_repository.test org-name/repo-name

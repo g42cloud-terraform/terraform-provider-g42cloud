@@ -1,0 +1,28 @@
+5c5
+< # huaweicloud_lb_monitor
+---
+> # g42cloud_lb_monitor
+7c7
+< Manages an ELB monitor resource within HuaweiCloud. This is an alternative to `huaweicloud_lb_monitor_v2`
+---
+> Manages an ELB monitor resource within G42Cloud.
+14c14
+< resource "huaweicloud_lb_monitor" "monitor_tcp" {
+---
+> resource "g42cloud_lb_monitor" "monitor_tcp" {
+26c26
+< resource "huaweicloud_lb_monitor" "monitor_udp" {
+---
+> resource "g42cloud_lb_monitor" "monitor_udp" {
+38c38
+< resource "huaweicloud_lb_monitor" "monitor_http" {
+---
+> resource "g42cloud_lb_monitor" "monitor_http" {
+74c74
+<   by [Health Check Time Window](https://support.huaweicloud.com/intl/en-us/usermanual-elb/elb_ug_hc_0001.html#section4).
+---
+>   by [Health Check Time Window](https://docs.g42cloud.com/usermanual/elb/en-us_topic_0162227063.html).
+110c110
+< $ terraform import huaweicloud_lb_monitor.monitor_1 5c20fdad-7288-11eb-b817-0255ac10158b
+---
+> $ terraform import g42cloud_lb_monitor.monitor_1 5c20fdad-7288-11eb-b817-0255ac10158b

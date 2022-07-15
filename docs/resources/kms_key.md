@@ -4,7 +4,7 @@ subcategory: "Key Management Service (KMS)"
 
 # g42cloud_kms_key
 
-Manages a KMS key resource.
+Manages a KMS key resource within G42Cloud.
 
 ## Example Usage
 
@@ -27,7 +27,7 @@ The following arguments are supported:
 * `key_alias` - (Required, String) The alias in which to create the key. It is required when we create a new key.
   Changing this updates the alias of key.
 
-* `key_description` - (Optional, String) The description of the key as viewed in Huawei console. Changing this updates
+* `key_description` - (Optional, String) The description of the key as viewed in g42 console. Changing this updates
   the description of key.
 
 * `key_algorithm` - (Optional, String, ForceNew) The algorithm of the key. Valid values are AES_256, SM4, RSA_2048, RSA_3072,
@@ -38,6 +38,11 @@ The following arguments are supported:
 
 * `is_enabled` - (Optional, Bool) Specifies whether the key is enabled. Defaults to true. Changing this updates the
   state of existing key.
+
+* `rotation_enabled` - (Optional, Bool) Specifies whether the key rotation is enabled. Defaults to false.
+
+* `rotation_interval` - (Optional, Int) Specifies the key rotation interval. The valid value is range from 30 to 365,
+  defaults to 365.
 
 * `enterprise_project_id` - (Optional, String, ForceNew) The enterprise project id of the kms key. Changing this creates
   a new key.
@@ -56,6 +61,7 @@ In addition to all arguments above, the following attributes are exported:
 * `domain_id` - ID of a user domain for the key.
 * `expiration_time` - Expiration time.
 * `creation_date` - Creation time (time stamp) of a key.
+* `rotation_number` - The total number of key rotations.
 
 ## Import
 
@@ -63,4 +69,20 @@ KMS Keys can be imported using the `id`, e.g.
 
 ```
 $ terraform import g42cloud_kms_key.key_1 7056d636-ac60-4663-8a6c-82d3c32c1c64
+```
+
+Note that the imported state may not be identical to your resource definition,
+due to `pending_days` is missing from the API response.
+It is generally recommended running `terraform plan` after importing a KMS Key.
+You can then decide if changes should be applied to the KMS Key, or the resource
+definition should be updated to align with the KMS Key. Also you can ignore changes as below.
+
+```
+resource "g42cloud_kms_key" "key_1" {
+    ...
+
+  lifecycle {
+    ignore_changes = [ pending_days ]
+  }
+}
 ```

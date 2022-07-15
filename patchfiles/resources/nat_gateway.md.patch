@@ -1,0 +1,16 @@
+5c5
+< # huaweicloud_nat_gateway
+---
+> # g42cloud_nat_gateway
+7c7
+< Manages a Nat gateway resource within HuaweiCloud Nat This is an alternative to `huaweicloud_nat_gateway_v2`
+---
+> Manages a Nat gateway resource within G42Cloud Nat.
+12c12
+< resource "huaweicloud_nat_gateway" "nat_1" {
+---
+> resource "g42cloud_nat_gateway" "nat_1" {
+71c71
+< $ terraform import huaweicloud_nat_gateway.nat_1 d126fb87-43ce-4867-a2ff-cf34af3765d9
+---
+> $ terraform import g42cloud_nat_gateway.nat_1 d126fb87-43ce-4867-a2ff-cf34af3765d9

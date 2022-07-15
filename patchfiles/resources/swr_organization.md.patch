@@ -1,0 +1,16 @@
+5c5
+< # huaweicloud_swr_organization
+---
+> # g42cloud_swr_organization
+7c7
+< Manages a SWR organization resource within HuaweiCloud.
+---
+> Manages a SWR organization resource within G42Cloud.
+12c12
+< resource "huaweicloud_swr_organization" "test" {
+---
+> resource "g42cloud_swr_organization" "test" {
+51c51
+< $ terraform import huaweicloud_swr_organization.test org-name
+---
+> $ terraform import g42cloud_swr_organization.test org-name

@@ -1,0 +1,12 @@
+5c5
+< # huaweicloud_sfs_turbo
+---
+> # g42cloud_sfs_turbo
+17c17
+< resource "huaweicloud_sfs_turbo" "sfs-turbo-1" {
+---
+> resource "g42cloud_sfs_turbo" "sfs-turbo-1" {
+100c100
+< $ terraform import huaweicloud_sfs_turbo 1e3d5306-24c9-4316-9185-70e9787d71ab
+---
+> $ terraform import g42cloud_sfs_turbo 1e3d5306-24c9-4316-9185-70e9787d71ab

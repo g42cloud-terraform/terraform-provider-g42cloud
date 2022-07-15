@@ -1,0 +1,28 @@
+5c5
+< # huaweicloud_vpc_route_table
+---
+> # g42cloud_vpc_route_table
+7c7
+< Manages a VPC custom route table resource within HuaweiCloud.
+---
+> Manages a VPC custom route table resource within G42Cloud.
+19c19
+< resource "huaweicloud_vpc_route_table" "demo" {
+---
+> resource "g42cloud_vpc_route_table" "demo" {
+38c38
+< data "huaweicloud_vpc_subnet_ids" "subnet_ids" {
+---
+> data "g42cloud_vpc_subnet_ids" "subnet_ids" {
+42c42
+< resource "huaweicloud_vpc_route_table" "demo" {
+---
+> resource "g42cloud_vpc_route_table" "demo" {
+45c45
+<   subnets = data.huaweicloud_vpc_subnet_ids.subnet_ids.ids
+---
+>   subnets = data.g42cloud_vpc_subnet_ids.subnet_ids.ids
+125c125
+< $ terraform import huaweicloud_vpc_route_table.demo e1b3208a-544b-42a7-84e6-5d70371dd982
+---
+> $ terraform import g42cloud_vpc_route_table.demo e1b3208a-544b-42a7-84e6-5d70371dd982

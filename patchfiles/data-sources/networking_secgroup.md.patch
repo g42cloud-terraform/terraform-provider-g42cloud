@@ -1,0 +1,22 @@
+5c5
+< # huaweicloud_networking_secgroup
+---
+> # g42cloud_networking_secgroup
+7c7
+< Use this data source to get the ID of an available HuaweiCloud security group.
+---
+> Use this data source to get the ID of an available G42Cloud security group.
+12c12
+< data "huaweicloud_networking_secgroup" "secgroup" {
+---
+> data "g42cloud_networking_secgroup" "secgroup" {
+37,40d36
+< * `created_at` - The creation time, in UTC format.
+< 
+< * `updated_at` - The last update time, in UTC format.
+< 
+49c45,46
+< * `ports` - The port value range.
+---
+> * `port_range_min` - The lower part of the allowed port range.
+> * `port_range_max` - The higher part of the allowed port range.

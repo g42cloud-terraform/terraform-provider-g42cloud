@@ -1,0 +1,54 @@
+5c5
+< # huaweicloud_as_group
+---
+> # g42cloud_as_group
+7c7
+< Manages a Autoscaling Group resource within HuaweiCloud. This is an alternative to `huaweicloud_as_group_v1`
+---
+> Manages a Autoscaling Group resource within G42Cloud.
+14c14
+< resource "huaweicloud_as_group" "my_as_group" {
+---
+> resource "g42cloud_as_group" "my_as_group" {
+36c36
+< resource "huaweicloud_as_group" "my_as_group_tags" {
+---
+> resource "g42cloud_as_group" "my_as_group_tags" {
+62c62
+< resource "huaweicloud_as_group" "my_as_group_only_remove_members" {
+---
+> resource "g42cloud_as_group" "my_as_group_only_remove_members" {
+84c84
+< resource "huaweicloud_lb_loadbalancer" "loadbalancer_1" {
+---
+> resource "g42cloud_lb_loadbalancer" "loadbalancer_1" {
+89c89
+< resource "huaweicloud_lb_listener" "listener_1" {
+---
+> resource "g42cloud_lb_listener" "listener_1" {
+93c93
+<   loadbalancer_id = huaweicloud_lb_loadbalancer.loadbalancer_1.id
+---
+>   loadbalancer_id = g42cloud_lb_loadbalancer.loadbalancer_1.id
+96c96
+< resource "huaweicloud_lb_pool" "pool_1" {
+---
+> resource "g42cloud_lb_pool" "pool_1" {
+100c100
+<   listener_id = huaweicloud_lb_listener.listener_1.id
+---
+>   listener_id = g42cloud_lb_listener.listener_1.id
+103c103
+< resource "huaweicloud_as_group" "my_as_group_with_enhanced_lb" {
+---
+> resource "g42cloud_as_group" "my_as_group_with_enhanced_lb" {
+118,119c118,119
+<     pool_id       = huaweicloud_lb_pool.pool_1.id
+<     protocol_port = huaweicloud_lb_listener.listener_1.protocol_port
+---
+>     pool_id       = g42cloud_lb_pool.pool_1.id
+>     protocol_port = g42cloud_lb_listener.listener_1.protocol_port
+228c228
+< terraform import huaweicloud_as_group.my_as_group 9ec5bea6-a728-4082-8109-5a7dc5c7af74
+---
+> terraform import g42cloud_as_group.my_as_group 9ec5bea6-a728-4082-8109-5a7dc5c7af74

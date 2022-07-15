@@ -2,13 +2,11 @@
 subcategory: "Identity and Access Management (IAM)"
 ---
 
-# g42cloud\_identity\_group\_membership
+# g42cloud_identity_group_membership
 
 Manages a User Group Membership resource within G42Cloud IAM service.
-This is an alternative to `g42cloud_identity_group_membership_v3`
 
-Note: You _must_ have admin privileges in your G42Cloud cloud to use
-this resource.
+Note: You *must* have admin privileges in your G42Cloud cloud to use this resource.
 
 ## Example Usage
 
@@ -32,7 +30,8 @@ resource "g42cloud_identity_user" "user_2" {
 
 resource "g42cloud_identity_group_membership" "membership_1" {
   group = g42cloud_identity_group.group_1.id
-  users = [g42cloud_identity_user.user_1.id,
+  users = [
+    g42cloud_identity_user.user_1.id,
     g42cloud_identity_user.user_2.id
   ]
 }
@@ -42,7 +41,7 @@ resource "g42cloud_identity_group_membership" "membership_1" {
 
 The following arguments are supported:
 
-* `group` - (Required, String, ForceNew) The group ID of this membership. 
+* `group` - (Required, String, ForceNew) The group ID of this membership.
 
 * `users` - (Required, List) A List of user IDs to associate to the group.
 

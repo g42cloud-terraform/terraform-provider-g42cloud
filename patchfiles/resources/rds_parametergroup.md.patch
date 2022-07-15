@@ -1,0 +1,16 @@
+5c5
+< # huaweicloud_rds_parametergroup
+---
+> # g42cloud_rds_parametergroup
+7c7
+< Manages a RDS ParameterGroup resource within HuaweiCloud. This is an alternative to `huaweicloud_rds_parametergroup_v3`
+---
+> Manages a RDS ParameterGroup resource within G42Cloud.
+12c12
+< resource "huaweicloud_rds_parametergroup" "pg_1" {
+---
+> resource "g42cloud_rds_parametergroup" "pg_1" {
+81c81
+< $ terraform import huaweicloud_rds_parametergroup.pg_1 7117d38e-4c8f-4624-a505-bd96b97d024c
+---
+> $ terraform import g42cloud_rds_parametergroup.pg_1 7117d38e-4c8f-4624-a505-bd96b97d024c

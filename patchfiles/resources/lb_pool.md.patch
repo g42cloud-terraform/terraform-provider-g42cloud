@@ -1,0 +1,16 @@
+5c5
+< # huaweicloud_lb_pool
+---
+> # g42cloud_lb_pool
+7c7
+< Manages an ELB pool resource within HuaweiCloud. This is an alternative to `huaweicloud_lb_pool_v2`
+---
+> Manages an ELB pool resource within G42Cloud.
+12c12
+< resource "huaweicloud_lb_pool" "pool_1" {
+---
+> resource "g42cloud_lb_pool" "pool_1" {
+83c83
+< $ terraform import huaweicloud_lb_pool.pool_1 5c20fdad-7288-11eb-b817-0255ac10158b
+---
+> $ terraform import g42cloud_lb_pool.pool_1 5c20fdad-7288-11eb-b817-0255ac10158b

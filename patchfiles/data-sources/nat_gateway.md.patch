@@ -1,0 +1,12 @@
+5c5
+< # huaweicloud_nat_gateway
+---
+> # g42cloud_nat_gateway
+7c7
+< Use this data source to get the information of an available HuaweiCloud NAT gateway.
+---
+> Use this data source to get the information of an available G42Cloud NAT gateway.
+12c12
+< data "huaweicloud_nat_gateway" "natgateway" {
+---
+> data "g42cloud_nat_gateway" "natgateway" {

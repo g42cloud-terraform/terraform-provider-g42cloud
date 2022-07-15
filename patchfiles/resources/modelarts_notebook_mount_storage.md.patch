@@ -1,0 +1,16 @@
+5c5
+< # huaweicloud_modelarts_notebook_mount_storage
+---
+> # g42cloud_modelarts_notebook_mount_storage
+7c7
+< Manage storages mounted to the notebook resource within HuaweiCloud. A maximum of 10 storages can be mounted.
+---
+> Manage storages mounted to the notebook resource within G42Cloud. A maximum of 10 storages can be mounted.
+15c15
+< resource "huaweicloud_modelarts_notebook_mount_storage" "test" {
+---
+> resource "g42cloud_modelarts_notebook_mount_storage" "test" {
+58c58
+< terraform import huaweicloud_modelarts_notebook_mount_storage.test b11b407c-e604-4e8d-8bc4-92398320b847/4e206d3c-6831-4267-b93d-e236105cda38
+---
+> terraform import g42cloud_modelarts_notebook_mount_storage.test b11b407c-e604-4e8d-8bc4-92398320b847/4e206d3c-6831-4267-b93d-e236105cda38

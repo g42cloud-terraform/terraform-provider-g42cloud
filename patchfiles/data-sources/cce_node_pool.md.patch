@@ -1,0 +1,8 @@
+5c5
+< # huaweicloud_cce_node_pool
+---
+> # g42cloud_cce_node_pool
+15c15
+< data "huaweicloud_cce_node_pool" "node_pool" {
+---
+> data "g42cloud_cce_node_pool" "node_pool" {

@@ -1,0 +1,16 @@
+5c5
+< # huaweicloud_apig_throttling_policy_associate
+---
+> # g42cloud_apig_throttling_policy_associate
+7c7
+< Use this resource to bind the APIs to the throttling policy within HuaweiCloud.
+---
+> Use this resource to bind the APIs to the throttling policy within G42Cloud.
+17c17
+< resource "huaweicloud_apig_throttling_policy_associate" "test" {
+---
+> resource "g42cloud_apig_throttling_policy_associate" "test" {
+55c55
+< $ terraform import huaweicloud_apig_throttling_policy_associate.test &ltinstance id&gt/&ltpolicy_id&gt
+---
+> $ terraform import g42cloud_apig_throttling_policy_associate.test &ltinstance id&gt/&ltpolicy_id&gt

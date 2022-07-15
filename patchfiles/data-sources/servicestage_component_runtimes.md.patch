@@ -1,0 +1,16 @@
+5c5
+< # huaweicloud_servicestage_component_runtimes
+---
+> # G42cloud_servicestage_component_runtimes
+7c7
+< Use this data source to query available runtimes within HuaweiCloud.
+---
+> Use this data source to query available runtimes within G42Cloud.
+12c12
+< data "huaweicloud_servicestage_component_runtimes" "test" {}
+---
+> data "G42cloud_servicestage_component_runtimes" "test" {}
+21c21
+<   For the runtime names corresponding to each type of component, please refer to the [document](https://support.huaweicloud.com/intl/en-us/usermanual-servicestage/servicestage_user_0411.html).
+---
+>   For the runtime names corresponding to each type of component, please refer to the [document](https://docs.g42cloud.com/usermanual/servicestage/servicestage_user_0411.html).

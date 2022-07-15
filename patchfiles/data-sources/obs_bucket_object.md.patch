@@ -1,0 +1,12 @@
+5c5
+< # huaweicloud_obs_bucket_object
+---
+> # g42cloud_obs_bucket_object
+7c7
+< Use this data source to get info of special HuaweiCloud obs object.
+---
+> Use this data source to get info of special G42Cloud obs object.
+10c10
+< data "huaweicloud_obs_bucket_object" "object" {
+---
+> data "g42cloud_obs_bucket_object" "object" {

@@ -1,0 +1,36 @@
+5c5
+< # huaweicloud_mapreduce_job
+---
+> # g42cloud_mapreduce_job
+7c7
+< Manage a job resource within HuaweiCloud MRS.
+---
+> Manage a job resource within G42Cloud MRS.
+18c18
+< resource "huaweicloud_mapreduce_job" "test" {
+---
+> resource "g42cloud_mapreduce_job" "test" {
+26c26
+<     "--class" = "com.huawei.bigdata.spark.examples.DriverBehavior"
+---
+>     "--class" = "com.g42.bigdata.spark.examples.DriverBehavior"
+48,54c48,54
+<   + [Flink](https://support.huaweicloud.com/intl/en-us/usermanual-mrs/mrs_01_0527.html)
+<   + [HiveSql](https://support.huaweicloud.com/intl/en-us/usermanual-mrs/mrs_01_0525.html)
+<   + [HiveScript](https://support.huaweicloud.com/intl/en-us/usermanual-mrs/mrs_01_0525.html)
+<   + [MapReduce](https://support.huaweicloud.com/intl/en-us/usermanual-mrs/mrs_01_0052.html)
+<   + [SparkSubmit](https://support.huaweicloud.com/intl/en-us/usermanual-mrs/mrs_01_0524.html)
+<   + [SparkSql](https://support.huaweicloud.com/intl/en-us/usermanual-mrs/mrs_01_0526.html)
+<   + [SparkScript](https://support.huaweicloud.com/intl/en-us/usermanual-mrs/mrs_01_0526.html)
+---
+>   + [Flink](https://docs.g42cloud.com/usermanual/mrs/mrs_01_0527.html)
+>   + [HiveSql](https://docs.g42cloud.com/usermanual/mrs/mrs_01_0525.html)
+>   + [HiveScript](https://docs.g42cloud.com/usermanual/mrs/mrs_01_0525.html)
+>   + [MapReduce](https://docs.g42cloud.com/usermanual/mrs/mrs_01_0052.html)
+>   + [SparkSubmit](https://docs.g42cloud.com/usermanual/mrs/mrs_01_0524.html)
+>   + [SparkSql](https://docs.g42cloud.com/usermanual/mrs/mrs_01_0526.html)
+>   + [SparkScript](https://docs.g42cloud.com/usermanual/mrs/mrs_01_0526.html)
+109c109
+< $ terraform import huaweicloud_mapreduce_job.test <cluster_id>/<id>
+---
+> $ terraform import g42cloud_mapreduce_job.test <cluster_id>/<id>

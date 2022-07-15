@@ -1,0 +1,21 @@
+5c5
+< # huaweicloud_compute_flavors
+---
+> # g42cloud_compute_flavors
+12,13c12,13
+< data "huaweicloud_compute_flavors" "flavors" {
+<   availability_zone = "cn-north-1a"
+---
+> data "g42cloud_compute_flavors" "flavors" {
+>   availability_zone = "ae-ad-1a"
+20,21c20,22
+< resource "huaweicloud_compute_instance" "instance" {
+<   flavor_id = data.huaweicloud_compute_flavors.flavors.ids[0]
+---
+> 
+> resource "g42cloud_compute_instance" "instance" {
+>   flavor_id = data.g42cloud_compute_flavors.flavors.ids[0]
+43c44
+<   [ECS Specifications](https://support.huaweicloud.com/intl/en-us/productdesc-ecs/ecs_01_0014.html).
+---
+>   [ECS Specifications](https://docs.g42cloud.com/en-us/usermanual/ecs/en-us_topic_0202842213.html).

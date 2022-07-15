@@ -1,0 +1,20 @@
+5c5
+< # huaweicloud_identity_group
+---
+> # g42cloud_identity_group
+7c7
+< Manages a User Group resource within HuaweiCloud IAM service. This is an alternative to `huaweicloud_identity_group_v3`
+---
+> Manages a User Group resource within G42Cloud IAM service.
+9c9
+< Note: You *must* have admin privileges in your HuaweiCloud cloud to use this resource.
+---
+> Note: You *must* have admin privileges in your G42Cloud cloud to use this resource.
+14c14
+< resource "huaweicloud_identity_group" "group_1" {
+---
+> resource "g42cloud_identity_group" "group_1" {
+39c39
+< $ terraform import huaweicloud_identity_group.group_1 89c60255-9bd6-460c-822a-e2b959ede9d2
+---
+> $ terraform import g42cloud_identity_group.group_1 89c60255-9bd6-460c-822a-e2b959ede9d2

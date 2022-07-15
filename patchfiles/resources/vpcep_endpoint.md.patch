@@ -1,0 +1,28 @@
+5c5
+< # huaweicloud_vpcep_endpoint
+---
+> # g42cloud_vpcep_endpoint
+17c17
+< data "huaweicloud_vpcep_public_services" "cloud_service" {
+---
+> data "g42cloud_vpcep_public_services" "cloud_service" {
+21,22c21,22
+< resource "huaweicloud_vpcep_endpoint" "myendpoint" {
+<   service_id       = data.huaweicloud_vpcep_public_services.cloud_service.services[0].id
+---
+> resource "g42cloud_vpcep_endpoint" "myendpoint" {
+>   service_id       = data.g42cloud_vpcep_public_services.cloud_service.services[0].id
+39c39
+< resource "huaweicloud_vpcep_service" "demo" {
+---
+> resource "g42cloud_vpcep_service" "demo" {
+51,52c51,52
+< resource "huaweicloud_vpcep_endpoint" "demo" {
+<   service_id = huaweicloud_vpcep_service.demo.id
+---
+> resource "g42cloud_vpcep_endpoint" "demo" {
+>   service_id = g42cloud_vpcep_service.demo.id
+118c118
+< $ terraform import huaweicloud_vpcep_endpoint.test 828907cc-40c9-42fe-8206-ecc1bdd30060
+---
+> $ terraform import g42cloud_vpcep_endpoint.test 828907cc-40c9-42fe-8206-ecc1bdd30060

@@ -4,7 +4,7 @@ subcategory: "Relational Database Service (RDS)"
 
 # g42cloud_rds_read_replica_instance
 
-Manages RDS Read Replica Instance resource.
+Manage RDS Read Replica Instance resource.
 
 ## Example Usage
 
@@ -18,8 +18,8 @@ resource "g42cloud_networking_secgroup" "secgroup" {
 
 resource "g42cloud_rds_instance" "instance" {
   name                  = "terraform_test_rds_instance"
-  flavor                = "rds.pg.c6.large.4"
-  availability_zone     = ["{{ availability_zone }}"]
+  flavor                = "rds.pg.n1.large.2"
+  availability_zone     = "{{ availability_zone }}"
   vpc_id                = "{{ vpc_id }}"
   subnet_id             = "{{ subnet_id }}"
   security_group_id     = g42cloud_networking_secgroup.secgroup.id
@@ -27,7 +27,7 @@ resource "g42cloud_rds_instance" "instance" {
 
   db {
     type        = "PostgreSQL"
-    version     = "11"
+    version     = "12"
     password    = "Huangwei!120521"
     port        = "8635"
   }
@@ -43,7 +43,7 @@ resource "g42cloud_rds_instance" "instance" {
 
 resource "g42cloud_rds_read_replica_instance" "replica_instance" {
   name                  = "test_rds_readonly_instance"
-  flavor                = "rds.pg.c6.large.4.rr"
+  flavor                = "rds.pg.n1.large.2.rr"
   primary_instance_id   = g42cloud_rds_instance.instance.id
   availability_zone     = "{{ availability_zone }}"
   enterprise_project_id = "{{ enterprise_project_id }}"

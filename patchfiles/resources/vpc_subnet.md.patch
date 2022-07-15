@@ -1,0 +1,32 @@
+5c5
+< # huaweicloud_vpc_subnet
+---
+> # g42cloud_vpc_subnet
+7c7
+< Provides a VPC subnet resource within HuaweiCloud.
+---
+> Provides a VPC subnet resource within G42Cloud.
+12c12
+< resource "huaweicloud_vpc" "vpc" {
+---
+> resource "g42cloud_vpc" "vpc" {
+17c17
+< resource "huaweicloud_vpc_subnet" "subnet" {
+---
+> resource "g42cloud_vpc_subnet" "subnet" {
+21c21
+<   vpc_id     = huaweicloud_vpc.vpc.id
+---
+>   vpc_id     = g42cloud_vpc.vpc.id
+24c24
+< resource "huaweicloud_vpc_subnet" "subnet_with_tags" {
+---
+> resource "g42cloud_vpc_subnet" "subnet_with_tags" {
+28c28
+<   vpc_id     = huaweicloud_vpc.vpc.id
+---
+>   vpc_id     = g42cloud_vpc.vpc.id
+101c101
+< $ terraform import huaweicloud_vpc_subnet 4779ab1c-7c1a-44b1-a02e-93dfc361b32d
+---
+> $ terraform import g42cloud_vpc_subnet 4779ab1c-7c1a-44b1-a02e-93dfc361b32d

@@ -1,0 +1,16 @@
+5c5
+< # huaweicloud_css_thesaurus
+---
+> # g42cloud_css_thesaurus
+7c7
+< Manages CSS thesaurus resource within HuaweiCloud
+---
+> Manages CSS thesaurus resource within G42Cloud
+16c16
+< resource "huaweicloud_css_thesaurus" "test" {
+---
+> resource "g42cloud_css_thesaurus" "test" {
+67c67
+< terraform import huaweicloud_css_thesaurus.example e9ee3f48-f097-406a-aa74-cfece0af3e31
+---
+> terraform import g42cloud_css_thesaurus.example e9ee3f48-f097-406a-aa74-cfece0af3e31

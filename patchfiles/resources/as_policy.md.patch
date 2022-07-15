@@ -1,0 +1,32 @@
+5c5
+< # huaweicloud_as_policy
+---
+> # g42cloud_as_policy
+7c7
+< Manages a AS Policy resource within HuaweiCloud. This is an alternative to `huaweicloud_as_policy_v1`
+---
+> Manages a AS Policy resource within G42Cloud.
+14c14
+< resource "huaweicloud_as_policy" "my_aspolicy" {
+---
+> resource "g42cloud_as_policy" "my_aspolicy" {
+36c36
+< resource "huaweicloud_as_policy" "my_aspolicy_1" {
+---
+> resource "g42cloud_as_policy" "my_aspolicy_1" {
+57c57
+< resource "huaweicloud_ces_alarmrule" "alarm_rule" {
+---
+> resource "g42cloud_ces_alarmrule" "alarm_rule" {
+82c82
+< resource "huaweicloud_as_policy" "my_aspolicy_2" {
+---
+> resource "g42cloud_as_policy" "my_aspolicy_2" {
+86c86
+<   alarm_id            = huaweicloud_ces_alarmrule.alarm_rule.id
+---
+>   alarm_id            = g42cloud_ces_alarmrule.alarm_rule.id
+112c112
+<   is set to `ALARM`. You can create an alarm rule with `huaweicloud_ces_alarmrule`.
+---
+>   is set to `ALARM`. You can create an alarm rule with `g42cloud_ces_alarmrule`.

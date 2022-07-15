@@ -1,0 +1,16 @@
+5c5
+< # huaweicloud_modelarts_notebook_images
+---
+> # g42cloud_modelarts_notebook_images
+12c12
+< data "huaweicloud_modelarts_notebook_images" "test" {
+---
+> data "g42cloud_modelarts_notebook_images" "test" {
+17c17
+<   value = data.huaweicloud_modelarts_notebook_images.test.images[0].id
+---
+>   value = data.g42cloud_modelarts_notebook_images.test.images[0].id
+55c55
+< * `swr_path` - The path the image in HuaweiCloud SWR service (SoftWare Repository for Container).
+---
+> * `swr_path` - The path the image in G42Cloud SWR service (SoftWare Repository for Container).

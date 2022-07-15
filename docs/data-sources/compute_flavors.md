@@ -4,7 +4,7 @@ subcategory: "Elastic Cloud Server (ECS)"
 
 # g42cloud_compute_flavors
 
-Use this data source to get the ID of the available Compute Flavors.
+Use this data source to get the available Compute Flavors.
 
 ## Example Usage
 
@@ -26,8 +26,6 @@ resource "g42cloud_compute_instance" "instance" {
 ```
 
 ## Argument Reference
-
-In addition to all arguments above, the following attributes are exported:
 
 * `region` - (Optional, String) The region in which to obtain the flavors.
   If omitted, the provider-level region will be used.
@@ -53,6 +51,6 @@ In addition to all arguments above, the following attributes are exported:
 
 In addition to all arguments above, the following attributes are exported:
 
-* `id` - Specifies a data source ID in UUID format.
+* `id` - Indicates a data source ID.
 
 * `ids` - A list of flavor IDs.

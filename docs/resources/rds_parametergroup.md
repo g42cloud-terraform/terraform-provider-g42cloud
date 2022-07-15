@@ -12,7 +12,7 @@ Manages a RDS ParameterGroup resource within G42Cloud.
 resource "g42cloud_rds_parametergroup" "pg_1" {
   name        = "pg_1"
   description = "description_1"
-  values = {
+  values      = {
     max_connections = "10"
     autocommit      = "OFF"
   }
@@ -21,7 +21,6 @@ resource "g42cloud_rds_parametergroup" "pg_1" {
     version = "5.6"
   }
 }
-
 ```
 
 ## Argument Reference

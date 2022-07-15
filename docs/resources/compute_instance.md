@@ -11,6 +11,8 @@ Manages a ECS VM instance resource within G42Cloud.
 ### Basic Instance
 
 ```hcl
+variable "secgroup_id" {}
+
 data "g42cloud_availability_zones" "myaz" {}
 
 data "g42cloud_compute_flavors" "myflavor" {
@@ -30,11 +32,11 @@ data "g42cloud_images_image" "myimage" {
 }
 
 resource "g42cloud_compute_instance" "basic" {
-  name              = "basic"
-  image_id          = data.g42cloud_images_image.myimage.id
-  flavor_id         = data.g42cloud_compute_flavors.myflavor.ids[0]
-  security_groups   = ["default"]
-  availability_zone = data.g42cloud_availability_zones.myaz.names[0]
+  name               = "basic"
+  image_id           = data.g42cloud_images_image.myimage.id
+  flavor_id          = data.g42cloud_compute_flavors.myflavor.ids[0]
+  security_group_ids = [var.secgroup_id]
+  availability_zone  = data.g42cloud_availability_zones.myaz.names[0]
 
   network {
     uuid = data.g42cloud_vpc_subnet.mynet.id
@@ -45,13 +47,15 @@ resource "g42cloud_compute_instance" "basic" {
 ### Instance With Associated Eip
 
 ```hcl
+variable "secgroup_id" {}
+
 resource "g42cloud_compute_instance" "myinstance" {
-  name              = "myinstance"
-  image_id          = "ad091b52-742f-469e-8f3c-fd81cadf0743"
-  flavor_id         = "s6.small.1"
-  key_pair          = "my_key_pair_name"
-  security_groups   = ["default"]
-  availability_zone = "ae-ad-1a"
+  name               = "myinstance"
+  image_id           = "ad091b52-742f-469e-8f3c-fd81cadf0743"
+  flavor_id          = "s6.small.1"
+  key_pair           = "my_key_pair_name"
+  security_group_ids = [var.secgroup_id]
+  availability_zone  = "ae-ad-1a"
 
   network {
     uuid = "55534eaa-533a-419d-9b40-ec427ea7195a"
@@ -79,6 +83,8 @@ resource "g42cloud_compute_eip_associate" "associated" {
 ### Instance With Attached Volume
 
 ```hcl
+variable "secgroup_id" {}
+
 resource "g42cloud_evs_volume" "myvolume" {
   name              = "myvolume"
   availability_zone = "ae-ad-1a"
@@ -87,12 +93,12 @@ resource "g42cloud_evs_volume" "myvolume" {
 }
 
 resource "g42cloud_compute_instance" "myinstance" {
-  name              = "myinstance"
-  image_id          = "ad091b52-742f-469e-8f3c-fd81cadf0743"
-  flavor_id         = "s6.small.1"
-  key_pair          = "my_key_pair_name"
-  security_groups   = ["default"]
-  availability_zone = "ae-ad-1a"
+  name               = "myinstance"
+  image_id           = "ad091b52-742f-469e-8f3c-fd81cadf0743"
+  flavor_id          = "s6.small.1"
+  key_pair           = "my_key_pair_name"
+  security_group_ids = [var.secgroup_id]
+  availability_zone  = "ae-ad-1a"
 
   network {
     uuid = "55534eaa-533a-419d-9b40-ec427ea7195a"
@@ -107,24 +113,25 @@ resource "g42cloud_compute_volume_attach" "attached" {
 
 ### Instance With Multiple Data Disks
 
-It's possible to specify multiple `data_disks` entries to create an instance
-with multiple data disks, but we can't ensure the volume attached order. So it's
-recommended to use `Instance With Attached Volume` above.
+It's possible to specify multiple `data_disks` entries to create an instance with multiple data disks, but we can't
+ensure the volume attached order. So it's recommended to use `Instance With Attached Volume` above.
 
 ```hcl
+variable "secgroup_id" {}
+
 resource "g42cloud_compute_instance" "multi-disk" {
-  name              = "multi-net"
-  image_id          = "ad091b52-742f-469e-8f3c-fd81cadf0743"
-  flavor_id         = "s6.small.1"
-  key_pair          = "my_key_pair_name"
-  security_groups   = ["default"]
-  availability_zone = "ae-ad-1a"
+  name               = "multi-net"
+  image_id           = "ad091b52-742f-469e-8f3c-fd81cadf0743"
+  flavor_id          = "s6.small.1"
+  key_pair           = "my_key_pair_name"
+  security_group_ids = [var.secgroup_id]
+  availability_zone  = "ae-ad-1a"
 
   system_disk_type = "SAS"
   system_disk_size = 40
 
   data_disks {
-    type = "SATA"
+    type = "SAS"
     size = "10"
   }
   data_disks {
@@ -143,13 +150,15 @@ resource "g42cloud_compute_instance" "multi-disk" {
 ### Instance With Multiple Networks
 
 ```hcl
+variable "secgroup_id" {}
+
 resource "g42cloud_compute_instance" "multi-net" {
-  name              = "multi-net"
-  image_id          = "ad091b52-742f-469e-8f3c-fd81cadf0743"
-  flavor_id         = "s6.small.1"
-  key_pair          = "my_key_pair_name"
-  security_groups   = ["default"]
-  availability_zone = "ae-ad-1a"
+  name               = "multi-net"
+  image_id           = "ad091b52-742f-469e-8f3c-fd81cadf0743"
+  flavor_id          = "s6.small.1"
+  key_pair           = "my_key_pair_name"
+  security_group_ids = [var.secgroup_id]
+  availability_zone  = "ae-ad-1a"
 
   network {
     uuid = "55534eaa-533a-419d-9b40-ec427ea7195a"
@@ -164,14 +173,16 @@ resource "g42cloud_compute_instance" "multi-net" {
 ### Instance with User Data (cloud-init)
 
 ```hcl
+variable "secgroup_id" {}
+
 resource "g42cloud_compute_instance" "myinstance" {
-  name              = "instance"
-  image_id          = "ad091b52-742f-469e-8f3c-fd81cadf0743"
-  flavor_id         = "s6.small.1"
-  key_pair          = "my_key_pair_name"
-  security_groups   = ["default"]
-  availability_zone = "az"
-  user_data         = "#cloud-config\nhostname: instance_1.example.com\nfqdn: instance_1.example.com"
+  name               = "instance"
+  image_id           = "ad091b52-742f-469e-8f3c-fd81cadf0743"
+  flavor_id          = "s6.small.1"
+  key_pair           = "my_key_pair_name"
+  security_group_ids = [var.secgroup_id]
+  availability_zone  = "az"
+  user_data          = "#cloud-config\nhostname: instance_1.example.com\nfqdn: instance_1.example.com"
 
   network {
     uuid = "55534eaa-533a-419d-9b40-ec427ea7195a"
@@ -204,9 +215,9 @@ The following arguments are supported:
 * `security_group_ids` - (Optional, List) Specifies an array of one or more security group IDs to associate with the
   instance.
 
-* `availability_zone` - (Required, String, ForceNew) The availability zone in which to create
-    the server. Please following [reference](https://docs.g42cloud.com/en-us/endpoint/index.html)
-    for the values. Changing this creates a new server.
+* `availability_zone` - (Required, String, ForceNew) The availability zone in which to create the server. Please
+  following [reference](https://docs.g42cloud.com/en-us/endpoint/index.html) for the values. Changing this creates
+  a new server.
 
 * `network` - (Required, List, ForceNew) Specifies an array of one or more networks to attach to the instance. The
   network object structure is documented below. Changing this creates a new instance.
@@ -236,8 +247,17 @@ The following arguments are supported:
 * `data_disks` - (Optional, String, ForceNew) Specifies an array of one or more data disks to attach to the instance.
   The data_disks object structure is documented below. Changing this creates a new instance.
 
+* `eip_type` - (Optional, String, ForceNew) Specifies the type of an EIP that will be automatically assigned to the instance.
+  Available values are *5_bgp* (dynamic BGP) and *5_sbgp* (static BGP). Changing this creates a new instance.
+
+* `bandwidth` - (Optional, List, ForceNew) Specifies the bandwidth of an EIP that will be automatically assigned to the instance.
+  The object structure is documented below. Changing this creates a new instance.
+
+* `eip_id` - (Optional, String, ForceNew) Specifies the ID of an *existing* EIP assigned to the instance.
+  This parameter and `eip_type`, `bandwidth` are alternative. Changing this creates a new instance.
+
 * `user_data` - (Optional, String, ForceNew) Specifies the user data to be injected during the instance creation. Text
-  and text files can be injected. Changing this creates a new server.
+  and text files can be injected. Changing this creates a new instance.
 
   -> **NOTE:** If the `user_data` field is specified for a Linux ECS that is created using an image with Cloud-Init
   installed, the `admin_pass` field becomes invalid.
@@ -247,35 +267,30 @@ The following arguments are supported:
 * `scheduler_hints` - (Optional, List) Specifies the scheduler with hints on how the instance should be launched. The
   available hints are described below.
 
-* `stop_before_destroy` - (Optional, Bool) Whether to try stop instance gracefully before destroying it, thus giving
+* `stop_before_destroy` - (Optional, Bool) Specifies whether to try stop instance gracefully before destroying it, thus giving
   chance for guest OS daemons to stop correctly. If instance doesn't stop within timeout, it will be destroyed anyway.
+
+* `delete_disks_on_termination` - (Optional, Bool) Specifies whether to delete the data disks when the instance is terminated.
+  Defaults to *false*. This parameter is valid if `charging_mode` is set to *postPaid*, and all data disks will be deleted
+  in *prePaid* charging mode.
+
+* `delete_eip_on_termination` - (Optional, Bool) Specifies whether the EIP is released when the instance is terminated.
+  Defaults to *true*.
 
 * `enterprise_project_id` - (Optional, String, ForceNew) Specifies a unique id in UUID format of enterprise project .
   Changing this creates a new instance.
-
-* `delete_disks_on_termination` - (Optional, Bool) Delete the data disks upon termination of the instance. Defaults to
-  false.
-
-* `charging_mode` - (Optional, String, ForceNew) Specifies the charging mode of the instance. Valid values are *prePaid*
-  and *postPaid*, defaults to *postPaid*. Changing this creates a new instance.
-
-* `period_unit` - (Optional, String, ForceNew) Specifies the charging period unit of the instance.
-  Valid values are *month* and *year*. This parameter is mandatory if `charging_mode` is set to *prePaid*.
-  Changing this creates a new instance.
-
-* `period` - (Optional, Int, ForceNew) Specifies the charging period of the instance.
-  If `period_unit` is set to *month* , the value ranges from 1 to 9. If `period_unit` is set to *year*, the value
-  ranges from 1 to 3. This parameter is mandatory if `charging_mode` is set to *prePaid*. Changing this creates a
-  new resource.
-
-* `auto_renew` - (Optional, String, ForceNew) Specifies whether auto renew is enabled.
-  Valid values are "true" and "false". Changing this creates a new resource.
 
 * `user_id` - (Optional, String, ForceNew) Specifies a user ID, required when using key_pair in prePaid charging mode.
   Changing this creates a new instance.
 
 * `agency_name` - (Optional, String, ForceNew) Specifies the IAM agency name which is created on IAM to provide
   temporary credentials for ECS to access cloud services. Changing this creates a new instance.
+
+* `agent_list` - (Optional, String, ForceNew) Specifies the agent list in comma-separated string.
+  Changing this creates a new instance. Available agents are:
+  + `ces`: enable cloud eye monitoring(free).
+  + `hss`: enable host security basic(free).
+  + `hss,hss-ent`: enable host security enterprise edition.
 
 * `power_action` - (Optional, String) Specifies the power action to be done for the instance.
   The valid values are *ON*, *OFF*, *REBOOT*, *FORCE-OFF* and *FORCE-REBOOT*.
@@ -313,6 +328,22 @@ The `data_disks` block supports:
 * `kms_key_id` - (Optional, String, ForceNew) Specifies the ID of a KMS key. This is used to encrypt the data disk.
   Changing this parameter will create a new resource.
 
+The `bandwidth` block supports:
+
+* `share_type` - (Required, String, ForceNew) Specifies the bandwidth sharing type. Changing this creates a new instance.
+  Possible values are as follows:
+  + **PER**: Dedicated bandwidth
+  + **WHOLE**: Shared bandwidth
+
+* `size` - (Optional, Int, ForceNew) Specifies the bandwidth size. The value ranges from 1 to 300 Mbit/s.
+  This parameter is mandatory when `share_type` is set to **PER**. Changing this creates a new instance.
+
+* `id` - (Optional, String, ForceNew) Specifies the **shared** bandwidth id. This parameter is mandatory when
+  `share_type` is set to **WHOLE**. Changing this creates a new instance.
+
+* `charge_mode` - (Optional, String, ForceNew) Specifies the bandwidth billing mode. The value can be *traffic* or *bandwidth*.
+  Changing this creates a new instance.
+
 The `scheduler_hints` block supports:
 
 * `group` - (Optional, String, ForceNew) Specifies a UUID of a Server Group.
@@ -332,7 +363,7 @@ In addition to all arguments above, the following attributes are exported:
 * `id` - A resource ID in UUID format.
 * `status` - The status of the instance.
 * `public_ip` - The EIP address that is associted to the instance.
-* `access_ip_v4` - The first detected Fixed IPv4 address _or_ the Floating IP.
+* `access_ip_v4` - The first detected Fixed IPv4 address or the Floating IP.
 * `network/fixed_ip_v4` - The Fixed IPv4 address of the Instance on that network.
 * `network/fixed_ip_v6` - The Fixed IPv6 address of the Instance on that network.
 * `network/mac` - The MAC address of the NIC on that network.
@@ -352,10 +383,11 @@ Instances can be imported by their `id`. For example,
 terraform import g42cloud_compute_instance.my_instance b11b407c-e604-4e8d-8bc4-92398320b847
 ```
 
-Note that the imported state may not be identical to your resource definition, due to some attrubutes missing from the
+Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
 API response, security or some other reason.
 The missing attributes include: `admin_pass`, `user_data`, `data_disks`, `scheduler_hints`, `stop_before_destroy`,
-`delete_disks_on_termination`, `network/access_network`, `power_action` and arguments for pre-paid.
+`delete_disks_on_termination`, `delete_eip_on_termination`, `network/access_network`, `bandwidth`, `eip_type`,
+`power_action` and arguments for pre-paid.
 It is generally recommended running `terraform plan` after importing an instance.
 You can then decide if changes should be applied to the instance, or the resource definition should be updated to
 align with the instance. Also you can ignore changes as below.
