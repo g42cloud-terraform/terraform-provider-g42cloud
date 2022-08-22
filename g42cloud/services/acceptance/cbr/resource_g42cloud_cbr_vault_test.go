@@ -403,7 +403,7 @@ resource "g42cloud_cbr_vault" "test" {
 		testAccCBRV3Vault_policy(rName), rName, acceptance.G42_ENTERPRISE_PROJECT_ID_TEST)
 }
 
-//Vaults of type 'turbo'
+// Vaults of type 'turbo'
 func testAccCBRV3Vault_turboBase(rName string) string {
 	return fmt.Sprintf(`
 data "g42cloud_availability_zones" "test" {}

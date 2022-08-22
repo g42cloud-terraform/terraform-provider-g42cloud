@@ -105,10 +105,11 @@ const (
 
 /*
 InitDataSourceCheck build a 'resourceCheck' object. Only used to check datasource attributes.
-  Parameters:
-    resourceName:    The resource name is used to check in the terraform.State.e.g. : g42cloud_waf_domain.domain_1.
-  Return:
-    *resourceCheck: resourceCheck object
+
+	Parameters:
+	  resourceName:    The resource name is used to check in the terraform.State.e.g. : g42cloud_waf_domain.domain_1.
+	Return:
+	  *resourceCheck: resourceCheck object
 */
 func InitDataSourceCheck(sourceName string) *resourceCheck {
 	return &resourceCheck{
@@ -119,12 +120,13 @@ func InitDataSourceCheck(sourceName string) *resourceCheck {
 
 /*
 InitResourceCheck build a 'resourceCheck' object. The common test methods are provided in 'resourceCheck'.
-  Parameters:
-    resourceName:    The resource name is used to check in the terraform.State.e.g. : g42cloud_waf_domain.domain_1.
-    resourceObject:  Resource object, used to check whether the resource exists in G42cloud.
-    getResourceFunc: The function used to get the resource object.
-  Return:
-    *resourceCheck: resourceCheck object
+
+	Parameters:
+	  resourceName:    The resource name is used to check in the terraform.State.e.g. : g42cloud_waf_domain.domain_1.
+	  resourceObject:  Resource object, used to check whether the resource exists in G42cloud.
+	  getResourceFunc: The function used to get the resource object.
+	Return:
+	  *resourceCheck: resourceCheck object
 */
 func InitResourceCheck(resourceName string, resourceObject interface{}, getResourceFunc ServiceFunc) *resourceCheck {
 	return &resourceCheck{
@@ -168,13 +170,14 @@ func parseVariableToName(varStr string) (string, string, error) {
 
 /*
 TestCheckResourceAttrWithVariable validates the variable in state for the given name/key combination.
-  Parameters:
-    resourceName: The resource name is used to check in the terraform.State.
-    key:          The field name of the resource.
-    variable:     The variable name of the value to be checked.
 
-    variable such like ${g42cloud_waf_certificate.certificate_1.id}
-    or ${data.g42cloud_waf_policies.policies_2.policies.0.id}
+	Parameters:
+	  resourceName: The resource name is used to check in the terraform.State.
+	  key:          The field name of the resource.
+	  variable:     The variable name of the value to be checked.
+
+	  variable such like ${g42cloud_waf_certificate.certificate_1.id}
+	  or ${data.g42cloud_waf_policies.policies_2.policies.0.id}
 */
 func TestCheckResourceAttrWithVariable(resourceName, key, varStr string) resource.TestCheckFunc {
 	return func(s *terraform.State) error {
@@ -275,7 +278,7 @@ func preCheckRequiredEnvVars(t *testing.T) {
 	}
 }
 
-//lintignore:AT003
+// lintignore:AT003
 func TestAccPreCheck(t *testing.T) {
 	// Do not run the test if this is a deprecated testing environment.
 	if G42_DEPRECATED_ENVIRONMENT != "" {
@@ -285,14 +288,14 @@ func TestAccPreCheck(t *testing.T) {
 	preCheckRequiredEnvVars(t)
 }
 
-//lintignore:AT003
+// lintignore:AT003
 func TestAccPrecheckCustomRegion(t *testing.T) {
 	if G42_CUSTOM_REGION_NAME == "" {
 		t.Skip("G42_CUSTOM_REGION_NAME must be set for acceptance tests")
 	}
 }
 
-//lintignore:AT003
+// lintignore:AT003
 func TestAccPreCheckDeprecated(t *testing.T) {
 	if G42_DEPRECATED_ENVIRONMENT == "" {
 		t.Skip("This environment does not support deprecated tests")
@@ -301,7 +304,7 @@ func TestAccPreCheckDeprecated(t *testing.T) {
 	preCheckRequiredEnvVars(t)
 }
 
-//lintignore:AT003
+// lintignore:AT003
 func TestAccPreCheckEpsID(t *testing.T) {
 	// use G42_ENTERPRISE_PROJECT_ID_TEST instead of G42_ENTERPRISE_PROJECT_ID to avoid enabling EPS globally
 	if G42_ENTERPRISE_PROJECT_ID_TEST == "" {
@@ -309,14 +312,14 @@ func TestAccPreCheckEpsID(t *testing.T) {
 	}
 }
 
-//lintignore:AT003
+// lintignore:AT003
 func TestAccPreCheckBms(t *testing.T) {
 	if G42_USER_ID == "" {
 		t.Skip("G42_USER_ID must be set for BMS acceptance tests")
 	}
 }
 
-//lintignore:AT003
+// lintignore:AT003
 func TestAccPreCheckMrsCustom(t *testing.T) {
 	if G42_MAPREDUCE_CUSTOM == "" {
 		t.Skip("G42_MAPREDUCE_CUSTOM must be set for acceptance tests:custom type cluster of map reduce")
@@ -340,49 +343,49 @@ func RandomCidrAndGatewayIp() (string, string) {
 	return fmt.Sprintf("172.16.%d.0/24", seed), fmt.Sprintf("172.16.%d.1", seed)
 }
 
-//lintignore:AT003
+// lintignore:AT003
 func TestAccPrecheckWafInstance(t *testing.T) {
 	if G42_WAF_ENABLE_FLAG == "" {
 		t.Skip("Jump the WAF acceptance tests.")
 	}
 }
 
-//lintignore:AT003
+// lintignore:AT003
 func TestAccPreCheckAdminOnly(t *testing.T) {
 	if G42_ADMIN == "" {
 		t.Skip("Skipping test because it requires the admin privileges")
 	}
 }
 
-//lintignore:AT003
+// lintignore:AT003
 func TestAccPreCheckReplication(t *testing.T) {
 	if G42_DEST_REGION == "" || G42_DEST_PROJECT_ID == "" {
 		t.Skip("Jump the replication policy acceptance tests.")
 	}
 }
 
-//lintignore:AT003
+// lintignore:AT003
 func TestAccPreCheckProject(t *testing.T) {
 	if G42_ENTERPRISE_PROJECT_ID_TEST != "" {
 		t.Skip("This environment does not support project tests")
 	}
 }
 
-//lintignore:AT003
+// lintignore:AT003
 func TestAccPreCheckOBS(t *testing.T) {
 	if G42_ACCESS_KEY == "" || G42_SECRET_KEY == "" {
 		t.Skip("G42_ACCESS_KEY and G42_SECRET_KEY must be set for OBS acceptance tests")
 	}
 }
 
-//lintignore:AT003
+// lintignore:AT003
 func TestAccPreCheckChargingMode(t *testing.T) {
 	if G42_CHARGING_MODE != "prePaid" {
 		t.Skip("This environment does not support prepaid tests")
 	}
 }
 
-//lintignore:AT003
+// lintignore:AT003
 func TestAccPreCheckSWRDomian(t *testing.T) {
 	if G42_SWR_SHARING_ACCOUNT == "" {
 		t.Skip("G42_SWR_SHARING_ACCOUNT must be set for swr domian tests, " +
@@ -390,28 +393,28 @@ func TestAccPreCheckSWRDomian(t *testing.T) {
 	}
 }
 
-//lintignore:AT003
+// lintignore:AT003
 func TestAccPreCheckRepoTokenAuth(t *testing.T) {
 	if G42_GITHUB_REPO_HOST == "" || G42_GITHUB_PERSONAL_TOKEN == "" {
 		t.Skip("Repository configurations are not completed for acceptance test of personal access token authorization.")
 	}
 }
 
-//lintignore:AT003
+// lintignore:AT003
 func TestAccPreCheckRepoPwdAuth(t *testing.T) {
 	if G42_ACCOUNT_NAME == "" || G42_USERNAME == "" || G42_GITHUB_REPO_PWD == "" {
 		t.Skip("Repository configurations are not completed for acceptance test of password authorization.")
 	}
 }
 
-//lintignore:AT003
+// lintignore:AT003
 func TestAccPreCheckComponent(t *testing.T) {
 	if G42_ACCOUNT_NAME == "" || G42_GITHUB_REPO_URL == "" || G42_OBS_STORAGE_URL == "" {
 		t.Skip("Repository (package) configurations are not completed for acceptance test of component.")
 	}
 }
 
-//lintignore:AT003
+// lintignore:AT003
 func TestAccPreCheckComponentDeployment(t *testing.T) {
 	if G42_BUILD_IMAGE_URL == "" {
 		t.Skip("SWR image URL configuration is not completed for acceptance test of component deployment.")

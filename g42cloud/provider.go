@@ -26,6 +26,7 @@ import (
 	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/dws"
 	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/ecs"
 	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/eip"
+	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/elb"
 	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/eps"
 	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/evs"
 	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/fgs"
@@ -163,24 +164,26 @@ func Provider() *schema.Provider {
 		},
 
 		DataSourcesMap: map[string]*schema.Resource{
-			"g42cloud_apig_environments":          apig.DataSourceEnvironments(),
-			"g42cloud_availability_zones":         huaweicloud.DataSourceAvailabilityZones(),
-			"g42cloud_bms_flavors":                bms.DataSourceBmsFlavors(),
-			"g42cloud_cbr_vaults":                 cbr.DataSourceCbrVaultsV3(),
-			"g42cloud_cce_cluster":                huaweicloud.DataSourceCCEClusterV3(),
-			"g42cloud_cce_node":                   huaweicloud.DataSourceCCENodeV3(),
-			"g42cloud_cce_addon_template":         huaweicloud.DataSourceCCEAddonTemplateV3(),
-			"g42cloud_cce_node_pool":              huaweicloud.DataSourceCCENodePoolV3(),
-			"g42cloud_compute_flavors":            huaweicloud.DataSourceEcsFlavors(),
-			"g42cloud_css_flavors":                css.DataSourceCssFlavors(),
-			"g42cloud_dds_flavors":                dds.DataSourceDDSFlavorV3(),
-			"g42cloud_dcs_az":                     deprecated.DataSourceDcsAZV1(),
-			"g42cloud_dcs_flavors":                dcs.DataSourceDcsFlavorsV2(),
-			"g42cloud_dcs_maintainwindow":         dcs.DataSourceDcsMaintainWindow(),
-			"g42cloud_dcs_product":                deprecated.DataSourceDcsProductV1(),
-			"g42cloud_dms_az":                     deprecated.DataSourceDmsAZ(),
-			"g42cloud_dms_product":                dms.DataSourceDmsProduct(),
-			"g42cloud_dms_maintainwindow":         dms.DataSourceDmsMaintainWindow(),
+			"g42cloud_apig_environments":  apig.DataSourceEnvironments(),
+			"g42cloud_availability_zones": huaweicloud.DataSourceAvailabilityZones(),
+			"g42cloud_bms_flavors":        bms.DataSourceBmsFlavors(),
+			"g42cloud_cbr_vaults":         cbr.DataSourceCbrVaultsV3(),
+			"g42cloud_cce_cluster":        huaweicloud.DataSourceCCEClusterV3(),
+			"g42cloud_cce_node":           huaweicloud.DataSourceCCENodeV3(),
+			"g42cloud_cce_addon_template": huaweicloud.DataSourceCCEAddonTemplateV3(),
+			"g42cloud_cce_node_pool":      huaweicloud.DataSourceCCENodePoolV3(),
+			"g42cloud_compute_flavors":    huaweicloud.DataSourceEcsFlavors(),
+			"g42cloud_css_flavors":        css.DataSourceCssFlavors(),
+			"g42cloud_dds_flavors":        dds.DataSourceDDSFlavorV3(),
+			"g42cloud_dcs_az":             deprecated.DataSourceDcsAZV1(),
+			"g42cloud_dcs_flavors":        dcs.DataSourceDcsFlavorsV2(),
+			"g42cloud_dcs_maintainwindow": dcs.DataSourceDcsMaintainWindow(),
+			"g42cloud_dcs_product":        deprecated.DataSourceDcsProductV1(),
+			"g42cloud_dms_az":             deprecated.DataSourceDmsAZ(),
+			"g42cloud_dms_product":        dms.DataSourceDmsProduct(),
+			"g42cloud_dms_maintainwindow": dms.DataSourceDmsMaintainWindow(),
+
+			"g42cloud_elb_certificate":            elb.DataSourceELBCertificateV3(),
 			"g42cloud_enterprise_project":         eps.DataSourceEnterpriseProject(),
 			"g42cloud_identity_role":              iam.DataSourceIdentityRoleV3(),
 			"g42cloud_images_image":               ims.DataSourceImagesImageV2(),
@@ -256,6 +259,15 @@ func Provider() *schema.Provider {
 			"g42cloud_dns_recordset":             huaweicloud.ResourceDNSRecordSetV2(),
 			"g42cloud_dns_zone":                  huaweicloud.ResourceDNSZoneV2(),
 			"g42cloud_dws_cluster":               dws.ResourceDwsCluster(),
+			"g42cloud_elb_certificate":           elb.ResourceCertificateV3(),
+			"g42cloud_elb_l7policy":              elb.ResourceL7PolicyV3(),
+			"g42cloud_elb_l7rule":                elb.ResourceL7RuleV3(),
+			"g42cloud_elb_listener":              elb.ResourceListenerV3(),
+			"g42cloud_elb_loadbalancer":          elb.ResourceLoadBalancerV3(),
+			"g42cloud_elb_monitor":               elb.ResourceMonitorV3(),
+			"g42cloud_elb_ipgroup":               elb.ResourceIpGroupV3(),
+			"g42cloud_elb_pool":                  elb.ResourcePoolV3(),
+			"g42cloud_elb_member":                elb.ResourceMemberV3(),
 			"g42cloud_enterprise_project":        eps.ResourceEnterpriseProject(),
 			"g42cloud_evs_snapshot":              huaweicloud.ResourceEvsSnapshotV2(),
 			"g42cloud_evs_volume":                evs.ResourceEvsVolume(),
