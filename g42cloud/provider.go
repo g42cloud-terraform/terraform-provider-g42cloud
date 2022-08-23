@@ -193,7 +193,7 @@ func Provider() *schema.Provider {
 			"g42cloud_modelarts_dataset_versions": modelarts.DataSourceDatasetVerions(),
 			"g42cloud_modelarts_notebook_images":  modelarts.DataSourceNotebookImages(),
 			"g42cloud_nat_gateway":                huaweicloud.DataSourceNatGatewayV2(),
-			"g42cloud_networking_port":            huaweicloud.DataSourceNetworkingPortV2(),
+			"g42cloud_networking_port":            vpc.DataSourceNetworkingPortV2(),
 			"g42cloud_networking_secgroup":        huaweicloud.DataSourceNetworkingSecGroup(),
 			"g42cloud_obs_bucket_object":          huaweicloud.DataSourceObsBucketObject(),
 			"g42cloud_rds_flavors":                rds.DataSourceRdsFlavor(),
@@ -341,6 +341,8 @@ func Provider() *schema.Provider {
 			"g42cloud_networking_secgroup":             huaweicloud.ResourceNetworkingSecGroup(),
 			"g42cloud_networking_secgroup_rule":        huaweicloud.ResourceNetworkingSecGroupRule(),
 			"g42cloud_vpcep_approval":                  huaweicloud.ResourceVPCEndpointApproval(),
+			"g42cloud_networking_vip":                  vpc.ResourceNetworkingVip(),
+			"g42cloud_networking_vip_associate":        vpc.ResourceNetworkingVIPAssociateV2(),
 			"g42cloud_vpcep_endpoint":                  huaweicloud.ResourceVPCEndpoint(),
 			"g42cloud_vpcep_service":                   huaweicloud.ResourceVPCEndpointService(),
 			// Legacy
