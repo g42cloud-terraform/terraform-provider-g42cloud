@@ -9,13 +9,12 @@ import (
 	"github.com/hashicorp/terraform-plugin-sdk/v2/terraform"
 
 	"github.com/chnsz/golangsdk/openstack/common/tags"
-	"github.com/chnsz/golangsdk/openstack/compute/v2/servers"
 	"github.com/chnsz/golangsdk/openstack/ecs/v1/cloudservers"
 	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/config"
 )
 
 func TestAccComputeV2Instance_basic(t *testing.T) {
-	var instance servers.Server
+	var instance cloudservers.CloudServer
 
 	rName := fmt.Sprintf("tf-acc-test-%s", acctest.RandString(5))
 	resourceName := "g42cloud_compute_instance.test"
@@ -23,12 +22,12 @@ func TestAccComputeV2Instance_basic(t *testing.T) {
 	resource.ParallelTest(t, resource.TestCase{
 		PreCheck:     func() { testAccPreCheck(t) },
 		Providers:    testAccProviders,
-		CheckDestroy: testAccCheckComputeV2InstanceDestroy,
+		CheckDestroy: testAccCheckComputeInstanceDestroy,
 		Steps: []resource.TestStep{
 			{
 				Config: testAccComputeV2Instance_basic(rName),
 				Check: resource.ComposeTestCheckFunc(
-					testAccCheckComputeV2InstanceExists(resourceName, &instance),
+					testAccCheckComputeInstanceExists(resourceName, &instance),
 					resource.TestCheckResourceAttr(resourceName, "name", rName),
 				),
 			},
@@ -46,7 +45,7 @@ func TestAccComputeV2Instance_basic(t *testing.T) {
 }
 
 func TestAccComputeV2Instance_tags(t *testing.T) {
-	var instance servers.Server
+	var instance cloudservers.CloudServer
 
 	rName := fmt.Sprintf("tf-acc-test-%s", acctest.RandString(5))
 	resourceName := "g42cloud_compute_instance.test"
@@ -54,37 +53,37 @@ func TestAccComputeV2Instance_tags(t *testing.T) {
 	resource.ParallelTest(t, resource.TestCase{
 		PreCheck:     func() { testAccPreCheck(t) },
 		Providers:    testAccProviders,
-		CheckDestroy: testAccCheckComputeV2InstanceDestroy,
+		CheckDestroy: testAccCheckComputeInstanceDestroy,
 		Steps: []resource.TestStep{
 			{
 				Config: testAccComputeV2Instance_tags(rName),
 				Check: resource.ComposeTestCheckFunc(
-					testAccCheckComputeV2InstanceExists(resourceName, &instance),
-					testAccCheckComputeV2InstanceTags(&instance, "foo", "bar"),
-					testAccCheckComputeV2InstanceTags(&instance, "key", "value"),
+					testAccCheckComputeInstanceExists(resourceName, &instance),
+					testAccCheckComputeInstanceTags(&instance, "foo", "bar"),
+					testAccCheckComputeInstanceTags(&instance, "key", "value"),
 				),
 			},
 			{
 				Config: testAccComputeV2Instance_tags2(rName),
 				Check: resource.ComposeTestCheckFunc(
-					testAccCheckComputeV2InstanceExists(resourceName, &instance),
-					testAccCheckComputeV2InstanceTags(&instance, "foo2", "bar2"),
-					testAccCheckComputeV2InstanceTags(&instance, "key", "value2"),
+					testAccCheckComputeInstanceExists(resourceName, &instance),
+					testAccCheckComputeInstanceTags(&instance, "foo2", "bar2"),
+					testAccCheckComputeInstanceTags(&instance, "key", "value2"),
 				),
 			},
 			{
 				Config: testAccComputeV2Instance_notags(rName),
 				Check: resource.ComposeTestCheckFunc(
-					testAccCheckComputeV2InstanceExists(resourceName, &instance),
-					testAccCheckComputeV2InstanceNoTags(&instance),
+					testAccCheckComputeInstanceExists(resourceName, &instance),
+					testAccCheckComputeInstanceNoTags(&instance),
 				),
 			},
 			{
 				Config: testAccComputeV2Instance_tags(rName),
 				Check: resource.ComposeTestCheckFunc(
-					testAccCheckComputeV2InstanceExists(resourceName, &instance),
-					testAccCheckComputeV2InstanceTags(&instance, "foo", "bar"),
-					testAccCheckComputeV2InstanceTags(&instance, "key", "value"),
+					testAccCheckComputeInstanceExists(resourceName, &instance),
+					testAccCheckComputeInstanceTags(&instance, "foo", "bar"),
+					testAccCheckComputeInstanceTags(&instance, "key", "value"),
 				),
 			},
 		},
@@ -100,12 +99,12 @@ func TestAccComputeV2Instance_disks(t *testing.T) {
 	resource.ParallelTest(t, resource.TestCase{
 		PreCheck:     func() { testAccPreCheck(t) },
 		Providers:    testAccProviders,
-		CheckDestroy: testAccCheckComputeV2InstanceDestroy,
+		CheckDestroy: testAccCheckComputeInstanceDestroy,
 		Steps: []resource.TestStep{
 			{
 				Config: testAccComputeV2Instance_disks(rName, 50),
 				Check: resource.ComposeTestCheckFunc(
-					testAccCheckComputeV1InstanceExists(resourceName, &instance),
+					testAccCheckComputeInstanceExists(resourceName, &instance),
 					resource.TestCheckResourceAttr(resourceName, "name", rName),
 					resource.TestCheckResourceAttr(resourceName, "system_disk_size", "50"),
 					resource.TestCheckResourceAttrPair(
@@ -117,7 +116,7 @@ func TestAccComputeV2Instance_disks(t *testing.T) {
 			{
 				Config: testAccComputeV2Instance_disks(rName, 60),
 				Check: resource.ComposeTestCheckFunc(
-					testAccCheckComputeV1InstanceExists(resourceName, &instance),
+					testAccCheckComputeInstanceExists(resourceName, &instance),
 					resource.TestCheckResourceAttr(resourceName, "name", rName),
 					resource.TestCheckResourceAttr(resourceName, "system_disk_size", "60"),
 				),
@@ -126,21 +125,21 @@ func TestAccComputeV2Instance_disks(t *testing.T) {
 	})
 }
 
-func testAccCheckComputeV2InstanceDestroy(s *terraform.State) error {
+func testAccCheckComputeInstanceDestroy(s *terraform.State) error {
 	config := testAccProvider.Meta().(*config.Config)
-	computeClient, err := config.ComputeV2Client(G42_REGION_NAME)
+	computeClient, err := config.ComputeV1Client(G42_REGION_NAME)
 	if err != nil {
 		return fmt.Errorf("Error creating G42Cloud compute client: %s", err)
 	}
 
 	for _, rs := range s.RootModule().Resources {
-		if rs.Type != "g42cloud_compute_instance" {
+		if rs.Type != "huaweicloud_compute_instance" {
 			continue
 		}
 
-		server, err := servers.Get(computeClient, rs.Primary.ID).Extract()
+		server, err := cloudservers.Get(computeClient, rs.Primary.ID).Extract()
 		if err == nil {
-			if server.Status != "SOFT_DELETED" {
+			if server.Status != "DELETED" {
 				return fmt.Errorf("Instance still exists")
 			}
 		}
@@ -149,7 +148,7 @@ func testAccCheckComputeV2InstanceDestroy(s *terraform.State) error {
 	return nil
 }
 
-func testAccCheckComputeV1InstanceExists(n string, instance *cloudservers.CloudServer) resource.TestCheckFunc {
+func testAccCheckComputeInstanceExists(n string, instance *cloudservers.CloudServer) resource.TestCheckFunc {
 	return func(s *terraform.State) error {
 		rs, ok := s.RootModule().Resources[n]
 		if !ok {
@@ -181,40 +180,8 @@ func testAccCheckComputeV1InstanceExists(n string, instance *cloudservers.CloudS
 	}
 }
 
-func testAccCheckComputeV2InstanceExists(n string, instance *servers.Server) resource.TestCheckFunc {
-	return func(s *terraform.State) error {
-		rs, ok := s.RootModule().Resources[n]
-		if !ok {
-			return fmt.Errorf("Not found: %s", n)
-		}
-
-		if rs.Primary.ID == "" {
-			return fmt.Errorf("No ID is set")
-		}
-
-		config := testAccProvider.Meta().(*config.Config)
-		computeClient, err := config.ComputeV2Client(G42_REGION_NAME)
-		if err != nil {
-			return fmt.Errorf("Error creating G42Cloud compute client: %s", err)
-		}
-
-		found, err := servers.Get(computeClient, rs.Primary.ID).Extract()
-		if err != nil {
-			return err
-		}
-
-		if found.ID != rs.Primary.ID {
-			return fmt.Errorf("Instance not found")
-		}
-
-		*instance = *found
-
-		return nil
-	}
-}
-
-func testAccCheckComputeV2InstanceTags(
-	instance *servers.Server, k, v string) resource.TestCheckFunc {
+func testAccCheckComputeInstanceTags(
+	instance *cloudservers.CloudServer, k, v string) resource.TestCheckFunc {
 	return func(s *terraform.State) error {
 		config := testAccProvider.Meta().(*config.Config)
 		client, err := config.ComputeV1Client(G42_REGION_NAME)
@@ -239,8 +206,8 @@ func testAccCheckComputeV2InstanceTags(
 	}
 }
 
-func testAccCheckComputeV2InstanceNoTags(
-	instance *servers.Server) resource.TestCheckFunc {
+func testAccCheckComputeInstanceNoTags(
+	instance *cloudservers.CloudServer) resource.TestCheckFunc {
 	return func(s *terraform.State) error {
 		config := testAccProvider.Meta().(*config.Config)
 		client, err := config.ComputeV1Client(G42_REGION_NAME)
@@ -281,7 +248,7 @@ data "g42cloud_images_image" "test" {
 }
 
 data "g42cloud_networking_secgroup" "test" {
-  name = "Sys-default"
+  name = "default"
 }
 `
 
