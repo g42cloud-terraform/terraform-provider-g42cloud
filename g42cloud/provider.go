@@ -240,7 +240,7 @@ func Provider() *schema.Provider {
 			"g42cloud_compute_instance":          ResourceComputeInstanceV2(),
 			"g42cloud_compute_interface_attach":  huaweicloud.ResourceComputeInterfaceAttachV2(),
 			"g42cloud_compute_keypair":           huaweicloud.ResourceComputeKeypairV2(),
-			"g42cloud_compute_servergroup":       huaweicloud.ResourceComputeServerGroupV2(),
+			"g42cloud_compute_servergroup":       ResourceComputeServerGroupV2(),
 			"g42cloud_compute_eip_associate":     huaweicloud.ResourceComputeFloatingIPAssociateV2(),
 			"g42cloud_compute_volume_attach":     ecs.ResourceComputeVolumeAttach(),
 			"g42cloud_css_cluster":               css.ResourceCssCluster(),

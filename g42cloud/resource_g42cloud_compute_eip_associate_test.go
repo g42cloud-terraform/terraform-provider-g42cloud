@@ -11,12 +11,13 @@ import (
 
 	"github.com/chnsz/golangsdk"
 	"github.com/chnsz/golangsdk/openstack/compute/v2/servers"
+	"github.com/chnsz/golangsdk/openstack/ecs/v1/cloudservers"
 	"github.com/chnsz/golangsdk/openstack/networking/v1/eips"
 	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/config"
 )
 
 func TestAccComputeV2EIPAssociate_basic(t *testing.T) {
-	var instance servers.Server
+	var instance cloudservers.CloudServer
 	var eip eips.PublicIp
 
 	rName := fmt.Sprintf("tf-acc-test-%s", acctest.RandString(5))
@@ -30,9 +31,9 @@ func TestAccComputeV2EIPAssociate_basic(t *testing.T) {
 			{
 				Config: testAccComputeV2EIPAssociate_basic(rName),
 				Check: resource.ComposeTestCheckFunc(
-					testAccCheckComputeV2InstanceExists("g42cloud_compute_instance.test", &instance),
+					testAccCheckComputeInstanceExists("g42cloud_compute_instance.test", &instance),
 					testAccCheckVpcV1EIPExists("g42cloud_vpc_eip.test", &eip),
-					testAccCheckComputeV2EIPAssociateAssociated(&eip, &instance, 1),
+					testAccCheckComputeEIPAssociateAssociated(&eip, &instance, 1),
 				),
 			},
 			{
@@ -45,7 +46,7 @@ func TestAccComputeV2EIPAssociate_basic(t *testing.T) {
 }
 
 func TestAccComputeV2EIPAssociate_fixedIP(t *testing.T) {
-	var instance servers.Server
+	var instance cloudservers.CloudServer
 	var eip eips.PublicIp
 
 	rName := fmt.Sprintf("tf-acc-test-%s", acctest.RandString(5))
@@ -59,9 +60,9 @@ func TestAccComputeV2EIPAssociate_fixedIP(t *testing.T) {
 			{
 				Config: testAccComputeV2EIPAssociate_fixedIP(rName),
 				Check: resource.ComposeTestCheckFunc(
-					testAccCheckComputeV2InstanceExists("g42cloud_compute_instance.test", &instance),
+					testAccCheckComputeInstanceExists("g42cloud_compute_instance.test", &instance),
 					testAccCheckVpcV1EIPExists("g42cloud_vpc_eip.test", &eip),
-					testAccCheckComputeV2EIPAssociateAssociated(&eip, &instance, 1),
+					testAccCheckComputeEIPAssociateAssociated(&eip, &instance, 1),
 				),
 			},
 			{
@@ -128,13 +129,13 @@ func parseComputeFloatingIPAssociateId(id string) (string, string, string, error
 	return floatingIP, instanceId, fixedIP, nil
 }
 
-func testAccCheckComputeV2EIPAssociateAssociated(
-	eip *eips.PublicIp, instance *servers.Server, n int) resource.TestCheckFunc {
+func testAccCheckComputeEIPAssociateAssociated(
+	eip *eips.PublicIp, instance *cloudservers.CloudServer, n int) resource.TestCheckFunc {
 	return func(s *terraform.State) error {
 		config := testAccProvider.Meta().(*config.Config)
-		computeClient, err := config.ComputeV2Client(G42_REGION_NAME)
+		computeClient, err := config.ComputeV1Client(G42_REGION_NAME)
 
-		newInstance, err := servers.Get(computeClient, instance.ID).Extract()
+		newInstance, err := cloudservers.Get(computeClient, instance.ID).Extract()
 		if err != nil {
 			return err
 		}
@@ -142,13 +143,12 @@ func testAccCheckComputeV2EIPAssociateAssociated(
 		// Walk through the instance's addresses and find the match
 		i := 0
 		for _, networkAddresses := range newInstance.Addresses {
-			i += 1
+			i++
 			if i != n {
 				continue
 			}
-			for _, element := range networkAddresses.([]interface{}) {
-				address := element.(map[string]interface{})
-				if address["OS-EXT-IPS:type"] == "floating" && address["addr"] == eip.PublicAddress {
+			for _, address := range networkAddresses {
+				if address.Type == "floating" && address.Addr == eip.PublicAddress {
 					return nil
 				}
 			}
@@ -163,11 +163,11 @@ func testAccComputeV2EIPAssociate_Base(rName string) string {
 
 resource "g42cloud_compute_instance" "test" {
   name = "%s"
-  image_id          = data.g42cloud_images_image.test.id
-  flavor_id         = data.g42cloud_compute_flavors.test.ids[0]
-  security_groups = ["default"]
-  availability_zone = data.g42cloud_availability_zones.test.names[0]
-  system_disk_type  = "SSD"
+  image_id           = data.g42cloud_images_image.test.id
+  flavor_id          = data.g42cloud_compute_flavors.test.ids[0]
+  security_group_ids = [data.g42cloud_networking_secgroup.test.id]
+  availability_zone  = data.g42cloud_availability_zones.test.names[0]
+  system_disk_type   = "SSD"
   network {
     uuid = data.g42cloud_vpc_subnet.test.id
   }
