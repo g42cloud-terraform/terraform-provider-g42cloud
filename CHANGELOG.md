@@ -1,5 +1,23 @@
 # CHANGELOG
 
+## 1.6.0 (August 30, 2022)
+
+FEATURES:
+
+* **New Data Source:** `g42cloud_elb_certificate` ([#86](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/86))
+
+* **New Resource:** `g42cloud_elb_certificate` ([#86](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/86))
+* **New Resource:** `g42cloud_elb_ipgroup` ([#86](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/86))
+* **New Resource:** `g42cloud_elb_l7policy` ([#86](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/86))
+* **New Resource:** `g42cloud_elb_l7rule` ([#86](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/86))
+* **New Resource:** `g42cloud_elb_listener` ([#86](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/86))
+* **New Resource:** `g42cloud_elb_loadbalancer` ([#86](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/86))
+* **New Resource:** `g42cloud_elb_member` ([#86](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/86))
+* **New Resource:** `g42cloud_elb_monitor` ([#86](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/86))
+* **New Resource:** `g42cloud_elb_pool` ([#86](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/86))
+* **New Resource:** `g42cloud_networking_vip` ([#88](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/88))
+* **New Resource:** `g42cloud_networking_vip_associate` ([#88](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/88))
+
 ## 1.5.0 (June 30, 2022)
 
 FEATURES:
