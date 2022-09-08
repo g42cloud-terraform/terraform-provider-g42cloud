@@ -184,6 +184,7 @@ func Provider() *schema.Provider {
 			"g42cloud_dms_maintainwindow": dms.DataSourceDmsMaintainWindow(),
 
 			"g42cloud_elb_certificate":            elb.DataSourceELBCertificateV3(),
+			"g42cloud_elb_flavors":                elb.DataSourceElbFlavorsV3(),
 			"g42cloud_enterprise_project":         eps.DataSourceEnterpriseProject(),
 			"g42cloud_identity_role":              iam.DataSourceIdentityRoleV3(),
 			"g42cloud_images_image":               ims.DataSourceImagesImageV2(),
