@@ -19,16 +19,15 @@ import (
 	"github.com/chnsz/golangsdk/openstack/compute/v2/extensions/keypairs"
 	"github.com/chnsz/golangsdk/openstack/compute/v2/extensions/schedulerhints"
 	"github.com/chnsz/golangsdk/openstack/compute/v2/extensions/secgroups"
-	"github.com/chnsz/golangsdk/openstack/compute/v2/flavors"
 	"github.com/chnsz/golangsdk/openstack/compute/v2/servers"
 	"github.com/chnsz/golangsdk/openstack/ecs/v1/block_devices"
 	"github.com/chnsz/golangsdk/openstack/ecs/v1/cloudservers"
 	"github.com/chnsz/golangsdk/openstack/ecs/v1/powers"
 	"github.com/chnsz/golangsdk/openstack/evs/v2/cloudvolumes"
 	"github.com/chnsz/golangsdk/openstack/ims/v2/cloudimages"
+	"github.com/chnsz/golangsdk/openstack/networking/v1/ports"
 	groups "github.com/chnsz/golangsdk/openstack/networking/v1/security/securitygroups"
 	"github.com/chnsz/golangsdk/openstack/networking/v1/subnets"
-	"github.com/chnsz/golangsdk/openstack/networking/v2/ports"
 	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/common"
 	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/config"
 	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/helper/hashcode"
@@ -499,7 +498,7 @@ func resourceComputeInstanceV2Create(ctx context.Context, d *schema.ResourceData
 	if err != nil {
 		return diag.Errorf("error creating image client: %s", err)
 	}
-	nicClient, err := config.NetworkingV2Client(GetRegion(d, config))
+	nicClient, err := config.NetworkingV1Client(config.GetRegion(d))
 	if err != nil {
 		return diag.Errorf("error creating networking client: %s", err)
 	}
@@ -517,7 +516,7 @@ func resourceComputeInstanceV2Create(ctx context.Context, d *schema.ResourceData
 		return diag.FromErr(err)
 	}
 
-	flavorId, err := getFlavorID(computeClient, d)
+	flavorId, err := getFlavorID(d)
 	if err != nil {
 		return diag.FromErr(err)
 	}
@@ -1069,11 +1068,7 @@ func resourceComputeInstanceV2Update(ctx context.Context, d *schema.ResourceData
 		if d.HasChange("flavor_id") {
 			newFlavorId = d.Get("flavor_id").(string)
 		} else {
-			newFlavorName := d.Get("flavor_name").(string)
-			newFlavorId, err = flavors.IDFromName(computeClient, newFlavorName)
-			if err != nil {
-				return diag.FromErr(err)
-			}
+			newFlavorId = d.Get("flavor_name").(string)
 		}
 
 		extendParam := &cloudservers.ResizeExtendParam{
@@ -1100,7 +1095,7 @@ func resourceComputeInstanceV2Update(ctx context.Context, d *schema.ResourceData
 
 	if d.HasChange("network") {
 		var err error
-		nicClient, err := config.NetworkingV2Client(GetRegion(d, config))
+		nicClient, err := config.NetworkingV1Client(GetRegion(d, config))
 		if err != nil {
 			return diag.Errorf("error creating networking client: %s", err)
 		}
@@ -1575,13 +1570,13 @@ func computePublicIP(server *cloudservers.CloudServer) string {
 	return publicIP
 }
 
-func getFlavorID(client *golangsdk.ServiceClient, d *schema.ResourceData) (string, error) {
+func getFlavorID(d *schema.ResourceData) (string, error) {
 	if flavorID := d.Get("flavor_id").(string); flavorID != "" {
 		return flavorID, nil
 	}
 
 	if flavorName := d.Get("flavor_name").(string); flavorName != "" {
-		return flavors.IDFromName(client, flavorName)
+		return flavorName, nil
 	}
 
 	return "", fmt.Errorf("one of `flavor_id, flavor_name` must be specified")
@@ -1710,14 +1705,14 @@ func disableSourceDestCheck(networkClient *golangsdk.ServiceClient, portID strin
 	// to disable the source/destination check
 	portpairs := []ports.AddressPair{
 		{
-			IPAddress: "1.1.1.1/0",
+			IpAddress: "1.1.1.1/0",
 		},
 	}
 	portUpdateOpts := ports.UpdateOpts{
-		AllowedAddressPairs: &portpairs,
+		AllowedAddressPairs: portpairs,
 	}
 
-	_, err := ports.Update(networkClient, portID, portUpdateOpts).Extract()
+	_, err := ports.Update(networkClient, portID, portUpdateOpts)
 	return err
 }
 
@@ -1725,10 +1720,10 @@ func enableSourceDestCheck(networkClient *golangsdk.ServiceClient, portID string
 	// cancle all allowed-address-pairs to enable the source/destination check
 	portpairs := make([]ports.AddressPair, 0)
 	portUpdateOpts := ports.UpdateOpts{
-		AllowedAddressPairs: &portpairs,
+		AllowedAddressPairs: portpairs,
 	}
 
-	_, err := ports.Update(networkClient, portID, portUpdateOpts).Extract()
+	_, err := ports.Update(networkClient, portID, portUpdateOpts)
 	return err
 }
 
