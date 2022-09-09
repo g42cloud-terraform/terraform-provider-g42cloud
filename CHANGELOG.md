@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 1.6.1 (September 9, 2022)
+
+FEATURES:
+
+* **New Data Source:** `g42cloud_elb_flavors` ([#93](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/93))
+
 ## 1.6.0 (August 30, 2022)
 
 FEATURES:
