@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 1.7.0 (December 29, 2022)
+
+ENHANCEMENTS:
+
+udpate docs ([#97](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/97))
+
 ## 1.6.1 (September 9, 2022)
 
 FEATURES:
