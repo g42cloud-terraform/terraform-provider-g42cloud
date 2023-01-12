@@ -1,6 +1,8 @@
 resource "g42cloud_lb_loadbalancer" "elb" {
   name          = var.elb_name
   vip_subnet_id = data.g42cloud_vpc_subnet.subnet.subnet_id
+
+  enterprise_project_id = var.eps_id
 }
 
 resource "g42cloud_lb_listener" "listener_http" {
@@ -47,6 +49,8 @@ resource "g42cloud_vpc_eip" "eip" {
   publicip {
     type = "5_bgp"
   }
+
+  enterprise_project_id = var.eps_id
 }
 
 # Bind the above eip to the specified loadbalancer

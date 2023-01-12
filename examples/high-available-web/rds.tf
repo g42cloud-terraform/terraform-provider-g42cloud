@@ -28,4 +28,6 @@ resource "g42cloud_rds_instance" "rds" {
     size = var.rds_volume_size
     type = var.rds_volume_type
   }
+
+  enterprise_project_id = var.eps_id
 }

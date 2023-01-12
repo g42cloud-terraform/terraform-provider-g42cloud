@@ -24,4 +24,6 @@ resource "g42cloud_compute_instance" "ecs" {
   network {
     uuid = data.g42cloud_vpc_subnet.subnet.id
   }
+
+  enterprise_project_id = var.eps_id
 }

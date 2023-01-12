@@ -8,6 +8,8 @@ data "g42cloud_vpc_subnet" "subnet" {
 
 resource "g42cloud_networking_secgroup" "secgroup" {
   name = var.security_group_name
+
+  enterprise_project_id = var.eps_id
 }
 
 resource "g42cloud_networking_secgroup_rule" "allow_ssh_linux" {
