@@ -15,8 +15,8 @@ The script contains 2 parts
 
 How to run the script ?
 
-1. Terraform installation - this can be done on local laptop or on a ECS s
-2. COpy the script to the terrafrom working directory
+1. Terraform installation - this can be done on local laptop or on an ECS
+2. Copy the script to the terrafrom working directory
 3. Initialize the working directory using the command "terraform init"
 4. Verify the script using "terraform plan"
 5. Deploy the Infra using "terraform apply"
