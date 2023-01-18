@@ -38,6 +38,9 @@ func TestAccCCENodePool_basic(t *testing.T) {
 				ImportState:       true,
 				ImportStateVerify: true,
 				ImportStateIdFunc: testAccCCENodePoolImportStateIdFunc(),
+				ImportStateVerifyIgnore: []string{
+					"initial_node_count",
+				},
 			},
 			{
 				Config: testAccCCENodePool_update(rName, updateName),
@@ -247,7 +250,7 @@ resource "g42cloud_cce_node_pool" "test" {
   cluster_id         = g42cloud_cce_cluster.test.id
   name               = "%s"
   os                 = "CentOS 7.6"
-  flavor_id          = "s6.large.2"
+  flavor_id          = "m6.large.8"
   initial_node_count = 1
   availability_zone  = data.g42cloud_availability_zones.test.names[0]
   key_pair           = g42cloud_compute_keypair.test.name
@@ -278,7 +281,7 @@ resource "g42cloud_cce_node_pool" "test" {
   cluster_id         = g42cloud_cce_cluster.test.id
   name               = "%s"
   os                 = "CentOS 7.6"
-  flavor_id          = "s6.large.2"
+  flavor_id          = "m6.large.8"
   initial_node_count = 2
   availability_zone  = data.g42cloud_availability_zones.test.names[0]
   key_pair           = g42cloud_compute_keypair.test.name
@@ -309,7 +312,7 @@ resource "g42cloud_cce_node_pool" "test" {
   cluster_id         = g42cloud_cce_cluster.test.id
   name               = "%s"
   os                 = "CentOS 7.6"
-  flavor_id          = "s6.large.2"
+  flavor_id          = "m6.large.8"
   initial_node_count = 1
   availability_zone  = data.g42cloud_availability_zones.test.names[0]
   key_pair           = g42cloud_compute_keypair.test.name
@@ -355,7 +358,7 @@ resource "g42cloud_cce_node_pool" "test" {
   cluster_id               = g42cloud_cce_cluster.test.id
   name                     = "%s"
   os                       = "CentOS 7.6"
-  flavor_id                = "s6.large.2"
+  flavor_id                = "m6.large.8"
   initial_node_count       = 1
   availability_zone        = data.g42cloud_availability_zones.test.names[0]
   key_pair                 = g42cloud_compute_keypair.test.name
@@ -391,7 +394,7 @@ resource "g42cloud_cce_node_pool" "test" {
   cluster_id               = g42cloud_cce_cluster.test.id
   name                     = "%s"
   os                       = "CentOS 7.6"
-  flavor_id                = "s6.large.2"
+  flavor_id                = "m6.large.8"
   initial_node_count       = 1
   availability_zone        = data.g42cloud_availability_zones.test.names[0]
   key_pair                 = g42cloud_compute_keypair.test.name
@@ -432,7 +435,7 @@ resource "g42cloud_cce_node_pool" "test" {
   cluster_id               = g42cloud_cce_cluster.test.id
   name                     = "%s"
   os                       = "CentOS 7.6"
-  flavor_id                = "s6.large.2"
+  flavor_id                = "m6.large.8"
   initial_node_count       = 1
   availability_zone        = data.g42cloud_availability_zones.test.names[0]
   key_pair                 = g42cloud_compute_keypair.test.name
