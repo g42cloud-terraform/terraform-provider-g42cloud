@@ -185,7 +185,7 @@ func testAccCCENodeV3_basic(rName string) string {
 resource "g42cloud_cce_node" "test" {
   cluster_id        = g42cloud_cce_cluster.test.id
   name              = "%s"
-  flavor_id         = "s6.large.2"
+  flavor_id         = "m6.large.8"
   availability_zone = data.g42cloud_availability_zones.test.names[0]
   key_pair          = g42cloud_compute_keypair.test.name
   os                = "CentOS 7.6"
@@ -213,7 +213,7 @@ func testAccCCENodeV3_update(rName, updateName string) string {
 resource "g42cloud_cce_node" "test" {
   cluster_id        = g42cloud_cce_cluster.test.id
   name              = "%s"
-  flavor_id         = "s6.large.2"
+  flavor_id         = "m6.large.8"
   availability_zone = data.g42cloud_availability_zones.test.names[0]
   key_pair          = g42cloud_compute_keypair.test.name
   os                = "CentOS 7.6"
@@ -241,7 +241,7 @@ func testAccCCENodeV3_auto_assign_eip(rName string) string {
 resource "g42cloud_cce_node" "test" {
   cluster_id        = g42cloud_cce_cluster.test.id
   name              = "%s"
-  flavor_id         = "s6.large.2"
+  flavor_id         = "m6.large.8"
   availability_zone = data.g42cloud_availability_zones.test.names[0]
   key_pair          = g42cloud_compute_keypair.test.name
   os                = "CentOS 7.6"
@@ -283,7 +283,7 @@ resource "g42cloud_vpc_eip" "test" {
 resource "g42cloud_cce_node" "test" {
   cluster_id        = g42cloud_cce_cluster.test.id
   name              = "%s"
-  flavor_id         = "s6.large.2"
+  flavor_id         = "m6.large.8"
   availability_zone = data.g42cloud_availability_zones.test.names[0]
   key_pair          = g42cloud_compute_keypair.test.name
   os                = "CentOS 7.6"
@@ -315,7 +315,7 @@ resource "g42cloud_kms_key" "test" {
 resource "g42cloud_cce_node" "test" {
   cluster_id        = g42cloud_cce_cluster.test.id
   name              = "%s"
-  flavor_id         = "s6.large.2"
+  flavor_id         = "m6.large.8"
   availability_zone = data.g42cloud_availability_zones.test.names[0]
   key_pair          = g42cloud_compute_keypair.test.name
   os                = "CentOS 7.6"
