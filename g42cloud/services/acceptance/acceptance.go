@@ -55,6 +55,8 @@ var (
 	G42_GITHUB_REPO_URL       = os.Getenv("G42_GITHUB_REPO_URL")
 	G42_OBS_STORAGE_URL       = os.Getenv("G42_OBS_STORAGE_URL")
 	G42_BUILD_IMAGE_URL       = os.Getenv("G42_BUILD_IMAGE_URL")
+
+	G42_DC_DIRECT_CONNECT_ID = os.Getenv("G42_DC_DIRECT_CONNECT_ID")
 )
 
 // TestAccProviders is a static map containing only the main provider instance.
@@ -418,5 +420,12 @@ func TestAccPreCheckComponent(t *testing.T) {
 func TestAccPreCheckComponentDeployment(t *testing.T) {
 	if G42_BUILD_IMAGE_URL == "" {
 		t.Skip("SWR image URL configuration is not completed for acceptance test of component deployment.")
+	}
+}
+
+// lintignore:AT003
+func TestAccPreCheckDcDirectConnection(t *testing.T) {
+	if G42_DC_DIRECT_CONNECT_ID == "" {
+		t.Skip("Skip the interface acceptance test because of the direct connection ID is missing.")
 	}
 }

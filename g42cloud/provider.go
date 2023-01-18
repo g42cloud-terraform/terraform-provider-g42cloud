@@ -19,6 +19,7 @@ import (
 	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/ces"
 	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/css"
 	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/cts"
+	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/dc"
 	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/dcs"
 	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/dds"
 	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/deprecated"
@@ -252,6 +253,8 @@ func Provider() *schema.Provider {
 			"g42cloud_css_thesaurus":             css.ResourceCssthesaurus(),
 			"g42cloud_cts_tracker":               cts.ResourceCTSTracker(),
 			"g42cloud_cts_data_tracker":          cts.ResourceCTSDataTracker(),
+			"g42cloud_dc_virtual_gateway":        dc.ResourceVirtualGateway(),
+			"g42cloud_dc_virtual_interface":      dc.ResourceVirtualInterface(),
 			"g42cloud_dcs_instance":              dcs.ResourceDcsInstance(),
 			"g42cloud_dds_instance":              dds.ResourceDdsInstanceV3(),
 			"g42cloud_dli_queue":                 dli.ResourceDliQueue(),
