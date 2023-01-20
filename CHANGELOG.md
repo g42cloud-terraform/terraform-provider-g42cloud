@@ -1,5 +1,24 @@
 # CHANGELOG
 
+## 1.8.0 (January 20, 2023)
+
+ENHANCEMENTS:
+
+udpate references ([#106](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/106))
+udpate AS docs ([#112](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/112))
+
+FEATURES:
+
+* **New Data Source:** `g42cloud_dms_kafka_flavors` ([#110](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/110))
+* **New Data Source:** `g42cloud_dms_kafka_instances` ([#110](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/110))
+
+* **New Resource:** `g42cloud_dc_virtual_gateway` ([#107](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/107))
+* **New Resource:** `g42cloud_dc_virtual_interface` ([#107](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/107))
+* **New Resource:** `g42cloud_dms_kafka_instance` ([#110](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/110))
+* **New Resource:** `g42cloud_dms_kafka_permissions` ([#110](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/110))
+* **New Resource:** `g42cloud_dms_kafka_topic` ([#110](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/110))
+* **New Resource:** `g42cloud_dms_kafka_user` ([#110](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/110))
+
 ## 1.7.0 (December 29, 2022)
 
 ENHANCEMENTS:
