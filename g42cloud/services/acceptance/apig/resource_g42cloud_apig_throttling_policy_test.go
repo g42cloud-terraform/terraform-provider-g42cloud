@@ -190,7 +190,7 @@ resource "g42cloud_apig_application" "test" {
 
   app_codes = ["%s"]
 }
-`, testAccApigApplication_base(rName), rName, utils.EncodeBase64String(code))
+`, testAccApigApplication_base(rName), rName, utils.Base64EncodeString(code))
 }
 
 func testAccApigThrottlingPolicy_basic(rName string) string {
