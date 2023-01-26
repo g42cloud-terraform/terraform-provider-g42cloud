@@ -47,6 +47,6 @@ resource "g42cloud_networking_secgroup_rule" "allow_web_db" {
   description       = "allow traffic from web"
   direction         = "ingress"
   ethertype         = "IPv4"
-  remote_group_id   = g42cloud_networking_secgroup.secgroup_web.id
+  remote_group_id   = g42cloud_networking_secgroup.secgroup_app.id
   security_group_id = g42cloud_networking_secgroup.secgroup_db.id
 }
