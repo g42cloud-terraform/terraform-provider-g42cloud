@@ -44,6 +44,12 @@ resource "g42cloud_as_group" "as_group_web" {
     id = g42cloud_networking_secgroup.secgroup_web.id
   }
 
+ lbaas_listeners {
+    pool_id = g42cloud_elb_pool.pool_web.id
+    protocol_port = g42cloud_elb_listener.listener.protocol_port
+}
+
+
   tags = {
     owner = "AutoScaling"
   }
@@ -97,7 +103,7 @@ resource "g42cloud_as_group" "as_group_app" {
     id = g42cloud_networking_secgroup.secgroup_app.id
   }
   lbaas_listeners {
-    pool_id = g42cloud_elb_pool.pool.id
+    pool_id = g42cloud_elb_pool.pool_app.id
     protocol_port = g42cloud_elb_listener.listener.protocol_port
   }
 
