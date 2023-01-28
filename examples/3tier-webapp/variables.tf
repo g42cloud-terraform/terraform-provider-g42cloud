@@ -22,9 +22,14 @@ variable "eip_bandwidth_size" {
   default = 5
 }
 
-variable "elb_name" {
-  description = "The name of the elb"
-  default = "high-available-web-demo"
+variable "elbweb_name" {
+  description = "The name of web elb"
+  default = "HA-web"
+}
+
+variable "elbapp_name" {
+  description = "The name of app elb"
+  default = "HA-App"
 }
 
 variable "elb_listen_port" {
@@ -58,6 +63,7 @@ variable "rds_volume_type" {
 
 variable "rds_password" {
   description = "The password of the rds instance"
-  default = "NiuzhenguoTest@123"
+  default = "xxxxxxxxxxxxx"
   sensitive = true
 }
+
