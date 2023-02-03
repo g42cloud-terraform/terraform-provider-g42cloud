@@ -45,10 +45,15 @@ import (
 	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/tms"
 	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/vpc"
 	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/vpcep"
+	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/waf"
 )
 
 // This is a global MutexKV for use within this plugin.
 var osMutexKV = mutexkv.NewMutexKV()
+
+func init() {
+	waf.PaidType = "postPaid"
+}
 
 // Provider returns a schema.Provider for G42Cloud.
 func Provider() *schema.Provider {
@@ -217,6 +222,11 @@ func Provider() *schema.Provider {
 			"g42cloud_vpc_route":             vpc.DataSourceVpcRouteV2(),
 			"g42cloud_vpc_route_table":       vpc.DataSourceVPCRouteTable(),
 			"g42cloud_vpcep_public_services": vpcep.DataSourceVPCEPPublicServices(),
+
+			"g42cloud_waf_certificate":         waf.DataSourceWafCertificateV1(),
+			"g42cloud_waf_policies":            waf.DataSourceWafPoliciesV1(),
+			"g42cloud_waf_dedicated_instances": waf.DataSourceWafDedicatedInstancesV1(),
+			"g42cloud_waf_reference_tables":    waf.DataSourceWafReferenceTablesV1(),
 			// Legacy
 			"g42cloud_identity_role_v3": iam.DataSourceIdentityRoleV3(),
 		},
@@ -349,6 +359,15 @@ func Provider() *schema.Provider {
 			"g42cloud_vpc_peering_connection":          vpc.ResourceVpcPeeringConnectionV2(),
 			"g42cloud_vpc_peering_connection_accepter": vpc.ResourceVpcPeeringConnectionAccepterV2(),
 			"g42cloud_vpc_subnet":                      vpc.ResourceVpcSubnetV1(),
+			"g42cloud_waf_certificate":                 waf.ResourceWafCertificateV1(),
+			"g42cloud_waf_domain":                      waf.ResourceWafDomainV1(),
+			"g42cloud_waf_policy":                      waf.ResourceWafPolicyV1(),
+			"g42cloud_waf_rule_blacklist":              waf.ResourceWafRuleBlackListV1(),
+			"g42cloud_waf_rule_data_masking":           waf.ResourceWafRuleDataMaskingV1(),
+			"g42cloud_waf_rule_web_tamper_protection":  waf.ResourceWafRuleWebTamperProtectionV1(),
+			"g42cloud_waf_dedicated_instance":          waf.ResourceWafDedicatedInstance(),
+			"g42cloud_waf_dedicated_domain":            waf.ResourceWafDedicatedDomainV1(),
+			"g42cloud_waf_reference_table":             waf.ResourceWafReferenceTableV1(),
 			"g42cloud_networking_eip_associate":        eip.ResourceEIPAssociate(),
 			"g42cloud_networking_secgroup":             huaweicloud.ResourceNetworkingSecGroup(),
 			"g42cloud_networking_secgroup_rule":        huaweicloud.ResourceNetworkingSecGroupRule(),

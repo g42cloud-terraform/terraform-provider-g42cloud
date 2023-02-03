@@ -173,8 +173,6 @@ The following arguments are supported:
 * `enterprise_project_id` - (Optional, String, ForceNew) The enterprise project id of the RDS instance. Changing this
   parameter creates a new RDS instance.
 
-* `ssl_enable` - (Optional, Bool) Specifies whether to enable the SSL for MySQL database.
-
 * `tags` - (Optional, Map) A mapping of tags to assign to the RDS instance. Each tag is represented by one key-value
   pair.
 
