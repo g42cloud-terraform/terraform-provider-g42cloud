@@ -1,5 +1,24 @@
 # CHANGELOG
 
+## 1.8.1 (February 3, 2023)
+
+FEATURE8:
+
+* **New Data Source:** `g42cloud_waf_certificate` ([#118](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/118))
+* **New Data Source:** `g42cloud_waf_dedicated_instances` ([#118](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/118))
+* **New Data Source:** `g42cloud_waf_waf_policies` ([#118](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/118))
+* **New Data Source:** `g42cloud_waf_waf_reference_tables` ([#118](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/118)
+
+* **New Resource:** `g42cloud_waf_certificate` ([#118](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/118))
+* **New Resource:** `g42cloud_waf_dedicated_domain` ([#118](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/118))
+* **New Resource:** `g42cloud_waf_dedicated_instance` ([#118](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/118))
+* **New Resource:** `g42cloud_waf_domain` ([#118](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/118))
+* **New Resource:** `g42cloud_waf_policy` ([#118](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/118))
+* **New Resource:** `g42cloud_waf_reference_table` ([#118](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/118))
+* **New Resource:** `g42cloud_waf_rule_blacklist` ([#118](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/118))
+* **New Resource:** `g42cloud_waf_rule_data_masking` ([#118](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/118))
+* **New Resource:** `g42cloud_waf_rule_web_tamper_protection` ([#118](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/118))
+
 ## 1.8.0 (January 20, 2023)
 
 ENHANCEMENTS:
