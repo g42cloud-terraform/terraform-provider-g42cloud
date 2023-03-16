@@ -11,6 +11,7 @@ import (
 	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud"
 	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/config"
 	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/helper/mutexkv"
+	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/antiddos"
 	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/aom"
 	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/apig"
 	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/as"
@@ -24,8 +25,10 @@ import (
 	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/dcs"
 	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/dds"
 	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/deprecated"
+	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/dew"
 	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/dli"
 	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/dms"
+	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/dns"
 	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/dws"
 	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/ecs"
 	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/eip"
@@ -38,6 +41,7 @@ import (
 	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/lb"
 	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/modelarts"
 	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/mrs"
+	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/nat"
 	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/obs"
 	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/rds"
 	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/servicestage"
@@ -203,12 +207,12 @@ func Provider() *schema.Provider {
 			"g42cloud_identity_role":              iam.DataSourceIdentityRoleV3(),
 			"g42cloud_images_image":               ims.DataSourceImagesImageV2(),
 			"g42cloud_images_images":              ims.DataSourceImagesImages(),
-			"g42cloud_kms_key":                    huaweicloud.DataSourceKmsKeyV1(),
+			"g42cloud_kms_key":                    dew.DataSourceKmsKey(),
 			"g42cloud_kms_data_key":               huaweicloud.DataSourceKmsDataKeyV1(),
 			"g42cloud_modelarts_datasets":         modelarts.DataSourceDatasets(),
 			"g42cloud_modelarts_dataset_versions": modelarts.DataSourceDatasetVerions(),
 			"g42cloud_modelarts_notebook_images":  modelarts.DataSourceNotebookImages(),
-			"g42cloud_nat_gateway":                huaweicloud.DataSourceNatGatewayV2(),
+			"g42cloud_nat_gateway":                nat.DataSourcePublicGateway(),
 			"g42cloud_networking_port":            vpc.DataSourceNetworkingPortV2(),
 			"g42cloud_networking_secgroup":        huaweicloud.DataSourceNetworkingSecGroup(),
 			"g42cloud_obs_bucket_object":          obs.DataSourceObsBucketObject(),
@@ -237,6 +241,7 @@ func Provider() *schema.Provider {
 		},
 
 		ResourcesMap: map[string]*schema.Resource{
+			"g42cloud_antiddos_basic":                   antiddos.ResourceCloudNativeAntiDdos(),
 			"g42cloud_aom_alarm_rule":                   aom.ResourceAlarmRule(),
 			"g42cloud_aom_service_discovery_rule":       aom.ResourceServiceDiscoveryRule(),
 			"g42cloud_apig_api":                         apig.ResourceApigAPIV2(),
@@ -284,9 +289,9 @@ func Provider() *schema.Provider {
 			"g42cloud_dms_kafka_user":            dms.ResourceDmsKafkaUser(),
 			"g42cloud_dms_kafka_permissions":     dms.ResourceDmsKafkaPermissions(),
 			"g42cloud_dms_rabbitmq_instance":     dms.ResourceDmsRabbitmqInstance(),
-			"g42cloud_dns_ptrrecord":             huaweicloud.ResourceDNSPtrRecordV2(),
-			"g42cloud_dns_recordset":             huaweicloud.ResourceDNSRecordSetV2(),
-			"g42cloud_dns_zone":                  huaweicloud.ResourceDNSZoneV2(),
+			"g42cloud_dns_ptrrecord":             dns.ResourceDNSPtrRecord(),
+			"g42cloud_dns_recordset":             dns.ResourceDNSRecordSetV2(),
+			"g42cloud_dns_zone":                  dns.ResourceDNSZone(),
 			"g42cloud_dws_cluster":               dws.ResourceDwsCluster(),
 			"g42cloud_elb_certificate":           elb.ResourceCertificateV3(),
 			"g42cloud_elb_l7policy":              elb.ResourceL7PolicyV3(),
@@ -310,7 +315,7 @@ func Provider() *schema.Provider {
 			"g42cloud_identity_project":          iam.ResourceIdentityProjectV3(),
 			"g42cloud_identity_role":             iam.ResourceIdentityRole(),
 			"g42cloud_images_image":              ims.ResourceImsImage(),
-			"g42cloud_kms_key":                   huaweicloud.ResourceKmsKeyV1(),
+			"g42cloud_kms_key":                   dew.ResourceKmsKey(),
 			"g42cloud_lb_certificate":            lb.ResourceCertificateV2(),
 			"g42cloud_lb_l7policy":               lb.ResourceL7PolicyV2(),
 			"g42cloud_lb_l7rule":                 lb.ResourceL7RuleV2(),
@@ -330,9 +335,9 @@ func Provider() *schema.Provider {
 			"g42cloud_modelarts_notebook":               modelarts.ResourceNotebook(),
 			"g42cloud_modelarts_notebook_mount_storage": modelarts.ResourceNotebookMountStorage(),
 
-			"g42cloud_nat_dnat_rule":             huaweicloud.ResourceNatDnatRuleV2(),
-			"g42cloud_nat_gateway":               huaweicloud.ResourceNatGatewayV2(),
-			"g42cloud_nat_snat_rule":             huaweicloud.ResourceNatSnatRuleV2(),
+			"g42cloud_nat_dnat_rule":             nat.ResourcePublicDnatRule(),
+			"g42cloud_nat_gateway":               nat.ResourcePublicGateway(),
+			"g42cloud_nat_snat_rule":             nat.ResourcePublicSnatRule(),
 			"g42cloud_network_acl":               huaweicloud.ResourceNetworkACL(),
 			"g42cloud_network_acl_rule":          huaweicloud.ResourceNetworkACLRule(),
 			"g42cloud_obs_bucket":                obs.ResourceObsBucket(),
