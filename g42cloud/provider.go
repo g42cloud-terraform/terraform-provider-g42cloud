@@ -42,6 +42,7 @@ import (
 	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/rds"
 	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/servicestage"
 	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/smn"
+	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/sms"
 	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/swr"
 	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/tms"
 	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/vpc"
@@ -214,6 +215,8 @@ func Provider() *schema.Provider {
 
 			"g42cloud_servicestage_component_runtimes": servicestage.DataSourceComponentRuntimes(),
 
+			"g42cloud_sms_source_servers": sms.DataSourceServers(),
+
 			"g42cloud_vpc_bandwidth":         eip.DataSourceBandWidth(),
 			"g42cloud_vpc_eip":               eip.DataSourceVpcEip(),
 			"g42cloud_vpc_eips":              eip.DataSourceVpcEips(),
@@ -347,6 +350,8 @@ func Provider() *schema.Provider {
 			"g42cloud_sfs_turbo":                                huaweicloud.ResourceSFSTurbo(),
 			"g42cloud_smn_subscription":                         smn.ResourceSubscription(),
 			"g42cloud_smn_topic":                                smn.ResourceTopic(),
+			"g42cloud_sms_server_template":                      sms.ResourceServerTemplate(),
+			"g42cloud_sms_task":                                 sms.ResourceMigrateTask(),
 			"g42cloud_swr_organization":                         swr.ResourceSWROrganization(),
 			"g42cloud_swr_organization_permissions":             swr.ResourceSWROrganizationPermissions(),
 			"g42cloud_swr_repository":                           swr.ResourceSWRRepository(),
@@ -432,11 +437,13 @@ func init() {
 func configureProvider(d *schema.ResourceData, terraformVersion string) (interface{}, error) {
 	var project_name string
 
+	region := d.Get("region").(string)
+
 	// Use region as project_name if it's not set
 	if v, ok := d.GetOk("project_name"); ok && v.(string) != "" {
 		project_name = v.(string)
 	} else {
-		project_name = d.Get("region").(string)
+		project_name = region
 	}
 
 	config := config.Config{
@@ -472,6 +479,12 @@ func configureProvider(d *schema.ResourceData, terraformVersion string) (interfa
 	if err != nil {
 		return nil, err
 	}
+
+	// set default endpoints
+	if _, ok := endpoints["sms"]; !ok {
+		endpoints["sms"] = fmt.Sprintf("https://sms.%s.%s/", region, config.Cloud)
+	}
+
 	config.Endpoints = endpoints
 
 	return &config, nil

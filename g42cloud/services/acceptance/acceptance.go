@@ -57,6 +57,8 @@ var (
 	G42_BUILD_IMAGE_URL       = os.Getenv("G42_BUILD_IMAGE_URL")
 
 	G42_DC_DIRECT_CONNECT_ID = os.Getenv("G42_DC_DIRECT_CONNECT_ID")
+
+	G42_SMS_SOURCE_SERVER = os.Getenv("G42_SMS_SOURCE_SERVER")
 )
 
 // TestAccProviders is a static map containing only the main provider instance.
@@ -432,5 +434,12 @@ func TestAccPreCheckComponentDeployment(t *testing.T) {
 func TestAccPreCheckDcDirectConnection(t *testing.T) {
 	if G42_DC_DIRECT_CONNECT_ID == "" {
 		t.Skip("Skip the interface acceptance test because of the direct connection ID is missing.")
+	}
+}
+
+// lintignore:AT003
+func TestAccPreCheckSms(t *testing.T) {
+	if G42_SMS_SOURCE_SERVER == "" {
+		t.Skip("HW_SMS_SOURCE_SERVER must be set for SMS acceptance tests")
 	}
 }
