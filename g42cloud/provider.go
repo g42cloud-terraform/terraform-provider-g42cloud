@@ -202,6 +202,7 @@ func Provider() *schema.Provider {
 			"g42cloud_enterprise_project":         eps.DataSourceEnterpriseProject(),
 			"g42cloud_identity_role":              iam.DataSourceIdentityRoleV3(),
 			"g42cloud_images_image":               ims.DataSourceImagesImageV2(),
+			"g42cloud_images_images":              ims.DataSourceImagesImages(),
 			"g42cloud_kms_key":                    huaweicloud.DataSourceKmsKeyV1(),
 			"g42cloud_kms_data_key":               huaweicloud.DataSourceKmsDataKeyV1(),
 			"g42cloud_modelarts_datasets":         modelarts.DataSourceDatasets(),
