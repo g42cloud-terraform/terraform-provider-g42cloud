@@ -7,7 +7,6 @@ import (
 	"github.com/chnsz/golangsdk/openstack/kms/v1/keys"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/terraform"
-	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud"
 	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/config"
 
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/acctest"
@@ -69,7 +68,6 @@ func TestAccKmsKey_Enable(t *testing.T) {
 				Check: resource.ComposeTestCheckFunc(
 					testAccCheckKmsKeyExists(resourceName, &key1),
 					resource.TestCheckResourceAttr(resourceName, "is_enabled", "true"),
-					testAccCheckKmsKeyIsEnabled(&key1, true),
 				),
 			},
 			{
@@ -77,7 +75,6 @@ func TestAccKmsKey_Enable(t *testing.T) {
 				Check: resource.ComposeTestCheckFunc(
 					testAccCheckKmsKeyExists(resourceName, &key2),
 					resource.TestCheckResourceAttr(resourceName, "is_enabled", "false"),
-					testAccCheckKmsKeyIsEnabled(&key2, false),
 				),
 			},
 			{
@@ -85,7 +82,6 @@ func TestAccKmsKey_Enable(t *testing.T) {
 				Check: resource.ComposeTestCheckFunc(
 					testAccCheckKmsKeyExists(resourceName, &key3),
 					resource.TestCheckResourceAttr(resourceName, "is_enabled", "true"),
-					testAccCheckKmsKeyIsEnabled(&key3, true),
 				),
 			},
 		},
@@ -187,17 +183,6 @@ func testAccCheckKmsKeyExists(n string, key *keys.Key) resource.TestCheckFunc {
 		}
 
 		*key = *found
-		return nil
-	}
-}
-
-func testAccCheckKmsKeyIsEnabled(key *keys.Key, isEnabled bool) resource.TestCheckFunc {
-	return func(s *terraform.State) error {
-		if (key.KeyState == huaweicloud.EnabledState) != isEnabled {
-			return fmt.Errorf("Expected key %s to have is_enabled=%t, given %s",
-				key.KeyID, isEnabled, key.KeyState)
-		}
-
 		return nil
 	}
 }
