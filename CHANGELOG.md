@@ -1,8 +1,22 @@
 # CHANGELOG
 
+## 1.9.0 (March 27, 2023)
+
+FEATURES:
+
+* **New Data Source:** `g42cloud_sms_source_servers` ([#121](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/121))
+* **New Data Source:** `g42cloud_images_images` ([#122](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/122))
+
+* **New Resource:** `g42cloud_aom_alarm_rule` ([#120](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/120))
+* **New Resource:** `g42cloud_aom_service_discovery_rule` ([#120](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/120))
+* **New Resource:** `g42cloud_sms_server_template` ([#121](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/121))
+* **New Resource:** `g42cloud_sms_task` ([#121](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/121))
+* **New Resource:** `g42cloud_images_image` ([#122](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/122))
+* **New Resource:** `g42cloud_antiddos_basic`  ([#123](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/123))
+
 ## 1.8.1 (February 3, 2023)
 
-FEATURE8:
+FEATURES:
 
 * **New Data Source:** `g42cloud_waf_certificate` ([#118](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/118))
 * **New Data Source:** `g42cloud_waf_dedicated_instances` ([#118](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/118))
