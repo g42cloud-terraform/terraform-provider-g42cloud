@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 1.9.1 (April 28, 2023)
+
+BUG FIXES:
+
+udpate VPC route docs ([#125](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/125))
+
 ## 1.9.0 (March 27, 2023)
 
 FEATURES:
