@@ -94,7 +94,7 @@ func testAccCheckImsImageDestroy(s *terraform.State) error {
 			continue
 		}
 
-		_, err := ims.GetCloudimage(imageClient, rs.Primary.ID)
+		_, err := ims.GetCloudImage(imageClient, rs.Primary.ID)
 		if err == nil {
 			return fmtp.Errorf("Image still exists")
 		}
@@ -120,7 +120,7 @@ func testAccCheckImsImageExists(n string, image *cloudimages.Image) resource.Tes
 			return fmtp.Errorf("Error creating G42Cloud Image: %s", err)
 		}
 
-		found, err := ims.GetCloudimage(imageClient, rs.Primary.ID)
+		found, err := ims.GetCloudImage(imageClient, rs.Primary.ID)
 		if err != nil {
 			return err
 		}
