@@ -4,13 +4,15 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/chnsz/golangsdk/openstack/apigw/dedicated/v2/channels"
-
-	"github.com/g42cloud-terraform/terraform-provider-g42cloud/g42cloud/services/acceptance"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/acctest"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/terraform"
+
+	"github.com/chnsz/golangsdk/openstack/apigw/deprecated/dedicated/v2/channels"
+
 	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/config"
+
+	"github.com/g42cloud-terraform/terraform-provider-g42cloud/g42cloud/services/acceptance"
 )
 
 func TestAccApigVpcChannelV2_basic(t *testing.T) {
