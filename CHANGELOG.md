@@ -1,5 +1,22 @@
 # CHANGELOG
 
+## 1.10.0 (May 31, 2023)
+
+FEATURES:
+
+* **New Data Source:** `g42cloud_rms_policy_definitions` ([#129](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/129))
+
+* **New Resource:** `g42cloud_waf_rule_cc_protection` ([#128](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/128))
+* **New Resource:** `g42cloud_waf_rule_precise_protection` ([#128](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/128))
+* **New Resource:** `g42cloud_rms_policy_assignment` ([#129](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/129))
+* **New Resource:** `g42cloud_rms_resource_aggregation_authorization` ([#129](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/129))
+* **New Resource:** `g42cloud_rms_resource_aggregator` ([#129](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/129))
+* **New Resource:** `g42cloud_rms_resource_recorder`  ([#129](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/129))
+
+ENHANCEMENTS:
+
+remove docs of LB ([#127](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/127))
+
 ## 1.9.1 (April 28, 2023)
 
 BUG FIXES:
