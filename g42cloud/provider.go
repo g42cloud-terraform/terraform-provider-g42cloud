@@ -44,6 +44,7 @@ import (
 	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/nat"
 	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/obs"
 	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/rds"
+	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/rms"
 	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/servicestage"
 	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/smn"
 	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/sms"
@@ -216,7 +217,10 @@ func Provider() *schema.Provider {
 			"g42cloud_networking_port":            vpc.DataSourceNetworkingPortV2(),
 			"g42cloud_networking_secgroup":        huaweicloud.DataSourceNetworkingSecGroup(),
 			"g42cloud_obs_bucket_object":          obs.DataSourceObsBucketObject(),
-			"g42cloud_rds_flavors":                rds.DataSourceRdsFlavor(),
+
+			"g42cloud_rms_policy_definitions": rms.DataSourcePolicyDefinitions(),
+
+			"g42cloud_rds_flavors": rds.DataSourceRdsFlavor(),
 
 			"g42cloud_servicestage_component_runtimes": servicestage.DataSourceComponentRuntimes(),
 
@@ -335,14 +339,20 @@ func Provider() *schema.Provider {
 			"g42cloud_modelarts_notebook":               modelarts.ResourceNotebook(),
 			"g42cloud_modelarts_notebook_mount_storage": modelarts.ResourceNotebookMountStorage(),
 
-			"g42cloud_nat_dnat_rule":             nat.ResourcePublicDnatRule(),
-			"g42cloud_nat_gateway":               nat.ResourcePublicGateway(),
-			"g42cloud_nat_snat_rule":             nat.ResourcePublicSnatRule(),
-			"g42cloud_network_acl":               huaweicloud.ResourceNetworkACL(),
-			"g42cloud_network_acl_rule":          huaweicloud.ResourceNetworkACLRule(),
-			"g42cloud_obs_bucket":                obs.ResourceObsBucket(),
-			"g42cloud_obs_bucket_object":         obs.ResourceObsBucketObject(),
-			"g42cloud_obs_bucket_policy":         obs.ResourceObsBucketPolicy(),
+			"g42cloud_nat_dnat_rule":     nat.ResourcePublicDnatRule(),
+			"g42cloud_nat_gateway":       nat.ResourcePublicGateway(),
+			"g42cloud_nat_snat_rule":     nat.ResourcePublicSnatRule(),
+			"g42cloud_network_acl":       huaweicloud.ResourceNetworkACL(),
+			"g42cloud_network_acl_rule":  huaweicloud.ResourceNetworkACLRule(),
+			"g42cloud_obs_bucket":        obs.ResourceObsBucket(),
+			"g42cloud_obs_bucket_object": obs.ResourceObsBucketObject(),
+			"g42cloud_obs_bucket_policy": obs.ResourceObsBucketPolicy(),
+
+			"g42cloud_rms_policy_assignment":                  rms.ResourcePolicyAssignment(),
+			"g42cloud_rms_resource_aggregator":                rms.ResourceAggregator(),
+			"g42cloud_rms_resource_aggregation_authorization": rms.ResourceAggregationAuthorization(),
+			"g42cloud_rms_resource_recorder":                  rms.ResourceRecorder(),
+
 			"g42cloud_rds_instance":              ResourceRdsInstanceV3(),
 			"g42cloud_rds_parametergroup":        rds.ResourceRdsConfiguration(),
 			"g42cloud_rds_read_replica_instance": rds.ResourceRdsReadReplicaInstance(),

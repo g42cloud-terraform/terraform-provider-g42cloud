@@ -440,6 +440,13 @@ func TestAccPreCheckDcDirectConnection(t *testing.T) {
 // lintignore:AT003
 func TestAccPreCheckSms(t *testing.T) {
 	if G42_SMS_SOURCE_SERVER == "" {
-		t.Skip("HW_SMS_SOURCE_SERVER must be set for SMS acceptance tests")
+		t.Skip("G42_SMS_SOURCE_SERVER must be set for SMS acceptance tests")
+	}
+}
+
+// lintignore:AT003
+func TestAccPrecheckDomainId(t *testing.T) {
+	if G42_DOMAIN_ID == "" {
+		t.Skip("G42_DOMAIN_ID must be set for acceptance tests")
 	}
 }
