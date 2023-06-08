@@ -1,0 +1,1454 @@
+{
+  "AAD": {
+    "name": "Advanced Anti-DDoS",
+    "catalog": "Security \u0026 Compliance",
+    "name_cn": "DDoS高防",
+    "catalog_cn": "安全与合规"
+  },
+  "AOM": {
+    "name": "Application Operations Management",
+    "catalog": "Management \u0026 Governance",
+    "name_cn": "应用运维管理",
+    "catalog_cn": "管理与监管"
+  },
+  "AOS": {
+    "name": "Application Orchestration Service",
+    "catalog": "Containers",
+    "name_cn": "应用编排服务",
+    "catalog_cn": "容器"
+  },
+  "APIExplorer": {
+    "name": "APIExplorer",
+    "catalog": "Developer Tools",
+    "name_cn": "APIExplorer",
+    "catalog_cn": "开发者工具"
+  },
+  "APIG": {
+    "name": "API Gateway",
+    "catalog": "Middleware",
+    "name_cn": "API网关",
+    "catalog_cn": "应用中间件"
+  },
+  "APM": {
+    "name": "Application Performance Management",
+    "catalog": "Management \u0026 Governance",
+    "name_cn": "应用性能管理",
+    "catalog_cn": "管理与监管"
+  },
+  "AS": {
+    "name": "Auto Scaling",
+    "catalog": "Compute",
+    "name_cn": "弹性伸缩",
+    "catalog_cn": "计算"
+  },
+  "ASR": {
+    "name": "Short Sentence Recognition",
+    "catalog": "AI",
+    "name_cn": "一句话识别",
+    "catalog_cn": "人工智能"
+  },
+  "ASRC": {
+    "name": "ASR Customization",
+    "catalog": "AI",
+    "name_cn": "定制语音识别",
+    "catalog_cn": "人工智能"
+  },
+  "Anti-DDoS": {
+    "name": "Anti-DDoS",
+    "catalog": "Security \u0026 Compliance",
+    "name_cn": "Anti-DDoS流量清洗",
+    "catalog_cn": "安全与合规"
+  },
+  "BCS": {
+    "name": "Blockchain Service",
+    "catalog": "Blockchain",
+    "name_cn": "区块链服务",
+    "catalog_cn": "区块链"
+  },
+  "BMS": {
+    "name": "Bare Metal Server",
+    "catalog": "Compute",
+    "name_cn": "裸金属服务器",
+    "catalog_cn": "计算"
+  },
+  "BSS": {
+    "name": "Operation Capability",
+    "catalog": "Operation",
+    "name_cn": "运营能力开放",
+    "catalog_cn": "运营"
+  },
+  "Batch": {
+    "name": "Batch Service",
+    "catalog": "Analytics",
+    "name_cn": "批处理服务",
+    "catalog_cn": "大数据"
+  },
+  "CAE": {
+    "name": "Cloud Application Engine",
+    "catalog": "CodeArts",
+    "name_cn": "云应用引擎",
+    "catalog_cn": "软件开发生产线"
+  },
+  "CBH": {
+    "name": "Cloud Bastion Host",
+    "catalog": "Security \u0026 Compliance",
+    "name_cn": "云堡垒机",
+    "catalog_cn": "安全与合规"
+  },
+  "CBR": {
+    "name": "Cloud Backup and Recovery",
+    "catalog": "Storage",
+    "name_cn": "云备份",
+    "catalog_cn": "存储"
+  },
+  "CBS": {
+    "name": "Conversational Bot Service",
+    "catalog": "AI",
+    "name_cn": "对话机器人服务",
+    "catalog_cn": "人工智能"
+  },
+  "CC": {
+    "name": "Cloud Connect",
+    "catalog": "Networking",
+    "name_cn": "云连接",
+    "catalog_cn": "网络"
+  },
+  "CCE": {
+    "name": "Cloud Container Engine",
+    "catalog": "Containers",
+    "name_cn": "云容器引擎",
+    "catalog_cn": "容器"
+  },
+  "CCI": {
+    "name": "Cloud Container Instance",
+    "catalog": "Containers",
+    "name_cn": "云容器实例",
+    "catalog_cn": "容器"
+  },
+  "CCM": {
+    "name": "Cloud Certificate Manager Service",
+    "catalog": "Security \u0026 Compliance",
+    "name_cn": "云证书管理服务",
+    "catalog_cn": "安全与合规"
+  },
+  "CDM": {
+    "name": "Cloud Data Migration",
+    "catalog": "Migration",
+    "name_cn": "云数据迁移",
+    "catalog_cn": "迁移"
+  },
+  "CDN": {
+    "name": "Content Delivery Network",
+    "catalog": "Content Delivery \u0026 Edge Computing",
+    "name_cn": "内容分发网络",
+    "catalog_cn": "CDN与智能边缘"
+  },
+  "CES": {
+    "name": "Cloud Eye",
+    "catalog": "Management \u0026 Governance",
+    "name_cn": "云监控服务",
+    "catalog_cn": "管理与监管"
+  },
+  "CFW": {
+    "name": "Cloud Firewall",
+    "catalog": "Security \u0026 Compliance",
+    "name_cn": "云防火墙",
+    "catalog_cn": "安全与合规"
+  },
+  "CGS": {
+    "name": "Container Guard Service",
+    "catalog": "Security \u0026 Compliance",
+    "name_cn": "容器安全服务",
+    "catalog_cn": "安全与合规"
+  },
+  "CMC": {
+    "name": "Cloud Migration Center",
+    "catalog": "Migration",
+    "name_cn": "云迁移中心",
+    "catalog_cn": "迁移"
+  },
+  "CMN": {
+    "name": "Cloud Managed Network",
+    "catalog": "Business Applications",
+    "name_cn": "云管理网络",
+    "catalog_cn": "企业应用"
+  },
+  "CMS": {
+    "name": "Capacity Management Service",
+    "catalog": "Compute",
+    "name_cn": "容量管理服务",
+    "catalog_cn": "计算"
+  },
+  "CPH": {
+    "name": "Cloud Phone",
+    "catalog": "Compute",
+    "name_cn": "云手机",
+    "catalog_cn": "计算"
+  },
+  "CPTS": {
+    "name": "Cloud Performance Test Service",
+    "catalog": "CodeArts",
+    "name_cn": "云性能测试服务",
+    "catalog_cn": "软件开发生产线"
+  },
+  "CS": {
+    "name": "Cloud Stream Service",
+    "catalog": "Analytics",
+    "name_cn": "实时流计算服务",
+    "catalog_cn": "大数据"
+  },
+  "CSBS": {
+    "name": "Cloud Server Backup Service",
+    "catalog": "Storage",
+    "name_cn": "云服务器备份",
+    "catalog_cn": "存储"
+  },
+  "CSE": {
+    "name": "Cloud Service Engine",
+    "catalog": "Middleware",
+    "name_cn": "微服务引擎",
+    "catalog_cn": "应用中间件"
+  },
+  "CSMS": {
+    "name": "Cloud Secret Management Service",
+    "catalog": "Security \u0026 Compliance",
+    "name_cn": "数据加密服务-凭据管理",
+    "catalog_cn": "安全与合规"
+  },
+  "CSS": {
+    "name": "Cloud Search Service",
+    "catalog": "Analytics",
+    "name_cn": "云搜索服务",
+    "catalog_cn": "大数据"
+  },
+  "CTS": {
+    "name": "Cloud Trace Service",
+    "catalog": "Management \u0026 Governance",
+    "name_cn": "云审计服务",
+    "catalog_cn": "管理与监管"
+  },
+  "CVCS": {
+    "name": "Convergent Video Cloud Service",
+    "catalog": "Media Services",
+    "name_cn": "融合视频云服务",
+    "catalog_cn": "视频"
+  },
+  "CVR": {
+    "name": "VR Cloud Rendering \u0026 Gaming Platform",
+    "catalog": "Compute",
+    "name_cn": "VR云渲游平台",
+    "catalog_cn": "计算"
+  },
+  "CampusGo": {
+    "name": "CampusGo",
+    "catalog": "AI",
+    "name_cn": "园区智能体",
+    "catalog_cn": "人工智能"
+  },
+  "Classroom": {
+    "name": "Classroom",
+    "catalog": "CodeArts",
+    "name_cn": "Classroom",
+    "catalog_cn": "软件开发生产线"
+  },
+  "CloudDeploy": {
+    "name": "CloudDeploy",
+    "catalog": "CodeArts",
+    "name_cn": "部署",
+    "catalog_cn": "软件开发生产线"
+  },
+  "CloudIDE": {
+    "name": "CloudIDE",
+    "catalog": "CodeArts",
+    "name_cn": "CloudIDE",
+    "catalog_cn": "软件开发生产线"
+  },
+  "CloudPipeline": {
+    "name": "CloudPipeline",
+    "catalog": "CodeArts",
+    "name_cn": "流水线",
+    "catalog_cn": "软件开发生产线"
+  },
+  "CloudRTC": {
+    "name": "Huawei Cloud Real-Time Communication",
+    "catalog": "Media Services",
+    "name_cn": "华为云实时音视频",
+    "catalog_cn": "视频"
+  },
+  "CloudTable": {
+    "name": "CloudTable Service",
+    "catalog": "Analytics",
+    "name_cn": "表格存储服务",
+    "catalog_cn": "大数据"
+  },
+  "CloudTest": {
+    "name": "CodeArts TestPlan",
+    "catalog": "CodeArts",
+    "name_cn": "测试计划",
+    "catalog_cn": "软件开发生产线"
+  },
+  "CloudVR": {
+    "name": "CloudVR",
+    "catalog": "Media Services",
+    "name_cn": "云VR",
+    "catalog_cn": "视频"
+  },
+  "CodeArtsArtifact": {
+    "name": "CodeArts Artifact",
+    "catalog": "CodeArts",
+    "name_cn": "制品仓库",
+    "catalog_cn": "软件开发生产线"
+  },
+  "CodeArtsBuild": {
+    "name": "CodeArts Build",
+    "catalog": "CodeArts",
+    "name_cn": "编译构建",
+    "catalog_cn": "软件开发生产线"
+  },
+  "CodeArtsCheck": {
+    "name": "CodeArts Check",
+    "catalog": "CodeArts",
+    "name_cn": "代码检查",
+    "catalog_cn": "软件开发生产线"
+  },
+  "CodeArtsDeploy": {
+    "name": "CodeArts Deploy",
+    "catalog": "CodeArts",
+    "name_cn": "部署",
+    "catalog_cn": "软件开发生产线"
+  },
+  "CodeCheck": {
+    "name": "CodeCheck",
+    "catalog": "CodeArts",
+    "name_cn": "代码检查",
+    "catalog_cn": "软件开发生产线"
+  },
+  "CodeCraft": {
+    "name": "CodeCraft",
+    "catalog": "CodeArts",
+    "name_cn": "大赛服务",
+    "catalog_cn": "软件开发生产线"
+  },
+  "CodeHub": {
+    "name": "CodeHub",
+    "catalog": "CodeArts",
+    "name_cn": "代码托管",
+    "catalog_cn": "软件开发生产线"
+  },
+  "ContactCenter": {
+    "name": "Contact Center",
+    "catalog": "Business Applications",
+    "name_cn": "联络中心",
+    "catalog_cn": "企业应用"
+  },
+  "DAS": {
+    "name": "Data Admin Service",
+    "catalog": "Databases",
+    "name_cn": "数据管理服务",
+    "catalog_cn": "数据库"
+  },
+  "DBS": {
+    "name": "DataBase",
+    "catalog": "Databases",
+    "name_cn": "云数据库产品总览",
+    "catalog_cn": "数据库"
+  },
+  "DBSS": {
+    "name": "Database Security Service",
+    "catalog": "Security \u0026 Compliance",
+    "name_cn": "数据库安全服务",
+    "catalog_cn": "安全与合规"
+  },
+  "DC": {
+    "name": "Direct Connect",
+    "catalog": "Networking",
+    "name_cn": "云专线",
+    "catalog_cn": "网络"
+  },
+  "DCC": {
+    "name": "Dedicated Computing Cluster",
+    "catalog": "Dedicated Cloud",
+    "name_cn": "专属计算集群服务",
+    "catalog_cn": "专属云"
+  },
+  "DCS": {
+    "name": "Distributed Cache Service",
+    "catalog": "Middleware",
+    "name_cn": "分布式缓存服务",
+    "catalog_cn": "应用中间件"
+  },
+  "DCSforMemcached": {
+    "name": "DCSforMemcached",
+    "catalog": "Middleware",
+    "name_cn": "分布式缓存服务Memcached",
+    "catalog_cn": "应用中间件"
+  },
+  "DCSforRedis": {
+    "name": "DCSforRedis",
+    "catalog": "Middleware",
+    "name_cn": "分布式缓存服务Redis",
+    "catalog_cn": "应用中间件"
+  },
+  "DDM": {
+    "name": "Distributed Database Middleware",
+    "catalog": "Databases",
+    "name_cn": "分布式数据库中间件",
+    "catalog_cn": "数据库"
+  },
+  "DDS": {
+    "name": "Document Database Service",
+    "catalog": "Databases",
+    "name_cn": "文档数据库服务",
+    "catalog_cn": "数据库"
+  },
+  "DES": {
+    "name": "Data Express Service",
+    "catalog": "Storage",
+    "name_cn": "数据快递服务",
+    "catalog_cn": "存储"
+  },
+  "DESS": {
+    "name": "Dedicated Enterprise Storage Service",
+    "catalog": "Storage",
+    "name_cn": "专属企业存储服务",
+    "catalog_cn": "存储"
+  },
+  "DGC": {
+    "name": "Data Lake Governance Center",
+    "catalog": "Analytics",
+    "name_cn": "数据湖治理中心",
+    "catalog_cn": "大数据"
+  },
+  "DIS": {
+    "name": "Data Ingestion Service",
+    "catalog": "Analytics",
+    "name_cn": "数据接入服务",
+    "catalog_cn": "大数据"
+  },
+  "DLF": {
+    "name": "Data Lake Factory",
+    "catalog": "Analytics",
+    "name_cn": "数据湖工厂",
+    "catalog_cn": "大数据"
+  },
+  "DLI": {
+    "name": "Data Lake Insight",
+    "catalog": "Analytics",
+    "name_cn": "数据湖探索",
+    "catalog_cn": "大数据"
+  },
+  "DLS": {
+    "name": "Deep Learning Service",
+    "catalog": "AI",
+    "name_cn": "深度学习服务",
+    "catalog_cn": "人工智能"
+  },
+  "DMS": {
+    "name": "Distributed Message Service",
+    "catalog": "Middleware",
+    "name_cn": "分布式消息服务 DMS",
+    "catalog_cn": "应用中间件"
+  },
+  "DNS": {
+    "name": "Domain Name Service",
+    "catalog": "Business Applications",
+    "name_cn": "云解析服务",
+    "catalog_cn": "企业应用"
+  },
+  "DRIS": {
+    "name": "Digital Road Infrastructure Service",
+    "catalog": "Internet of Things",
+    "name_cn": "路网数字化服务",
+    "catalog_cn": "IoT物联网"
+  },
+  "DRS": {
+    "name": "Data Replication Service",
+    "catalog": "Databases",
+    "name_cn": "数据复制服务",
+    "catalog_cn": "数据库"
+  },
+  "DSC": {
+    "name": "Data Security Center",
+    "catalog": "Security \u0026 Compliance",
+    "name_cn": "数据安全中心",
+    "catalog_cn": "安全与合规"
+  },
+  "DSS": {
+    "name": "Dedicated Distributed Storage Service",
+    "catalog": "Storage",
+    "name_cn": "专属分布式存储服务",
+    "catalog_cn": "存储"
+  },
+  "DWR": {
+    "name": "Data Workroom",
+    "catalog": "Storage",
+    "name_cn": "数据工坊",
+    "catalog_cn": "存储"
+  },
+  "DWS": {
+    "name": "Data Warehouse Service",
+    "catalog": "Analytics",
+    "name_cn": "数据仓库服务",
+    "catalog_cn": "大数据"
+  },
+  "DataArtsStudio": {
+    "name": "DataArts Studio",
+    "catalog": "Analytics",
+    "name_cn": "数据治理中心",
+    "catalog_cn": "大数据"
+  },
+  "DeH": {
+    "name": "Dedicated Host",
+    "catalog": "Compute",
+    "name_cn": "专属主机",
+    "catalog_cn": "计算"
+  },
+  "DevSecurity": {
+    "name": "Development Security Service",
+    "catalog": "CodeArts",
+    "name_cn": "研发安全服务",
+    "catalog_cn": "软件开发生产线"
+  },
+  "DevStar": {
+    "name": "DevStar",
+    "catalog": "Developer Tools",
+    "name_cn": "DevStar",
+    "catalog_cn": "开发者工具"
+  },
+  "ECS": {
+    "name": "Elastic Cloud Server",
+    "catalog": "Compute",
+    "name_cn": "弹性云服务器",
+    "catalog_cn": "计算"
+  },
+  "EDS": {
+    "name": "Exchange Data Space",
+    "catalog": "MacroVerse aPaaS",
+    "name_cn": "交换数据空间",
+    "catalog_cn": "开天aPaaS"
+  },
+  "EG": {
+    "name": "EventGrid",
+    "catalog": "Middleware",
+    "name_cn": "事件网格",
+    "catalog_cn": "应用中间件"
+  },
+  "EIP": {
+    "name": "Elastic IP",
+    "catalog": "Networking",
+    "name_cn": "弹性公网IP",
+    "catalog_cn": "网络"
+  },
+  "ELB": {
+    "name": "Elastic Load Balance",
+    "catalog": "Networking",
+    "name_cn": "弹性负载均衡",
+    "catalog_cn": "网络"
+  },
+  "EPS": {
+    "name": "Enterprise Project Management Service",
+    "catalog": "Management \u0026 Governance",
+    "name_cn": "企业项目管理服务",
+    "catalog_cn": "管理与监管"
+  },
+  "ER": {
+    "name": "Enterprise Router",
+    "catalog": "Networking",
+    "name_cn": "企业路由器",
+    "catalog_cn": "网络"
+  },
+  "EVS": {
+    "name": "Elastic Volume Service",
+    "catalog": "Storage",
+    "name_cn": "云硬盘",
+    "catalog_cn": "存储"
+  },
+  "FACS": {
+    "name": "FPGA-accelerated Cloud Server",
+    "catalog": "Compute",
+    "name_cn": "FPGA加速云服务器",
+    "catalog_cn": "计算"
+  },
+  "FCS": {
+    "name": "Dedicated Full-Stack Solution",
+    "catalog": "Business Applications",
+    "name_cn": "全栈专属服务",
+    "catalog_cn": "企业应用"
+  },
+  "FRS": {
+    "name": "Face Recognition",
+    "catalog": "AI",
+    "name_cn": "人脸识别服务",
+    "catalog_cn": "人工智能"
+  },
+  "FlowCube": {
+    "name": "Flow Cube",
+    "catalog": "Developer Tools",
+    "name_cn": "FlowCube",
+    "catalog_cn": "开发者工具"
+  },
+  "FunctionGraph": {
+    "name": "FunctionGraph",
+    "catalog": "Compute",
+    "name_cn": "函数工作流",
+    "catalog_cn": "计算"
+  },
+  "GA": {
+    "name": "Global Accelerator",
+    "catalog": "Networking",
+    "name_cn": "全球加速",
+    "catalog_cn": "网络"
+  },
+  "GACS": {
+    "name": "GPU-accelerated Cloud Server",
+    "catalog": "Compute",
+    "name_cn": "GPU加速云服务器",
+    "catalog_cn": "计算"
+  },
+  "GES": {
+    "name": "Graph Engine Service",
+    "catalog": "AI",
+    "name_cn": "图引擎服务",
+    "catalog_cn": "人工智能"
+  },
+  "GSL": {
+    "name": "Global SIM Link",
+    "catalog": "Internet of Things",
+    "name_cn": "全球SIM联接",
+    "catalog_cn": "IoT物联网"
+  },
+  "GaussDB": {
+    "name": "GaussDB(for MySQL)",
+    "catalog": "Databases",
+    "name_cn": "云数据库 GaussDB(for MySQL)",
+    "catalog_cn": "数据库"
+  },
+  "GaussDBforCassandra": {
+    "name": "GaussDB for Cassandra",
+    "catalog": "Databases",
+    "name_cn": "云数据库GaussDB(forCassandra)",
+    "catalog_cn": "数据库"
+  },
+  "GaussDBforInflux": {
+    "name": "GaussDB for Influx",
+    "catalog": "Databases",
+    "name_cn": "云数据库GaussDB(forInflux)",
+    "catalog_cn": "数据库"
+  },
+  "GaussDBforMongo": {
+    "name": "GaussDB for Mongo",
+    "catalog": "Databases",
+    "name_cn": "云数据库GaussDB(forMongo)",
+    "catalog_cn": "数据库"
+  },
+  "GaussDBforNoSQL": {
+    "name": "GaussDB NoSQL",
+    "catalog": "Databases",
+    "name_cn": "云数据库 GaussDB NoSQL",
+    "catalog_cn": "数据库"
+  },
+  "GaussDBforRedis": {
+    "name": "GaussDB for Redis",
+    "catalog": "Databases",
+    "name_cn": "云数据库GaussDB(forRedis)",
+    "catalog_cn": "数据库"
+  },
+  "GaussDBforopenGauss": {
+    "name": "GaussDB(for openGauss)",
+    "catalog": "Databases",
+    "name_cn": "云数据库 GaussDB",
+    "catalog_cn": "数据库"
+  },
+  "HCloud CLI": {
+    "name": "Huawei Cloud CLI",
+    "catalog": "Developer Tools",
+    "name_cn": "华为云CLI",
+    "catalog_cn": "开发者工具"
+  },
+  "HSS": {
+    "name": "Host Security Service",
+    "catalog": "Security \u0026 Compliance",
+    "name_cn": "企业主机安全",
+    "catalog_cn": "安全与合规"
+  },
+  "HiLens": {
+    "name": "Huawei HiLens",
+    "catalog": "AI",
+    "name_cn": "Huawei HiLens",
+    "catalog_cn": "人工智能"
+  },
+  "IAM": {
+    "name": "Identity and Access Management",
+    "catalog": "Management \u0026 Governance",
+    "name_cn": "统一身份认证服务",
+    "catalog_cn": "管理与监管"
+  },
+  "IDT": {
+    "name": "Industrial Digital Thread",
+    "catalog": "Industrial services",
+    "name_cn": "工业数字主线云服务",
+    "catalog_cn": "工业软件"
+  },
+  "IEC": {
+    "name": "Intelligent EdgeCloud",
+    "catalog": "Content Delivery \u0026 Edge Computing",
+    "name_cn": "智能边缘云",
+    "catalog_cn": "CDN与智能边缘"
+  },
+  "IEF": {
+    "name": "Intelligent EdgeFabric",
+    "catalog": "Content Delivery \u0026 Edge Computing",
+    "name_cn": "智能边缘平台",
+    "catalog_cn": "CDN与智能边缘"
+  },
+  "IES": {
+    "name": "Intelligent Edge Site",
+    "catalog": "Content Delivery \u0026 Edge Computing",
+    "name_cn": "智能边缘小站",
+    "catalog_cn": "CDN与智能边缘"
+  },
+  "IMS": {
+    "name": "Image Management Service",
+    "catalog": "Compute",
+    "name_cn": "镜像服务",
+    "catalog_cn": "计算"
+  },
+  "IVM": {
+    "name": "Huawei HoloSens Cloud Service",
+    "catalog": "Media Services",
+    "name_cn": "华为好望云服务",
+    "catalog_cn": "视频"
+  },
+  "IVS": {
+    "name": "Identity Verification Solution",
+    "catalog": "AI",
+    "name_cn": "人证核身服务",
+    "catalog_cn": "人工智能"
+  },
+  "Image": {
+    "name": "Image Recognition",
+    "catalog": "AI",
+    "name_cn": "图像识别",
+    "catalog_cn": "人工智能"
+  },
+  "ImageSearch": {
+    "name": "ImageSearch",
+    "catalog": "AI",
+    "name_cn": "图像搜索",
+    "catalog_cn": "人工智能"
+  },
+  "IoTAnalytics": {
+    "name": "OceanConnect IoT Analytics",
+    "catalog": "Internet of Things",
+    "name_cn": "物联网数据分析",
+    "catalog_cn": "IoT物联网"
+  },
+  "IoTDA": {
+    "name": "IoT Device Access",
+    "catalog": "Internet of Things",
+    "name_cn": "设备接入",
+    "catalog_cn": "IoT物联网"
+  },
+  "IoTDP": {
+    "name": "IoT Provisioning",
+    "catalog": "Internet of Things",
+    "name_cn": "设备发放",
+    "catalog_cn": "IoT物联网"
+  },
+  "IoTEdge": {
+    "name": "IoT Edge",
+    "catalog": "Internet of Things",
+    "name_cn": "IoT边缘",
+    "catalog_cn": "IoT物联网"
+  },
+  "KG": {
+    "name": "Knowledge Graph",
+    "catalog": "AI",
+    "name_cn": "知识图谱",
+    "catalog_cn": "人工智能"
+  },
+  "KMS": {
+    "name": "Data Encryption Workshop KMS",
+    "catalog": "Security \u0026 Compliance",
+    "name_cn": "数据加密服务-密钥管理",
+    "catalog_cn": "安全与合规"
+  },
+  "KPS": {
+    "name": "Data Encryption Workshop KPS",
+    "catalog": "Security \u0026 Compliance",
+    "name_cn": "数据加密服务-密钥对管理",
+    "catalog_cn": "安全与合规"
+  },
+  "Kafka": {
+    "name": "Distributed Message Service for Kafka",
+    "catalog": "Middleware",
+    "name_cn": "分布式消息服务 Kafka",
+    "catalog_cn": "应用中间件"
+  },
+  "KooMap": {
+    "name": "KooMap",
+    "catalog": "MacroVerse aPaaS",
+    "name_cn": "云地图服务",
+    "catalog_cn": "开天aPaaS"
+  },
+  "KooMessage": {
+    "name": "KooMessage",
+    "catalog": "MacroVerse aPaaS",
+    "name_cn": "云消息服务",
+    "catalog_cn": "开天aPaaS"
+  },
+  "LASR": {
+    "name": "Recording File Recognition",
+    "catalog": "AI",
+    "name_cn": "录音文件识别",
+    "catalog_cn": "人工智能"
+  },
+  "LSA": {
+    "name": "Live Streaming Accelerator",
+    "catalog": "Storage",
+    "name_cn": "直播加速",
+    "catalog_cn": "存储"
+  },
+  "LTS": {
+    "name": "Log Tank Service",
+    "catalog": "Management \u0026 Governance",
+    "name_cn": "云日志服务",
+    "catalog_cn": "管理与监管"
+  },
+  "LakeFormation": {
+    "name": "DataArts Lake Formation",
+    "catalog": "Analytics",
+    "name_cn": "湖仓构建",
+    "catalog_cn": "大数据"
+  },
+  "Live": {
+    "name": "Live",
+    "catalog": "Media Services",
+    "name_cn": "视频直播",
+    "catalog_cn": "视频"
+  },
+  "MAS": {
+    "name": "Multi-Site High Availability Service",
+    "catalog": "Middleware",
+    "name_cn": "多活高可用服务",
+    "catalog_cn": "应用中间件"
+  },
+  "MLS": {
+    "name": "Machine Learning Service",
+    "catalog": "AI",
+    "name_cn": "机器学习服务",
+    "catalog_cn": "人工智能"
+  },
+  "MPC": {
+    "name": "Media Processing Center",
+    "catalog": "Media Services",
+    "name_cn": "媒体转码",
+    "catalog_cn": "视频"
+  },
+  "MRS": {
+    "name": "MapReduce Service",
+    "catalog": "Analytics",
+    "name_cn": "MapReduce服务",
+    "catalog_cn": "大数据"
+  },
+  "MSGSMS": {
+    "name": "Message \u0026 SMS",
+    "catalog": "Business Applications",
+    "name_cn": "消息\u0026短信",
+    "catalog_cn": "企业应用"
+  },
+  "MT": {
+    "name": "Machine Translation",
+    "catalog": "AI",
+    "name_cn": "机器翻译",
+    "catalog_cn": "人工智能"
+  },
+  "MTS": {
+    "name": "Machine Translation Service",
+    "catalog": "AI",
+    "name_cn": "机器翻译服务",
+    "catalog_cn": "人工智能"
+  },
+  "MapDS": {
+    "name": "Map Data Service",
+    "catalog": "Storage",
+    "name_cn": "地图数据服务",
+    "catalog_cn": "存储"
+  },
+  "Media AI": {
+    "name": "Media AI",
+    "catalog": "Media Services",
+    "name_cn": "媒体智能",
+    "catalog_cn": "视频"
+  },
+  "Meeting": {
+    "name": "Meeting",
+    "catalog": "Business Applications",
+    "name_cn": "华为云会议",
+    "catalog_cn": "企业应用"
+  },
+  "MetaStudio": {
+    "name": "MetaStudio",
+    "catalog": "Media Services",
+    "name_cn": "数字内容生产线",
+    "catalog_cn": "视频"
+  },
+  "MobileAppTest": {
+    "name": "MobileAppTest",
+    "catalog": "CodeArts",
+    "name_cn": "移动应用测试",
+    "catalog_cn": "软件开发生产线"
+  },
+  "ModelArts": {
+    "name": "ModelArts",
+    "catalog": "AI",
+    "name_cn": "AI开发平台",
+    "catalog_cn": "人工智能"
+  },
+  "Moderation": {
+    "name": "Content Moderation",
+    "catalog": "AI",
+    "name_cn": "内容审核",
+    "catalog_cn": "人工智能"
+  },
+  "NAIE": {
+    "name": "Network AI Engine",
+    "catalog": "AI",
+    "name_cn": "网络智能体",
+    "catalog_cn": "人工智能"
+  },
+  "NAT": {
+    "name": "NAT Gateway",
+    "catalog": "Networking",
+    "name_cn": "NAT网关",
+    "catalog_cn": "网络"
+  },
+  "NLP": {
+    "name": "Natural Language Processing",
+    "catalog": "AI",
+    "name_cn": "自然语言处理",
+    "catalog_cn": "人工智能"
+  },
+  "NoSQL": {
+    "name": "Multi-Model NoSQL Service",
+    "catalog": "Databases",
+    "name_cn": "多模NoSQL服务",
+    "catalog_cn": "数据库"
+  },
+  "OBS": {
+    "name": "Object Storage Service",
+    "catalog": "Storage",
+    "name_cn": "对象存储服务",
+    "catalog_cn": "存储"
+  },
+  "OCIOV": {
+    "name": "OceanConnect IoV",
+    "catalog": "Internet of Things",
+    "name_cn": "OceanConnect 车联网",
+    "catalog_cn": "IoT物联网"
+  },
+  "OCR": {
+    "name": "Optical Character Recognition",
+    "catalog": "AI",
+    "name_cn": "文字识别",
+    "catalog_cn": "人工智能"
+  },
+  "OCStudio": {
+    "name": "OceanConnect Studio",
+    "catalog": "Internet of Things",
+    "name_cn": "物联网应用构建器",
+    "catalog_cn": "IoT物联网"
+  },
+  "OMS": {
+    "name": "Object Storage Migration Service",
+    "catalog": "Migration",
+    "name_cn": "对象存储迁移服务",
+    "catalog_cn": "迁移"
+  },
+  "OSM": {
+    "name": "Service Tickets",
+    "catalog": "Support Center",
+    "name_cn": "工单管理",
+    "catalog_cn": "支持与服务"
+  },
+  "OceanBooster": {
+    "name": "OceanBooster",
+    "catalog": "Internet of Things",
+    "name_cn": "OceanBooster",
+    "catalog_cn": "IoT物联网"
+  },
+  "OpenSource": {
+    "name": "OpenSource",
+    "catalog": "Developer Tools",
+    "name_cn": "开源平台",
+    "catalog_cn": "开发者工具"
+  },
+  "Organizations": {
+    "name": "Organizations",
+    "catalog": "Management \u0026 Governance",
+    "name_cn": "组织",
+    "catalog_cn": "管理与监管"
+  },
+  "PhoneBot": {
+    "name": "Intelligent Phonebot",
+    "catalog": "AI",
+    "name_cn": "智能话务机器人",
+    "catalog_cn": "人工智能"
+  },
+  "PrivateNumber": {
+    "name": "Private Number",
+    "catalog": "Business Applications",
+    "name_cn": "隐私保护通话",
+    "catalog_cn": "企业应用"
+  },
+  "ProjectMan": {
+    "name": "CodeArts Req",
+    "catalog": "CodeArts",
+    "name_cn": "需求管理",
+    "catalog_cn": "软件开发生产线"
+  },
+  "QABot": {
+    "name": "Question Answering Bot",
+    "catalog": "AI",
+    "name_cn": "智能问答机器人",
+    "catalog_cn": "人工智能"
+  },
+  "RAM": {
+    "name": "Resource Access Manager",
+    "catalog": "Management \u0026 Governance",
+    "name_cn": "资源访问管理",
+    "catalog_cn": "管理与监管"
+  },
+  "RASR": {
+    "name": "Real-time Speech Recognition",
+    "catalog": "AI",
+    "name_cn": "实时语音识别",
+    "catalog_cn": "人工智能"
+  },
+  "RDS": {
+    "name": "Relational Database Service",
+    "catalog": "Databases",
+    "name_cn": "云数据库",
+    "catalog_cn": "数据库"
+  },
+  "RDSforPostgreSQL": {
+    "name": "RDSforPostgreSQL",
+    "catalog": "Databases",
+    "name_cn": "云数据库PostgreSQL",
+    "catalog_cn": "数据库"
+  },
+  "RDSforSQLServer": {
+    "name": "RDSforSQLServer",
+    "catalog": "Databases",
+    "name_cn": "云数据库SQLServer",
+    "catalog_cn": "数据库"
+  },
+  "RES": {
+    "name": "Recommender System",
+    "catalog": "AI",
+    "name_cn": "推荐系统",
+    "catalog_cn": "人工智能"
+  },
+  "RMS": {
+    "name": "Resource Management Service",
+    "catalog": "Management \u0026 Governance",
+    "name_cn": "资源管理服务",
+    "catalog_cn": "管理与监管"
+  },
+  "ROC": {
+    "name": "Celebrity Recognition",
+    "catalog": "AI",
+    "name_cn": "名人识别",
+    "catalog_cn": "人工智能"
+  },
+  "ROMA": {
+    "name": "ROMA",
+    "catalog": "Business Applications",
+    "name_cn": "应用与数据集成平台",
+    "catalog_cn": "企业应用"
+  },
+  "RTS": {
+    "name": "Resource Template Service",
+    "catalog": "Management \u0026 Governance",
+    "name_cn": "资源模板服务",
+    "catalog_cn": "管理与监管"
+  },
+  "RabbitMQ": {
+    "name": "Distributed Message Service for RabbitMQ",
+    "catalog": "Middleware",
+    "name_cn": "分布式消息服务 RabbitMQ",
+    "catalog_cn": "应用中间件"
+  },
+  "RocketMQ": {
+    "name": "Distributed Message Service for RocketMQ",
+    "catalog": "Middleware",
+    "name_cn": "分布式消息服务 RocketMQ",
+    "catalog_cn": "应用中间件"
+  },
+  "SA": {
+    "name": "Situation Awareness",
+    "catalog": "Security \u0026 Compliance",
+    "name_cn": "态势感知",
+    "catalog_cn": "安全与合规"
+  },
+  "SCM": {
+    "name": "SSL Certificate Manager",
+    "catalog": "Security \u0026 Compliance",
+    "name_cn": "SSL证书管理",
+    "catalog_cn": "安全与合规"
+  },
+  "SDRS": {
+    "name": "Storage Disaster Recovery Service",
+    "catalog": "Storage",
+    "name_cn": "存储容灾服务",
+    "catalog_cn": "存储"
+  },
+  "SES": {
+    "name": "Security Expert Service",
+    "catalog": "Security \u0026 Compliance",
+    "name_cn": "安全专家服务",
+    "catalog_cn": "安全与合规"
+  },
+  "SFS": {
+    "name": "Scalable File Service(SFS)",
+    "catalog": "Storage",
+    "name_cn": "弹性文件服务(SFS)",
+    "catalog_cn": "存储"
+  },
+  "SFSTurbo": {
+    "name": "Scalable File Service(SFS Turbo)",
+    "catalog": "Storage",
+    "name_cn": "弹性文件服务(SFS Turbo)",
+    "catalog_cn": "存储"
+  },
+  "SIS": {
+    "name": "Speech Interaction Service",
+    "catalog": "AI",
+    "name_cn": "语音交互服务",
+    "catalog_cn": "人工智能"
+  },
+  "SMN": {
+    "name": "Simple Message Notification",
+    "catalog": "Management \u0026 Governance",
+    "name_cn": "消息通知服务",
+    "catalog_cn": "管理与监管"
+  },
+  "SMS": {
+    "name": "Server Migration Service",
+    "catalog": "Migration",
+    "name_cn": "主机迁移服务",
+    "catalog_cn": "迁移"
+  },
+  "SWR": {
+    "name": "Software Repository for Container",
+    "catalog": "Containers",
+    "name_cn": "容器镜像服务",
+    "catalog_cn": "容器"
+  },
+  "SecMaster": {
+    "name": "SecMaster",
+    "catalog": "Security \u0026 Compliance",
+    "name_cn": "安全云脑",
+    "catalog_cn": "安全与合规"
+  },
+  "ServiceStage": {
+    "name": "ServiceStage",
+    "catalog": "CodeArts",
+    "name_cn": "应用管理与运维平台",
+    "catalog_cn": "软件开发生产线"
+  },
+  "Smart Campus": {
+    "name": "Smart Campus",
+    "catalog": "AI",
+    "name_cn": "园区视频分析",
+    "catalog_cn": "人工智能"
+  },
+  "Smart Retail": {
+    "name": "Smart Retail",
+    "catalog": "AI",
+    "name_cn": "商超视频分析",
+    "catalog_cn": "人工智能"
+  },
+  "Smart Traffic": {
+    "name": "Smart Traffic",
+    "catalog": "AI",
+    "name_cn": "交通视频分析",
+    "catalog_cn": "人工智能"
+  },
+  "TMS": {
+    "name": "Tag Management Service",
+    "catalog": "Management \u0026 Governance",
+    "name_cn": "标签管理服务",
+    "catalog_cn": "管理与监管"
+  },
+  "TTS": {
+    "name": "Text to Speech",
+    "catalog": "AI",
+    "name_cn": "语音合成",
+    "catalog_cn": "人工智能"
+  },
+  "TaurusDB": {
+    "name": "TaurusDB",
+    "catalog": "Databases",
+    "name_cn": "云数据库 TaurusDB",
+    "catalog_cn": "数据库"
+  },
+  "UGO": {
+    "name": "Database and Application Migration UGO",
+    "catalog": "Databases",
+    "name_cn": "数据库和应用迁移 UGO",
+    "catalog_cn": "数据库"
+  },
+  "VAS": {
+    "name": "Video Analysis Service",
+    "catalog": "AI",
+    "name_cn": "视频分析服务",
+    "catalog_cn": "人工智能"
+  },
+  "VBS": {
+    "name": "Volume Backup Service",
+    "catalog": "Storage",
+    "name_cn": "云硬盘备份",
+    "catalog_cn": "存储"
+  },
+  "VCM": {
+    "name": "Video Content Moderation",
+    "catalog": "AI",
+    "name_cn": "视频内容审核",
+    "catalog_cn": "人工智能"
+  },
+  "VCP": {
+    "name": "Video Content Processing",
+    "catalog": "AI",
+    "name_cn": "视频编辑",
+    "catalog_cn": "人工智能"
+  },
+  "VCT": {
+    "name": "Video Content Tagging",
+    "catalog": "AI",
+    "name_cn": "视频标签",
+    "catalog_cn": "人工智能"
+  },
+  "VFP": {
+    "name": "Video Fingerprinting",
+    "catalog": "AI",
+    "name_cn": "视频指纹",
+    "catalog_cn": "人工智能"
+  },
+  "VGVAS": {
+    "name": "Virtual Gateway Video Acceleration Service",
+    "catalog": "Enterprise Network",
+    "name_cn": "视频加速服务",
+    "catalog_cn": "企业网络"
+  },
+  "VIS": {
+    "name": "Video Ingestion Service",
+    "catalog": "Media Services",
+    "name_cn": "视频接入服务",
+    "catalog_cn": "视频"
+  },
+  "VOC": {
+    "name": "DevCloud VOC",
+    "catalog": "CodeArts",
+    "name_cn": "意见反馈",
+    "catalog_cn": "软件开发生产线"
+  },
+  "VOD": {
+    "name": "Video on Demand",
+    "catalog": "Media Services",
+    "name_cn": "视频点播",
+    "catalog_cn": "视频"
+  },
+  "VPC": {
+    "name": "Virtual Private Cloud",
+    "catalog": "Networking",
+    "name_cn": "虚拟私有云",
+    "catalog_cn": "网络"
+  },
+  "VPCEP": {
+    "name": "VPC Endpoint",
+    "catalog": "Networking",
+    "name_cn": "VPC终端节点",
+    "catalog_cn": "网络"
+  },
+  "VPN": {
+    "name": "Virtual Private Network",
+    "catalog": "Networking",
+    "name_cn": "虚拟专用网络",
+    "catalog_cn": "网络"
+  },
+  "VSS": {
+    "name": "Vulnerability Scan Service",
+    "catalog": "Security \u0026 Compliance",
+    "name_cn": "漏洞扫描服务",
+    "catalog_cn": "安全与合规"
+  },
+  "VoiceCall": {
+    "name": "Voice Call",
+    "catalog": "Business Applications",
+    "name_cn": "语音通话",
+    "catalog_cn": "企业应用"
+  },
+  "WAF": {
+    "name": "Web Application Firewall",
+    "catalog": "Security \u0026 Compliance",
+    "name_cn": "Web应用防火墙",
+    "catalog_cn": "安全与合规"
+  },
+  "WeLink": {
+    "name": "HUAWEI CLOUD WeLink",
+    "catalog": "Business Applications",
+    "name_cn": "华为云WeLink",
+    "catalog_cn": "企业应用"
+  },
+  "Workspace": {
+    "name": "Workspace",
+    "catalog": "Business Applications",
+    "name_cn": "云桌面",
+    "catalog_cn": "企业应用"
+  },
+  "WorkspaceApp": {
+    "name": "Application Streaming",
+    "catalog": "Business Applications",
+    "name_cn": "云应用",
+    "catalog_cn": "企业应用"
+  },
+  "cardocr": {
+    "name": "Card OCR",
+    "catalog": "AI",
+    "name_cn": "文字识别-证件类",
+    "catalog_cn": "人工智能"
+  },
+  "cbsc": {
+    "name": "Voice Assistant",
+    "catalog": "AI",
+    "name_cn": "智能语音助手",
+    "catalog_cn": "人工智能"
+  },
+  "cbssa": {
+    "name": "Speech Analytics",
+    "catalog": "AI",
+    "name_cn": "智能对话质检",
+    "catalog_cn": "人工智能"
+  },
+  "customocr": {
+    "name": "Custom OCR",
+    "catalog": "AI",
+    "name_cn": "文字识别-定制模板",
+    "catalog_cn": "人工智能"
+  },
+  "domainocr": {
+    "name": "Domain OCR",
+    "catalog": "AI",
+    "name_cn": "文字识别-行业类",
+    "catalog_cn": "人工智能"
+  },
+  "eiHealth": {
+    "name": "Health Intelligent Twins",
+    "catalog": "AI",
+    "name_cn": "医疗智能体",
+    "catalog_cn": "人工智能"
+  },
+  "generalocr": {
+    "name": "General OCR",
+    "catalog": "AI",
+    "name_cn": "文字识别-通用类",
+    "catalog_cn": "人工智能"
+  },
+  "iFinance": {
+    "name": "Intelligent Finance",
+    "catalog": "AI",
+    "name_cn": "智能金融",
+    "catalog_cn": "人工智能"
+  },
+  "iManufacturing": {
+    "name": "Intelligent manufacturing",
+    "catalog": "AI",
+    "name_cn": "智能制造",
+    "catalog_cn": "人工智能"
+  },
+  "iPower": {
+    "name": "Intelligent Power",
+    "catalog": "AI",
+    "name_cn": "智能电力",
+    "catalog_cn": "人工智能"
+  },
+  "iRetail": {
+    "name": "Intelligent Retail",
+    "catalog": "AI",
+    "name_cn": "智能零售",
+    "catalog_cn": "人工智能"
+  },
+  "iTransport": {
+    "name": "Intelligent Transport",
+    "catalog": "AI",
+    "name_cn": "智能交通",
+    "catalog_cn": "人工智能"
+  },
+  "iWater": {
+    "name": "Intelligent Water",
+    "catalog": "AI",
+    "name_cn": "智能水务",
+    "catalog_cn": "人工智能"
+  },
+  "imagemoderation": {
+    "name": "Moderation (Image)",
+    "catalog": "AI",
+    "name_cn": "内容审核-图像",
+    "catalog_cn": "人工智能"
+  },
+  "imagetagging": {
+    "name": "Image Tagging",
+    "catalog": "AI",
+    "name_cn": "图像标签",
+    "catalog_cn": "人工智能"
+  },
+  "nlpc": {
+    "name": "nlpc",
+    "catalog": "AI",
+    "name_cn": "定制自然语言处理",
+    "catalog_cn": "人工智能"
+  },
+  "nlpkg": {
+    "name": "nlpkg",
+    "catalog": "AI",
+    "name_cn": "知识图谱",
+    "catalog_cn": "人工智能"
+  },
+  "nlplg": {
+    "name": "nlplg",
+    "catalog": "AI",
+    "name_cn": "语言生成",
+    "catalog_cn": "人工智能"
+  },
+  "nlplu": {
+    "name": "nlplu",
+    "catalog": "AI",
+    "name_cn": "语言理解",
+    "catalog_cn": "人工智能"
+  },
+  "nlpmt": {
+    "name": "nlpmt",
+    "catalog": "AI",
+    "name_cn": "机器翻译",
+    "catalog_cn": "人工智能"
+  },
+  "ocv2x": {
+    "name": "OceanconnectV2X",
+    "catalog": "Internet of Things",
+    "name_cn": "车路协同平台",
+    "catalog_cn": "IoT物联网"
+  },
+  "receiptocr": {
+    "name": "Receipt OCR",
+    "catalog": "AI",
+    "name_cn": "文字识别-票据类",
+    "catalog_cn": "人工智能"
+  },
+  "textmoderation": {
+    "name": "Moderation (Text)",
+    "catalog": "AI",
+    "name_cn": "内容审核-文本",
+    "catalog_cn": "人工智能"
+  }
+}
