@@ -100,6 +100,8 @@ The following arguments are supported:
 * `device_type` - (Optional, String, ForceNew) Specifies the device type of disk to create. Valid options are VBD and
   SCSI. Defaults to VBD. Changing this creates a new disk.
 
+* `dedicated_storage_id` - (Optional, String, ForceNew) Specifies the ID of the DSS storage pool accommodating the disk.
+
 * `enterprise_project_id` - (Optional, String, ForceNew) Specifies the enterprise project id of the disk. Changing this
   creates a new disk.
 
@@ -111,9 +113,22 @@ The following arguments are supported:
 In addition to all arguments above, the following attributes are exported:
 
 * `id` - A resource ID in UUID format.
+
 * `attachment` - If a disk is attached to an instance, this attribute will display the Attachment ID, Instance ID, and
-  the Device as the Instance sees it.
+  the Device as the Instance sees it. The [object](#attachment_struct) structure is documented below.
+
 * `wwn` - The unique identifier used for mounting the EVS disk.
+
+<a name="attachment_struct"></a>
+The `attachment` block supports:
+
+* `id` - The ID of the attachment information.
+
+* `instance_id` - The ID of the server to which the disk is attached.
+
+* `device` - The device name.
+
+* `dedicated_storage_name` - The name of the DSS storage pool accommodating the disk.
 
 ## Import
 
