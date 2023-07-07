@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 1.10.1 (July 7, 2023)
+
+ENHANCEMENTS:
+
+support dedicated storage in evs volume and sfs turbo ([#132](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/132))
+
 ## 1.10.0 (May 31, 2023)
 
 FEATURES:
