@@ -90,9 +90,8 @@ data "g42cloud_availability_zones" "test" {}
 
 data "g42cloud_compute_flavors" "test" {
   availability_zone = data.g42cloud_availability_zones.test.names[0]
-  performance_type  = "normal"
-  cpu_core_count    = 1
-  memory_size       = 2
+  cpu_core_count    = 2
+  memory_size       = 4
 }
 
 data "g42cloud_images_image" "test" {
