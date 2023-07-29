@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## 1.11.0 (July 29, 2023)
+
+FEATURES:
+
+* **New Resource:** `g42cloud_vpc_address_group` ([#134](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/134))
+* **New Resource:** `g42cloud_aom_alarm_action_rule` ([#135](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/135))
+* **New Resource:** `g42cloud_aom_alarm_silence_rule` ([#135](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/135))
+* **New Resource:** `g42cloud_aom_event_alarm_rule` ([#135](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/135))
+
 ## 1.10.1 (July 7, 2023)
 
 ENHANCEMENTS:
