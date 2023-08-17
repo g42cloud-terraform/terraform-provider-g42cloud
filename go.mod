@@ -3,10 +3,10 @@ module github.com/g42cloud-terraform/terraform-provider-g42cloud
 go 1.18
 
 require (
-	github.com/chnsz/golangsdk v0.0.0-20230718085800-819e20e25fbb
+	github.com/chnsz/golangsdk v0.0.0-20230816083154-a48d61280e1c
 	github.com/hashicorp/terraform-plugin-sdk/v2 v2.24.0
 	github.com/huaweicloud/huaweicloud-sdk-go-v3 v0.1.47
-	github.com/huaweicloud/terraform-provider-huaweicloud v1.52.1
+	github.com/huaweicloud/terraform-provider-huaweicloud v1.54.1
 )
 
 require (

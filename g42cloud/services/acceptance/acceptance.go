@@ -1,6 +1,7 @@
 package acceptance
 
 import (
+	"encoding/json"
 	"fmt"
 	"os"
 	"regexp"
@@ -14,7 +15,6 @@ import (
 	"github.com/hashicorp/terraform-plugin-sdk/v2/terraform"
 	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/config"
 	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/utils/fmtp"
-	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/utils/logp"
 )
 
 var (
@@ -59,6 +59,10 @@ var (
 	G42_DC_DIRECT_CONNECT_ID = os.Getenv("G42_DC_DIRECT_CONNECT_ID")
 
 	G42_SMS_SOURCE_SERVER = os.Getenv("G42_SMS_SOURCE_SERVER")
+
+	G42_KMS_ENVIRONMENT = os.Getenv("G42_KMS_ENVIRONMENT")
+
+	G42_ENTERPRISE_MIGRATE_PROJECT_ID_TEST = os.Getenv("G42_ENTERPRISE_MIGRATE_PROJECT_ID_TEST")
 )
 
 // TestAccProviders is a static map containing only the main provider instance.
@@ -242,34 +246,67 @@ func (rc *resourceCheck) CheckResourceDestroy() resource.TestCheckFunc {
 	}
 }
 
-// CheckResourceExists check whether resources exist in G42cloud.
+func (rc *resourceCheck) checkResourceExists(s *terraform.State) error {
+	rs, ok := s.RootModule().Resources[rc.resourceName]
+	if !ok {
+		return fmt.Errorf("can not found the resource or data source in state: %s", rc.resourceName)
+	}
+
+	if rs.Primary.ID == "" {
+		return fmt.Errorf("no id set for the resource or data source: %s", rc.resourceName)
+	}
+	if strings.EqualFold(rc.resourceType, dataSourceTypeCode) {
+		return nil
+	}
+
+	if rc.getResourceFunc == nil {
+		return fmt.Errorf("the 'getResourceFunc' is nil, please set it during initialization")
+	}
+
+	conf := TestAccProvider.Meta().(*config.Config)
+	r, err := rc.getResourceFunc(conf, rs)
+	if err != nil {
+		return fmt.Errorf("checking resource %s %s exists error: %s ",
+			rc.resourceName, rs.Primary.ID, err)
+	}
+
+	b, err := json.Marshal(r)
+	if err != nil {
+		return fmt.Errorf("marshaling resource %s %s error: %s ",
+			rc.resourceName, rs.Primary.ID, err)
+	}
+
+	// unmarshal the response body into the resourceObject
+	if rc.resourceObject != nil {
+		return json.Unmarshal(b, rc.resourceObject)
+	}
+
+	return nil
+}
+
+// CheckResourceExists check whether resources exist
 func (rc *resourceCheck) CheckResourceExists() resource.TestCheckFunc {
 	return func(s *terraform.State) error {
-		rs, ok := s.RootModule().Resources[rc.resourceName]
-		if !ok {
-			return fmtp.Errorf("Can not found the resource or data source in state: %s", rc.resourceName)
-		}
-		if rs.Primary.ID == "" {
-			return fmtp.Errorf("No id set for the resource or data source: %s", rc.resourceName)
-		}
-		if strings.EqualFold(rc.resourceType, dataSourceTypeCode) {
-			return nil
-		}
+		return rc.checkResourceExists(s)
+	}
+}
 
-		if rc.getResourceFunc != nil {
-			conf := TestAccProvider.Meta().(*config.Config)
-			r, err := rc.getResourceFunc(conf, rs)
+/*
+CheckMultiResourcesExists checks whether multiple resources created by count are both existed.
+
+	Parameters:
+	  count: the expected number of resources that will be created.
+*/
+func (rc *resourceCheck) CheckMultiResourcesExists(count int) resource.TestCheckFunc {
+	return func(s *terraform.State) error {
+		var err error
+		for i := 0; i < count; i++ {
+			rcCopy := *rc
+			rcCopy.resourceName = fmt.Sprintf("%s.%d", rcCopy.resourceName, i)
+			err = rcCopy.checkResourceExists(s)
 			if err != nil {
-				return fmtp.Errorf("checking resource %s %s exists error: %s ",
-					rc.resourceName, rs.Primary.ID, err)
+				return err
 			}
-			if rc.resourceObject != nil {
-				rc.resourceObject = r
-			} else {
-				logp.Printf("[WARN] The 'resourceObject' is nil, please set it during initialization.")
-			}
-		} else {
-			return fmtp.Errorf("The 'getResourceFunc' is nil, please set it.")
 		}
 
 		return nil
@@ -313,6 +350,13 @@ func TestAccPreCheckEpsID(t *testing.T) {
 	// use G42_ENTERPRISE_PROJECT_ID_TEST instead of G42_ENTERPRISE_PROJECT_ID to avoid enabling EPS globally
 	if G42_ENTERPRISE_PROJECT_ID_TEST == "" {
 		t.Skip("This environment does not support Enterprise Project ID tests")
+	}
+}
+
+// lintignore:AT003
+func TestAccPreCheckMigrateEpsID(t *testing.T) {
+	if G42_ENTERPRISE_PROJECT_ID_TEST == "" || G42_ENTERPRISE_MIGRATE_PROJECT_ID_TEST == "" {
+		t.Skip("The environment variables does not support Migrate Enterprise Project ID for acc tests")
 	}
 }
 
@@ -448,5 +492,12 @@ func TestAccPreCheckSms(t *testing.T) {
 func TestAccPrecheckDomainId(t *testing.T) {
 	if G42_DOMAIN_ID == "" {
 		t.Skip("G42_DOMAIN_ID must be set for acceptance tests")
+	}
+}
+
+// lintignore:AT003
+func TestAccPreCheckKms(t *testing.T) {
+	if G42_KMS_ENVIRONMENT == "" {
+		t.Skip("This environment does not support KMS tests")
 	}
 }

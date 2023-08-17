@@ -60,6 +60,7 @@ var osMutexKV = mutexkv.NewMutexKV()
 
 func init() {
 	waf.PaidType = "postPaid"
+	ecs.SystemDiskType = "SAS"
 }
 
 // Provider returns a schema.Provider for G42Cloud.
@@ -180,21 +181,24 @@ func Provider() *schema.Provider {
 		},
 
 		DataSourcesMap: map[string]*schema.Resource{
-			"g42cloud_apig_environments":  apig.DataSourceEnvironments(),
-			"g42cloud_availability_zones": huaweicloud.DataSourceAvailabilityZones(),
-			"g42cloud_bms_flavors":        bms.DataSourceBmsFlavors(),
-			"g42cloud_cbr_vaults":         cbr.DataSourceVaults(),
-			"g42cloud_cce_cluster":        cce.DataSourceCCEClusterV3(),
-			"g42cloud_cce_node":           cce.DataSourceNode(),
-			"g42cloud_cce_addon_template": cce.DataSourceAddonTemplate(),
-			"g42cloud_cce_node_pool":      cce.DataSourceCCENodePoolV3(),
-			"g42cloud_compute_flavors":    ecs.DataSourceEcsFlavors(),
-			"g42cloud_css_flavors":        css.DataSourceCssFlavors(),
-			"g42cloud_dds_flavors":        dds.DataSourceDDSFlavorV3(),
-			"g42cloud_dcs_az":             deprecated.DataSourceDcsAZV1(),
-			"g42cloud_dcs_flavors":        dcs.DataSourceDcsFlavorsV2(),
-			"g42cloud_dcs_maintainwindow": dcs.DataSourceDcsMaintainWindow(),
-			"g42cloud_dcs_product":        deprecated.DataSourceDcsProductV1(),
+			"g42cloud_apig_environments":    apig.DataSourceEnvironments(),
+			"g42cloud_availability_zones":   huaweicloud.DataSourceAvailabilityZones(),
+			"g42cloud_bms_flavors":          bms.DataSourceBmsFlavors(),
+			"g42cloud_cbr_vaults":           cbr.DataSourceVaults(),
+			"g42cloud_cce_cluster":          cce.DataSourceCCEClusterV3(),
+			"g42cloud_cce_node":             cce.DataSourceNode(),
+			"g42cloud_cce_addon_template":   cce.DataSourceAddonTemplate(),
+			"g42cloud_cce_node_pool":        cce.DataSourceCCENodePoolV3(),
+			"g42cloud_compute_flavors":      ecs.DataSourceEcsFlavors(),
+			"g42cloud_compute_instance":     ecs.DataSourceComputeInstance(),
+			"g42cloud_compute_instances":    ecs.DataSourceComputeInstances(),
+			"g42cloud_compute_servergroups": ecs.DataSourceComputeServerGroups(),
+			"g42cloud_css_flavors":          css.DataSourceCssFlavors(),
+			"g42cloud_dds_flavors":          dds.DataSourceDDSFlavorV3(),
+			"g42cloud_dcs_az":               deprecated.DataSourceDcsAZV1(),
+			"g42cloud_dcs_flavors":          dcs.DataSourceDcsFlavorsV2(),
+			"g42cloud_dcs_maintainwindow":   dcs.DataSourceDcsMaintainWindow(),
+			"g42cloud_dcs_product":          deprecated.DataSourceDcsProductV1(),
 
 			"g42cloud_dms_az":              deprecated.DataSourceDmsAZ(),
 			"g42cloud_dms_product":         dms.DataSourceDmsProduct(),
@@ -205,7 +209,7 @@ func Provider() *schema.Provider {
 			"g42cloud_elb_certificate":            elb.DataSourceELBCertificateV3(),
 			"g42cloud_elb_flavors":                elb.DataSourceElbFlavorsV3(),
 			"g42cloud_enterprise_project":         eps.DataSourceEnterpriseProject(),
-			"g42cloud_identity_role":              iam.DataSourceIdentityRoleV3(),
+			"g42cloud_identity_role":              iam.DataSourceIdentityRole(),
 			"g42cloud_images_image":               ims.DataSourceImagesImageV2(),
 			"g42cloud_images_images":              ims.DataSourceImagesImages(),
 			"g42cloud_kms_key":                    dew.DataSourceKmsKey(),
@@ -241,7 +245,7 @@ func Provider() *schema.Provider {
 			"g42cloud_waf_dedicated_instances": waf.DataSourceWafDedicatedInstancesV1(),
 			"g42cloud_waf_reference_tables":    waf.DataSourceWafReferenceTablesV1(),
 			// Legacy
-			"g42cloud_identity_role_v3": iam.DataSourceIdentityRoleV3(),
+			"g42cloud_identity_role_v3": iam.DataSourceIdentityRole(),
 		},
 
 		ResourcesMap: map[string]*schema.Resource{
@@ -272,12 +276,12 @@ func Provider() *schema.Provider {
 			"g42cloud_cce_cluster":               cce.ResourceCCEClusterV3(),
 			"g42cloud_cce_node":                  cce.ResourceNode(),
 			"g42cloud_cce_addon":                 cce.ResourceAddon(),
-			"g42cloud_cce_node_pool":             cce.ResourceCCENodePool(),
+			"g42cloud_cce_node_pool":             cce.ResourceNodePool(),
 			"g42cloud_ces_alarmrule":             ces.ResourceAlarmRule(),
-			"g42cloud_compute_instance":          ResourceComputeInstanceV2(),
+			"g42cloud_compute_instance":          ecs.ResourceComputeInstance(),
 			"g42cloud_compute_interface_attach":  ecs.ResourceComputeInterfaceAttach(),
 			"g42cloud_compute_keypair":           huaweicloud.ResourceComputeKeypairV2(),
-			"g42cloud_compute_servergroup":       ResourceComputeServerGroupV2(),
+			"g42cloud_compute_servergroup":       ecs.ResourceComputeServerGroup(),
 			"g42cloud_compute_eip_associate":     ecs.ResourceComputeEIPAssociate(),
 			"g42cloud_compute_volume_attach":     ecs.ResourceComputeVolumeAttach(),
 			"g42cloud_css_cluster":               css.ResourceCssCluster(),
@@ -314,12 +318,12 @@ func Provider() *schema.Provider {
 			"g42cloud_evs_volume":                evs.ResourceEvsVolume(),
 			"g42cloud_fgs_function":              fgs.ResourceFgsFunctionV2(),
 			"g42cloud_identity_role_assignment":  iam.ResourceIdentityGroupRoleAssignment(),
-			"g42cloud_identity_user":             iam.ResourceIdentityUserV3(),
-			"g42cloud_identity_group":            iam.ResourceIdentityGroupV3(),
-			"g42cloud_identity_group_membership": iam.ResourceIdentityGroupMembershipV3(),
+			"g42cloud_identity_user":             iam.ResourceIdentityUser(),
+			"g42cloud_identity_group":            iam.ResourceIdentityGroup(),
+			"g42cloud_identity_group_membership": iam.ResourceIdentityGroupMembership(),
 			"g42cloud_identity_acl":              iam.ResourceIdentityACL(),
 			"g42cloud_identity_agency":           iam.ResourceIAMAgencyV3(),
-			"g42cloud_identity_project":          iam.ResourceIdentityProjectV3(),
+			"g42cloud_identity_project":          iam.ResourceIdentityProject(),
 			"g42cloud_identity_role":             iam.ResourceIdentityRole(),
 			"g42cloud_images_image":              ims.ResourceImsImage(),
 			"g42cloud_kms_key":                   dew.ResourceKmsKey(),
@@ -407,9 +411,9 @@ func Provider() *schema.Provider {
 			"g42cloud_vpcep_service":                            vpcep.ResourceVPCEndpointService(),
 			// Legacy
 			"g42cloud_identity_role_assignment_v3":  iam.ResourceIdentityGroupRoleAssignment(),
-			"g42cloud_identity_user_v3":             iam.ResourceIdentityUserV3(),
-			"g42cloud_identity_group_v3":            iam.ResourceIdentityGroupV3(),
-			"g42cloud_identity_group_membership_v3": iam.ResourceIdentityGroupMembershipV3(),
+			"g42cloud_identity_user_v3":             iam.ResourceIdentityUser(),
+			"g42cloud_identity_group_v3":            iam.ResourceIdentityGroup(),
+			"g42cloud_identity_group_membership_v3": iam.ResourceIdentityGroupMembership(),
 		},
 	}
 
