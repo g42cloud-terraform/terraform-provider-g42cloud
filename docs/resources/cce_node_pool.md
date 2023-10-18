@@ -125,6 +125,13 @@ extend_param = {
 * `taints` - (Optional, List) Specifies the taints configuration of the nodes to set anti-affinity.
   The structure is described below.
 
+* `security_groups` - (Optional, List, ForceNew) Specifies the list of custom security group IDs for the node pool.
+  If specified, the nodes will be put in these security groups. When specifying a security group, do not modify
+  the rules of the port on which CCE running depends.
+
+* `pod_security_groups` - (Optional, List, ForceNew) Specifies the list of security group IDs for the pod.
+  Only supported in CCE Turbo clusters of v1.19 and above. Changing this parameter will create a new resource.
+
 The `root_volume` block supports:
 
 * `size` - (Required, Int, ForceNew) Specifies the disk size in GB. Changing this parameter will create a new resource.
