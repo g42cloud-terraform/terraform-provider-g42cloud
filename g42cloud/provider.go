@@ -284,6 +284,7 @@ func Provider() *schema.Provider {
 			"g42cloud_compute_servergroup":       ecs.ResourceComputeServerGroup(),
 			"g42cloud_compute_eip_associate":     ecs.ResourceComputeEIPAssociate(),
 			"g42cloud_compute_volume_attach":     ecs.ResourceComputeVolumeAttach(),
+			"g42cloud_csms_secret":               dew.ResourceCsmsSecret(),
 			"g42cloud_css_cluster":               css.ResourceCssCluster(),
 			"g42cloud_css_snapshot":              css.ResourceCssSnapshot(),
 			"g42cloud_css_thesaurus":             css.ResourceCssthesaurus(),
