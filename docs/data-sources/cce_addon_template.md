@@ -35,7 +35,7 @@ The following arguments are supported:
 
 * `version` - (Required, String) Specifies the add-on version.
 
-## Attributes Reference
+## Attribute Reference
 
 In addition to all arguments above, the following attributes are exported:
 
@@ -47,6 +47,12 @@ In addition to all arguments above, the following attributes are exported:
 
 * `stable` - Whether the add-on template is a stable version.
 
-* `support_version/virtual_machine` - The cluster (Virtual Machine) version that the add-on template supported.
+* `support_version` - Supported cluster version numbers.
+  The [support_version](#cce_support_version) object structure is documented below.
 
-* `support_version/bare_metal` - The cluster (Bare Metal) version that the add-on template supported.
+<a name="cce_support_version"></a>
+The `support_version` block supports:
+
+* `virtual_machine` - The cluster (Virtual Machine) version that the add-on template supported.
+
+* `bare_metal` - The cluster (Bare Metal) version that the add-on template supported.
