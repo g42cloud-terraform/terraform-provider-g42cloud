@@ -7,6 +7,8 @@ import (
 	"sync"
 
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/lts"
+	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/sfs"
 
 	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud"
 	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/config"
@@ -213,13 +215,13 @@ func Provider() *schema.Provider {
 			"g42cloud_images_image":               ims.DataSourceImagesImageV2(),
 			"g42cloud_images_images":              ims.DataSourceImagesImages(),
 			"g42cloud_kms_key":                    dew.DataSourceKmsKey(),
-			"g42cloud_kms_data_key":               huaweicloud.DataSourceKmsDataKeyV1(),
+			"g42cloud_kms_data_key":               dew.DataSourceKmsDataKeyV1(),
 			"g42cloud_modelarts_datasets":         modelarts.DataSourceDatasets(),
 			"g42cloud_modelarts_dataset_versions": modelarts.DataSourceDatasetVerions(),
 			"g42cloud_modelarts_notebook_images":  modelarts.DataSourceNotebookImages(),
 			"g42cloud_nat_gateway":                nat.DataSourcePublicGateway(),
 			"g42cloud_networking_port":            vpc.DataSourceNetworkingPortV2(),
-			"g42cloud_networking_secgroup":        huaweicloud.DataSourceNetworkingSecGroup(),
+			"g42cloud_networking_secgroup":        vpc.DataSourceNetworkingSecGroup(),
 			"g42cloud_obs_bucket_object":          obs.DataSourceObsBucketObject(),
 
 			"g42cloud_rms_policy_definitions": rms.DataSourcePolicyDefinitions(),
@@ -315,7 +317,7 @@ func Provider() *schema.Provider {
 			"g42cloud_elb_pool":                  elb.ResourcePoolV3(),
 			"g42cloud_elb_member":                elb.ResourceMemberV3(),
 			"g42cloud_enterprise_project":        eps.ResourceEnterpriseProject(),
-			"g42cloud_evs_snapshot":              huaweicloud.ResourceEvsSnapshotV2(),
+			"g42cloud_evs_snapshot":              evs.ResourceEvsSnapshotV2(),
 			"g42cloud_evs_volume":                evs.ResourceEvsVolume(),
 			"g42cloud_fgs_function":              fgs.ResourceFgsFunctionV2(),
 			"g42cloud_identity_role_assignment":  iam.ResourceIdentityGroupRoleAssignment(),
@@ -337,8 +339,8 @@ func Provider() *schema.Provider {
 			"g42cloud_lb_monitor":                lb.ResourceMonitorV2(),
 			"g42cloud_lb_pool":                   lb.ResourcePoolV2(),
 			"g42cloud_lb_whitelist":              lb.ResourceWhitelistV2(),
-			"g42cloud_lts_group":                 huaweicloud.ResourceLTSGroupV2(),
-			"g42cloud_lts_stream":                huaweicloud.ResourceLTSStreamV2(),
+			"g42cloud_lts_group":                 lts.ResourceLTSGroup(),
+			"g42cloud_lts_stream":                lts.ResourceLTSStream(),
 			"g42cloud_mapreduce_cluster":         mrs.ResourceMRSClusterV2(),
 			"g42cloud_mapreduce_job":             mrs.ResourceMRSJobV2(),
 
@@ -371,7 +373,7 @@ func Provider() *schema.Provider {
 			"g42cloud_servicestage_environment":                 servicestage.ResourceEnvironment(),
 			"g42cloud_servicestage_repo_token_authorization":    servicestage.ResourceRepoTokenAuth(),
 			"g42cloud_servicestage_repo_password_authorization": servicestage.ResourceRepoPwdAuth(),
-			"g42cloud_sfs_turbo":                                huaweicloud.ResourceSFSTurbo(),
+			"g42cloud_sfs_turbo":                                sfs.ResourceSFSTurbo(),
 			"g42cloud_smn_subscription":                         smn.ResourceSubscription(),
 			"g42cloud_smn_topic":                                smn.ResourceTopic(),
 			"g42cloud_sms_server_template":                      sms.ResourceServerTemplate(),
@@ -403,8 +405,8 @@ func Provider() *schema.Provider {
 			"g42cloud_waf_rule_cc_protection":                   waf.ResourceRuleCCProtection(),
 			"g42cloud_waf_rule_precise_protection":              waf.ResourceRulePreciseProtection(),
 			"g42cloud_networking_eip_associate":                 eip.ResourceEIPAssociate(),
-			"g42cloud_networking_secgroup":                      huaweicloud.ResourceNetworkingSecGroup(),
-			"g42cloud_networking_secgroup_rule":                 huaweicloud.ResourceNetworkingSecGroupRule(),
+			"g42cloud_networking_secgroup":                      vpc.ResourceNetworkingSecGroup(),
+			"g42cloud_networking_secgroup_rule":                 vpc.ResourceNetworkingSecGroupRule(),
 			"g42cloud_networking_vip":                           vpc.ResourceNetworkingVip(),
 			"g42cloud_networking_vip_associate":                 vpc.ResourceNetworkingVIPAssociateV2(),
 			"g42cloud_vpcep_approval":                           vpcep.ResourceVPCEndpointApproval(),

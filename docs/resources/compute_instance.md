@@ -244,6 +244,9 @@ The following arguments are supported:
 * `system_disk_kms_key_id` - (Optional, String, ForceNew) Specifies the ID of a KMS key. This is used to encrypt the
   system disk. Changing this parameter will create a new resource.
 
+* `system_disk_dss_pool_id` - (Optional, String, ForceNew) Specifies the system disk DSS pool ID. This field is used
+  only for dedicated storage. Changing this parameter will create a new resource.
+
 * `data_disks` - (Optional, String, ForceNew) Specifies an array of one or more data disks to attach to the instance.
   The data_disks object structure is documented below. Changing this creates a new instance.
 
@@ -327,6 +330,9 @@ The `data_disks` block supports:
 
 * `kms_key_id` - (Optional, String, ForceNew) Specifies the ID of a KMS key. This is used to encrypt the data disk.
   Changing this parameter will create a new resource.
+
+* `dss_pool_id` - (Optional, String, ForceNew) Specifies the data disk DSS pool ID. This field is used
+  only for dedicated storage. Changing this parameter will create a new resource.
 
 The `bandwidth` block supports:
 
