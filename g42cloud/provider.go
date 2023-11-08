@@ -183,7 +183,11 @@ func Provider() *schema.Provider {
 		},
 
 		DataSourcesMap: map[string]*schema.Resource{
-			"g42cloud_apig_environments":    apig.DataSourceEnvironments(),
+			"g42cloud_apig_environments": apig.DataSourceEnvironments(),
+
+			"g42cloud_as_configurations": as.DataSourceASConfigurations(),
+			"g42cloud_as_groups":         as.DataSourceASGroups(),
+
 			"g42cloud_availability_zones":   huaweicloud.DataSourceAvailabilityZones(),
 			"g42cloud_bms_flavors":          bms.DataSourceBmsFlavors(),
 			"g42cloud_cbr_vaults":           cbr.DataSourceVaults(),
@@ -269,9 +273,14 @@ func Provider() *schema.Provider {
 			"g42cloud_apig_throttling_policy":           apig.ResourceApigThrottlingPolicyV2(),
 			"g42cloud_apig_vpc_channel":                 deprecated.ResourceApigVpcChannelV2(),
 
-			"g42cloud_as_configuration":          as.ResourceASConfiguration(),
-			"g42cloud_as_group":                  as.ResourceASGroup(),
-			"g42cloud_as_policy":                 as.ResourceASPolicy(),
+			"g42cloud_as_bandwidth_policy": as.ResourceASBandWidthPolicy(),
+			"g42cloud_as_configuration":    as.ResourceASConfiguration(),
+			"g42cloud_as_group":            as.ResourceASGroup(),
+			"g42cloud_as_instance_attach":  as.ResourceASInstanceAttach(),
+			"g42cloud_as_lifecycle_hook":   as.ResourceASLifecycleHook(),
+			"g42cloud_as_notification":     as.ResourceAsNotification(),
+			"g42cloud_as_policy":           as.ResourceASPolicy(),
+
 			"g42cloud_bms_instance":              bms.ResourceBmsInstance(),
 			"g42cloud_cbr_policy":                cbr.ResourcePolicy(),
 			"g42cloud_cbr_vault":                 cbr.ResourceVault(),
