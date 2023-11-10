@@ -311,7 +311,9 @@ func Provider() *schema.Provider {
 			"g42cloud_cce_addon":     cce.ResourceAddon(),
 			"g42cloud_cce_node_pool": cce.ResourceNodePool(),
 
-			"g42cloud_ces_alarmrule": ces.ResourceAlarmRule(),
+			"g42cloud_ces_alarmrule":      ces.ResourceAlarmRule(),
+			"g42cloud_ces_alarm_template": ces.ResourceCesAlarmTemplate(),
+			"g42cloud_ces_resource_group": ces.ResourceResourceGroup(),
 
 			"g42cloud_compute_instance":         ecs.ResourceComputeInstance(),
 			"g42cloud_compute_interface_attach": ecs.ResourceComputeInterfaceAttach(),
