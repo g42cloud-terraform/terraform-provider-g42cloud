@@ -322,9 +322,10 @@ func Provider() *schema.Provider {
 
 			"g42cloud_csms_secret": dew.ResourceCsmsSecret(),
 
-			"g42cloud_css_cluster":   css.ResourceCssCluster(),
-			"g42cloud_css_snapshot":  css.ResourceCssSnapshot(),
-			"g42cloud_css_thesaurus": css.ResourceCssthesaurus(),
+			"g42cloud_css_cluster":       css.ResourceCssCluster(),
+			"g42cloud_css_snapshot":      css.ResourceCssSnapshot(),
+			"g42cloud_css_thesaurus":     css.ResourceCssthesaurus(),
+			"g42cloud_css_configuration": css.ResourceCssConfiguration(),
 
 			"g42cloud_cts_tracker":      cts.ResourceCTSTracker(),
 			"g42cloud_cts_data_tracker": cts.ResourceCTSDataTracker(),
