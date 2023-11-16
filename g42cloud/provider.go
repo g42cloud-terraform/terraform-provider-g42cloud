@@ -219,7 +219,8 @@ func Provider() *schema.Provider {
 			"g42cloud_ddm_engines": ddm.DataSourceDdmEngines(),
 			"g42cloud_ddm_flavors": ddm.DataSourceDdmFlavors(),
 
-			"g42cloud_dds_flavors": dds.DataSourceDDSFlavorV3(),
+			"g42cloud_dds_flavors":   dds.DataSourceDDSFlavorV3(),
+			"g42cloud_dds_instances": dds.DataSourceDdsInstance(),
 
 			"g42cloud_kms_key":      dew.DataSourceKmsKey(),
 			"g42cloud_kms_data_key": dew.DataSourceKmsDataKeyV1(),
@@ -347,7 +348,12 @@ func Provider() *schema.Provider {
 
 			"g42cloud_dcs_instance": dcs.ResourceDcsInstance(),
 
-			"g42cloud_dds_instance": dds.ResourceDdsInstanceV3(),
+			"g42cloud_dds_audit_log_policy":   dds.ResourceDdsAuditLogPolicy(),
+			"g42cloud_dds_backup":             dds.ResourceDdsBackup(),
+			"g42cloud_dds_database_role":      dds.ResourceDatabaseRole(),
+			"g42cloud_dds_database_user":      dds.ResourceDatabaseUser(),
+			"g42cloud_dds_instance":           dds.ResourceDdsInstanceV3(),
+			"g42cloud_dds_parameter_template": dds.ResourceDdsParameterTemplate(),
 
 			"g42cloud_dli_queue": dli.ResourceDliQueue(),
 
