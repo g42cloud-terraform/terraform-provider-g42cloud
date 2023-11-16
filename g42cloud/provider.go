@@ -21,6 +21,7 @@ import (
 	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/cbr"
 	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/cce"
 	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/ces"
+	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/cpts"
 	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/css"
 	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/cts"
 	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/dc"
@@ -325,6 +326,8 @@ func Provider() *schema.Provider {
 			"g42cloud_compute_eip_associate":    ecs.ResourceComputeEIPAssociate(),
 			"g42cloud_compute_volume_attach":    ecs.ResourceComputeVolumeAttach(),
 			"g42cloud_compute_keypair":          huaweicloud.ResourceComputeKeypairV2(),
+
+			"g42cloud_cpts_project": cpts.ResourceProject(),
 
 			"g42cloud_csms_secret": dew.ResourceCsmsSecret(),
 
