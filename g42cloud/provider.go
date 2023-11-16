@@ -232,8 +232,10 @@ func Provider() *schema.Provider {
 			"g42cloud_dms_kafka_instances": dms.DataSourceDmsKafkaInstances(),
 			"g42cloud_dms_az":              deprecated.DataSourceDmsAZ(),
 
-			"g42cloud_elb_certificate": elb.DataSourceELBCertificateV3(),
-			"g42cloud_elb_flavors":     elb.DataSourceElbFlavorsV3(),
+			"g42cloud_elb_certificate":   elb.DataSourceELBCertificateV3(),
+			"g42cloud_elb_flavors":       elb.DataSourceElbFlavorsV3(),
+			"g42cloud_elb_loadbalancers": elb.DataSourceElbLoadbalances(),
+			"g42cloud_elb_pools":         elb.DataSourcePools(),
 
 			"g42cloud_enterprise_project": eps.DataSourceEnterpriseProject(),
 
@@ -366,15 +368,17 @@ func Provider() *schema.Provider {
 
 			"g42cloud_dws_cluster": dws.ResourceDwsCluster(),
 
-			"g42cloud_elb_certificate":  elb.ResourceCertificateV3(),
-			"g42cloud_elb_l7policy":     elb.ResourceL7PolicyV3(),
-			"g42cloud_elb_l7rule":       elb.ResourceL7RuleV3(),
-			"g42cloud_elb_listener":     elb.ResourceListenerV3(),
-			"g42cloud_elb_loadbalancer": elb.ResourceLoadBalancerV3(),
-			"g42cloud_elb_monitor":      elb.ResourceMonitorV3(),
-			"g42cloud_elb_ipgroup":      elb.ResourceIpGroupV3(),
-			"g42cloud_elb_pool":         elb.ResourcePoolV3(),
-			"g42cloud_elb_member":       elb.ResourceMemberV3(),
+			"g42cloud_elb_certificate":     elb.ResourceCertificateV3(),
+			"g42cloud_elb_l7policy":        elb.ResourceL7PolicyV3(),
+			"g42cloud_elb_l7rule":          elb.ResourceL7RuleV3(),
+			"g42cloud_elb_listener":        elb.ResourceListenerV3(),
+			"g42cloud_elb_loadbalancer":    elb.ResourceLoadBalancerV3(),
+			"g42cloud_elb_monitor":         elb.ResourceMonitorV3(),
+			"g42cloud_elb_ipgroup":         elb.ResourceIpGroupV3(),
+			"g42cloud_elb_pool":            elb.ResourcePoolV3(),
+			"g42cloud_elb_member":          elb.ResourceMemberV3(),
+			"g42cloud_elb_logtank":         elb.ResourceLogTank(),
+			"g42cloud_elb_security_policy": elb.ResourceSecurityPolicy(),
 
 			"g42cloud_enterprise_project": eps.ResourceEnterpriseProject(),
 			"g42cloud_evs_snapshot":       evs.ResourceEvsSnapshotV2(),
