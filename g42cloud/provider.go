@@ -193,6 +193,7 @@ func Provider() *schema.Provider {
 			"g42cloud_bms_flavors": bms.DataSourceBmsFlavors(),
 
 			"g42cloud_cbr_vaults": cbr.DataSourceVaults(),
+			"g42cloud_cbr_backup": cbr.DataSourceBackup(),
 
 			"g42cloud_cce_addon_template": cce.DataSourceAddonTemplate(),
 			"g42cloud_cce_cluster":        cce.DataSourceCCEClusterV3(),
@@ -200,7 +201,7 @@ func Provider() *schema.Provider {
 			"g42cloud_cce_node":           cce.DataSourceNode(),
 			"g42cloud_cce_node_pool":      cce.DataSourceCCENodePoolV3(),
 			"g42cloud_cce_nodes":          cce.DataSourceNodes(),
-
+			
 			"g42cloud_compute_flavors":      ecs.DataSourceEcsFlavors(),
 			"g42cloud_compute_instance":     ecs.DataSourceComputeInstance(),
 			"g42cloud_compute_instances":    ecs.DataSourceComputeInstances(),
