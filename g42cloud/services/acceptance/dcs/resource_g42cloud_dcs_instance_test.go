@@ -212,6 +212,12 @@ data "g42cloud_vpc_subnet" "test" {
   name = "subnet-default"
 }
 
+data "g42cloud_dcs_flavors" "test" {
+  cache_mode     = "ha"
+  capacity       = 0.125
+  engine_version = "5.0"
+}
+
 resource "g42cloud_dcs_instance" "instance_1" {
   name               = "%s"
   engine_version     = "5.0"
