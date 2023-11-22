@@ -495,9 +495,10 @@ func Provider() *schema.Provider {
 
 			"g42cloud_tms_tags": tms.ResourceTmsTag(),
 
-			"g42cloud_vpc_bandwidth":     eip.ResourceVpcBandWidthV2(),
-			"g42cloud_vpc_eip":           eip.ResourceVpcEIPV1(),
-			"g42cloud_vpc_eip_associate": eip.ResourceEIPAssociate(),
+			"g42cloud_vpc_bandwidth":           eip.ResourceVpcBandWidthV2(),
+			"g42cloud_vpc_bandwidth_associate": eip.ResourceBandWidthAssociate(),
+			"g42cloud_vpc_eip":                 eip.ResourceVpcEIPV1(),
+			"g42cloud_vpc_eip_associate":       eip.ResourceEIPAssociate(),
 
 			"g42cloud_vpc":                             vpc.ResourceVirtualPrivateCloudV1(),
 			"g42cloud_vpc_route":                       vpc.ResourceVPCRouteTableRoute(),
