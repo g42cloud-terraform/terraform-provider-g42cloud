@@ -235,6 +235,9 @@ func Provider() *schema.Provider {
 			"g42cloud_dms_kafka_instances": dms.DataSourceDmsKafkaInstances(),
 			"g42cloud_dms_az":              deprecated.DataSourceDmsAZ(),
 
+			"g42cloud_dns_zones":      dns.DataSourceZones(),
+			"g42cloud_dns_recordsets": dns.DataSourceRecordsets(),
+
 			"g42cloud_elb_certificate":   elb.DataSourceELBCertificateV3(),
 			"g42cloud_elb_flavors":       elb.DataSourceElbFlavorsV3(),
 			"g42cloud_elb_loadbalancers": elb.DataSourceElbLoadbalances(),
