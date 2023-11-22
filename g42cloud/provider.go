@@ -229,11 +229,14 @@ func Provider() *schema.Provider {
 			"g42cloud_kms_key":      dew.DataSourceKmsKey(),
 			"g42cloud_kms_data_key": dew.DataSourceKmsDataKeyV1(),
 
-			"g42cloud_dms_product":         dms.DataSourceDmsProduct(),
-			"g42cloud_dms_maintainwindow":  dms.DataSourceDmsMaintainWindow(),
-			"g42cloud_dms_kafka_flavors":   dms.DataSourceKafkaFlavors(),
-			"g42cloud_dms_kafka_instances": dms.DataSourceDmsKafkaInstances(),
-			"g42cloud_dms_az":              deprecated.DataSourceDmsAZ(),
+			"g42cloud_dms_product":            dms.DataSourceDmsProduct(),
+			"g42cloud_dms_maintainwindow":     dms.DataSourceDmsMaintainWindow(),
+			"g42cloud_dms_kafka_flavors":      dms.DataSourceKafkaFlavors(),
+			"g42cloud_dms_kafka_instances":    dms.DataSourceDmsKafkaInstances(),
+			"g42cloud_dms_az":                 deprecated.DataSourceDmsAZ(),
+			"g42cloud_dms_rabbitmq_flavors":   dms.DataSourceRabbitMQFlavors(),
+			"g42cloud_dms_rocketmq_broker":    dms.DataSourceDmsRocketMQBroker(),
+			"g42cloud_dms_rocketmq_instances": dms.DataSourceDmsRocketMQInstances(),
 
 			"g42cloud_elb_certificate":   elb.DataSourceELBCertificateV3(),
 			"g42cloud_elb_flavors":       elb.DataSourceElbFlavorsV3(),
@@ -383,13 +386,15 @@ func Provider() *schema.Provider {
 			"g42cloud_dms_kafka_topic":       dms.ResourceDmsKafkaTopic(),
 			"g42cloud_dms_kafka_user":        dms.ResourceDmsKafkaUser(),
 			"g42cloud_dms_kafka_permissions": dms.ResourceDmsKafkaPermissions(),
-			"g42cloud_dms_rabbitmq_instance": dms.ResourceDmsRabbitmqInstance(),
 
 			"g42cloud_dns_ptrrecord": dns.ResourceDNSPtrRecord(),
 			"g42cloud_dns_recordset": dns.ResourceDNSRecordSetV2(),
 			"g42cloud_dns_zone":      dns.ResourceDNSZone(),
 
-			"g42cloud_dws_cluster": dws.ResourceDwsCluster(),
+			"g42cloud_dws_cluster":                 dws.ResourceDwsCluster(),
+			"g42cloud_dms_rocketmq_consumer_group": dms.ResourceDmsRocketMQConsumerGroup(),
+			"g42cloud_dms_rocketmq_topic":          dms.ResourceDmsRocketMQTopic(),
+			"g42cloud_dms_rocketmq_user":           dms.ResourceDmsRocketMQUser(),
 
 			"g42cloud_elb_certificate":     elb.ResourceCertificateV3(),
 			"g42cloud_elb_l7policy":        elb.ResourceL7PolicyV3(),
