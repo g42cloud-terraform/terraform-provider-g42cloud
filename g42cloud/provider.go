@@ -273,13 +273,13 @@ func Provider() *schema.Provider {
 
 			"g42cloud_mapreduce_clusters": mrs.DataSourceMrsClusters(),
 
+			"g42cloud_obs_bucket_object": obs.DataSourceObsBucketObject(),
+
 			"g42cloud_nat_gateway": nat.DataSourcePublicGateway(),
 
 			"g42cloud_networking_port":      vpc.DataSourceNetworkingPortV2(),
 			"g42cloud_networking_secgroup":  vpc.DataSourceNetworkingSecGroup(),
 			"g42cloud_networking_secgroups": vpc.DataSourceNetworkingSecGroups(),
-
-			"g42cloud_obs_bucket_object": obs.DataSourceObsBucketObject(),
 
 			"g42cloud_rds_backups":              rds.DataSourceBackup(),
 			"g42cloud_rds_engine_versions":      rds.DataSourceRdsEngineVersionsV3(),
@@ -491,9 +491,11 @@ func Provider() *schema.Provider {
 			"g42cloud_networking_vip":           vpc.ResourceNetworkingVip(),
 			"g42cloud_networking_vip_associate": vpc.ResourceNetworkingVIPAssociateV2(),
 
-			"g42cloud_obs_bucket":        obs.ResourceObsBucket(),
-			"g42cloud_obs_bucket_object": obs.ResourceObsBucketObject(),
-			"g42cloud_obs_bucket_policy": obs.ResourceObsBucketPolicy(),
+			"g42cloud_obs_bucket":            obs.ResourceObsBucket(),
+			"g42cloud_obs_bucket_acl":        obs.ResourceOBSBucketAcl(),
+			"g42cloud_obs_bucket_object":     obs.ResourceObsBucketObject(),
+			"g42cloud_obs_bucket_policy":     obs.ResourceObsBucketPolicy(),
+			"g42cloud_obs_bucket_object_acl": obs.ResourceOBSBucketObjectAcl(),
 
 			"g42cloud_rms_policy_assignment":                  rms.ResourcePolicyAssignment(),
 			"g42cloud_rms_resource_aggregator":                rms.ResourceAggregator(),
