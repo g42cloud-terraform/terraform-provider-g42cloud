@@ -251,6 +251,9 @@ func Provider() *schema.Provider {
 
 			"g42cloud_servicestage_component_runtimes": servicestage.DataSourceComponentRuntimes(),
 
+			"g42cloud_smn_topics":            smn.DataSourceTopics(),
+			"g42cloud_smn_message_templates": smn.DataSourceSmnMessageTemplates(),
+
 			"g42cloud_sms_source_servers": sms.DataSourceServers(),
 
 			"g42cloud_vpc_bandwidth": eip.DataSourceBandWidth(),
@@ -442,8 +445,10 @@ func Provider() *schema.Provider {
 
 			"g42cloud_sfs_turbo": sfs.ResourceSFSTurbo(),
 
-			"g42cloud_smn_subscription": smn.ResourceSubscription(),
-			"g42cloud_smn_topic":        smn.ResourceTopic(),
+			"g42cloud_smn_logtank":          smn.ResourceSmnLogtank(),
+			"g42cloud_smn_subscription":     smn.ResourceSubscription(),
+			"g42cloud_smn_topic":            smn.ResourceTopic(),
+			"g42cloud_smn_message_template": smn.ResourceSmnMessageTemplate(),
 
 			"g42cloud_sms_server_template": sms.ResourceServerTemplate(),
 			"g42cloud_sms_task":            sms.ResourceMigrateTask(),
