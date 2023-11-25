@@ -58,6 +58,13 @@ var (
 
 	G42_DC_DIRECT_CONNECT_ID = os.Getenv("G42_DC_DIRECT_CONNECT_ID")
 
+	G42_DLI_AGENCY_FLAG                  = os.Getenv("G42_DLI_AGENCY_FLAG")
+	G42_DLI_DS_AUTH_CSS_OBS_PATH         = os.Getenv("G42_DLI_DS_AUTH_CSS_OBS_PATH")
+	G42_DLI_DS_AUTH_KAFKA_TRUST_OBS_PATH = os.Getenv("G42_DLI_DS_AUTH_KAFKA_TRUST_OBS_PATH")
+	G42_DLI_DS_AUTH_KAFKA_KEY_OBS_PATH   = os.Getenv("G42_DLI_DS_AUTH_KAFKA_KEY_OBS_PATH")
+	G42_DLI_DS_AUTH_KRB_CONF_OBS_PATH    = os.Getenv("G42_DLI_DS_AUTH_KRB_CONF_OBS_PATH")
+	G42_DLI_DS_AUTH_KRB_TAB_OBS_PATH     = os.Getenv("G42_DLI_DS_AUTH_KRB_TAB_OBS_PATH")
+
 	G42_SMS_SOURCE_SERVER = os.Getenv("G42_SMS_SOURCE_SERVER")
 
 	G42_KMS_ENVIRONMENT = os.Getenv("G42_KMS_ENVIRONMENT")
@@ -511,5 +518,33 @@ func TestAccPreCheckUserId(t *testing.T) {
 func TestAccPreCheckProjectID(t *testing.T) {
 	if G42_PROJECT_ID == "" {
 		t.Skip("G42_PROJECT_ID must be set for acceptance tests")
+	}
+}
+
+// lintignore:AT003
+func TestAccPreCheckDliAgency(t *testing.T) {
+	if G42_DLI_AGENCY_FLAG == "" {
+		t.Skip("G42_DLI_AGENCY_FLAG must be set for DLI datasource DLI agency acceptance tests.")
+	}
+}
+
+// lintignore:AT003
+func TestAccPreCheckDliDsAuthCss(t *testing.T) {
+	if G42_DLI_DS_AUTH_CSS_OBS_PATH == "" {
+		t.Skip("G42_DLI_DS_AUTH_CSS_OBS_PATH must be set for DLI datasource CSS Auth acceptance tests.")
+	}
+}
+
+// lintignore:AT003
+func TestAccPreCheckDliDsAuthKafka(t *testing.T) {
+	if G42_DLI_DS_AUTH_KAFKA_TRUST_OBS_PATH == "" || G42_DLI_DS_AUTH_KAFKA_KEY_OBS_PATH == "" {
+		t.Skip("G42_DLI_DS_AUTH_KAFKA_TRUST_OBS_PATH,G42_DLI_DS_AUTH_KAFKA_KEY_OBS_PATH must be set for DLI datasource Kafka Auth acceptance tests.")
+	}
+}
+
+// lintignore:AT003
+func TestAccPreCheckDliDsAuthKrb(t *testing.T) {
+	if G42_DLI_DS_AUTH_KRB_CONF_OBS_PATH == "" || G42_DLI_DS_AUTH_KRB_TAB_OBS_PATH == "" {
+		t.Skip("G42_DLI_DS_AUTH_KRB_CONF_OBS_PATH,G42_DLI_DS_AUTH_KRB_TAB_OBS_PATH must be set for DLI datasource Kafka Auth acceptance tests.")
 	}
 }
