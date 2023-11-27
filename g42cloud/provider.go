@@ -436,7 +436,10 @@ func Provider() *schema.Provider {
 			"g42cloud_dns_recordset": dns.ResourceDNSRecordSetV2(),
 			"g42cloud_dns_zone":      dns.ResourceDNSZone(),
 
-			"g42cloud_dws_cluster":                 dws.ResourceDwsCluster(),
+			"g42cloud_dws_alarm_subscription": dws.ResourceDwsAlarmSubs(),
+			"g42cloud_dws_cluster":            dws.ResourceDwsCluster(),
+			"g42cloud_dws_event_subscription": dws.ResourceDwsEventSubs(),
+
 			"g42cloud_dms_rocketmq_consumer_group": dms.ResourceDmsRocketMQConsumerGroup(),
 			"g42cloud_dms_rocketmq_topic":          dms.ResourceDmsRocketMQTopic(),
 			"g42cloud_dms_rocketmq_user":           dms.ResourceDmsRocketMQUser(),
