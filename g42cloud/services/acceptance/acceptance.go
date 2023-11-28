@@ -18,18 +18,20 @@ import (
 )
 
 var (
-	G42_REGION_NAME                = os.Getenv("G42_REGION_NAME")
-	G42_CUSTOM_REGION_NAME         = os.Getenv("G42_CUSTOM_REGION_NAME")
-	G42_AVAILABILITY_ZONE          = os.Getenv("G42_AVAILABILITY_ZONE")
-	G42_ACCESS_KEY                 = os.Getenv("G42_ACCESS_KEY")
-	G42_SECRET_KEY                 = os.Getenv("G42_SECRET_KEY")
-	G42_USER_ID                    = os.Getenv("G42_USER_ID")
-	G42_PROJECT_ID                 = os.Getenv("G42_PROJECT_ID")
-	G42_DOMAIN_ID                  = os.Getenv("G42_DOMAIN_ID")
-	G42_ACCOUNT_NAME               = os.Getenv("G42_ACCOUNT_NAME")
-	G42_USERNAME                   = os.Getenv("G42_USERNAME")
-	G42_ENTERPRISE_PROJECT_ID_TEST = os.Getenv("G42_ENTERPRISE_PROJECT_ID_TEST")
-	G42_SWR_SHARING_ACCOUNT        = os.Getenv("G42_SWR_SHARING_ACCOUNT")
+	G42_REGION_NAME                 = os.Getenv("G42_REGION_NAME")
+	G42_CUSTOM_REGION_NAME          = os.Getenv("G42_CUSTOM_REGION_NAME")
+	G42_AVAILABILITY_ZONE           = os.Getenv("G42_AVAILABILITY_ZONE")
+	G42_ACCESS_KEY                  = os.Getenv("G42_ACCESS_KEY")
+	G42_SECRET_KEY                  = os.Getenv("G42_SECRET_KEY")
+	G42_USER_ID                     = os.Getenv("G42_USER_ID")
+	G42_PROJECT_ID                  = os.Getenv("G42_PROJECT_ID")
+	G42_DOMAIN_ID                   = os.Getenv("G42_DOMAIN_ID")
+	G42_ACCOUNT_NAME                = os.Getenv("G42_ACCOUNT_NAME")
+	G42_USERNAME                    = os.Getenv("G42_USERNAME")
+	G42_ENTERPRISE_PROJECT_ID_TEST  = os.Getenv("G42_ENTERPRISE_PROJECT_ID_TEST")
+	G42_SWR_SHARING_ACCOUNT         = os.Getenv("G42_SWR_SHARING_ACCOUNT")
+	G42_DEST_PROJECT_ID_TEST        = os.Getenv("G42_DEST_PROJECT_ID_TEST")
+	G42_IMAGE_SHARE_SOURCE_IMAGE_ID = os.Getenv("G42_IMAGE_SHARE_SOURCE_IMAGE_ID")
 
 	G42_FLAVOR_ID        = os.Getenv("G42_FLAVOR_ID")
 	G42_FLAVOR_NAME      = os.Getenv("G42_FLAVOR_NAME")
@@ -547,5 +549,19 @@ func TestAccPreCheckDliDsAuthKafka(t *testing.T) {
 func TestAccPreCheckDliDsAuthKrb(t *testing.T) {
 	if G42_DLI_DS_AUTH_KRB_CONF_OBS_PATH == "" || G42_DLI_DS_AUTH_KRB_TAB_OBS_PATH == "" {
 		t.Skip("G42_DLI_DS_AUTH_KRB_CONF_OBS_PATH,G42_DLI_DS_AUTH_KRB_TAB_OBS_PATH must be set for DLI datasource Kafka Auth acceptance tests.")
+	}
+}
+
+// lintignore:AT003
+func TestAccPreCheckProjectId(t *testing.T) {
+	if G42_DEST_PROJECT_ID_TEST == "" {
+		t.Skip("G42_DEST_PROJECT_ID_TEST must be set for acceptance tests.")
+	}
+}
+
+// lintignore:AT003
+func TestAccPreCheckSourceImage(t *testing.T) {
+	if G42_IMAGE_SHARE_SOURCE_IMAGE_ID == "" {
+		t.Skip("Skip the interface acceptance test because of the source image ID is missing.")
 	}
 }

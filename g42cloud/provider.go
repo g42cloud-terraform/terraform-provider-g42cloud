@@ -462,7 +462,10 @@ func Provider() *schema.Provider {
 			"g42cloud_identity_provider":            iam.ResourceIdentityProvider(),
 			"g42cloud_identity_provider_conversion": iam.ResourceIAMProviderConversion(),
 
-			"g42cloud_images_image": ims.ResourceImsImage(),
+			"g42cloud_images_image":                ims.ResourceImsImage(),
+			"g42cloud_images_image_copy":           ims.ResourceImsImageCopy(),
+			"g42cloud_images_image_share":          ims.ResourceImsImageShare(),
+			"g42cloud_images_image_share_accepter": ims.ResourceImsImageShareAccepter(),
 
 			"g42cloud_kms_key": dew.ResourceKmsKey(),
 
