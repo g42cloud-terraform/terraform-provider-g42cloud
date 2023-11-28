@@ -1,11 +1,13 @@
 # List of usernames who may use /lgtm
 reviewers:
 - chengxiangdong
+- Jason-Zhang9309
 - niuzhenguo
 - shichangkuo
 
 # List of usernames who may use /approve
 approvers:
 - chengxiangdong
+- Jason-Zhang9309
 - niuzhenguo
 - shichangkuo
