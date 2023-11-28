@@ -7,6 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: chnsz/prow-github-actions@v1.0.0
+        if: ${{ github.repository == 'g42cloud-terraform/terraform-provider-g42cloud' }}
         with:
           prow-commands: |
             /assign
