@@ -374,14 +374,8 @@ func Provider() *schema.Provider {
 
 			"g42cloud_fgs_function": fgs.ResourceFgsFunctionV2(),
 
-			"g42cloud_identity_role_assignment":  iam.ResourceIdentityGroupRoleAssignment(),
-			"g42cloud_identity_user":             iam.ResourceIdentityUser(),
-			"g42cloud_identity_group":            iam.ResourceIdentityGroup(),
-			"g42cloud_identity_group_membership": iam.ResourceIdentityGroupMembership(),
-			"g42cloud_identity_acl":              iam.ResourceIdentityACL(),
-			"g42cloud_identity_agency":           iam.ResourceIAMAgencyV3(),
-			"g42cloud_identity_project":          iam.ResourceIdentityProject(),
-			"g42cloud_identity_role":             iam.ResourceIdentityRole(),
+			"g42cloud_identity_provider":            iam.ResourceIdentityProvider(),
+			"g42cloud_identity_provider_conversion": iam.ResourceIAMProviderConversion(),
 
 			"g42cloud_images_image": ims.ResourceImsImage(),
 
