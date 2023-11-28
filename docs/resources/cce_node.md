@@ -116,7 +116,11 @@ The following arguments are supported:
 * `cluster_id` - (Required, String, ForceNew) Specifies the ID of the cluster.
   Changing this parameter will create a new resource.
 
-* `name` - (Optional, String) Specifies the the node name.
+* `key_pair` - (Optional, String) Specifies the key pair name when logging in to select the key pair mode.
+  This parameter and `password` are alternative.
+
+* `password` - (Optional, String) Specifies the root password when logging in to select the password mode.
+  This parameter can be plain or salted and is alternative to `key_pair`.
 
 * `flavor_id` - (Required, String, ForceNew) Specifies the flavor ID. Changing this parameter will create a new
   resource.
@@ -124,41 +128,30 @@ The following arguments are supported:
 * `availability_zone` - (Required, String, ForceNew) Specifies the name of the available partition (AZ). Changing this
   parameter will create a new resource.
 
+* `root_volume` - (Required, List, ForceNew) Specifies the configuration of the system disk. The [root_volume](#cce_root_volume)
+  object structure is documented below. Changing this parameter will create a new resource.
+
+* `data_volumes` - (Required, List, ForceNew) Specifies the configurations of the data disk. The [data_volumes](#cce_data_volumes)
+  object structure is documented below. Changing this parameter will create a new resource.
+
+* `name` - (Optional, String) Specifies the node name.
+
 * `os` - (Optional, String, ForceNew) Specifies the operating system of the node.
   Changing this parameter will create a new resource.
   + For VM nodes, clusters of v1.13 and later support *EulerOS 2.5* and *CentOS 7.6*.
   + For BMS nodes purchased in the yearly/monthly billing mode, only *EulerOS 2.3* is supported.
 
-* `key_pair` - (Optional, String, ForceNew) Specifies the key pair name when logging in to select the key pair mode.
-  This parameter and `password` are alternative. Changing this parameter will create a new resource.
+* `taints` - (Optional, List, ForceNew) Specifies the taints configuration of the nodes to set anti-affinity.
+  Changing this parameter will create a new resource. The [taints](#cce_taints) object structure is documented below.
 
-* `password` - (Optional, String, ForceNew) Specifies the root password when logging in to select the password mode.
-  This parameter can be plain or salted and is alternative to `key_pair`.
+* `extension_nics` - (Optional, List, ForceNew) Specifies extension NICs of the node.
+  The [extension_nics](#extension_nics) object structure is documented below.
   Changing this parameter will create a new resource.
 
-* `root_volume` - (Required, List, ForceNew) Specifies the configuration of the system disk.
-  Changing this parameter will create a new resource.
-
-  + `size` - (Required, Int, ForceNew) Specifies the disk size in GB.
-    Changing this parameter will create a new resource.
-  + `volumetype` - (Required, String, ForceNew) Specifies the disk type.
-    Changing this parameter will create a new resource.
-  + `extend_params` - (Optional, Map, ForceNew) Specifies the disk expansion parameters.
-    Changing this parameter will create a new resource.
-  + `kms_key_id` - (Optional, String, ForceNew) Specifies the KMS key ID. This is used to encrypt the volume.
-  Changing this parameter will create a new resource.
-
-* `data_volumes` - (Required, List, ForceNew) Specifies the configurations of the data disk.
-  Changing this parameter will create a new resource.
-
-  + `size` - (Required, Int, ForceNew) Specifies the disk size in GB.
-    Changing this parameter will create a new resource.
-  + `volumetype` - (Required, String, ForceNew) Specifies the disk type.
-    Changing this parameter will create a new resource.
-  + `extend_params` - (Optional, Map, ForceNew) Specifies the disk expansion parameters.
-    Changing this parameter will create a new resource.
-  + `kms_key_id` - (Optional, String, ForceNew) Specifies the ID of a KMS key. This is used to encrypt the volume.
-    Changing this parameter will create a new resource.
+* `storage` - (Optional, List, ForceNew) Specifies the disk initialization management parameter.
+  If omitted, disks are managed based on the DockerLVMConfigOverride parameter in extendParam.
+  This parameter is supported for clusters of v1.15.11 and later. The [storage](#cce_storage) object structure is
+  documented below. Changing this parameter will create a new resource.
 
 * `subnet_id` - (Optional, String, ForceNew) Specifies the ID of the subnet to which the NIC belongs.
   Changing this parameter will create a new resource.
@@ -218,42 +211,173 @@ extend_param = {
 * `labels` - (Optional, Map, ForceNew) Specifies the tags of a Kubernetes node, key/value pair format.
   Changing this parameter will create a new resource.
 
+* `dedicated_host_id` - (Optional, String, ForceNew) Specifies the ID of the DeH to which the node is scheduled.
+  Changing this parameter will create a new resource.
+
+* `initialized_conditions` - (Optional, List, ForceNew) Specifies the custom initialization flags.
+  Changing this parameter will create a new resource.
+
 * `tags` - (Optional, Map) Specifies the tags of a VM node, key/value pair format.
 
-* `taints` - (Optional, List, ForceNew) Specifies the taints configuration of the nodes to set anti-affinity.
-  Changing this parameter will create a new resource. Each taint contains the following parameters:
+<a name="cce_root_volume"></a>
+The `root_volume` block supports:
 
-  + `key` - (Required, String, ForceNew) A key must contain 1 to 63 characters starting with a letter or digit.
-    Only letters, digits, hyphens (-), underscores (_), and periods (.) are allowed. A DNS subdomain name can be used
-    as the prefix of a key. Changing this parameter will create a new resource.
-  + `value` - (Required, String, ForceNew) A value must start with a letter or digit and can contain a maximum of 63
-    characters, including letters, digits, hyphens (-), underscores (_), and periods (.). Changing this parameter will
-    create a new resource.
-  + `effect` - (Required, String, ForceNew) Available options are NoSchedule, PreferNoSchedule, and NoExecute.
+* `size` - (Required, Int, ForceNew) Specifies the disk size in GB.
+  Changing this parameter will create a new resource.
+
+* `volumetype` - (Required, String, ForceNew) Specifies the disk type.
+  Changing this parameter will create a new resource.
+
+* `kms_key_id` - (Optional, String, ForceNew) Specifies the ID of a KMS key. This is used to encrypt the volume.
+  Changing this parameter will create a new resource.
+
+* `extend_params` - (Optional, Map, ForceNew) Specifies the disk expansion parameters.
+  Changing this parameter will create a new resource.
+
+* `dss_pool_id` - (Optional, String, ForceNew) Specifies the DSS pool ID. This field is used only for
+  dedicated storage. Changing this parameter will create a new resource.
+
+<a name="cce_data_volumes"></a>
+The `data_volumes` block supports:
+
+* `size` - (Required, Int, ForceNew) Specifies the disk size in GB.
+  Changing this parameter will create a new resource.
+
+* `volumetype` - (Required, String, ForceNew) Specifies the disk type.
+  Changing this parameter will create a new resource.
+
+* `kms_key_id` - (Optional, String, ForceNew) Specifies the ID of a KMS key. This is used to encrypt the volume.
+  Changing this parameter will create a new resource.
+
+* `extend_params` - (Optional, Map, ForceNew) Specifies the disk expansion parameters.
+  Changing this parameter will create a new resource.
+
+* `dss_pool_id` - (Optional, String, ForceNew) Specifies the DSS pool ID. This field is used only for
+  dedicated storage. Changing this parameter will create a new resource.
+
+<a name="cce_taints"></a>
+The `taints` block supports:
+
+* `key` - (Required, String, ForceNew) A key must contain 1 to 63 characters starting with a letter or digit.
+  Only letters, digits, hyphens (-), underscores (_), and periods (.) are allowed. A DNS subdomain name can be used
+  as the prefix of a key. Changing this parameter will create a new resource.
+
+* `value` - (Required, String, ForceNew) A value must start with a letter or digit and can contain a maximum of 63
+  characters, including letters, digits, hyphens (-), underscores (_), and periods (.). Changing this parameter will
+  create a new resource.
+
+* `effect` - (Required, String, ForceNew) Available options are NoSchedule, PreferNoSchedule, and NoExecute.
+  Changing this parameter will create a new resource.
+
+<a name="extension_nics"></a>
+The `extension_nics` block supports:
+
+* `subnet_id` - (Required, String, ForceNew) Specifies the ID of the subnet to which the NIC belongs.
+  Changing this parameter will create a new resource.
+
+<a name="cce_storage"></a>
+The `storage` block supports:
+
+* `selectors` - (Required, List, ForceNew) Specifies the disk selection.
+  Matched disks are managed according to match labels and storage type. The [selectors](#cce_selectors) object
+  structure is documented below. Changing this parameter will create a new resource.
+
+* `groups` - (Required, List, ForceNew) Specifies the storage group consists of multiple storage devices.
+  This is used to divide storage space. The [groups](#cce_groups) object structure is documented below.
+  Changing this parameter will create a new resource.
+
+<a name="cce_selectors"></a>
+The `selectors` block supports:
+
+* `name` - (Required, String, ForceNew) Specifies the selector name, used as the index of `selector_names` in storage
+  group. The name of each selector must be unique. Changing this parameter will create a new resource.
+
+* `type` - (Optional, String, ForceNew) Specifies the storage type. Currently, only **evs (EVS volumes)** is supported.
+  The default value is **evs**. Changing this parameter will create a new resource.
+
+* `match_label_size` - (Optional, String, ForceNew) Specifies the matched disk size. If omitted,
+  the disk size is not limited. Example: 100. Changing this parameter will create a new resource.
+
+* `match_label_volume_type` - (Optional, String, ForceNew) Specifies the EVS disk type. Currently,
+  **SSD**, **GPSSD**, and **SAS** are supported. If omitted, the disk type is not limited.
+  Changing this parameter will create a new resource.
+
+* `match_label_metadata_encrypted` - (Optional, String, ForceNew) Specifies the disk encryption identifier.
+  Values can be: **0** indicates that the disk is not encrypted and **1** indicates that the disk is encrypted.
+  If omitted, whether the disk is encrypted is not limited. Changing this parameter will create a new resource.
+
+* `match_label_metadata_cmkid` - (Optional, String, ForceNew) Specifies the customer master key ID of an encrypted
+  disk. Changing this parameter will create a new resource.
+
+* `match_label_count` - (Optional, String, ForceNew) Specifies the number of disks to be selected. If omitted,
+  all disks of this type are selected. Changing this parameter will create a new resource.
+
+<a name="cce_groups"></a>
+The `groups` block supports:
+
+* `name` - (Required, String, ForceNew) Specifies the name of a virtual storage group. Each group name must be unique.
+  Changing this parameter will create a new resource.
+
+* `cce_managed` - (Optional, Bool, ForceNew) Specifies whether the storage space is for **kubernetes** and
+  **runtime** components. Only one group can be set to true. The default value is **false**.
+  Changing this parameter will create a new resource.
+
+* `selector_names` - (Required, List, ForceNew) Specifies the list of names of selectors to match.
+  This parameter corresponds to name in `selectors`. A group can match multiple selectors,
+  but a selector can match only one group. Changing this parameter will create a new resource.
+
+* `virtual_spaces` - (Required, List, ForceNew) Specifies the detailed management of space configuration in a group.
+  The [virtual_spaces](#cce_virtual_spaces) object structure is documented below.
+  Changing this parameter will create a new resource.
+
+<a name="cce_virtual_spaces"></a>
+The `virtual_spaces` block supports:
+
+* `name` - (Required, String, ForceNew) Specifies the virtual space name. Currently, only **kubernetes**, **runtime**,
+    and **user** are supported. Changing this parameter will create a new resource.
+
+* `size` - (Required, String, ForceNew) Specifies the size of a virtual space. Only an integer percentage is supported.
+    Example: 90%. Note that the total percentage of all virtual spaces in a group cannot exceed 100%.
     Changing this parameter will create a new resource.
 
-## Attributes Reference
+* `lvm_lv_type` - (Optional, String, ForceNew) Specifies the LVM write mode, values can be **linear** and **striped**.
+    This parameter takes effect only in **kubernetes** and **user** configuration. Changing this parameter will create
+    a new resource.
+
+* `lvm_path` - (Optional, String, ForceNew) Specifies the absolute path to which the disk is attached.
+    This parameter takes effect only in **user** configuration. Changing this parameter will create a new resource.
+
+* `runtime_lv_type` - (Optional, String, ForceNew) Specifies the LVM write mode, values can be **linear** and **striped**.
+    This parameter takes effect only in **runtime** configuration. Changing this parameter will create a new resource.
+
+## Attribute Reference
 
 In addition to all arguments above, the following attributes are exported:
 
 * `id` - The resource ID in UUID format.
+
 * `server_id` - ID of the ECS instance associated with the node.
+
 * `private_ip` - Private IP of the CCE node.
+
 * `public_ip` - Public IP of the CCE node.
+
+* `status` - Specify the status of the CCE node. It is dynamic recording and meaningless when creating or modifying.
 
 ## Timeouts
 
 This resource provides the following timeouts configuration options:
 
-* `create` - Default is 20 minute.
-* `delete` - Default is 20 minute.
+* `create` - Default is 20 minutes.
+* `update` - Default is 20 minutes.
+* `delete` - Default is 20 minutes.
 
 ## Import
 
 CCE node can be imported using the cluster ID and node ID separated by a slash, e.g.:
 
-```
-$ terraform import g42cloud_cce_node.my_node 5c20fdad-7288-11eb-b817-0255ac10158b/e9287dff-7288-11eb-b817-0255ac10158b
+```shell
+terraform import g42cloud_cce_node.my_node 5c20fdad-7288-11eb-b817-0255ac10158b/e9287dff-7288-11eb-b817-0255ac10158b
 ```
 
 Note that the imported state may not be identical to your resource definition, due to some attributes missing from the

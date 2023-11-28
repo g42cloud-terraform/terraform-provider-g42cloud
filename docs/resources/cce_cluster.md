@@ -125,11 +125,9 @@ The following arguments are supported:
 * `service_network_cidr` - (Optional, String, ForceNew) Specifies the service network segment.
   Changing this parameter will create a new cluster resource.
 
-* `eni_subnet_id` - (Optional, String, ForceNew) Specifies the ENI subnet ID. Specified when creating a CCE Turbo
-  cluster. Changing this parameter will create a new cluster resource.
+* `eni_subnet_id` - (Optional, String) Specifies the ENI subnet ID. Specified when creating a CCE Turbo cluster.
 
-* `eni_subnet_cidr` - (Optional, String, ForceNew) Specifies the ENI network segment. Specified when creating a CCE
-  Turbo cluster. Changing this parameter will create a new cluster resource.
+* `eni_subnet_cidr` - (Optional, String) Specifies the ENI network segment. Specified when creating a CCE Turbo cluster.
 
 * `authentication_mode` - (Optional, String, ForceNew) Specifies the authentication mode of the cluster, possible values
   are **rbac** and **authenticating_proxy**. Defaults to **rbac**.
@@ -151,10 +149,10 @@ The following arguments are supported:
   flavors. Changing this parameter will create a new cluster resource. This parameter and `masters` are alternative.
 
 * `masters` - (Optional, List, ForceNew) Specifies the advanced configuration of master nodes.
-  The [object](#cce_cluster_masters) structure is documented below.
+  The [masters](#cce_cluster_masters) object structure is documented below.
   This parameter and `multi_az` are alternative. Changing this parameter will create a new cluster resource.
 
-* `eip` - (Optional, String, ForceNew) Specifies the EIP address of the cluster.
+* `support_istio` - (Optional, Bool, ForceNew) Specifies whether to support Istio in the cluster.
   Changing this parameter will create a new cluster resource.
 
 * `kube_proxy_mode` - (Optional, String, ForceNew) Specifies the service forwarding mode.
@@ -166,7 +164,7 @@ The following arguments are supported:
   + **ipvs**: Optimized kube-proxy mode with higher throughput and faster speed. This mode supports incremental updates
     and can keep connections uninterrupted during service updates. It is suitable for large-sized clusters.
 
-* `extend_param` - (Optional, Map, ForceNew) Specifies the extended parameter.
+* `extend_params` - (Optional, Map, ForceNew) Specifies the extended parameter.
   Changing this parameter will create a new cluster resource.
 
 * `enterprise_project_id` - (Optional, String, ForceNew) The enterprise project ID of the CCE cluster.
@@ -174,6 +172,14 @@ The following arguments are supported:
 
 * `tags` - (Optional, Map, ForceNew) Specifies the tags of the CCE cluster, key/value pair format.
   Changing this parameter will create a new cluster resource.
+
+* `eip` - (Optional, String) Specifies the EIP address of the cluster.
+
+* `security_group_id` - (Optional, String) Specifies the default worker node security group ID of the cluster.
+  If left empty, the system will automatically create a default worker node security group for you.
+  The default worker node security group needs to allow access from certain ports to ensure normal communications.
+
+* `custom_san` - (Optional, List) Specifies the custom san to add to certificate (array of string).
 
 * `delete_evs` - (Optional, String) Specified whether to delete associated EVS disks when deleting the CCE cluster.
   valid values are **true**, **try** and **false**. Default is **false**.
@@ -200,7 +206,7 @@ The `masters` block supports:
 * `availability_zone` - (Optional, String, ForceNew) Specifies the availability zone of the master node.
   Changing this parameter will create a new cluster resource.
 
-## Attributes Reference
+## Attribute Reference
 
 In addition to all arguments above, the following attributes are exported:
 
@@ -208,14 +214,17 @@ In addition to all arguments above, the following attributes are exported:
 
 * `status` - Cluster status information.
 
-* `certificate_clusters` - The certificate clusters. Structure is documented below.
+* `certificate_clusters` - The certificate clusters. The [certificate_clusters](#cce_certificate_clusters) object
+  structure is documented below.
 
-* `certificate_users` - The certificate users. Structure is documented below.
-
-* `security_group_id` - Security group ID of the cluster.
+* `certificate_users` - The certificate users. The [certificate_users](#cce_certificate_users) object structure
+  is documented below.
 
 * `kube_config_raw` - Raw Kubernetes config to be used by kubectl and other compatible tools.
 
+* `category` - The category of the cluster. The value can be **CCE** and **Turbo**.
+
+<a name="cce_certificate_clusters"></a>
 The `certificate_clusters` block supports:
 
 * `name` - The cluster name.
@@ -224,9 +233,10 @@ The `certificate_clusters` block supports:
 
 * `certificate_authority_data` - The certificate data.
 
+<a name="cce_certificate_users"></a>
 The `certificate_users` block supports:
 
-* `name` - The user name.
+* `name` - The username.
 
 * `client_certificate_data` - The client certificate data.
 
@@ -236,16 +246,16 @@ The `certificate_users` block supports:
 
 This resource provides the following timeouts configuration options:
 
-* `create` - Default is 30 minute.
-* `update` - Default is 30 minute.
-* `delete` - Default is 30 minute.
+* `create` - Default is 30 minutes.
+* `update` - Default is 30 minutes.
+* `delete` - Default is 30 minutes.
 
 ## Import
 
 Cluster can be imported using the cluster ID, e.g.
 
-```
- $ terraform import g42cloud_cce_cluster.cluster_1 4779ab1c-7c1a-44b1-a02e-93dfc361b32d
+```shell
+terraform import g42cloud_cce_cluster.cluster_1 4779ab1c-7c1a-44b1-a02e-93dfc361b32d
 ```
 
 Note that the imported state may not be identical to your resource definition, due to some attributes missing from the
