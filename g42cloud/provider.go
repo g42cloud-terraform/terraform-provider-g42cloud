@@ -194,10 +194,12 @@ func Provider() *schema.Provider {
 
 			"g42cloud_cbr_vaults": cbr.DataSourceVaults(),
 
-			"g42cloud_cce_cluster":        cce.DataSourceCCEClusterV3(),
-			"g42cloud_cce_node":           cce.DataSourceNode(),
 			"g42cloud_cce_addon_template": cce.DataSourceAddonTemplate(),
+			"g42cloud_cce_cluster":        cce.DataSourceCCEClusterV3(),
+			"g42cloud_cce_clusters":       cce.DataSourceCCEClusters(),
+			"g42cloud_cce_node":           cce.DataSourceNode(),
 			"g42cloud_cce_node_pool":      cce.DataSourceCCENodePoolV3(),
+			"g42cloud_cce_nodes":          cce.DataSourceNodes(),
 
 			"g42cloud_compute_flavors":      ecs.DataSourceEcsFlavors(),
 			"g42cloud_compute_instance":     ecs.DataSourceComputeInstance(),
@@ -306,10 +308,12 @@ func Provider() *schema.Provider {
 			"g42cloud_cbr_policy": cbr.ResourcePolicy(),
 			"g42cloud_cbr_vault":  cbr.ResourceVault(),
 
-			"g42cloud_cce_cluster":   cce.ResourceCCEClusterV3(),
-			"g42cloud_cce_node":      cce.ResourceNode(),
 			"g42cloud_cce_addon":     cce.ResourceAddon(),
+			"g42cloud_cce_cluster":   cce.ResourceCluster(),
+			"g42cloud_cce_namespace": cce.ResourceCCENamespaceV1(),
 			"g42cloud_cce_node_pool": cce.ResourceNodePool(),
+			"g42cloud_cce_node":      cce.ResourceNode(),
+			"g42cloud_cce_pvc":       cce.ResourceCcePersistentVolumeClaimsV1(),
 
 			"g42cloud_ces_alarmrule":      ces.ResourceAlarmRule(),
 			"g42cloud_ces_alarm_template": ces.ResourceCesAlarmTemplate(),
