@@ -7,13 +7,13 @@ import (
 	"sync"
 
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/antiddos"
 	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/lts"
 	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/sfs"
 
 	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud"
 	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/config"
 	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/helper/mutexkv"
-	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/antiddos"
 	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/aom"
 	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/apig"
 	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/as"
@@ -188,79 +188,99 @@ func Provider() *schema.Provider {
 			"g42cloud_as_configurations": as.DataSourceASConfigurations(),
 			"g42cloud_as_groups":         as.DataSourceASGroups(),
 
-			"g42cloud_availability_zones":   huaweicloud.DataSourceAvailabilityZones(),
-			"g42cloud_bms_flavors":          bms.DataSourceBmsFlavors(),
-			"g42cloud_cbr_vaults":           cbr.DataSourceVaults(),
-			"g42cloud_cce_cluster":          cce.DataSourceCCEClusterV3(),
-			"g42cloud_cce_node":             cce.DataSourceNode(),
-			"g42cloud_cce_addon_template":   cce.DataSourceAddonTemplate(),
-			"g42cloud_cce_node_pool":        cce.DataSourceCCENodePoolV3(),
+			"g42cloud_availability_zones": huaweicloud.DataSourceAvailabilityZones(),
+
+			"g42cloud_bms_flavors": bms.DataSourceBmsFlavors(),
+
+			"g42cloud_cbr_vaults": cbr.DataSourceVaults(),
+
+			"g42cloud_cce_cluster":        cce.DataSourceCCEClusterV3(),
+			"g42cloud_cce_node":           cce.DataSourceNode(),
+			"g42cloud_cce_addon_template": cce.DataSourceAddonTemplate(),
+			"g42cloud_cce_node_pool":      cce.DataSourceCCENodePoolV3(),
+
 			"g42cloud_compute_flavors":      ecs.DataSourceEcsFlavors(),
 			"g42cloud_compute_instance":     ecs.DataSourceComputeInstance(),
 			"g42cloud_compute_instances":    ecs.DataSourceComputeInstances(),
 			"g42cloud_compute_servergroups": ecs.DataSourceComputeServerGroups(),
-			"g42cloud_css_flavors":          css.DataSourceCssFlavors(),
-			"g42cloud_dds_flavors":          dds.DataSourceDDSFlavorV3(),
-			"g42cloud_dcs_az":               deprecated.DataSourceDcsAZV1(),
-			"g42cloud_dcs_flavors":          dcs.DataSourceDcsFlavorsV2(),
-			"g42cloud_dcs_maintainwindow":   dcs.DataSourceDcsMaintainWindow(),
-			"g42cloud_dcs_product":          deprecated.DataSourceDcsProductV1(),
 
-			"g42cloud_dms_az":              deprecated.DataSourceDmsAZ(),
+			"g42cloud_css_flavors": css.DataSourceCssFlavors(),
+
+			"g42cloud_dcs_flavors":        dcs.DataSourceDcsFlavorsV2(),
+			"g42cloud_dcs_maintainwindow": dcs.DataSourceDcsMaintainWindow(),
+			"g42cloud_dcs_product":        deprecated.DataSourceDcsProductV1(),
+			"g42cloud_dcs_az":             deprecated.DataSourceDcsAZV1(),
+
+			"g42cloud_dds_flavors": dds.DataSourceDDSFlavorV3(),
+
+			"g42cloud_kms_key":      dew.DataSourceKmsKey(),
+			"g42cloud_kms_data_key": dew.DataSourceKmsDataKeyV1(),
+
 			"g42cloud_dms_product":         dms.DataSourceDmsProduct(),
 			"g42cloud_dms_maintainwindow":  dms.DataSourceDmsMaintainWindow(),
 			"g42cloud_dms_kafka_flavors":   dms.DataSourceKafkaFlavors(),
 			"g42cloud_dms_kafka_instances": dms.DataSourceDmsKafkaInstances(),
+			"g42cloud_dms_az":              deprecated.DataSourceDmsAZ(),
 
-			"g42cloud_elb_certificate":            elb.DataSourceELBCertificateV3(),
-			"g42cloud_elb_flavors":                elb.DataSourceElbFlavorsV3(),
-			"g42cloud_enterprise_project":         eps.DataSourceEnterpriseProject(),
-			"g42cloud_identity_role":              iam.DataSourceIdentityRole(),
-			"g42cloud_images_image":               ims.DataSourceImagesImageV2(),
-			"g42cloud_images_images":              ims.DataSourceImagesImages(),
-			"g42cloud_kms_key":                    dew.DataSourceKmsKey(),
-			"g42cloud_kms_data_key":               dew.DataSourceKmsDataKeyV1(),
+			"g42cloud_elb_certificate": elb.DataSourceELBCertificateV3(),
+			"g42cloud_elb_flavors":     elb.DataSourceElbFlavorsV3(),
+
+			"g42cloud_enterprise_project": eps.DataSourceEnterpriseProject(),
+
+			"g42cloud_identity_role": iam.DataSourceIdentityRole(),
+
+			"g42cloud_images_image":  ims.DataSourceImagesImageV2(),
+			"g42cloud_images_images": ims.DataSourceImagesImages(),
+
 			"g42cloud_modelarts_datasets":         modelarts.DataSourceDatasets(),
 			"g42cloud_modelarts_dataset_versions": modelarts.DataSourceDatasetVerions(),
 			"g42cloud_modelarts_notebook_images":  modelarts.DataSourceNotebookImages(),
-			"g42cloud_nat_gateway":                nat.DataSourcePublicGateway(),
-			"g42cloud_networking_port":            vpc.DataSourceNetworkingPortV2(),
-			"g42cloud_networking_secgroup":        vpc.DataSourceNetworkingSecGroup(),
-			"g42cloud_obs_bucket_object":          obs.DataSourceObsBucketObject(),
 
-			"g42cloud_rms_policy_definitions": rms.DataSourcePolicyDefinitions(),
+			"g42cloud_nat_gateway": nat.DataSourcePublicGateway(),
+
+			"g42cloud_networking_port":     vpc.DataSourceNetworkingPortV2(),
+			"g42cloud_networking_secgroup": vpc.DataSourceNetworkingSecGroup(),
+
+			"g42cloud_obs_bucket_object": obs.DataSourceObsBucketObject(),
 
 			"g42cloud_rds_flavors": rds.DataSourceRdsFlavor(),
+
+			"g42cloud_rms_policy_definitions": rms.DataSourcePolicyDefinitions(),
 
 			"g42cloud_servicestage_component_runtimes": servicestage.DataSourceComponentRuntimes(),
 
 			"g42cloud_sms_source_servers": sms.DataSourceServers(),
 
-			"g42cloud_vpc_bandwidth":         eip.DataSourceBandWidth(),
-			"g42cloud_vpc_eip":               eip.DataSourceVpcEip(),
-			"g42cloud_vpc_eips":              eip.DataSourceVpcEips(),
-			"g42cloud_vpc":                   vpc.DataSourceVpcV1(),
-			"g42cloud_vpc_subnet":            vpc.DataSourceVpcSubnetV1(),
-			"g42cloud_vpc_subnet_ids":        vpc.DataSourceVpcSubnetIdsV1(),
-			"g42cloud_vpc_route":             vpc.DataSourceVpcRouteV2(),
-			"g42cloud_vpc_route_table":       vpc.DataSourceVPCRouteTable(),
+			"g42cloud_vpc_bandwidth": eip.DataSourceBandWidth(),
+			"g42cloud_vpc_eip":       eip.DataSourceVpcEip(),
+			"g42cloud_vpc_eips":      eip.DataSourceVpcEips(),
+
+			"g42cloud_vpc":             vpc.DataSourceVpcV1(),
+			"g42cloud_vpc_subnet":      vpc.DataSourceVpcSubnetV1(),
+			"g42cloud_vpc_subnet_ids":  vpc.DataSourceVpcSubnetIdsV1(),
+			"g42cloud_vpc_route":       vpc.DataSourceVpcRouteV2(),
+			"g42cloud_vpc_route_table": vpc.DataSourceVPCRouteTable(),
+
 			"g42cloud_vpcep_public_services": vpcep.DataSourceVPCEPPublicServices(),
 
 			"g42cloud_waf_certificate":         waf.DataSourceWafCertificateV1(),
 			"g42cloud_waf_policies":            waf.DataSourceWafPoliciesV1(),
 			"g42cloud_waf_dedicated_instances": waf.DataSourceWafDedicatedInstancesV1(),
 			"g42cloud_waf_reference_tables":    waf.DataSourceWafReferenceTablesV1(),
+
 			// Legacy
 			"g42cloud_identity_role_v3": iam.DataSourceIdentityRole(),
 		},
 
 		ResourcesMap: map[string]*schema.Resource{
-			"g42cloud_antiddos_basic":                   antiddos.ResourceCloudNativeAntiDdos(),
-			"g42cloud_aom_alarm_rule":                   aom.ResourceAlarmRule(),
-			"g42cloud_aom_service_discovery_rule":       aom.ResourceServiceDiscoveryRule(),
-			"g42cloud_aom_event_alarm_rule":             aom.ResourceEventAlarmRule(),
-			"g42cloud_aom_alarm_action_rule":            aom.ResourceAlarmActionRule(),
-			"g42cloud_aom_alarm_silence_rule":           aom.ResourceAlarmSilenceRule(),
+			"g42cloud_aom_alarm_rule":             aom.ResourceAlarmRule(),
+			"g42cloud_aom_service_discovery_rule": aom.ResourceServiceDiscoveryRule(),
+			"g42cloud_aom_event_alarm_rule":       aom.ResourceEventAlarmRule(),
+			"g42cloud_aom_alarm_action_rule":      aom.ResourceAlarmActionRule(),
+			"g42cloud_aom_alarm_silence_rule":     aom.ResourceAlarmSilenceRule(),
+
+			"g42cloud_antiddos_basic": antiddos.ResourceCloudNativeAntiDdos(),
+
 			"g42cloud_apig_api":                         apig.ResourceApigAPIV2(),
 			"g42cloud_apig_api_publishment":             apig.ResourceApigApiPublishment(),
 			"g42cloud_apig_instance":                    apig.ResourceApigInstanceV2(),
@@ -281,54 +301,72 @@ func Provider() *schema.Provider {
 			"g42cloud_as_notification":     as.ResourceAsNotification(),
 			"g42cloud_as_policy":           as.ResourceASPolicy(),
 
-			"g42cloud_bms_instance":              bms.ResourceBmsInstance(),
-			"g42cloud_cbr_policy":                cbr.ResourcePolicy(),
-			"g42cloud_cbr_vault":                 cbr.ResourceVault(),
-			"g42cloud_cce_cluster":               cce.ResourceCCEClusterV3(),
-			"g42cloud_cce_node":                  cce.ResourceNode(),
-			"g42cloud_cce_addon":                 cce.ResourceAddon(),
-			"g42cloud_cce_node_pool":             cce.ResourceNodePool(),
-			"g42cloud_ces_alarmrule":             ces.ResourceAlarmRule(),
-			"g42cloud_compute_instance":          ecs.ResourceComputeInstance(),
-			"g42cloud_compute_interface_attach":  ecs.ResourceComputeInterfaceAttach(),
-			"g42cloud_compute_keypair":           huaweicloud.ResourceComputeKeypairV2(),
-			"g42cloud_compute_servergroup":       ecs.ResourceComputeServerGroup(),
-			"g42cloud_compute_eip_associate":     ecs.ResourceComputeEIPAssociate(),
-			"g42cloud_compute_volume_attach":     ecs.ResourceComputeVolumeAttach(),
-			"g42cloud_csms_secret":               dew.ResourceCsmsSecret(),
-			"g42cloud_css_cluster":               css.ResourceCssCluster(),
-			"g42cloud_css_snapshot":              css.ResourceCssSnapshot(),
-			"g42cloud_css_thesaurus":             css.ResourceCssthesaurus(),
-			"g42cloud_cts_tracker":               cts.ResourceCTSTracker(),
-			"g42cloud_cts_data_tracker":          cts.ResourceCTSDataTracker(),
-			"g42cloud_dc_virtual_gateway":        dc.ResourceVirtualGateway(),
-			"g42cloud_dc_virtual_interface":      dc.ResourceVirtualInterface(),
-			"g42cloud_dcs_instance":              dcs.ResourceDcsInstance(),
-			"g42cloud_dds_instance":              dds.ResourceDdsInstanceV3(),
-			"g42cloud_dli_queue":                 dli.ResourceDliQueue(),
-			"g42cloud_dms_instance":              deprecated.ResourceDmsInstancesV1(),
-			"g42cloud_dms_kafka_instance":        dms.ResourceDmsKafkaInstance(),
-			"g42cloud_dms_kafka_topic":           dms.ResourceDmsKafkaTopic(),
-			"g42cloud_dms_kafka_user":            dms.ResourceDmsKafkaUser(),
-			"g42cloud_dms_kafka_permissions":     dms.ResourceDmsKafkaPermissions(),
-			"g42cloud_dms_rabbitmq_instance":     dms.ResourceDmsRabbitmqInstance(),
-			"g42cloud_dns_ptrrecord":             dns.ResourceDNSPtrRecord(),
-			"g42cloud_dns_recordset":             dns.ResourceDNSRecordSetV2(),
-			"g42cloud_dns_zone":                  dns.ResourceDNSZone(),
-			"g42cloud_dws_cluster":               dws.ResourceDwsCluster(),
-			"g42cloud_elb_certificate":           elb.ResourceCertificateV3(),
-			"g42cloud_elb_l7policy":              elb.ResourceL7PolicyV3(),
-			"g42cloud_elb_l7rule":                elb.ResourceL7RuleV3(),
-			"g42cloud_elb_listener":              elb.ResourceListenerV3(),
-			"g42cloud_elb_loadbalancer":          elb.ResourceLoadBalancerV3(),
-			"g42cloud_elb_monitor":               elb.ResourceMonitorV3(),
-			"g42cloud_elb_ipgroup":               elb.ResourceIpGroupV3(),
-			"g42cloud_elb_pool":                  elb.ResourcePoolV3(),
-			"g42cloud_elb_member":                elb.ResourceMemberV3(),
-			"g42cloud_enterprise_project":        eps.ResourceEnterpriseProject(),
-			"g42cloud_evs_snapshot":              evs.ResourceEvsSnapshotV2(),
-			"g42cloud_evs_volume":                evs.ResourceEvsVolume(),
-			"g42cloud_fgs_function":              fgs.ResourceFgsFunctionV2(),
+			"g42cloud_bms_instance": bms.ResourceBmsInstance(),
+
+			"g42cloud_cbr_policy": cbr.ResourcePolicy(),
+			"g42cloud_cbr_vault":  cbr.ResourceVault(),
+
+			"g42cloud_cce_cluster":   cce.ResourceCCEClusterV3(),
+			"g42cloud_cce_node":      cce.ResourceNode(),
+			"g42cloud_cce_addon":     cce.ResourceAddon(),
+			"g42cloud_cce_node_pool": cce.ResourceNodePool(),
+
+			"g42cloud_ces_alarmrule": ces.ResourceAlarmRule(),
+
+			"g42cloud_compute_instance":         ecs.ResourceComputeInstance(),
+			"g42cloud_compute_interface_attach": ecs.ResourceComputeInterfaceAttach(),
+			"g42cloud_compute_servergroup":      ecs.ResourceComputeServerGroup(),
+			"g42cloud_compute_eip_associate":    ecs.ResourceComputeEIPAssociate(),
+			"g42cloud_compute_volume_attach":    ecs.ResourceComputeVolumeAttach(),
+			"g42cloud_compute_keypair":          huaweicloud.ResourceComputeKeypairV2(),
+
+			"g42cloud_csms_secret": dew.ResourceCsmsSecret(),
+
+			"g42cloud_css_cluster":   css.ResourceCssCluster(),
+			"g42cloud_css_snapshot":  css.ResourceCssSnapshot(),
+			"g42cloud_css_thesaurus": css.ResourceCssthesaurus(),
+
+			"g42cloud_cts_tracker":      cts.ResourceCTSTracker(),
+			"g42cloud_cts_data_tracker": cts.ResourceCTSDataTracker(),
+
+			"g42cloud_dc_virtual_gateway":   dc.ResourceVirtualGateway(),
+			"g42cloud_dc_virtual_interface": dc.ResourceVirtualInterface(),
+
+			"g42cloud_dcs_instance": dcs.ResourceDcsInstance(),
+
+			"g42cloud_dds_instance": dds.ResourceDdsInstanceV3(),
+
+			"g42cloud_dli_queue": dli.ResourceDliQueue(),
+
+			"g42cloud_dms_instance":          deprecated.ResourceDmsInstancesV1(),
+			"g42cloud_dms_kafka_instance":    dms.ResourceDmsKafkaInstance(),
+			"g42cloud_dms_kafka_topic":       dms.ResourceDmsKafkaTopic(),
+			"g42cloud_dms_kafka_user":        dms.ResourceDmsKafkaUser(),
+			"g42cloud_dms_kafka_permissions": dms.ResourceDmsKafkaPermissions(),
+			"g42cloud_dms_rabbitmq_instance": dms.ResourceDmsRabbitmqInstance(),
+
+			"g42cloud_dns_ptrrecord": dns.ResourceDNSPtrRecord(),
+			"g42cloud_dns_recordset": dns.ResourceDNSRecordSetV2(),
+			"g42cloud_dns_zone":      dns.ResourceDNSZone(),
+
+			"g42cloud_dws_cluster": dws.ResourceDwsCluster(),
+
+			"g42cloud_elb_certificate":  elb.ResourceCertificateV3(),
+			"g42cloud_elb_l7policy":     elb.ResourceL7PolicyV3(),
+			"g42cloud_elb_l7rule":       elb.ResourceL7RuleV3(),
+			"g42cloud_elb_listener":     elb.ResourceListenerV3(),
+			"g42cloud_elb_loadbalancer": elb.ResourceLoadBalancerV3(),
+			"g42cloud_elb_monitor":      elb.ResourceMonitorV3(),
+			"g42cloud_elb_ipgroup":      elb.ResourceIpGroupV3(),
+			"g42cloud_elb_pool":         elb.ResourcePoolV3(),
+			"g42cloud_elb_member":       elb.ResourceMemberV3(),
+
+			"g42cloud_enterprise_project": eps.ResourceEnterpriseProject(),
+			"g42cloud_evs_snapshot":       evs.ResourceEvsSnapshotV2(),
+			"g42cloud_evs_volume":         evs.ResourceEvsVolume(),
+
+			"g42cloud_fgs_function": fgs.ResourceFgsFunctionV2(),
+
 			"g42cloud_identity_role_assignment":  iam.ResourceIdentityGroupRoleAssignment(),
 			"g42cloud_identity_user":             iam.ResourceIdentityUser(),
 			"g42cloud_identity_group":            iam.ResourceIdentityGroup(),
@@ -337,32 +375,44 @@ func Provider() *schema.Provider {
 			"g42cloud_identity_agency":           iam.ResourceIAMAgencyV3(),
 			"g42cloud_identity_project":          iam.ResourceIdentityProject(),
 			"g42cloud_identity_role":             iam.ResourceIdentityRole(),
-			"g42cloud_images_image":              ims.ResourceImsImage(),
-			"g42cloud_kms_key":                   dew.ResourceKmsKey(),
-			"g42cloud_lb_certificate":            lb.ResourceCertificateV2(),
-			"g42cloud_lb_l7policy":               lb.ResourceL7PolicyV2(),
-			"g42cloud_lb_l7rule":                 lb.ResourceL7RuleV2(),
-			"g42cloud_lb_listener":               lb.ResourceListener(),
-			"g42cloud_lb_loadbalancer":           lb.ResourceLoadBalancer(),
-			"g42cloud_lb_member":                 lb.ResourceMemberV2(),
-			"g42cloud_lb_monitor":                lb.ResourceMonitorV2(),
-			"g42cloud_lb_pool":                   lb.ResourcePoolV2(),
-			"g42cloud_lb_whitelist":              lb.ResourceWhitelistV2(),
-			"g42cloud_lts_group":                 lts.ResourceLTSGroup(),
-			"g42cloud_lts_stream":                lts.ResourceLTSStream(),
-			"g42cloud_mapreduce_cluster":         mrs.ResourceMRSClusterV2(),
-			"g42cloud_mapreduce_job":             mrs.ResourceMRSJobV2(),
+
+			"g42cloud_images_image": ims.ResourceImsImage(),
+
+			"g42cloud_kms_key": dew.ResourceKmsKey(),
+
+			"g42cloud_lb_certificate":  lb.ResourceCertificateV2(),
+			"g42cloud_lb_l7policy":     lb.ResourceL7PolicyV2(),
+			"g42cloud_lb_l7rule":       lb.ResourceL7RuleV2(),
+			"g42cloud_lb_listener":     lb.ResourceListener(),
+			"g42cloud_lb_loadbalancer": lb.ResourceLoadBalancer(),
+			"g42cloud_lb_member":       lb.ResourceMemberV2(),
+			"g42cloud_lb_monitor":      lb.ResourceMonitorV2(),
+			"g42cloud_lb_pool":         lb.ResourcePoolV2(),
+			"g42cloud_lb_whitelist":    lb.ResourceWhitelistV2(),
+
+			"g42cloud_lts_group":  lts.ResourceLTSGroup(),
+			"g42cloud_lts_stream": lts.ResourceLTSStream(),
+
+			"g42cloud_mapreduce_cluster": mrs.ResourceMRSClusterV2(),
+			"g42cloud_mapreduce_job":     mrs.ResourceMRSJobV2(),
 
 			"g42cloud_modelarts_dataset":                modelarts.ResourceDataset(),
 			"g42cloud_modelarts_dataset_version":        modelarts.ResourceDatasetVersion(),
 			"g42cloud_modelarts_notebook":               modelarts.ResourceNotebook(),
 			"g42cloud_modelarts_notebook_mount_storage": modelarts.ResourceNotebookMountStorage(),
 
-			"g42cloud_nat_dnat_rule":     nat.ResourcePublicDnatRule(),
-			"g42cloud_nat_gateway":       nat.ResourcePublicGateway(),
-			"g42cloud_nat_snat_rule":     nat.ResourcePublicSnatRule(),
-			"g42cloud_network_acl":       huaweicloud.ResourceNetworkACL(),
-			"g42cloud_network_acl_rule":  huaweicloud.ResourceNetworkACLRule(),
+			"g42cloud_nat_dnat_rule": nat.ResourcePublicDnatRule(),
+			"g42cloud_nat_gateway":   nat.ResourcePublicGateway(),
+			"g42cloud_nat_snat_rule": nat.ResourcePublicSnatRule(),
+
+			"g42cloud_network_acl":              huaweicloud.ResourceNetworkACL(),
+			"g42cloud_network_acl_rule":         huaweicloud.ResourceNetworkACLRule(),
+			"g42cloud_networking_eip_associate": eip.ResourceEIPAssociate(),
+			"g42cloud_networking_secgroup":      vpc.ResourceNetworkingSecGroup(),
+			"g42cloud_networking_secgroup_rule": vpc.ResourceNetworkingSecGroupRule(),
+			"g42cloud_networking_vip":           vpc.ResourceNetworkingVip(),
+			"g42cloud_networking_vip_associate": vpc.ResourceNetworkingVIPAssociateV2(),
+
 			"g42cloud_obs_bucket":        obs.ResourceObsBucket(),
 			"g42cloud_obs_bucket_object": obs.ResourceObsBucketObject(),
 			"g42cloud_obs_bucket_policy": obs.ResourceObsBucketPolicy(),
@@ -382,45 +432,50 @@ func Provider() *schema.Provider {
 			"g42cloud_servicestage_environment":                 servicestage.ResourceEnvironment(),
 			"g42cloud_servicestage_repo_token_authorization":    servicestage.ResourceRepoTokenAuth(),
 			"g42cloud_servicestage_repo_password_authorization": servicestage.ResourceRepoPwdAuth(),
-			"g42cloud_sfs_turbo":                                sfs.ResourceSFSTurbo(),
-			"g42cloud_smn_subscription":                         smn.ResourceSubscription(),
-			"g42cloud_smn_topic":                                smn.ResourceTopic(),
-			"g42cloud_sms_server_template":                      sms.ResourceServerTemplate(),
-			"g42cloud_sms_task":                                 sms.ResourceMigrateTask(),
-			"g42cloud_swr_organization":                         swr.ResourceSWROrganization(),
-			"g42cloud_swr_organization_permissions":             swr.ResourceSWROrganizationPermissions(),
-			"g42cloud_swr_repository":                           swr.ResourceSWRRepository(),
-			"g42cloud_swr_repository_sharing":                   swr.ResourceSWRRepositorySharing(),
-			"g42cloud_tms_tags":                                 tms.ResourceTmsTag(),
-			"g42cloud_vpc_bandwidth":                            eip.ResourceVpcBandWidthV2(),
-			"g42cloud_vpc_eip":                                  eip.ResourceVpcEIPV1(),
-			"g42cloud_vpc_eip_associate":                        eip.ResourceEIPAssociate(),
-			"g42cloud_vpc":                                      vpc.ResourceVirtualPrivateCloudV1(),
-			"g42cloud_vpc_route":                                vpc.ResourceVPCRouteTableRoute(),
-			"g42cloud_vpc_route_table":                          vpc.ResourceVPCRouteTable(),
-			"g42cloud_vpc_peering_connection":                   vpc.ResourceVpcPeeringConnectionV2(),
-			"g42cloud_vpc_peering_connection_accepter":          vpc.ResourceVpcPeeringConnectionAccepterV2(),
-			"g42cloud_vpc_subnet":                               vpc.ResourceVpcSubnetV1(),
-			"g42cloud_vpc_address_group":                        vpc.ResourceVpcAddressGroup(),
-			"g42cloud_waf_certificate":                          waf.ResourceWafCertificateV1(),
-			"g42cloud_waf_domain":                               waf.ResourceWafDomainV1(),
-			"g42cloud_waf_policy":                               waf.ResourceWafPolicyV1(),
-			"g42cloud_waf_rule_blacklist":                       waf.ResourceWafRuleBlackListV1(),
-			"g42cloud_waf_rule_data_masking":                    waf.ResourceWafRuleDataMaskingV1(),
-			"g42cloud_waf_rule_web_tamper_protection":           waf.ResourceWafRuleWebTamperProtectionV1(),
-			"g42cloud_waf_dedicated_instance":                   waf.ResourceWafDedicatedInstance(),
-			"g42cloud_waf_dedicated_domain":                     waf.ResourceWafDedicatedDomainV1(),
-			"g42cloud_waf_reference_table":                      waf.ResourceWafReferenceTableV1(),
-			"g42cloud_waf_rule_cc_protection":                   waf.ResourceRuleCCProtection(),
-			"g42cloud_waf_rule_precise_protection":              waf.ResourceRulePreciseProtection(),
-			"g42cloud_networking_eip_associate":                 eip.ResourceEIPAssociate(),
-			"g42cloud_networking_secgroup":                      vpc.ResourceNetworkingSecGroup(),
-			"g42cloud_networking_secgroup_rule":                 vpc.ResourceNetworkingSecGroupRule(),
-			"g42cloud_networking_vip":                           vpc.ResourceNetworkingVip(),
-			"g42cloud_networking_vip_associate":                 vpc.ResourceNetworkingVIPAssociateV2(),
-			"g42cloud_vpcep_approval":                           vpcep.ResourceVPCEndpointApproval(),
-			"g42cloud_vpcep_endpoint":                           vpcep.ResourceVPCEndpoint(),
-			"g42cloud_vpcep_service":                            vpcep.ResourceVPCEndpointService(),
+
+			"g42cloud_sfs_turbo": sfs.ResourceSFSTurbo(),
+
+			"g42cloud_smn_subscription": smn.ResourceSubscription(),
+			"g42cloud_smn_topic":        smn.ResourceTopic(),
+
+			"g42cloud_sms_server_template": sms.ResourceServerTemplate(),
+			"g42cloud_sms_task":            sms.ResourceMigrateTask(),
+
+			"g42cloud_swr_organization":             swr.ResourceSWROrganization(),
+			"g42cloud_swr_organization_permissions": swr.ResourceSWROrganizationPermissions(),
+			"g42cloud_swr_repository":               swr.ResourceSWRRepository(),
+			"g42cloud_swr_repository_sharing":       swr.ResourceSWRRepositorySharing(),
+
+			"g42cloud_tms_tags": tms.ResourceTmsTag(),
+
+			"g42cloud_vpc_bandwidth":     eip.ResourceVpcBandWidthV2(),
+			"g42cloud_vpc_eip":           eip.ResourceVpcEIPV1(),
+			"g42cloud_vpc_eip_associate": eip.ResourceEIPAssociate(),
+
+			"g42cloud_vpc":                             vpc.ResourceVirtualPrivateCloudV1(),
+			"g42cloud_vpc_route":                       vpc.ResourceVPCRouteTableRoute(),
+			"g42cloud_vpc_route_table":                 vpc.ResourceVPCRouteTable(),
+			"g42cloud_vpc_peering_connection":          vpc.ResourceVpcPeeringConnectionV2(),
+			"g42cloud_vpc_peering_connection_accepter": vpc.ResourceVpcPeeringConnectionAccepterV2(),
+			"g42cloud_vpc_subnet":                      vpc.ResourceVpcSubnetV1(),
+			"g42cloud_vpc_address_group":               vpc.ResourceVpcAddressGroup(),
+
+			"g42cloud_vpcep_approval": vpcep.ResourceVPCEndpointApproval(),
+			"g42cloud_vpcep_endpoint": vpcep.ResourceVPCEndpoint(),
+			"g42cloud_vpcep_service":  vpcep.ResourceVPCEndpointService(),
+
+			"g42cloud_waf_certificate":                waf.ResourceWafCertificateV1(),
+			"g42cloud_waf_domain":                     waf.ResourceWafDomainV1(),
+			"g42cloud_waf_policy":                     waf.ResourceWafPolicyV1(),
+			"g42cloud_waf_rule_blacklist":             waf.ResourceWafRuleBlackListV1(),
+			"g42cloud_waf_rule_data_masking":          waf.ResourceWafRuleDataMaskingV1(),
+			"g42cloud_waf_rule_web_tamper_protection": waf.ResourceWafRuleWebTamperProtectionV1(),
+			"g42cloud_waf_dedicated_instance":         waf.ResourceWafDedicatedInstance(),
+			"g42cloud_waf_dedicated_domain":           waf.ResourceWafDedicatedDomainV1(),
+			"g42cloud_waf_reference_table":            waf.ResourceWafReferenceTableV1(),
+			"g42cloud_waf_rule_cc_protection":         waf.ResourceRuleCCProtection(),
+			"g42cloud_waf_rule_precise_protection":    waf.ResourceRulePreciseProtection(),
+
 			// Legacy
 			"g42cloud_identity_role_assignment_v3":  iam.ResourceIdentityGroupRoleAssignment(),
 			"g42cloud_identity_user_v3":             iam.ResourceIdentityUser(),
