@@ -104,7 +104,7 @@ resource "g42cloud_css_cluster" "test" {
   expect_node_num = %d
 
   node_config {
-    flavor            = "ess.spec-4u8g"
+    flavor            = "ess.spec-8u16g"
     availability_zone = data.g42cloud_availability_zones.test.names[0]
 
     network_info {
@@ -115,7 +115,7 @@ resource "g42cloud_css_cluster" "test" {
 
     volume {
       volume_type = "HIGH"
-      size        = 40
+      size        = 80
     }
   }
 
