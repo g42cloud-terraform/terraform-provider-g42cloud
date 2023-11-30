@@ -1,14 +1,19 @@
-name: "Prow github actions"
+name: "Prow"
 on:
+  pull_request_target:
+    types: [ opened, edited, reopened, synchronize ]
   issue_comment:
     types: [ created ]
+
 jobs:
   execute:
     runs-on: ubuntu-latest
     steps:
-      - uses: chnsz/prow-github-actions@v1.0.0
+      - name: Prow
         if: ${{ github.repository == 'g42cloud-terraform/terraform-provider-g42cloud' }}
+        uses: chnsz/prow-github-actions@v1.0.0
         with:
+          jons: lgtm
           prow-commands: |
             /assign
             /unassign
