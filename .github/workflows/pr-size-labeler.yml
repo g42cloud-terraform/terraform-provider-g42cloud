@@ -1,4 +1,4 @@
-name: Pull Request Labeler
+name: Pull Request Size
 
 on:
   # Triggers the workflow on pull request context
@@ -12,7 +12,7 @@ on:
   issue_comment:
 
 jobs:
-  prSize:
+  pr-size:
     name: PrSizeLabeler
     runs-on: ubuntu-latest
     steps:
