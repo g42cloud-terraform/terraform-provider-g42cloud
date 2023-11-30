@@ -1,4 +1,4 @@
-name: "Prow"
+name: Prow Action
 on:
   pull_request_target:
     types: [ opened, edited, reopened, synchronize ]
@@ -6,11 +6,11 @@ on:
     types: [ created ]
 
 jobs:
-  execute:
+  prow:
     runs-on: ubuntu-latest
     steps:
       - name: Prow
-        if: ${{ github.repository == 'g42cloud-terraform/terraform-provider-g42cloud' }}
+        if: ${{ secrets.ROBOT_PAT }}
         uses: chnsz/prow-github-actions@v1.0.0
         with:
           github-token: "${{ secrets.ROBOT_PAT }}"

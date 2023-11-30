@@ -1,5 +1,5 @@
 # This is a lint workflow for documentation and example to help you get started with Actions
-name: doc-lint
+name: Document Lint
 
 # Controls when the action will run. 
 on:
