@@ -12,15 +12,10 @@ on:
   issue_comment:
 
 jobs:
-  labeler:
-    name: Labeler
+  prSize:
+    name: PrSizeLabeler
     runs-on: ubuntu-latest
     steps:
-      - uses: fuxingloh/multi-labeler@v1.5.1
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          config-path: .github/labeler.yml
-
       - uses: codelytv/pr-size-labeler@v1
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
