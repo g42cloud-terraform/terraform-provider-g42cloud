@@ -206,6 +206,8 @@ func Provider() *schema.Provider {
 			"g42cloud_compute_instances":    ecs.DataSourceComputeInstances(),
 			"g42cloud_compute_servergroups": ecs.DataSourceComputeServerGroups(),
 
+			"g42cloud_csms_secret_version": dew.DataSourceDewCsmsSecret(),
+
 			"g42cloud_css_flavors": css.DataSourceCssFlavors(),
 
 			"g42cloud_dcs_flavors":        dcs.DataSourceDcsFlavorsV2(),
