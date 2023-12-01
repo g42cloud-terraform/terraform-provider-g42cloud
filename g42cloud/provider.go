@@ -8,6 +8,7 @@ import (
 
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/antiddos"
+	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/ddm"
 	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/lts"
 	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/sfs"
 
@@ -214,6 +215,9 @@ func Provider() *schema.Provider {
 			"g42cloud_dcs_maintainwindow": dcs.DataSourceDcsMaintainWindow(),
 			"g42cloud_dcs_product":        deprecated.DataSourceDcsProductV1(),
 			"g42cloud_dcs_az":             deprecated.DataSourceDcsAZV1(),
+
+			"g42cloud_ddm_engines": ddm.DataSourceDdmEngines(),
+			"g42cloud_ddm_flavors": ddm.DataSourceDdmFlavors(),
 
 			"g42cloud_dds_flavors": dds.DataSourceDDSFlavorV3(),
 
