@@ -245,7 +245,12 @@ func Provider() *schema.Provider {
 
 			"g42cloud_obs_bucket_object": obs.DataSourceObsBucketObject(),
 
-			"g42cloud_rds_flavors": rds.DataSourceRdsFlavor(),
+			"g42cloud_rds_backups":              rds.DataSourceBackup(),
+			"g42cloud_rds_engine_versions":      rds.DataSourceRdsEngineVersionsV3(),
+			"g42cloud_rds_instances":            rds.DataSourceRdsInstances(),
+			"g42cloud_rds_sqlserver_collations": rds.DataSourceSQLServerCollations(),
+			"g42cloud_rds_storage_types":        rds.DataSourceStoragetype(),
+			"g42cloud_rds_flavors":              rds.DataSourceRdsFlavor(),
 
 			"g42cloud_rms_policy_definitions": rms.DataSourcePolicyDefinitions(),
 
@@ -429,9 +434,14 @@ func Provider() *schema.Provider {
 			"g42cloud_rms_resource_aggregation_authorization": rms.ResourceAggregationAuthorization(),
 			"g42cloud_rms_resource_recorder":                  rms.ResourceRecorder(),
 
-			"g42cloud_rds_instance":              ResourceRdsInstanceV3(),
-			"g42cloud_rds_parametergroup":        rds.ResourceRdsConfiguration(),
-			"g42cloud_rds_read_replica_instance": rds.ResourceRdsReadReplicaInstance(),
+			"g42cloud_rds_instance":                 ResourceRdsInstanceV3(),
+			"g42cloud_rds_backup":                   rds.ResourceBackup(),
+			"g42cloud_rds_mysql_account":            rds.ResourceMysqlAccount(),
+			"g42cloud_rds_mysql_database":           rds.ResourceMysqlDatabase(),
+			"g42cloud_rds_mysql_database_privilege": rds.ResourceMysqlDatabasePrivilege(),
+			"g42cloud_rds_parametergroup":           rds.ResourceRdsConfiguration(),
+			"g42cloud_rds_read_replica_instance":    rds.ResourceRdsReadReplicaInstance(),
+			"g42cloud_rds_sql_audit":                rds.ResourceSQLAudit(),
 
 			"g42cloud_servicestage_application":                 servicestage.ResourceApplication(),
 			"g42cloud_servicestage_component_instance":          servicestage.ResourceComponentInstance(),
