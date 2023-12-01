@@ -479,9 +479,13 @@ func Provider() *schema.Provider {
 			"g42cloud_mpc_transcoding_template":       mpc.ResourceTranscodingTemplate(),
 			"g42cloud_mpc_transcoding_template_group": mpc.ResourceTranscodingTemplateGroup(),
 
-			"g42cloud_nat_dnat_rule": nat.ResourcePublicDnatRule(),
-			"g42cloud_nat_gateway":   nat.ResourcePublicGateway(),
-			"g42cloud_nat_snat_rule": nat.ResourcePublicSnatRule(),
+			"g42cloud_nat_dnat_rule":          nat.ResourcePublicDnatRule(),
+			"g42cloud_nat_gateway":            nat.ResourcePublicGateway(),
+			"g42cloud_nat_snat_rule":          nat.ResourcePublicSnatRule(),
+			"g42cloud_nat_private_dnat_rule":  nat.ResourcePrivateDnatRule(),
+			"g42cloud_nat_private_gateway":    nat.ResourcePrivateGateway(),
+			"g42cloud_nat_private_snat_rule":  nat.ResourcePrivateSnatRule(),
+			"g42cloud_nat_private_transit_ip": nat.ResourcePrivateTransitIp(),
 
 			"g42cloud_network_acl":              huaweicloud.ResourceNetworkACL(),
 			"g42cloud_network_acl_rule":         huaweicloud.ResourceNetworkACLRule(),
