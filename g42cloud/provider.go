@@ -215,6 +215,8 @@ func Provider() *schema.Provider {
 
 			"g42cloud_dds_flavors": dds.DataSourceDDSFlavorV3(),
 
+			"g42cloud_evs_volumes": evs.DataSourceEvsVolumesV2(),
+
 			"g42cloud_kms_key":      dew.DataSourceKmsKey(),
 			"g42cloud_kms_data_key": dew.DataSourceKmsDataKeyV1(),
 
