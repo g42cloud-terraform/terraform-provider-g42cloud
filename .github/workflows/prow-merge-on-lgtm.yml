@@ -5,12 +5,14 @@ on:
 jobs:
   merge-checker:
     runs-on: ubuntu-latest
+    env:
+      ROBOT_PAT: ${{ secrets.ROBOT_PAT }}
     steps:
       - uses: chnsz/prow-github-actions@v1.0.0
-        if: ${{ secrets.ROBOT_PAT }}
+        if: ${{ env.ROBOT_PAT }}
         with:
           jobs: 'lgtm'
-          github-token: "${{ secrets.ROBOT_PAT }}"
+          github-token: "${{ env.ROBOT_PAT }}"
           # this configuration is optional and will default to 'merge'
           # possible options are 'merge', 'rebase', or 'squash'
           merge-method: 'squash'

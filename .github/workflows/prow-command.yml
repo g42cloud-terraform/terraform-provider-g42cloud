@@ -8,12 +8,14 @@ on:
 jobs:
   prow:
     runs-on: ubuntu-latest
+    env:
+      ROBOT_PAT: ${{ secrets.ROBOT_PAT }}
     steps:
       - name: Prow
-        if: ${{ secrets.ROBOT_PAT }}
+        if: ${{ env.ROBOT_PAT }}
         uses: chnsz/prow-github-actions@v1.0.0
         with:
-          github-token: "${{ secrets.ROBOT_PAT }}"
+          github-token: "${{ env.ROBOT_PAT }}"
           jobs: lgtm
           prow-commands: |
             /assign
