@@ -501,3 +501,9 @@ func TestAccPreCheckKms(t *testing.T) {
 		t.Skip("This environment does not support KMS tests")
 	}
 }
+
+func TestAccPreCheckUserId(t *testing.T) {
+	if G42_USER_ID == "" {
+		t.Skip("The environment variables does not support the user ID (G42_USER_ID) for acc tests")
+	}
+}
