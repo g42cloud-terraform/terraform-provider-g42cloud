@@ -63,6 +63,7 @@ var (
 	G42_KMS_ENVIRONMENT = os.Getenv("G42_KMS_ENVIRONMENT")
 
 	G42_ENTERPRISE_MIGRATE_PROJECT_ID_TEST = os.Getenv("G42_ENTERPRISE_MIGRATE_PROJECT_ID_TEST")
+	G42_MODELARTS_HAS_SUBSCRIBE_MODEL      = os.Getenv("G42_MODELARTS_HAS_SUBSCRIBE_MODEL")
 )
 
 // TestAccProviders is a static map containing only the main provider instance.

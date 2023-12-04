@@ -24,7 +24,7 @@ resource "g42cloud_aom_event_alarm_rule" "test" {
   alarm_source        = "AOM"
 
   select_object = {
-    "event_type"     ="alarm",
+    "event_type"     = "alarm",
     "event_severity" = "Critical"
   }
 }
