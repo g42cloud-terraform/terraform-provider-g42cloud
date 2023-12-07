@@ -246,6 +246,8 @@ func Provider() *schema.Provider {
 			"g42cloud_modelarts_dataset_versions": modelarts.DataSourceDatasetVerions(),
 			"g42cloud_modelarts_notebook_images":  modelarts.DataSourceNotebookImages(),
 
+			"g42cloud_mapreduce_clusters": mrs.DataSourceMrsClusters(),
+
 			"g42cloud_nat_gateway": nat.DataSourcePublicGateway(),
 
 			"g42cloud_networking_port":     vpc.DataSourceNetworkingPortV2(),
