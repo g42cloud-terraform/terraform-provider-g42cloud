@@ -2,6 +2,7 @@ package g42cloud
 
 import (
 	"fmt"
+	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/ges"
 	"log"
 	"strings"
 	"sync"
@@ -445,6 +446,8 @@ func Provider() *schema.Provider {
 			"g42cloud_evs_volume":         evs.ResourceEvsVolume(),
 
 			"g42cloud_fgs_function": fgs.ResourceFgsFunctionV2(),
+
+			"g42cloud_ges_metadata": ges.ResourceGesMetadata(),
 
 			"g42cloud_identity_provider":            iam.ResourceIdentityProvider(),
 			"g42cloud_identity_provider_conversion": iam.ResourceIAMProviderConversion(),
