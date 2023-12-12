@@ -185,6 +185,7 @@ func Provider() *schema.Provider {
 
 		DataSourcesMap: map[string]*schema.Resource{
 			"g42cloud_apig_environments": apig.DataSourceEnvironments(),
+			"g42cloud_apig_groups":       apig.DataSourceGroups(),
 
 			"g42cloud_as_configurations": as.DataSourceASConfigurations(),
 			"g42cloud_as_groups":         as.DataSourceASGroups(),
@@ -300,10 +301,20 @@ func Provider() *schema.Provider {
 			"g42cloud_apig_api":                         apig.ResourceApigAPIV2(),
 			"g42cloud_apig_api_publishment":             apig.ResourceApigApiPublishment(),
 			"g42cloud_apig_instance":                    apig.ResourceApigInstanceV2(),
+			"g42cloud_apig_acl_policy":                  apig.ResourceAclPolicy(),
+			"g42cloud_apig_acl_policy_associate":        apig.ResourceAclPolicyAssociate(),
+			"g42cloud_apig_appcode":                     apig.ResourceAppcode(),
 			"g42cloud_apig_application":                 apig.ResourceApigApplicationV2(),
+			"g42cloud_apig_application_authorization":   apig.ResourceAppAuth(),
+			"g42cloud_apig_channel":                     apig.ResourceChannel(),
+			"g42cloud_apig_instance_routes":             apig.ResourceInstanceRoutes(),
 			"g42cloud_apig_custom_authorizer":           apig.ResourceApigCustomAuthorizerV2(),
 			"g42cloud_apig_environment":                 apig.ResourceApigEnvironmentV2(),
 			"g42cloud_apig_group":                       apig.ResourceApigGroupV2(),
+			"g42cloud_apig_plugin":                      apig.ResourcePlugin(),
+			"g42cloud_apig_plugin_associate":            apig.ResourcePluginAssociate(),
+			"g42cloud_apig_signature":                   apig.ResourceSignature(),
+			"g42cloud_apig_signature_associate":         apig.ResourceSignatureAssociate(),
 			"g42cloud_apig_response":                    apig.ResourceApigResponseV2(),
 			"g42cloud_apig_throttling_policy_associate": apig.ResourceThrottlingPolicyAssociate(),
 			"g42cloud_apig_throttling_policy":           apig.ResourceApigThrottlingPolicyV2(),
