@@ -271,6 +271,8 @@ func Provider() *schema.Provider {
 
 			"g42cloud_sms_source_servers": sms.DataSourceServers(),
 
+			"g42cloud_tms_resource_types": tms.DataSourceResourceTypes(),
+
 			"g42cloud_vpc_bandwidth": eip.DataSourceBandWidth(),
 			"g42cloud_vpc_eip":       eip.DataSourceVpcEip(),
 			"g42cloud_vpc_eips":      eip.DataSourceVpcEips(),

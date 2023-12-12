@@ -507,3 +507,9 @@ func TestAccPreCheckUserId(t *testing.T) {
 		t.Skip("The environment variables does not support the user ID (G42_USER_ID) for acc tests")
 	}
 }
+
+func TestAccPreCheckProjectID(t *testing.T) {
+	if G42_PROJECT_ID == "" {
+		t.Skip("G42_PROJECT_ID must be set for acceptance tests")
+	}
+}
