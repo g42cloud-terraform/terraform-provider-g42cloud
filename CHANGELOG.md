@@ -1,5 +1,72 @@
 # CHANGELOG
 
+## 1.12.0 (December 14, 2023)
+
+FEATURES:
+
+* **New Resource:**
+  + `g42cloud_apig_acl_policy` [#147](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/147)
+  + `g42cloud_apig_acl_policy_associate` [#147](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/147)
+  + `g42cloud_apig_appcode` [#147](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/147)
+  + `g42cloud_apig_application_authorization` [#147](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/147)
+  + `g42cloud_apig_channel` [#147](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/147)
+  + `g42cloud_apig_instance_routes` [#147](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/147)
+  + `g42cloud_apig_plugin` [#147](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/147)
+  + `g42cloud_apig_plugin_associate` [#147](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/147)
+  + `g42cloud_apig_signature` [#147](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/147)
+  + `g42cloud_apig_signature_associate` [#147](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/147)
+  + `g42cloud_as_bandwidth_policy` [#143](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/143)
+  + `g42cloud_as_instance_attach` [#143](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/143)
+  + `g42cloud_as_lifecycle_hook` [#143](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/143)
+  + `g42cloud_as_notification` [#143](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/143)
+  + `g42cloud_cce_namespace` [#144](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/144)
+  + `g42cloud_cce_pvc` [#144](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/144)
+  + `g42cloud_ces_alarm_template` [#145](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/145)
+  + `g42cloud_ces_resource_group` [#145](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/145)
+  + `g42cloud_csms_secret` [#138](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/138)
+  + `g42cloud_css_configuration` [#146](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/146)
+  + `g42cloud_dds_audit_log_policy` [#151](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/151)
+  + `g42cloud_dds_backup` [#151](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/151)
+  + `g42cloud_dds_database_role` [#151](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/151)
+  + `g42cloud_dds_database_user` [#151](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/151)
+  + `g42cloud_dds_parameter_template` [#151](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/151)
+  + `g42cloud_elb_logtank` [#150](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/150)
+  + `g42cloud_elb_security_policy` [#150](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/150)
+  + `g42cloud_identity_group_v3` [#137](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/137)
+  + `g42cloud_rds_backup` [#187](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/187)
+  + `g42cloud_rds_mysql_account` [#187](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/187)
+  + `g42cloud_rds_mysql_database` [#187](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/187)
+  + `g42cloud_rds_mysql_database_privilege` [#187](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/187)
+  + `g42cloud_rds_sql_audit` [#187](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/187)
+
+* **New Data Source:**
+  + `g42cloud_apig_groups` [#147](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/147)
+  + `g42cloud_as_configurations` [#143](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/143)
+  + `g42cloud_as_groups` [#143](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/143)
+  + `g42cloud_cbr_backup` [#149](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/149)
+  + `g42cloud_cce_clusters` [#144](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/144)
+  + `g42cloud_cce_nodes` [#144](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/144)
+  + `g42cloud_compute_instance` [#137](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/137)
+  + `g42cloud_compute_instances` [#137](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/137)
+  + `g42cloud_compute_servergroups` [#137](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/137)
+  + `g42cloud_csms_secret_version` [#158](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/158)
+  + `g42cloud_ddm_engines` [#155](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/155)
+  + `g42cloud_ddm_flavors` [#155](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/155)
+  + `g42cloud_dds_instances` [#151](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/151)
+  + `g42cloud_elb_loadbalancers` [#150](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/150)
+  + `g42cloud_elb_pools` [#150](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/150)
+  + `g42cloud_evs_volumes` [#148](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/148)
+  + `g42cloud_rds_backups` [#187](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/187)
+  + `g42cloud_rds_engine_versions` [#187](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/187)
+  + `g42cloud_rds_instances` [#187](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/187)
+  + `g42cloud_rds_sqlserver_collations` [#187](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/187)
+  + `g42cloud_rds_storage_types` [#187](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/187)
+  + `g42cloud_sms_source_servers` [#121](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/121)
+
+ENHANCEMENTS:
+
+* Support DSS in CCE node, node pool and RDS instance ([#72](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/72)).
+
 ## 1.11.0 (July 29, 2023)
 
 FEATURES:
@@ -36,7 +103,7 @@ remove docs of LB ([#127](https://github.com/g42cloud-terraform/terraform-provid
 
 BUG FIXES:
 
-udpate VPC route docs ([#125](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/125))
+Update VPC route docs ([#125](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/125))
 
 ## 1.9.0 (March 27, 2023)
 
@@ -75,8 +142,8 @@ FEATURES:
 
 ENHANCEMENTS:
 
-udpate references ([#106](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/106))
-udpate AS docs ([#112](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/112))
+Update references ([#106](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/106))
+Update AS docs ([#112](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/112))
 
 FEATURES:
 
@@ -94,7 +161,7 @@ FEATURES:
 
 ENHANCEMENTS:
 
-udpate docs ([#97](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/97))
+Update docs ([#97](https://github.com/g42cloud-terraform/terraform-provider-g42cloud/pull/97))
 
 ## 1.6.1 (September 9, 2022)
 
