@@ -2,6 +2,7 @@ package g42cloud
 
 import (
 	"fmt"
+	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/er"
 	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/ges"
 	"log"
 	"strings"
@@ -252,6 +253,10 @@ func Provider() *schema.Provider {
 			"g42cloud_elb_loadbalancers": elb.DataSourceElbLoadbalances(),
 			"g42cloud_elb_pools":         elb.DataSourcePools(),
 
+			"g42cloud_er_availability_zones": er.DataSourceAvailabilityZones(),
+			"g42cloud_er_instances":          er.DataSourceInstances(),
+			"g42cloud_er_route_tables":       er.DataSourceRouteTables(),
+
 			"g42cloud_enterprise_project": eps.DataSourceEnterpriseProject(),
 
 			"g42cloud_identity_role": iam.DataSourceIdentityRole(),
@@ -467,6 +472,9 @@ func Provider() *schema.Provider {
 
 			"g42cloud_ges_metadata": ges.ResourceGesMetadata(),
 
+			"g42cloud_er_instance":    er.ResourceInstance(),
+			"g42cloud_er_route_table": er.ResourceRouteTable(),
+
 			"g42cloud_identity_provider":            iam.ResourceIdentityProvider(),
 			"g42cloud_identity_provider_conversion": iam.ResourceIAMProviderConversion(),
 
@@ -592,13 +600,13 @@ func Provider() *schema.Provider {
 			"g42cloud_vpcep_service":  vpcep.ResourceVPCEndpointService(),
 
 			"g42cloud_waf_certificate":                waf.ResourceWafCertificateV1(),
-			"g42cloud_waf_domain":                     waf.ResourceWafDomainV1(),
+			"g42cloud_waf_domain":                     waf.ResourceWafDomain(),
 			"g42cloud_waf_policy":                     waf.ResourceWafPolicyV1(),
 			"g42cloud_waf_rule_blacklist":             waf.ResourceWafRuleBlackListV1(),
 			"g42cloud_waf_rule_data_masking":          waf.ResourceWafRuleDataMaskingV1(),
 			"g42cloud_waf_rule_web_tamper_protection": waf.ResourceWafRuleWebTamperProtectionV1(),
 			"g42cloud_waf_dedicated_instance":         waf.ResourceWafDedicatedInstance(),
-			"g42cloud_waf_dedicated_domain":           waf.ResourceWafDedicatedDomainV1(),
+			"g42cloud_waf_dedicated_domain":           waf.ResourceWafDedicatedDomain(),
 			"g42cloud_waf_reference_table":            waf.ResourceWafReferenceTableV1(),
 			"g42cloud_waf_rule_cc_protection":         waf.ResourceRuleCCProtection(),
 			"g42cloud_waf_rule_precise_protection":    waf.ResourceRulePreciseProtection(),

@@ -3,10 +3,12 @@ module github.com/g42cloud-terraform/terraform-provider-g42cloud
 go 1.18
 
 require (
-	github.com/chnsz/golangsdk v0.0.0-20231027080141-c5721e2542e4
+	github.com/chnsz/golangsdk v0.0.0-20231130115815-5d9e3e666b0b
+	github.com/hashicorp/go-uuid v1.0.3
 	github.com/hashicorp/terraform-plugin-sdk/v2 v2.24.0
 	github.com/huaweicloud/huaweicloud-sdk-go-v3 v0.1.62
-	github.com/huaweicloud/terraform-provider-huaweicloud v1.57.0
+	github.com/huaweicloud/terraform-provider-huaweicloud v1.58.0
+	github.com/zclconf/go-cty v1.11.0
 )
 
 require (
@@ -25,7 +27,6 @@ require (
 	github.com/hashicorp/go-hclog v1.2.1 // indirect
 	github.com/hashicorp/go-multierror v1.1.1 // indirect
 	github.com/hashicorp/go-plugin v1.4.4 // indirect
-	github.com/hashicorp/go-uuid v1.0.3 // indirect
 	github.com/hashicorp/go-version v1.6.0 // indirect
 	github.com/hashicorp/hc-install v0.4.0 // indirect
 	github.com/hashicorp/hcl/v2 v2.14.1 // indirect
@@ -56,7 +57,6 @@ require (
 	github.com/vmihailenco/msgpack v4.0.4+incompatible // indirect
 	github.com/vmihailenco/msgpack/v4 v4.3.12 // indirect
 	github.com/vmihailenco/tagparser v0.1.1 // indirect
-	github.com/zclconf/go-cty v1.11.0 // indirect
 	go.mongodb.org/mongo-driver v1.12.0 // indirect
 	golang.org/x/crypto v0.14.0 // indirect
 	golang.org/x/net v0.17.0 // indirect

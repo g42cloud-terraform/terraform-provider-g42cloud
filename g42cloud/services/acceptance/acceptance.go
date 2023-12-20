@@ -81,6 +81,8 @@ var (
 	G42_LTS_STRUCT_CONFIG_TEMPLATE_ID   = os.Getenv("G42_LTS_STRUCT_CONFIG_TEMPLATE_ID")
 	G42_LTS_STRUCT_CONFIG_TEMPLATE_NAME = os.Getenv("G42_LTS_STRUCT_CONFIG_TEMPLATE_NAME")
 	G42_LTS_ENABLE_FLAG                 = os.Getenv("G42_LTS_ENABLE_FLAG")
+
+	G42_ER_TEST_ON = os.Getenv("G42_ER_TEST_ON")
 )
 
 // TestAccProviders is a static map containing only the main provider instance.
@@ -601,5 +603,10 @@ func TestAccPreCheckLtsStructConfigCustom(t *testing.T) {
 func TestAccPreCheckLtsEnableFlag(t *testing.T) {
 	if G42_LTS_ENABLE_FLAG == "" {
 		t.Skip("Skip the LTS acceptance tests.")
+	}
+}
+func TestAccPreCheckER(t *testing.T) {
+	if G42_ER_TEST_ON == "" {
+		t.Skip("Skip all ER acceptance tests.")
 	}
 }

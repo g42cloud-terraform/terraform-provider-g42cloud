@@ -1,0 +1,138 @@
+package er
+
+import (
+	"fmt"
+	"testing"
+
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/acctest"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/terraform"
+
+	"github.com/chnsz/golangsdk/openstack/er/v3/routetables"
+
+	"github.com/g42cloud-terraform/terraform-provider-g42cloud/g42cloud/services/acceptance"
+	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/config"
+)
+
+func getRouteTableResourceFunc(cfg *config.Config, state *terraform.ResourceState) (interface{}, error) {
+	client, err := cfg.ErV3Client(acceptance.G42_REGION_NAME)
+	if err != nil {
+		return nil, fmt.Errorf("error creating ER v3 client: %s", err)
+	}
+
+	return routetables.Get(client, state.Primary.Attributes["instance_id"], state.Primary.ID)
+}
+
+func TestAccRouteTable_basic(t *testing.T) {
+	var (
+		obj routetables.RouteTable
+
+		rName      = "g42cloud_er_route_table.test"
+		name       = acceptance.RandomAccResourceName()
+		updateName = acceptance.RandomAccResourceName()
+		bgpAsNum   = acctest.RandIntRange(64512, 65534)
+	)
+
+	rc := acceptance.InitResourceCheck(
+		rName,
+		&obj,
+		getRouteTableResourceFunc,
+	)
+
+	resource.ParallelTest(t, resource.TestCase{
+		PreCheck: func() {
+			acceptance.TestAccPreCheck(t)
+			acceptance.TestAccPreCheckER(t)
+		},
+		ProviderFactories: acceptance.TestAccProviderFactories,
+		CheckDestroy:      rc.CheckResourceDestroy(),
+		Steps: []resource.TestStep{
+			{
+				Config: testRouteTable_basic(name, bgpAsNum),
+				Check: resource.ComposeTestCheckFunc(
+					rc.CheckResourceExists(),
+					resource.TestCheckResourceAttr(rName, "name", name),
+					resource.TestCheckResourceAttr(rName, "description", "Create by acc test"),
+					resource.TestCheckResourceAttr(rName, "tags.foo", "bar"),
+					resource.TestCheckResourceAttrSet(rName, "status"),
+					resource.TestCheckResourceAttrSet(rName, "created_at"),
+					resource.TestCheckResourceAttrSet(rName, "updated_at"),
+				),
+			},
+			{
+				Config: testRouteTable_basic_update(updateName, bgpAsNum),
+				Check: resource.ComposeTestCheckFunc(
+					rc.CheckResourceExists(),
+					resource.TestCheckResourceAttr(rName, "name", updateName),
+					resource.TestCheckResourceAttr(rName, "description", ""),
+				),
+			},
+			{
+				ResourceName:      rName,
+				ImportState:       true,
+				ImportStateVerify: true,
+				ImportStateIdFunc: testAccRouteTableImportStateFunc(),
+			},
+		},
+	})
+}
+
+func testAccRouteTableImportStateFunc() resource.ImportStateIdFunc {
+	return func(s *terraform.State) (string, error) {
+		var instanceId, routeTableId string
+		for _, rs := range s.RootModule().Resources {
+			if rs.Type == "g42cloud_er_route_table" {
+				instanceId = rs.Primary.Attributes["instance_id"]
+				routeTableId = rs.Primary.ID
+			}
+		}
+		if instanceId == "" || routeTableId == "" {
+			return "", fmt.Errorf("some import IDs are missing, want '<instance_id>/<route_table_id>', but '%s/%s'",
+				instanceId, routeTableId)
+		}
+		return fmt.Sprintf("%s/%s", instanceId, routeTableId), nil
+	}
+}
+
+func testRouteTable_base(name string, bgpAsNum int) string {
+	return fmt.Sprintf(`
+data "g42cloud_er_availability_zones" "test" {}
+
+resource "g42cloud_er_instance" "test" {
+  availability_zones = data.g42cloud_er_availability_zones.test.names
+  name               = "%[1]s"
+  asn                = %[2]d
+}
+`, name, bgpAsNum)
+}
+
+func testRouteTable_basic(name string, bgpAsNum int) string {
+	return fmt.Sprintf(`
+%[1]s
+
+resource "g42cloud_er_route_table" "test" {
+  instance_id = g42cloud_er_instance.test.id
+  name        = "%[2]s"
+  description = "Create by acc test"
+
+  tags = {
+    foo = "bar"
+  }
+}
+`, testRouteTable_base(name, bgpAsNum), name)
+}
+
+func testRouteTable_basic_update(name string, bgpAsNum int) string {
+	return fmt.Sprintf(`
+%[1]s
+
+resource "g42cloud_er_route_table" "test" {
+  instance_id = g42cloud_er_instance.test.id
+  name        = "%[2]s"
+
+  tags = {
+    foo = "bar"
+  }
+}
+`, testRouteTable_base(name, bgpAsNum), name)
+}
