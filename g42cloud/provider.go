@@ -192,6 +192,7 @@ func Provider() *schema.Provider {
 
 			"g42cloud_bms_flavors": bms.DataSourceBmsFlavors(),
 
+			"g42cloud_cbr_backup": cbr.DataSourceBackup(),
 			"g42cloud_cbr_vaults": cbr.DataSourceVaults(),
 
 			"g42cloud_cce_addon_template": cce.DataSourceAddonTemplate(),
