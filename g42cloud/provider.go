@@ -10,6 +10,7 @@ import (
 	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/antiddos"
 	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/ddm"
 	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/lts"
+	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/mpc"
 	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/services/sfs"
 
 	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud"
@@ -442,6 +443,9 @@ func Provider() *schema.Provider {
 			"g42cloud_modelarts_dataset_version":        modelarts.ResourceDatasetVersion(),
 			"g42cloud_modelarts_notebook":               modelarts.ResourceNotebook(),
 			"g42cloud_modelarts_notebook_mount_storage": modelarts.ResourceNotebookMountStorage(),
+
+			"g42cloud_mpc_transcoding_template":       mpc.ResourceTranscodingTemplate(),
+			"g42cloud_mpc_transcoding_template_group": mpc.ResourceTranscodingTemplateGroup(),
 
 			"g42cloud_nat_dnat_rule": nat.ResourcePublicDnatRule(),
 			"g42cloud_nat_gateway":   nat.ResourcePublicGateway(),
