@@ -214,10 +214,13 @@ func Provider() *schema.Provider {
 
 			"g42cloud_css_flavors": css.DataSourceCssFlavors(),
 
-			"g42cloud_dcs_flavors":        dcs.DataSourceDcsFlavorsV2(),
-			"g42cloud_dcs_maintainwindow": dcs.DataSourceDcsMaintainWindow(),
-			"g42cloud_dcs_product":        deprecated.DataSourceDcsProductV1(),
-			"g42cloud_dcs_az":             deprecated.DataSourceDcsAZV1(),
+			"g42cloud_dcs_flavors":         dcs.DataSourceDcsFlavorsV2(),
+			"g42cloud_dcs_maintainwindow":  dcs.DataSourceDcsMaintainWindow(),
+			"g42cloud_dcs_product":         deprecated.DataSourceDcsProductV1(),
+			"g42cloud_dcs_az":              deprecated.DataSourceDcsAZV1(),
+			"g42cloud_dcs_instances":       dcs.DataSourceDcsInstance(),
+			"g42cloud_dcs_template_detail": dcs.DataSourceTemplateDetail(),
+			"g42cloud_dcs_templates":       dcs.DataSourceTemplates(),
 
 			"g42cloud_ddm_engines": ddm.DataSourceDdmEngines(),
 			"g42cloud_ddm_flavors": ddm.DataSourceDdmFlavors(),
@@ -368,7 +371,9 @@ func Provider() *schema.Provider {
 			"g42cloud_dc_virtual_gateway":   dc.ResourceVirtualGateway(),
 			"g42cloud_dc_virtual_interface": dc.ResourceVirtualInterface(),
 
-			"g42cloud_dcs_instance": dcs.ResourceDcsInstance(),
+			"g42cloud_dcs_instance":        dcs.ResourceDcsInstance(),
+			"g42cloud_dcs_backup":          dcs.ResourceDcsBackup(),
+			"g42cloud_dcs_custom_template": dcs.ResourceCustomTemplate(),
 
 			"g42cloud_dds_audit_log_policy":   dds.ResourceDdsAuditLogPolicy(),
 			"g42cloud_dds_backup":             dds.ResourceDdsBackup(),
