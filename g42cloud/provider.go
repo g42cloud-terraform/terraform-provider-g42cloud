@@ -271,6 +271,8 @@ func Provider() *schema.Provider {
 			"g42cloud_modelarts_resource_flavors": modelarts.DataSourceResourceFlavors(),
 			"g42cloud_modelarts_service_flavors":  modelarts.DataSourceServiceFlavors(),
 
+			"g42cloud_mapreduce_clusters": mrs.DataSourceMrsClusters(),
+
 			"g42cloud_nat_gateway": nat.DataSourcePublicGateway(),
 
 			"g42cloud_networking_port":      vpc.DataSourceNetworkingPortV2(),
