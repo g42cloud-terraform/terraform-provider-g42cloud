@@ -1,5 +1,87 @@
 # CHANGELOG
 
+## 1.13.0 (December 28, 2023)
+
+* **New Resource:**
+  + `g42cloud_swr_image_retention_policy`
+  + `g42cloud_ges_metadata`
+  + `g42cloud_modelarts_model`
+  + `g42cloud_lts_host_access`
+  + `g42cloud_dli_sql_job`
+  + `g42cloud_obs_bucket_acl`
+  + `g42cloud_dli_global_variable`
+  + `g42cloud_dli_template_sql`
+  + `g42cloud_dws_alarm_subscription`
+  + `g42cloud_nat_private_dnat_rule`
+  + `g42cloud_dcs_custom_template`
+  + `g42cloud_dli_table`
+  + `g42cloud_dli_agency`
+  + `g42cloud_vpc_flow_log`
+  + `g42cloud_lts_waf_access`
+  + `g42cloud_nat_private_transit_ip`
+  + `g42cloud_nat_private_snat_rule`
+  + `g42cloud_vpc_bandwidth_associate`
+  + `g42cloud_dli_permission`
+  + `g42cloud_dms_rocketmq_user`
+  + `g42cloud_images_image_share_accepter`
+  + `g42cloud_obs_bucket_object_acl`
+  + `g42cloud_cpts_project`
+  + `g42cloud_images_image_copy`
+  + `g42cloud_dws_event_subscription`
+  + `g42cloud_images_image_share`
+  + `g42cloud_mpc_transcoding_template_group`
+  + `g42cloud_identity_provider`
+  + `g42cloud_lts_sql_alarm_rule`
+  + `g42cloud_lts_host_group`
+  + `g42cloud_dli_template_flink`
+  + `g42cloud_lts_structuring_configuration`
+  + `g42cloud_lts_structuring_custom_configuration`
+  + `g42cloud_dli_datasource_connection`
+  + `g42cloud_dms_rocketmq_consumer_group`
+  + `g42cloud_identity_provider_conversion`
+  + `g42cloud_lts_search_criteria`
+  + `g42cloud_lts_keywords_alarm_rule`
+  + `g42cloud_smn_logtank`
+  + `g42cloud_dms_rocketmq_topic`
+  + `g42cloud_nat_private_gateway`
+  + `g42cloud_dli_package`
+  + `g42cloud_mpc_transcoding_template`
+  + `g42cloud_dli_datasource_auth`
+  + `g42cloud_smn_message_template`
+  + `g42cloud_dcs_backup`
+  + `g42cloud_lts_aom_access`
+  + `g42cloud_dli_template_spark`
+  + `g42cloud_modelarts_network`
+  + `g42cloud_dli_database`
+  + `g42cloud_dli_spark_job`
+
+* **New Data Source:**
+  + `g42cloud_modelarts_resource_flavors`
+  + `g42cloud_dns_zones`
+  + `g42cloud_dcs_instances`
+  + `g42cloud_modelarts_model_templates`
+  + `g42cloud_dcs_template_detail`
+  + `g42cloud_modelarts_notebook_flavors`
+  + `g42cloud_smn_topics`
+  + `g42cloud_smn_message_templates`
+  + `g42cloud_dms_rocketmq_instances`
+  + `g42cloud_vpc_peering_connection`
+  + `g42cloud_dms_rabbitmq_flavors`
+  + `g42cloud_lb_pools`
+  + `g42cloud_vpc_subnets`
+  + `g42cloud_lts_structuring_custom_templates`
+  + `g42cloud_lb_loadbalancer`
+  + `g42cloud_modelarts_models`
+  + `g42cloud_dms_rocketmq_broker`
+  + `g42cloud_vpcs`
+  + `g42cloud_tms_resource_types`
+  + `g42cloud_mapreduce_clusters`
+  + `g42cloud_lb_certificate`
+  + `g42cloud_dcs_templates`
+  + `g42cloud_modelarts_service_flavors`
+  + `g42cloud_dns_recordsets`
+  + `g42cloud_networking_secgroups`
+
 ## 1.12.0 (December 14, 2023)
 
 FEATURES:
