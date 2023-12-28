@@ -258,6 +258,10 @@ func Provider() *schema.Provider {
 			"g42cloud_images_image":  ims.DataSourceImagesImageV2(),
 			"g42cloud_images_images": ims.DataSourceImagesImages(),
 
+			"g42cloud_lb_loadbalancer": lb.DataSourceELBV2Loadbalancer(),
+			"g42cloud_lb_certificate":  lb.DataSourceLBCertificateV2(),
+			"g42cloud_lb_pools":        lb.DataSourcePools(),
+
 			"g42cloud_modelarts_datasets":         modelarts.DataSourceDatasets(),
 			"g42cloud_modelarts_dataset_versions": modelarts.DataSourceDatasetVerions(),
 			"g42cloud_modelarts_notebook_images":  modelarts.DataSourceNotebookImages(),
