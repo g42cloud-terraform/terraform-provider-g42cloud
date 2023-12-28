@@ -268,8 +268,9 @@ func Provider() *schema.Provider {
 
 			"g42cloud_nat_gateway": nat.DataSourcePublicGateway(),
 
-			"g42cloud_networking_port":     vpc.DataSourceNetworkingPortV2(),
-			"g42cloud_networking_secgroup": vpc.DataSourceNetworkingSecGroup(),
+			"g42cloud_networking_port":      vpc.DataSourceNetworkingPortV2(),
+			"g42cloud_networking_secgroup":  vpc.DataSourceNetworkingSecGroup(),
+			"g42cloud_networking_secgroups": vpc.DataSourceNetworkingSecGroups(),
 
 			"g42cloud_obs_bucket_object": obs.DataSourceObsBucketObject(),
 
@@ -290,11 +291,14 @@ func Provider() *schema.Provider {
 			"g42cloud_vpc_eip":       eip.DataSourceVpcEip(),
 			"g42cloud_vpc_eips":      eip.DataSourceVpcEips(),
 
-			"g42cloud_vpc":             vpc.DataSourceVpcV1(),
-			"g42cloud_vpc_subnet":      vpc.DataSourceVpcSubnetV1(),
-			"g42cloud_vpc_subnet_ids":  vpc.DataSourceVpcSubnetIdsV1(),
-			"g42cloud_vpc_route":       vpc.DataSourceVpcRouteV2(),
-			"g42cloud_vpc_route_table": vpc.DataSourceVPCRouteTable(),
+			"g42cloud_vpc":                    vpc.DataSourceVpcV1(),
+			"g42cloud_vpcs":                   vpc.DataSourceVpcs(),
+			"g42cloud_vpc_peering_connection": vpc.DataSourceVpcPeeringConnectionV2(),
+			"g42cloud_vpc_subnet":             vpc.DataSourceVpcSubnetV1(),
+			"g42cloud_vpc_subnets":            vpc.DataSourceVpcSubnets(),
+			"g42cloud_vpc_subnet_ids":         vpc.DataSourceVpcSubnetIdsV1(),
+			"g42cloud_vpc_route":              vpc.DataSourceVpcRouteV2(),
+			"g42cloud_vpc_route_table":        vpc.DataSourceVPCRouteTable(),
 
 			"g42cloud_vpcep_public_services": vpcep.DataSourceVPCEPPublicServices(),
 
@@ -525,6 +529,7 @@ func Provider() *schema.Provider {
 			"g42cloud_vpc_eip_associate":       eip.ResourceEIPAssociate(),
 
 			"g42cloud_vpc":                             vpc.ResourceVirtualPrivateCloudV1(),
+			"g42cloud_vpc_flow_log":                    vpc.ResourceVpcFlowLog(),
 			"g42cloud_vpc_route":                       vpc.ResourceVPCRouteTableRoute(),
 			"g42cloud_vpc_route_table":                 vpc.ResourceVPCRouteTable(),
 			"g42cloud_vpc_peering_connection":          vpc.ResourceVpcPeeringConnectionV2(),
