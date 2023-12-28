@@ -264,7 +264,12 @@ func Provider() *schema.Provider {
 
 			"g42cloud_modelarts_datasets":         modelarts.DataSourceDatasets(),
 			"g42cloud_modelarts_dataset_versions": modelarts.DataSourceDatasetVerions(),
+			"g42cloud_modelarts_models":           modelarts.DataSourceModels(),
+			"g42cloud_modelarts_model_templates":  modelarts.DataSourceModelTemplates(),
+			"g42cloud_modelarts_notebook_flavors": modelarts.DataSourceNotebookFlavors(),
 			"g42cloud_modelarts_notebook_images":  modelarts.DataSourceNotebookImages(),
+			"g42cloud_modelarts_resource_flavors": modelarts.DataSourceResourceFlavors(),
+			"g42cloud_modelarts_service_flavors":  modelarts.DataSourceServiceFlavors(),
 
 			"g42cloud_nat_gateway": nat.DataSourcePublicGateway(),
 
@@ -464,6 +469,8 @@ func Provider() *schema.Provider {
 
 			"g42cloud_modelarts_dataset":                modelarts.ResourceDataset(),
 			"g42cloud_modelarts_dataset_version":        modelarts.ResourceDatasetVersion(),
+			"g42cloud_modelarts_model":                  modelarts.ResourceModelartsModel(),
+			"g42cloud_modelarts_network":                modelarts.ResourceModelartsNetwork(),
 			"g42cloud_modelarts_notebook":               modelarts.ResourceNotebook(),
 			"g42cloud_modelarts_notebook_mount_storage": modelarts.ResourceNotebookMountStorage(),
 
