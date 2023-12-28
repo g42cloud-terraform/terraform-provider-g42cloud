@@ -73,6 +73,14 @@ var (
 
 	G42_ENTERPRISE_MIGRATE_PROJECT_ID_TEST = os.Getenv("G42_ENTERPRISE_MIGRATE_PROJECT_ID_TEST")
 	G42_MODELARTS_HAS_SUBSCRIBE_MODEL      = os.Getenv("G42_MODELARTS_HAS_SUBSCRIBE_MODEL")
+
+	G42_CCE_CLUSTER_ID                  = os.Getenv("G42_CCE_CLUSTER_ID")
+	G42_CCE_CLUSTER_NAME                = os.Getenv("G42_CCE_CLUSTER_NAME")
+	G42_CCE_CLUSTER_ID_ANOTHER          = os.Getenv("G42_CCE_CLUSTER_ID_ANOTHER")
+	G42_CCE_CLUSTER_NAME_ANOTHER        = os.Getenv("G42_CCE_CLUSTER_NAME_ANOTHER")
+	G42_LTS_STRUCT_CONFIG_TEMPLATE_ID   = os.Getenv("G42_LTS_STRUCT_CONFIG_TEMPLATE_ID")
+	G42_LTS_STRUCT_CONFIG_TEMPLATE_NAME = os.Getenv("G42_LTS_STRUCT_CONFIG_TEMPLATE_NAME")
+	G42_LTS_ENABLE_FLAG                 = os.Getenv("G42_LTS_ENABLE_FLAG")
 )
 
 // TestAccProviders is a static map containing only the main provider instance.
@@ -563,5 +571,35 @@ func TestAccPreCheckProjectId(t *testing.T) {
 func TestAccPreCheckSourceImage(t *testing.T) {
 	if G42_IMAGE_SHARE_SOURCE_IMAGE_ID == "" {
 		t.Skip("Skip the interface acceptance test because of the source image ID is missing.")
+	}
+}
+
+// lintignore:AT003
+func TestAccPreCheckLtsAomAccess(t *testing.T) {
+	if G42_CCE_CLUSTER_ID == "" || G42_CCE_CLUSTER_NAME == "" {
+		t.Skip("G42_CCE_CLUSTER_ID and G42_CCE_CLUSTER_NAME must be set for LTS AOM access acceptance tests")
+	}
+}
+
+// lintignore:AT003
+func TestAccPreCheckLtsAomAccessUpdate(t *testing.T) {
+	if G42_CCE_CLUSTER_ID_ANOTHER == "" || G42_CCE_CLUSTER_NAME_ANOTHER == "" {
+		t.Skip("G42_CCE_CLUSTER_ID_ANOTHER and G42_CCE_CLUSTER_NAME_ANOTHER must be set for LTS AOM access" +
+			" acceptance tests")
+	}
+}
+
+// lintignore:AT003
+func TestAccPreCheckLtsStructConfigCustom(t *testing.T) {
+	if G42_LTS_STRUCT_CONFIG_TEMPLATE_ID == "" || G42_LTS_STRUCT_CONFIG_TEMPLATE_NAME == "" {
+		t.Skip("G42_LTS_STRUCT_CONFIG_TEMPLATE_ID and G42_LTS_STRUCT_CONFIG_TEMPLATE_NAME must be" +
+			" set for LTS struct config custom acceptance tests")
+	}
+}
+
+// lintignore:AT003
+func TestAccPreCheckLtsEnableFlag(t *testing.T) {
+	if G42_LTS_ENABLE_FLAG == "" {
+		t.Skip("Skip the LTS acceptance tests.")
 	}
 }

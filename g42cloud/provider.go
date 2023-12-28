@@ -262,6 +262,8 @@ func Provider() *schema.Provider {
 			"g42cloud_lb_certificate":  lb.DataSourceLBCertificateV2(),
 			"g42cloud_lb_pools":        lb.DataSourcePools(),
 
+			"g42cloud_lts_structuring_custom_templates": lts.DataSourceCustomTemplates(),
+
 			"g42cloud_modelarts_datasets":         modelarts.DataSourceDatasets(),
 			"g42cloud_modelarts_dataset_versions": modelarts.DataSourceDatasetVerions(),
 			"g42cloud_modelarts_models":           modelarts.DataSourceModels(),
@@ -482,8 +484,17 @@ func Provider() *schema.Provider {
 			"g42cloud_lb_pool":         lb.ResourcePoolV2(),
 			"g42cloud_lb_whitelist":    lb.ResourceWhitelistV2(),
 
-			"g42cloud_lts_group":  lts.ResourceLTSGroup(),
-			"g42cloud_lts_stream": lts.ResourceLTSStream(),
+			"g42cloud_lts_aom_access":                       lts.ResourceAOMAccess(),
+			"g42cloud_lts_group":                            lts.ResourceLTSGroup(),
+			"g42cloud_lts_host_access":                      lts.ResourceHostAccessConfig(),
+			"g42cloud_lts_host_group":                       lts.ResourceHostGroup(),
+			"g42cloud_lts_keywords_alarm_rule":              lts.ResourceKeywordsAlarmRule(),
+			"g42cloud_lts_search_criteria":                  lts.ResourceSearchCriteria(),
+			"g42cloud_lts_sql_alarm_rule":                   lts.ResourceSQLAlarmRule(),
+			"g42cloud_lts_stream":                           lts.ResourceLTSStream(),
+			"g42cloud_lts_structuring_configuration":        lts.ResourceStructConfig(),
+			"g42cloud_lts_structuring_custom_configuration": lts.ResourceStructCustomConfig(),
+			"g42cloud_lts_waf_access":                       lts.ResourceWAFAccess(),
 
 			"g42cloud_mapreduce_cluster": mrs.ResourceMRSClusterV2(),
 			"g42cloud_mapreduce_job":     mrs.ResourceMRSJobV2(),
