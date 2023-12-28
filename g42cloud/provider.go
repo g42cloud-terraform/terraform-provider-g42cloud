@@ -517,6 +517,7 @@ func Provider() *schema.Provider {
 			"g42cloud_sms_server_template": sms.ResourceServerTemplate(),
 			"g42cloud_sms_task":            sms.ResourceMigrateTask(),
 
+			"g42cloud_swr_image_retention_policy":   swr.ResourceSwrImageRetentionPolicy(),
 			"g42cloud_swr_organization":             swr.ResourceSWROrganization(),
 			"g42cloud_swr_organization_permissions": swr.ResourceSWROrganizationPermissions(),
 			"g42cloud_swr_repository":               swr.ResourceSWRRepository(),
