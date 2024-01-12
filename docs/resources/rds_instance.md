@@ -146,6 +146,11 @@ The following arguments are supported:
 
 * `volume` - (Required, List) Specifies the volume information. Structure is documented below.
 
+* `dss_pool_id` - (Optional, String, ForceNew) Specifies the exclusive storage ID for Dec users.
+  It is different for each az configuration. When creating an instance for Dec users,
+  it is needed to be specified for all nodes of the instance and separated by commas if database instance type is
+  not standalone or read-only.
+
 * `fixed_ip` - (Optional, String, ForceNew) Specifies an intranet floating IP address of RDS DB instance. Changing this
   parameter will create a new resource.
 
