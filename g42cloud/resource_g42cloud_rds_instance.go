@@ -10,13 +10,14 @@ import (
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 
+	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud"
+	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/config"
+	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/utils"
+
 	"github.com/chnsz/golangsdk"
 	"github.com/chnsz/golangsdk/openstack/common/tags"
 	"github.com/chnsz/golangsdk/openstack/rds/v3/backups"
 	"github.com/chnsz/golangsdk/openstack/rds/v3/instances"
-	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud"
-	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/config"
-	"github.com/huaweicloud/terraform-provider-huaweicloud/huaweicloud/utils"
 )
 
 func ResourceRdsInstanceV3() *schema.Resource {
@@ -141,6 +142,12 @@ func ResourceRdsInstanceV3() *schema.Resource {
 				Type:     schema.TypeString,
 				Required: true,
 				ForceNew: true,
+			},
+
+			"dss_pool_id": {
+				Type:     schema.TypeString,
+				ForceNew: true,
+				Optional: true,
 			},
 
 			"backup_strategy": {
@@ -290,6 +297,7 @@ func resourceRdsInstanceV3Create(d *schema.ResourceData, meta interface{}) error
 		Volume:              buildRdsInstanceVolume(d),
 		BackupStrategy:      buildRdsInstanceBackupStrategy(d),
 		Ha:                  buildRdsInstanceHaReplicationMode(d),
+		DssPoolId:           d.Get("dss_pool_id").(string),
 	}
 
 	// PrePaid
