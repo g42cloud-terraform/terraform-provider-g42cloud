@@ -164,7 +164,7 @@ The following arguments are supported:
   + **ipvs**: Optimized kube-proxy mode with higher throughput and faster speed. This mode supports incremental updates
     and can keep connections uninterrupted during service updates. It is suitable for large-sized clusters.
 
-* `extend_params` - (Optional, Map, ForceNew) Specifies the extended parameter.
+* `extend_param` - (Optional, Map, ForceNew) Specifies the extended parameter.
   Changing this parameter will create a new cluster resource.
 
 * `enterprise_project_id` - (Optional, String, ForceNew) The enterprise project ID of the CCE cluster.
