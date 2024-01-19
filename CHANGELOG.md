@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 1.13.1 (January 19, 2024)
+
+ENHANCEMENTS:
+
+* Support DSS in RDS instance.
+
 ## 1.13.0 (December 28, 2023)
 
 * **New Resource:**
